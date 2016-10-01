@@ -20,7 +20,7 @@ Abstract
    respective key.  The format is described to support other
    implementations which reuse the format and ensuring an
    interoperability with existing MISP [MISP-P] software and other
-   Threat Intelligence Platform.
+   Threat Intelligence Platforms.
 
 Status of This Memo
 
@@ -69,7 +69,7 @@ Table of Contents
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   2
      2.2.  Event . . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   2
-     3.1.  Normative References  . . . . . . . . . . . . . . . . . .   2
+     3.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
      3.2.  Informative References  . . . . . . . . . . . . . . . . .   3
    Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .   3
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   3
@@ -81,7 +81,9 @@ Table of Contents
    information can include indicators of compromise, malicious file
    indicators, financial fraud indicators or even detailed information
    about a threat actor.  MISP started as an open source project in late
-   2011
+   2011 and the MISP format started to be widely used as an exchange
+   format within the community in the past years.  The aim of this
+   document is to describe the specification and the MISP core format.
 
 2.  Format
 
@@ -92,17 +94,15 @@ Table of Contents
 
 2.2.  Event
 
-   An event is a simple meta structure scheme where attributes are
-   embedded
+   An event is a simple meta structure scheme where attributes and meta-
+   data are embedded to compose a coherent set of indicators.  An event
+   can be composed from an incident, a security analysis report or a
+   specific threat actor analysis.  The meaning of an event only depends
+   of the information embedded in the event.
 
 3.  References
 
-3.1.  Normative References
 
-   [RFC4627]  Crockford, D., "The application/json Media Type for
-              JavaScript Object Notation (JSON)", RFC 4627,
-              DOI 10.17487/RFC4627, July 2006,
-              <http://www.rfc-editor.org/info/rfc4627>.
 
 
 
@@ -113,6 +113,13 @@ Dulaunoy                  Expires April 4, 2017                 [Page 2]
 
 Internet-Draft              MISP core format                October 2016
 
+
+3.1.  Normative References
+
+   [RFC4627]  Crockford, D., "The application/json Media Type for
+              JavaScript Object Notation (JSON)", RFC 4627,
+              DOI 10.17487/RFC4627, July 2006,
+              <http://www.rfc-editor.org/info/rfc4627>.
 
 3.2.  Informative References
 
@@ -134,13 +141,6 @@ Author's Address
 
    Phone: +352 247 88444
    Email: alexandre.dulaunoy@circl.lu
-
-
-
-
-
-
-
 
 
 

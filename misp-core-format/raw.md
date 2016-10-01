@@ -28,7 +28,7 @@ This document describes the MISP core format used to exchange indicators and thr
 MISP (Malware Information and threat Sharing Platform) instances.
 The JSON format includes the overall structure along with the semantic associated for each
 respective key. The format is described to support other implementations which reuse the
-format and ensuring an interoperability with existing MISP [@?MISP-P] software and other Threat Intelligence Platform.
+format and ensuring an interoperability with existing MISP [@?MISP-P] software and other Threat Intelligence Platforms.
 
 {mainmatter}
 
@@ -36,7 +36,9 @@ format and ensuring an interoperability with existing MISP [@?MISP-P] software a
 
 Sharing threat information became a fundamental requirements in the Internet, security and intelligence community at large. Threat
 information can include indicators of compromise, malicious file indicators, financial fraud indicators
-or even detailed information about a threat actor. MISP started as an open source project in late 2011
+or even detailed information about a threat actor. MISP started as an open source project in late 2011 and
+the MISP format started to be widely used as an exchange format within the community in the past years. The aim of this document
+is to describe the specification and the MISP core format.
 
 # Format
 
@@ -46,7 +48,9 @@ The MISP core format is in the JSON [@!RFC4627] format. In MISP, an event is com
 
 ## Event
 
-An event is a simple meta structure scheme where attributes are embedded 
+An event is a simple meta structure scheme where attributes and meta-data are embedded to compose a coherent set
+of indicators. An event can be composed from an incident, a security analysis report or a specific threat actor
+analysis. The meaning of an event only depends of the information embedded in the event.
 
 
 <reference anchor='MISP-P' target='https://github.com/MISP'>
