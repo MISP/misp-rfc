@@ -8,7 +8,7 @@
 % date = 2016-10-01T00:00:00Z
 %
 % [[author]]
-% initials="M."
+% initials="A."
 % surname="Dulaunoy"
 % fullname="Alexandre Dulaunoy"
 % abbrev="CIRCL"
