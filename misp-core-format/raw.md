@@ -21,6 +21,20 @@
 %   city = "Luxembourg"
 %   code = "L-1611"
 %   country = "Luxembourg"
+% [[author]]
+% initials="A."
+% surname="Iklody"
+% fullname="Andras Iklody"
+% abbrev="CIRCL"
+% organization = "Computer Incident Response Center Luxembourg"
+%  [author.address]
+%  email = "andras.iklody@circl.lu"
+%  phone = "+352 247 88444"
+%   [author.address.postal]
+%   street = "41, avenue de la gare"
+%   city = "Luxembourg"
+%   code = "L-1611"
+%   country = "Luxembourg"
 
 .# Abstract
 
@@ -82,7 +96,42 @@ published represents the event publication state. If the event was published, th
 In any other publication state, the published value MUST be false.
 
 published is represented as a JSON boolean. published MUST be present.
- 
+
+#### info
+
+info represents the information field of the event. info a free-text value to provide a human-readable summary
+of the event. info SHOULD NOT be bigger than 256 characters.
+
+info is represented as a JSON string. info MUST be present.
+
+#### threat_level_id
+
+threat_level_id represents the threat level.
+
+0:
+:   Undefined
+
+1:
+:   Low
+
+2:
+:   Medium
+
+3:
+:   High
+
+If a higher granularity is required, a MISP taxonomy applied as a Tag SHOULD be preferred.
+
+threat_level_id is represented as a JSON string. threat_level_id SHALL be present.
+
+
+#### date
+
+date represents a reference date to the event in year-month-date format. For a more precise time reference, the timestamp key is used.
+
+date is represented as a JSON string.
+
+
 <reference anchor='MISP-P' target='https://github.com/MISP'>
   <front>
    <title>MISP Project - Malware Information Sharing Platform and Threat Sharing</title>

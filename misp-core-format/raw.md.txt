@@ -3,9 +3,9 @@
 
 
 Network Working Group                                        A. Dulaunoy
-Internet-Draft                                                     CIRCL
-Intended status: Informational                           October 1, 2016
-Expires: April 4, 2017
+Internet-Draft                                                 A. Iklody
+Intended status: Informational                                     CIRCL
+Expires: April 4, 2017                                   October 1, 2016
 
 
                             MISP core format
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Dulaunoy                  Expires April 4, 2017                 [Page 1]
+Dulaunoy & Iklody         Expires April 4, 2017                 [Page 1]
 
 Internet-Draft              MISP core format                October 2016
 
@@ -70,11 +70,11 @@ Table of Contents
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   2
      2.2.  Event . . . . . . . . . . . . . . . . . . . . . . . . . .   3
        2.2.1.  Event Attributes  . . . . . . . . . . . . . . . . . .   3
-   3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     3.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
-     3.2.  Informative References  . . . . . . . . . . . . . . . . .   4
-   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .   4
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   4
+   3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     3.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
+     3.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .   5
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Dulaunoy                  Expires April 4, 2017                 [Page 2]
+Dulaunoy & Iklody         Expires April 4, 2017                 [Page 2]
 
 Internet-Draft              MISP core format                October 2016
 
@@ -149,6 +149,52 @@ Internet-Draft              MISP core format                October 2016
    published is represented as a JSON boolean. published MUST be
    present.
 
+2.2.1.4.  info
+
+   info represents the information field of the event. info a free-text
+   value to provide a human-readable summary of the event. info SHOULD
+   NOT be bigger than 256 characters.
+
+   info is represented as a JSON string. info MUST be present.
+
+2.2.1.5.  threat_level_id
+
+   threat_level_id represents the threat level.
+
+   0:
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                 [Page 3]
+
+Internet-Draft              MISP core format                October 2016
+
+
+      Undefined
+
+   1:
+      Low
+
+   2:
+      Medium
+
+   3:
+      High
+
+   If a higher granularity is required, a MISP taxonomy applied as a Tag
+   SHOULD be preferred.
+
+   threat_level_id is represented as a JSON string. threat_level_id
+   SHALL be present.
+
+2.2.1.6.  date
+
+   date represents a reference date to the event in year-month-date
+   format.  For a more precise time reference, the timestamp key is
+   used.
+
+   date is represented as a JSON string.
+
 3.  References
 
 3.1.  Normative References
@@ -163,17 +209,22 @@ Internet-Draft              MISP core format                October 2016
               DOI 10.17487/RFC4122, July 2005,
               <http://www.rfc-editor.org/info/rfc4122>.
 
-
-
-Dulaunoy                  Expires April 4, 2017                 [Page 3]
-
-Internet-Draft              MISP core format                October 2016
-
-
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627,
               DOI 10.17487/RFC4627, July 2006,
               <http://www.rfc-editor.org/info/rfc4627>.
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                 [Page 4]
+
+Internet-Draft              MISP core format                October 2016
+
 
 3.2.  Informative References
 
@@ -185,7 +236,7 @@ Appendix A.  Acknowledgements
    The authors wish to thank all the MISP community to support the
    creation of open standards in threat intelligence sharing.
 
-Author's Address
+Authors' Addresses
 
    Alexandre Dulaunoy
    Computer Incident Response Center Luxembourg
@@ -197,6 +248,14 @@ Author's Address
    Email: alexandre.dulaunoy@circl.lu
 
 
+   Andras Iklody
+   Computer Incident Response Center Luxembourg
+   41, avenue de la gare
+   Luxembourg  L-1611
+   Luxembourg
+
+   Phone: +352 247 88444
+   Email: andras.iklody@circl.lu
 
 
 
@@ -218,7 +277,4 @@ Author's Address
 
 
 
-
-
-
-Dulaunoy                  Expires April 4, 2017                 [Page 4]
+Dulaunoy & Iklody         Expires April 4, 2017                 [Page 5]
