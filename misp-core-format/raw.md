@@ -40,11 +40,20 @@ or even detailed information about a threat actor. MISP started as an open sourc
 the MISP format started to be widely used as an exchange format within the community in the past years. The aim of this document
 is to describe the specification and the MISP core format.
 
+##  Conventions and Terminology
+
+The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL NOT**",
+"**SHOULD**", "**SHOULD NOT**", "**RECOMMENDED**", "**MAY**", and "**OPTIONAL**" in this
+document are to be interpreted as described in RFC 2119 [@!RFC2119].
+
 # Format
 
 ## Overview
 
 The MISP core format is in the JSON [@!RFC4627] format. In MISP, an event is composed of a single JSON object.
+
+A capitalized key (like Event, Org) represent a data model and a non-capitalized key is just an attribute. This nomenclature
+can support an implementation to represent the MISP format in another data structure.
 
 ## Event
 
@@ -52,7 +61,28 @@ An event is a simple meta structure scheme where attributes and meta-data are em
 of indicators. An event can be composed from an incident, a security analysis report or a specific threat actor
 analysis. The meaning of an event only depends of the information embedded in the event.
 
+### Event Attributes
 
+#### uuid
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the event. The uuid MUST be preserved
+for any updates or transfer of the same event. UUID version 4 is RECOMMENDED when assigning it to a new event.
+
+uuid is represented as a JSON string. uuid MUST be present.
+
+#### id
+
+id represents the human-readable identifier associated to the event for a specific MISP instance.
+
+id is represented as a JSON string. id SHALL be present.
+
+#### published
+
+published represents the event publication state. If the event was published, the published value MUST be true.
+In any other publication state, the published value MUST be false.
+
+published is represented as a JSON boolean. published MUST be present.
+ 
 <reference anchor='MISP-P' target='https://github.com/MISP'>
   <front>
    <title>MISP Project - Malware Information Sharing Platform and Threat Sharing</title>
