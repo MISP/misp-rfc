@@ -127,13 +127,13 @@ threat_level_id is represented as a JSON string. threat_level_id SHALL be presen
 
 #### date
 
-date represents a reference date to the event in year-month-date format. For a more precise time reference, the timestamp key is used.
+date represents a reference date to the event in ISO 8601 format (date only: YYYY-MM-DD). This date corresponds to the date the event occured, which may be in the past.
 
 date is represented as a JSON string.
 
 #### timestamp
 
-timestamp represents a reference time when the event was created. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.
+timestamp represents a reference time when the event was created, or last updated. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.
 
 timestamp is represented as a JSON string. timestamp MUST be present.
 
