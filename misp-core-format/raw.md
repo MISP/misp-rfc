@@ -135,13 +135,13 @@ date is represented as a JSON string.
 
 timestamp represents a reference time when the event was created. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.
 
-timestamp is represented as a JSON string.
+timestamp is represented as a JSON string. timestamp MUST be present.
 
 #### publish_timestamp
 
 publish_timestamp represents a reference time when the event was published. published_timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). At each publication of an event, publish_timestamp MUST be updated. The time zone MUST be UTC.
 
-publish_timestamp is represented as a JSON string.
+publish_timestamp is represented as a JSON string. publish_timestamp MUST be present.
 
 #### org_id
 
@@ -158,6 +158,11 @@ orgc_id is globally assigned to an organization and SHALL be kept overtime.
 
 orgc_id is represented as a JSON string. orgc_id MUST be present.
 
+#### attribute_count
+
+attribute_count represents the number of attributes in the event. attribute_count is expressed in decimal.
+
+attribute_count is represented as a JSON string. attribute_count SHALL be present.
 
 <reference anchor='MISP-P' target='https://github.com/MISP'>
   <front>
