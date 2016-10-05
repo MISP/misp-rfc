@@ -259,43 +259,43 @@ type represents the means through which an attribute tries to describe the inten
 
 type is represented as a JSON string. type MUST be present and it MUST be a valid selection for the chosen category. The list of valid category-type combinations is as follows:
 
-Internal reference
+**Internal reference**
 :   text, link, comment, other
 
-Targeting data
+**Targeting data**
 :   target-user, target-email, target-machine, target-org, target-location, target-external, comment
 
-Antivirus detection
+**Antivirus detection**
 :   link, comment, text, attachment, other
 
-Payload delivery
+**Payload delivery**
 :   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, ip-src, ip-dst, hostname, domain, email-src, email-dst, email-subject, email-attachment, url, user-agent, AS, pattern-in-file, pattern-in-traffic, yara, attachment, malware-sample, link, malware-type, comment, text, vulnerability, x509-fingerprint-sha1, other
 
-Artifacts dropped
+**Artifacts dropped**
 :   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, pdb, yara, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, x509-fingerprint-sha1, other
 
-Payload installation
+**Payload installation**
 :   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, yara, vulnerability, attachment, malware-sample, malware-type, comment, text, x509-fingerprint-sha1, other
 
-Persistence mechanism
+**Persistence mechanism**
 :   filename, regkey, regkey|value, comment, text, other
 
-Network activity
+**Network activity**
 :   ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, pattern-in-traffic, attachment, comment, text, x509-fingerprint-sha1, other
 
-Payload type
+**Payload type**
 :   comment, text, other
 
-Attribution
+**Attribution**
 :   threat-actor, campaign-name, campaign-id, whois-registrant-phone, whois-registrant-email, whois-registrant-name, whois-registrar, whois-creation-date, comment, text, x509-fingerprint-sha1, other
 
-External analysis
+**External analysis**
 :   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, other
 
-Financial fraud
+**Financial fraud**
 :   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other
 
-Other
+**Other**
 :   comment, text, other
 
 #### category
