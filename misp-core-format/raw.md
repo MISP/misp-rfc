@@ -133,7 +133,7 @@ date is represented as a JSON string.
 
 #### timestamp
 
-timestamp represents a reference time when the event was created, or last updated/edited on the instance. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.
+timestamp represents a reference time when the event, or one of the attributes within the event was created, or last updated/edited on the instance. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.
 
 timestamp is represented as a JSON string. timestamp MUST be present.
 
