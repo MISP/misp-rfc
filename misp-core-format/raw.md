@@ -212,6 +212,161 @@ uuid, name and id are represented as a JSON string. uuid, name and id MUST be pr
 
 {backmatter}
 
+## Attribute
+
+Attributes are used to describe the indicators and contextual data of an event. The main information contained in an attribute is made up of a category-type-value triplet,
+where the category and type give meaning and context to the value. Through the various category-type combinations a wide range of information can be conveyed.
+
+#### Sample Attribute Object
+
+~~~~
+"Attribute": {
+              "id": "346056",
+              "type": "comment",
+              "category": "Other",
+              "to_ids": false,
+              "uuid": "57f4f6d9-cd20-458b-84fd-109ec0a83869",
+              "event_id": "3357",
+              "distribution": "5",
+              "timestamp": "1475679332",
+              "comment": "",
+              "sharing_group_id": "0",
+              "deleted": false,
+              "value": "Hello world",
+              "SharingGroup": [],
+              "ShadowAttribute": []
+             }
+~~~~
+
+### Attribute Attributes
+
+#### uuid
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the event. The uuid MUST be preserved
+for any updates or transfer of the same event. UUID version 4 is RECOMMENDED when assigning it to a new event.
+
+uuid is represented as a JSON string. uuid MUST be present.
+
+#### id
+
+id represents the human-readable identifier associated to the event for a specific MISP instance.
+
+id is represented as a JSON string. id SHALL be present.
+
+#### type
+
+type represents the means through which an attribute tries to describe the intent of the attribute creator, using a list of pre-defined attribute types.
+
+type is represented as a JSON string. type MUST be present and it MUST be a valid selection for the chosen category. The list of valid category-type combinations is as follows:
+
+Internal reference
+:   text, link, comment, other
+
+Targeting data
+:   target-user, target-email, target-machine, target-org, target-location, target-external, comment
+
+Antivirus detection
+:   link, comment, text, attachment, other
+
+Payload delivery
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, ip-src, ip-dst, hostname, domain, email-src, email-dst, email-subject, email-attachment, url, user-agent, AS, pattern-in-file, pattern-in-traffic, yara, attachment, malware-sample, link, malware-type, comment, text, vulnerability, x509-fingerprint-sha1, other
+
+Artifacts dropped
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, pdb, yara, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, x509-fingerprint-sha1, other
+
+Payload installation
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, yara, vulnerability, attachment, malware-sample, malware-type, comment, text, x509-fingerprint-sha1, other
+
+Persistence mechanism
+:   filename, regkey, regkey|value, comment, text, other
+
+Network activity
+:   ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, pattern-in-traffic, attachment, comment, text, x509-fingerprint-sha1, other
+
+Payload type
+:   comment, text, other
+
+Attribution
+:   threat-actor, campaign-name, campaign-id, whois-registrant-phone, whois-registrant-email, whois-registrant-name, whois-registrar, whois-creation-date, comment, text, x509-fingerprint-sha1, other
+
+External analysis
+:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, other
+
+Financial fraud
+:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other
+
+Other
+:   comment, text, other
+
+#### category
+
+category represents the intent of what the attribute is describing as selected by the attribute creator, using a list of pre-defined attribute categories.
+
+category is represented as a JSON string. category MUST be present and it MUST be a valid selection for the chosen type. The list of valid category-type combinations is mentioned above.
+
+#### to\_ids
+
+to\_ids represents whether the attribute is meant to be actionable.
+
+to\_ids is represented as a JSON boolean. to\_ids MUST be present.
+
+#### event\_id
+
+event\_id represents a human-readable identifier referencing the Event object that the attribute belongs to.
+
+The event\_id SHOULD be updated when the event is imported to reflect the newly created event's id on the instance.
+
+event\_id is represented as a JSON string. event\_id MUST be present.
+
+#### distribution
+
+distribution represents the basic distribution rules of the attribute. The system must adhere to the distribution setting for access control and for dissemination of the attribute.
+
+distribution is represented by a JSON string. distribution MUST be present and be one of the following options:
+
+0
+:   Your Organisation Only
+1
+:   This Community Only
+2
+:   Connected Communities
+3
+:   All Communities
+4
+:   Sharing Group
+5
+:   Inherit Event
+
+#### timestamp
+
+timestamp represents a reference time when the attribute was created or last modified. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.
+
+timestamp is represented as a JSON string. timestamp MUST be present.
+
+#### comment
+
+comment is a contextual comment field. 
+
+comment is represented by a JSON string. comment MAY be present.
+
+#### sharing_group_id
+
+sharing\_group\_id represents a human-readable identifier referencing a Sharing Group object that defines the distribution of the attribute, if distribution level "4" is set.
+
+sharing\_group\_id is represented by a JSON string and MUST be present. If a distribution level other than "4" is chosen the sharing\_group\_id MUST be set to "0"
+
+#### deleted
+
+deleted represents a setting that allows attributes to be revoked. Revoked attributes are not actionable and exist merely to inform other instances of a revocation.
+
+deleted is represented by a JSON boolean. deleted MUST be present.
+
+#### value
+
+value represents the payload of an attribute. The format of the value is dependent on the type of the attribute.
+
+value is represented by a JSON string. value MUST be present.
+
 # Acknowledgements
 
 The authors wish to thank all the MISP community to support the creation
