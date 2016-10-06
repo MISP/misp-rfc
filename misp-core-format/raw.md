@@ -50,7 +50,7 @@ format and ensuring an interoperability with existing MISP [@?MISP-P] software a
 
 Sharing threat information became a fundamental requirements in the Internet, security and intelligence community at large. Threat
 information can include indicators of compromise, malicious file indicators, financial fraud indicators
-or even detailed information about a threat actor. MISP started as an open source project in late 2011 and
+or even detailed information about a threat actor. MISP [@?MISP-P] started as an open source project in late 2011 and
 the MISP format started to be widely used as an exchange format within the community in the past years. The aim of this document
 is to describe the specification and the MISP core format.
 
@@ -390,6 +390,21 @@ value represents the payload of an attribute. The format of the value is depende
 
 value is represented by a JSON string. value MUST be present.
 
+## Tag
+
+A Tag is a simple method to classify an event with a simple tag name. The tag name can be freely chosen. The tag name can be also chosen from a fixed machine-tag vocabulary called MISP taxonomies[[@?MISP-T]]. A Tag is represented as a JSON array where each element describes each tag associated. A Tag array SHALL be, at least, at Event level. A tag element is described with a name, id, colour, exportable flag and org_id.
+
+### Sample Tag
+
+~~~~
+"Tag": [{
+        "org_id": "0",
+        "exportable": true,
+        "colour": "#ffffff",
+        "name": "tlp:white",
+        "id": "2" }]
+~~~~
+
 # Acknowledgements
 
 The authors wish to thank all the MISP community to support the creation
@@ -398,6 +413,14 @@ of open standards in threat intelligence sharing.
 <reference anchor='MISP-P' target='https://github.com/MISP'>
   <front>
    <title>MISP Project - Malware Information Sharing Platform and Threat Sharing</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+
+<reference anchor='MISP-T' target='https://github.com/MISP/misp-taxonomies'>
+  <front>
+   <title>MISP Taxonomies - shared and common vocabularies of tags</title>
    <author initials='' surname='MISP' fullname='MISP Community'></author>
    <date></date>
   </front>
