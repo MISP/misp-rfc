@@ -316,14 +316,19 @@ distribution is represented by a JSON string. distribution MUST be present and b
 
 0
 :   Your Organisation Only
+
 1
 :   This Community Only
+
 2
 :   Connected Communities
+
 3
 :   All Communities
+
 4
 :   Sharing Group
+
 5
 :   Inherit Event
 
