@@ -165,6 +165,34 @@ attribute_count represents the number of attributes in the event. attribute_coun
 
 attribute_count is represented as a JSON string. attribute_count SHALL be present.
 
+#### distribution
+
+distribution represents the basic distribution rules of the event. The system must adhere to the distribution setting for access control and for dissemination of the event.
+
+distribution is represented by a JSON string. distribution MUST be present and be one of the following options:
+
+0
+:   Your Organisation Only
+
+1
+:   This Community Only
+
+2
+:   Connected Communities
+
+3
+:   All Communities
+
+4
+:   Sharing Group
+
+#### sharing_group_id
+
+sharing\_group\_id represents a human-readable identifier referencing a Sharing Group object that defines the distribution of the event, if distribution level "4" is set.
+
+sharing\_group\_id is represented by a JSON string and MUST be present. If a distribution level other than "4" is chosen the sharing\_group\_id MUST be set to "0".
+
+
 ## Objects
 
 ### Org
