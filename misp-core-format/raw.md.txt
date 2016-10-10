@@ -78,9 +78,9 @@ Table of Contents
        2.4.2.  Attribute Attributes  . . . . . . . . . . . . . . . .   8
      2.5.  Tag . . . . . . . . . . . . . . . . . . . . . . . . . . .  12
        2.5.1.  Sample Tag  . . . . . . . . . . . . . . . . . . . . .  12
-   3.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  12
-   4.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
-     4.1.  Normative References  . . . . . . . . . . . . . . . . . .  12
+   3.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  13
+   4.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
+     4.1.  Normative References  . . . . . . . . . . . . . . . . . .  13
      4.2.  Informative References  . . . . . . . . . . . . . . . . .  13
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
 
@@ -174,7 +174,7 @@ Internet-Draft              MISP core format                October 2016
 
    info represents the information field of the event. info a free-text
    value to provide a human-readable summary of the event. info SHOULD
-   NOT be bigger than 256 characters.
+   NOT be bigger than 256 characters and SHOULD NOT include new-lines.
 
    info is represented as a JSON string. info MUST be present.
 
@@ -368,7 +368,31 @@ Internet-Draft              MISP core format                October 2016
    meaning and context to the value.  Through the various category-type
    combinations a wide range of information can be conveyed.
 
+   A MISP document MUST at least includes category-type-value triplet
+   described in section "Attribute Attributes".
+
 2.4.1.  Sample Attribute Object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                 [Page 7]
+
+Internet-Draft              MISP core format                October 2016
+
 
        "Attribute": {
                      "id": "346056",
@@ -386,13 +410,6 @@ Internet-Draft              MISP core format                October 2016
                      "SharingGroup": [],
                      "ShadowAttribute": []
                     }
-
-
-
-Dulaunoy & Iklody         Expires April 4, 2017                 [Page 7]
-
-Internet-Draft              MISP core format                October 2016
-
 
 2.4.2.  Attribute Attributes
 
@@ -425,6 +442,14 @@ Internet-Draft              MISP core format                October 2016
    Internal reference
       text, link, comment, other
 
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                 [Page 8]
+
+Internet-Draft              MISP core format                October 2016
+
+
    Targeting data
       target-user, target-email, target-machine, target-org, target-
       location, target-external, comment
@@ -441,15 +466,6 @@ Internet-Draft              MISP core format                October 2016
       filename|tlsh, filename|imphash, filename|pehash, ip-src, ip-dst,
       hostname, domain, email-src, email-dst, email-subject, email-
       attachment, url, user-agent, AS, pattern-in-file, pattern-in-
-
-
-
-
-Dulaunoy & Iklody         Expires April 4, 2017                 [Page 8]
-
-Internet-Draft              MISP core format                October 2016
-
-
       traffic, yara, attachment, malware-sample, link, malware-type,
       comment, text, vulnerability, x509-fingerprint-sha1, other
 
@@ -480,6 +496,16 @@ Internet-Draft              MISP core format                October 2016
       filename, regkey, regkey|value, comment, text, other
 
    Network activity
+
+
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                 [Page 9]
+
+Internet-Draft              MISP core format                October 2016
+
+
       ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri,
       user-agent, http-method, AS, snort, pattern-in-file, pattern-in-
       traffic, attachment, comment, text, x509-fingerprint-sha1, other
@@ -498,13 +524,6 @@ Internet-Draft              MISP core format                October 2016
       user-agent, regkey, regkey|value, AS, snort, pattern-in-file,
       pattern-in-traffic, pattern-in-memory, vulnerability, attachment,
       malware-sample, link, comment, text, x509-fingerprint-sha1, other
-
-
-
-Dulaunoy & Iklody         Expires April 4, 2017                 [Page 9]
-
-Internet-Draft              MISP core format                October 2016
-
 
    Financial fraud
       btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn,
@@ -534,6 +553,15 @@ Internet-Draft              MISP core format                October 2016
    event_id represents a human-readable identifier referencing the Event
    object that the attribute belongs to.
 
+
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                [Page 10]
+
+Internet-Draft              MISP core format                October 2016
+
+
    The event_id SHOULD be updated when the event is imported to reflect
    the newly created event's id on the instance.
 
@@ -553,14 +581,6 @@ Internet-Draft              MISP core format                October 2016
 
    1
       This Community Only
-
-
-
-
-Dulaunoy & Iklody         Expires April 4, 2017                [Page 10]
-
-Internet-Draft              MISP core format                October 2016
-
 
    2
       Connected Communities
@@ -588,6 +608,16 @@ Internet-Draft              MISP core format                October 2016
 
    comment is represented by a JSON string. comment MAY be present.
 
+
+
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                [Page 11]
+
+Internet-Draft              MISP core format                October 2016
+
+
 2.4.2.10.  sharing_group_id
 
    sharing_group_id represents a human-readable identifier referencing a
@@ -606,18 +636,6 @@ Internet-Draft              MISP core format                October 2016
 
    deleted is represented by a JSON boolean. deleted MUST be present.
 
-
-
-
-
-
-
-
-Dulaunoy & Iklody         Expires April 4, 2017                [Page 11]
-
-Internet-Draft              MISP core format                October 2016
-
-
 2.4.2.12.  value
 
    value represents the payload of an attribute.  The format of the
@@ -635,7 +653,26 @@ Internet-Draft              MISP core format                October 2016
    A tag element is described with a name, id, colour, exportable flag
    and org_id.
 
+   exportable represents a setting if the tag is kept local or
+   exportable to other MISP instances. exportable is represented by a
+   JSON boolean.
+
+   name MUST be present. exportable SHALL be present.
+
 2.5.1.  Sample Tag
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                [Page 12]
+
+Internet-Draft              MISP core format                October 2016
+
 
                        "Tag": [{
                                "org_id": "0",
@@ -663,17 +700,6 @@ Internet-Draft              MISP core format                October 2016
               DOI 10.17487/RFC4122, July 2005,
               <http://www.rfc-editor.org/info/rfc4122>.
 
-
-
-
-
-
-
-Dulaunoy & Iklody         Expires April 4, 2017                [Page 12]
-
-Internet-Draft              MISP core format                October 2016
-
-
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627,
               DOI 10.17487/RFC4627, July 2006,
@@ -688,6 +714,21 @@ Internet-Draft              MISP core format                October 2016
               of tags", <https://github.com/MISP/misp-taxonomies>.
 
 Authors' Addresses
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                [Page 13]
+
+Internet-Draft              MISP core format                October 2016
+
 
    Alexandre Dulaunoy
    Computer Incident Response Center Luxembourg
@@ -725,4 +766,19 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody         Expires April 4, 2017                [Page 13]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires April 4, 2017                [Page 14]
