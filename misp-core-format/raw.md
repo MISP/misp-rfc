@@ -124,6 +124,22 @@ If a higher granularity is required, a MISP taxonomy applied as a Tag **SHOULD**
 
 threat_level_id is represented as a JSON string. threat_level_id **SHALL** be present.
 
+#### analysis
+
+analysis represents the analysis level.
+
+0:
+:   Initial
+
+1:
+:   Ongoing
+
+2:
+:   Complete
+
+If a higher granularity is required, a MISP taxonomy applied as a Tag **SHOULD** be preferred.
+
+analysis is represented as a JSON string. analysis **SHALL** be present.
 
 #### date
 
@@ -395,9 +411,9 @@ value is represented by a JSON string. value **MUST** be present.
 
 A Tag is a simple method to classify an event with a simple tag name. The tag name can be freely chosen. The tag name can be also chosen from a fixed machine-tag vocabulary called MISP taxonomies[[@?MISP-T]]. A Tag is represented as a JSON array where each element describes each tag associated. A Tag array SHALL be, at least, at Event level. A tag element is described with a name, id, colour and exportable flag.
 
-exportable represents a setting if the tag is kept local or exportable to other MISP instances. exportable is represented by a JSON boolean.
+exportable represents a setting if the tag is kept local or exportable to other MISP instances. exportable is represented by a JSON boolean. id is a human-readable identifier that references the tag on the local instance. colour represents an RGB value of the tag.
 
-name **MUST** be present. exportable **SHALL** be present.
+name **MUST** be present. colour, id and exportable **SHALL** be present.
 
 ### Sample Tag
 
@@ -408,6 +424,100 @@ name **MUST** be present. exportable **SHALL** be present.
         "name": "tlp:white",
         "id": "2" }]
 ~~~~
+
+# Manifest
+
+MISP events can be shared over an HTTP repository, a file package or USB key. A manifest file is used to
+provide an index of MISP events allowing to only fetch the recently updated files without the need to parse
+each json file.
+
+## Format
+
+A manifest file is a simple JSON file named manifest.json in a directory where the MISP events are located.
+Each MISP event is a file located in the same directory with the event uuid as filename with the json extension.
+
+The manifest format is a JSON object composed of a dictionary where the field is the uuid of the event.
+
+Each uuid is composed of a JSON object with the following fields which came from the original event referenced
+by the same uuid:
+
+- info (**MUST**)
+- Orgc object (**MUST**)
+- analysis (**SHALL**)
+- timestamp (**MUST**)
+- date (**MUST**)
+- threat_level_id (**SHALL**)
+
+In addition to the fields originating from the event, the following fields can be added:
+
+- integrity:sha256 represents the SHA256 value in hexadecimal representation of the associated MISP event file to ensure integrity of the file. (**SHOULD**)
+- integrity:pgp represents a detached PGP signature [@!RFC4880] of the associated MISP event file to ensure integrity of the file. (**SHOULD**)
+
+If a detached PGP signature is used for each MISP event, a detached PGP signature is a **MUST** to ensure integrity of the manifest file.
+A detached PGP signature for a manifest file is a manifest.json.pgp file containing the PGP signature.
+
+### Sample Manifest
+
+~~~~
+{
+  "57c6ac4c-c60c-4f79-a38f-b666950d210f": {
+    "info": "Malspam 2016-08-31 (.wsf in .zip) - campaign: Photo",
+    "Orgc": {
+      "id": "2",
+      "name": "CIRCL"
+    },
+    "analysis": "0",
+    "Tag": [
+      {
+        "colour": "#3d7a00",
+        "name": "circl:incident-classification=\"malware\""
+      },
+      {
+        "colour": "#ffffff",
+        "name": "tlp:white"
+      }
+    ],
+    "timestamp": "1472638251",
+    "date": "2016-08-31",
+    "threat_level_id": "3"
+  },
+  "5720accd-dd28-45f8-80e5-4605950d210f": {
+    "info": "Malspam 2016-04-27 - Locky",
+    "Orgc": {
+      "id": "2",
+      "name": "CIRCL"
+    },
+    "analysis": "2",
+    "Tag": [
+      {
+        "colour": "#ffffff",
+        "name": "tlp:white"
+      },
+      {
+        "colour": "#3d7a00",
+        "name": "circl:incident-classification=\"malware\""
+      },
+      {
+        "colour": "#2c4f00",
+        "name": "malware_classification:malware-category=\"Ransomware\""
+      }
+    ],
+    "timestamp": "1461764231",
+    "date": "2016-04-27",
+    "threat_level_id": "3"
+  }
+}
+~~~~
+
+# Security Considerations
+
+MISP events might contain sensitive or confidential information. Adequate
+access control and encryption measures shall be implemented to ensure
+the confidentiality of the MISP events.
+
+Adversaries might include malicious content in MISP events and attributes.
+Implementation **MUST** consider the input of malicious inputs beside the
+standard threat information that might already include malicious intended inputs.
 
 # Acknowledgements
 
