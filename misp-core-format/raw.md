@@ -269,7 +269,8 @@ A MISP document **MUST** at least includes category-type-value triplet described
               "deleted": false,
               "value": "Hello world",
               "SharingGroup": [],
-              "ShadowAttribute": []
+              "ShadowAttribute": [],
+              "RelatedAttribute": []
              }
 ~~~~
 
@@ -400,6 +401,10 @@ sharing\_group\_id is represented by a JSON string and **MUST** be present. If a
 deleted represents a setting that allows attributes to be revoked. Revoked attributes are not actionable and exist merely to inform other instances of a revocation.
 
 deleted is represented by a JSON boolean. deleted **MUST** be present.
+
+#### RelatedAttribute
+
+RelatedAttribute is an array of attributes correlating with the current attribute. Each element in the array represents an JSON object which contains an Attribute dictionnary with the external attributes correlating. Each Attribute **MUST** include the id, org_id, info and a value. Only the correlations found on the local instance are shown in RelatedAttribute.
 
 #### value
 
