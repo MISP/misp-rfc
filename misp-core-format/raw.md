@@ -145,7 +145,7 @@ analysis is represented as a JSON string. analysis **SHALL** be present.
 
 date represents a reference date to the event in ISO 8601 format (date only: YYYY-MM-DD). This date corresponds to the date the event occured, which may be in the past.
 
-date is represented as a JSON string.
+date is represented as a JSON string. date **MUST** be present.
 
 #### timestamp
 
@@ -334,6 +334,8 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 **Other**
 :   comment, text, other
 
+Attributes are based on the usage within their different communities. Attributes can be extended on a regular basis and this reference document is updated accordingly.
+
 #### category
 
 category represents the intent of what the attribute is describing as selected by the attribute creator, using a list of pre-defined attribute categories.
@@ -342,7 +344,7 @@ category is represented as a JSON string. category **MUST** be present and it **
 
 #### to\_ids
 
-to\_ids represents whether the attribute is meant to be actionable.
+to\_ids represents whether the attribute is meant to be actionable. Actionable defined attributes that can be used in automated processes as a pattern for detection in Local or Network Intrusion Detection System, log analysis tools or even filtering mechanisms.
 
 to\_ids is represented as a JSON boolean. to\_ids **MUST** be present.
 
