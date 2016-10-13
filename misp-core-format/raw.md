@@ -518,6 +518,14 @@ A detached PGP signature for a manifest file is a manifest.json.pgp file contain
 }
 ~~~~
 
+# Implementation
+
+MISP format is implemented by different software including the MISP threat sharing
+platform and libraries like PyMISP [@?MISP-P]. Implementations use the format
+as an export/import mechanism, staging transport format or synchronisation format
+as used in the MISP core platform. MISP format doesn't impose any restriction on
+the data representation of the format in data-structure of other implementations.
+
 # Security Considerations
 
 MISP events might contain sensitive or confidential information. Adequate
@@ -532,6 +540,9 @@ standard threat information that might already include malicious intended inputs
 
 The authors wish to thank all the MISP community to support the creation
 of open standards in threat intelligence sharing.
+
+# Sample MISP file
+
 
 <reference anchor='MISP-P' target='https://github.com/MISP'>
   <front>
