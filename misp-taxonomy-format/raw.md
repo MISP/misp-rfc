@@ -39,7 +39,7 @@
 .# Abstract
 
 This document describes the MISP taxonomy format which describes a simple JSON format to
-represent machine tags (also called triple tags). A public directory of common vocabularies
+represent machine tags (also called triple tags) vocabularies. A public directory of common vocabularies
 MISP taxonomies is available and relies on the MISP taxonomy format.
 
 {mainmatter}
@@ -52,6 +52,12 @@ or even detailed information about a threat actor. While sharing such indicators
 to ensure adequate distribution, understanding, validation or action of the shared information. MISP taxonomies is a public repository
 of known vocabularies that can be used in threat information sharing.
 
+Machine tags were introduced in 2007 [@?machine-tags] to allow users to be more precise when tagging their picture with geolocation.
+So a machine tag is a tag which use a special syntax to provide more information to user and machines. Machine tags are also known
+as triple tags due to the their format.
+
+In MISP taxonomy context, machine tags help analysts to classify their cybersecurity events, indicators or threats. MISP taxonomy can be used for classification, filtering, triggering action or visualization depending on their use in threat intelligence platforms like MISP [@?MISP-P].
+
 ##  Conventions and Terminology
 
 The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL NOT**",
@@ -59,6 +65,18 @@ The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL 
 document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 # Format
+
+A machine tag is composed of a namespace (**MUST**), a predicate (**MUST**) and an optional value (**OPTIONAL**).
+
+Machine tags are represented as a string. Below a set of sample machines for different namespaces like tlp, admiralty-scale or osint.
+
+~~~~
+tlp:amber
+admiralty-scale:information-credibility="1"
+osint:source-type="blog-post"
+~~~~
+
+
 
 ## Overview
 
@@ -80,7 +98,8 @@ A taxonomies array describes the taxonomy available with the description, name a
   "version": "20161009",
   "license": "CC-0",
   "description": "Manifest file of MISP taxonomies available.",
-  "url": "https://raw.githubusercontent.com/MISP/misp-taxonomies/master/",
+  "url": 
+    "https://raw.githubusercontent.com/MISP/misp-taxonomies/master/",
   "path": "machinetag.json",
   "taxonomies": [
     {
@@ -327,6 +346,14 @@ of open standards in threat intelligence sharing.
    <title>MISP Taxonomies - shared and common vocabularies of tags</title>
    <author initials='' surname='MISP' fullname='MISP Community'></author>
    <date></date>
+  </front>
+</reference>
+
+<reference anchor='machine-tags' target='https://www.flickr.com/groups/51035612836@N01/discuss/72157594497877875/'>
+  <front>
+   <title>Machine tags</title>
+   <author initials='' surname='' fullname='Aaron Straup Cope'></author>
+   <date year="2007"></date>
   </front>
 </reference>
 
