@@ -410,11 +410,202 @@ RelatedAttribute is an array of attributes correlating with the current attribut
 
 RelatedAttribute **MAY** be present.
 
+#### ShadowAttribute
+
+ShadowAttribute is an array of shadow attributes that serve as proposals by third parties to alter the containing attribute. The structure of a ShadowAttribute is similar to that of an Attribute,
+which can be accepted or discarded by the event creator. If accepted, the original attribute containing the shadow attribute is removed and the shadow attribute is converted into an attribute.
+
+Each shadow attribute that references an attribute **MUST** contain the containing attribute's ID in the old_id field and the event's ID in the event_id field.
+
 #### value
 
 value represents the payload of an attribute. The format of the value is dependent on the type of the attribute.
 
 value is represented by a JSON string. value **MUST** be present.
+
+## ShadowAttribute
+
+ShadowAttributes are 3rd party created attributes that either propose to add new information to an event or modify existing information. They are not meant to be actionable until the event creator accepts them - at which point they will be converted into attributes or modify an existing attribute. 
+
+They are similar in structure to Attributes but additionally carry a reference to the creator of the ShadowAttribute as well as a revocation flag. 
+
+### Sample Attribute Object
+
+~~~~
+"ShadowAttribute":  {
+                       "id": "8",
+                       "type": "ip-src",
+                       "category": "Network activity",
+                       "to_ids": false,
+                       "uuid": "57d475f1-da78-4569-89de-1458c0a83869",
+                       "event_uuid": "57d475e6-41c4-41ca-b450-145ec0a83869",
+                       "event_id": "9",
+                       "old_id": "319",
+                       "comment": "",
+                       "org_id": "1",
+                       "proposal_to_delete": false,
+                       "value": "5.5.5.5",
+                       "deleted": false,
+                       "Org": {
+                           "id": "1",
+                           "name": "MISP",
+                           "uuid": "568cce5a-0c80-412b-8fdf-1ffac0a83869"
+                       }
+                   }
+~~~~
+
+### ShadowAttribute Attributes
+
+#### uuid
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the event. The uuid **MUST** be preserved
+for any updates or transfer of the same event. UUID version 4 is **RECOMMENDED** when assigning it to a new event.
+
+uuid is represented as a JSON string. uuid **MUST** be present.
+
+#### id
+
+id represents the human-readable identifier associated to the event for a specific MISP instance.
+
+id is represented as a JSON string. id **SHALL** be present.
+
+#### type
+
+type represents the means through which an attribute tries to describe the intent of the attribute creator, using a list of pre-defined attribute types.
+
+type is represented as a JSON string. type **MUST** be present and it **MUST** be a valid selection for the chosen category. The list of valid category-type combinations is as follows:
+
+**Internal reference**
+:   text, link, comment, other
+
+**Targeting data**
+:   target-user, target-email, target-machine, target-org, target-location, target-external, comment
+
+**Antivirus detection**
+:   link, comment, text, attachment, other
+
+**Payload delivery**
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, ip-src, ip-dst, hostname, domain, email-src, email-dst, email-subject, email-attachment, url, user-agent, AS, pattern-in-file, pattern-in-traffic, yara, attachment, malware-sample, link, malware-type, comment, text, vulnerability, x509-fingerprint-sha1, other
+
+**Artifacts dropped**
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, pdb, yara, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, x509-fingerprint-sha1, other
+
+**Payload installation**
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, yara, vulnerability, attachment, malware-sample, malware-type, comment, text, x509-fingerprint-sha1, other
+
+**Persistence mechanism**
+:   filename, regkey, regkey|value, comment, text, other
+
+**Network activity**
+:   ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, pattern-in-traffic, attachment, comment, text, x509-fingerprint-sha1, other
+
+**Payload type**
+:   comment, text, other
+
+**Attribution**
+:   threat-actor, campaign-name, campaign-id, whois-registrant-phone, whois-registrant-email, whois-registrant-name, whois-registrar, whois-creation-date, comment, text, x509-fingerprint-sha1, other
+
+**External analysis**
+:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, other
+
+**Financial fraud**
+:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other
+
+**Other**
+:   comment, text, other
+
+Attributes are based on the usage within their different communities. Attributes can be extended on a regular basis and this reference document is updated accordingly.
+
+#### category
+
+category represents the intent of what the attribute is describing as selected by the attribute creator, using a list of pre-defined attribute categories.
+
+category is represented as a JSON string. category **MUST** be present and it **MUST** be a valid selection for the chosen type. The list of valid category-type combinations is mentioned above.
+
+#### to\_ids
+
+to\_ids represents whether the Attribute to be created if the ShadowAttribute is accepted is meant to be actionable. Actionable defined attributes that can be used in automated processes as a pattern for detection in Local or Network Intrusion Detection System, log analysis tools or even filtering mechanisms.
+
+to\_ids is represented as a JSON boolean. to\_ids **MUST** be present.
+
+#### event\_id
+
+event\_id represents a human-readable identifier referencing the Event object that the ShadowAttribute belongs to.
+
+The event\_id **SHOULD** be updated when the event is imported to reflect the newly created event's id on the instance.
+
+event\_id is represented as a JSON string. event\_id **MUST** be present.
+
+#### old\_id
+
+old\_id represents a human-readable identifier referencing the Attribute object that the ShadowAttribute belongs to. A ShadowAttribute can this way target an existing Attribute, implying that it is a proposal to modify an existing Attribute, or alternatively it can be a proposal to create a new Attribute for the containing Event.
+
+The old\_id **SHOULD** be updated when the event is imported to reflect the newly created Attribute's id on the instance. Alternatively, if the ShadowAttribute proposes the creation of a new Attribute, it should be set to 0.
+
+old\_id is represented as a JSON string. old\_id **MUST** be present.
+
+#### timestamp
+
+timestamp represents a reference time when the attribute was created or last modified. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+
+timestamp is represented as a JSON string. timestamp **MUST** be present.
+
+#### comment
+
+comment is a contextual comment field.
+
+comment is represented by a JSON string. comment **MAY** be present.
+
+#### org\_id
+
+org\_id represents a human-readable identifier referencing the proposal creator's Organisation object.
+
+Whilst attributes can only be created by the event creator organisation, shadow attributes can be created by third parties. org\_id tracks the creator organisation.
+
+org\_id is represented by a JSON string and **MUST** be present.
+
+#### proposal\_to\_delete
+
+proposal\_to\_delete is a boolean flag that sets whether the shadow attribute proposes to alter an attribute, or whether it proposes to remove it completely.
+
+Accepting a shadow attribute with this flag set will remove the target attribute.
+
+proposal\_to\_delete is a JSON boolean and it **MUST** be present. If proposal\_to\_delete is set to true, old\_id **MUST NOT** be 0.
+
+#### deleted
+
+deleted represents a setting that allows shadow attributes to be revoked. Revoked shadow attributes only serve to inform other instances that the shadow attribute is no longer active.
+
+deleted is represented by a JSON boolean. deleted **SHOULD** be present.
+
+### Org
+
+An Org object is composed of an uuid, name and id.
+
+The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the organization.
+The organization UUID is globally assigned to an organization and **SHALL** be kept overtime.
+
+The name is a readable description of the organization and **SHOULD** be present.
+The id is a human-readable identifier generated by the instance and used as reference in the event.
+
+uuid, name and id are represented as a JSON string. uuid, name and id **MUST** be present.
+
+#### Sample Org Object
+
+~~~~
+"Org": {
+        "id": "2",
+        "name": "CIRCL",
+        "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
+       }
+~~~~
+
+#### value
+
+value represents the payload of an attribute. The format of the value is dependent on the type of the attribute.
+
+value is represented by a JSON string. value **MUST** be present.
+
 
 ## Tag
 
