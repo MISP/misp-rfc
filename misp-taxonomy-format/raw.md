@@ -68,7 +68,7 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 A machine tag is composed of a namespace (**MUST**), a predicate (**MUST**) and an optional value (**OPTIONAL**).
 
-Machine tags are represented as a string. Below a set of sample machines for different namespaces like tlp, admiralty-scale or osint.
+Machine tags are represented as a string. Below a set of sample machine tags for different namespaces like tlp, admiralty-scale or osint.
 
 ~~~~
 tlp:amber
@@ -76,11 +76,26 @@ admiralty-scale:information-credibility="1"
 osint:source-type="blog-post"
 ~~~~
 
-
+The MISP taxonomy format describes how to define a machine tag namespace in a parseable format. The objective is to provide a simple format
+to describe machine tags (aka triple tags) vocabularies.
 
 ## Overview
 
-The MISP taxonomy format is in the JSON [@!RFC4627] format.
+The MISP taxonomy format uses the JSON [@!RFC4627] format. Each namespace is represented as a JSON object with meta information including the following fields namespace, description, version.
+
+namespace defines the overall namespace of the machine tag. The namespace is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. A version is represented as a decimal and **MUST** be present.
+
+predicates defines all the predicates available in the namespace defined. predicates is represented as an array of JSON objects. predicates **MUST** be present and **MUST** at least content one element.
+
+values defines all the values for each predicate in the namespace defined. values **SHOULD** ne present.
+
+## predicates
+
+predicates array contain one or more JSON objects which lists all the possible predicate. The JSON object contains two fields: value and expanded. value and expanded **MUST** be present. value is represented as a string and describes the predicate value. The predicate value **MUST** not contain spaces or colons. expanded is represented as a string and describes the human-readable version of the predicate value.
+
+## values
+
+values array contain one or more JSON objects which lists all the possible values of a predicate. The JSON object contain two fields: predicate and entry. predicate is represented as a string and describes the predicate value. entry is an array with one or more JSON objects. The JSON object contains two fields: value and expanded. value and expanded **MUST** be present. value is represented as a string and describe the value machine parsable. expanded is represented as a string and describes the human-readable version of the value.
 
 # Directory
 
