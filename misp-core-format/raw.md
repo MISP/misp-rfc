@@ -404,6 +404,13 @@ deleted represents a setting that allows attributes to be revoked. Revoked attri
 
 deleted is represented by a JSON boolean. deleted **MUST** be present.
 
+#### data
+
+data contains the base64 encoded contents of an attachment or a malware sample. For malware samples, 
+the sample **MUST** be encrypted using a password protected zip archive, with the password being "infected". 
+
+data is represented by a JSON string in base64 encoding. data **MUST** be set for attributes of type malware-sample and attachment.
+
 #### RelatedAttribute
 
 RelatedAttribute is an array of attributes correlating with the current attribute. Each element in the array represents an JSON object which contains an Attribute dictionnary with the external attributes who correlate. Each Attribute **MUST** include the id, org_id, info and a value. Only the correlations found on the local instance are shown in RelatedAttribute.
@@ -577,6 +584,13 @@ proposal\_to\_delete is a JSON boolean and it **MUST** be present. If proposal\_
 deleted represents a setting that allows shadow attributes to be revoked. Revoked shadow attributes only serve to inform other instances that the shadow attribute is no longer active.
 
 deleted is represented by a JSON boolean. deleted **SHOULD** be present.
+
+#### data
+
+data contains the base64 encoded contents of an attachment or a malware sample. For malware samples, 
+the sample **MUST** be encrypted using a password protected zip archive, with the password being "infected". 
+
+data is represented by a JSON string in base64 encoding. data **MUST** be set for shadow attributes of type malware-sample and attachment.
 
 ### Org
 
