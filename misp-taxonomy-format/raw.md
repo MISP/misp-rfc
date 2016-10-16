@@ -46,17 +46,17 @@ MISP taxonomies is available and relies on the MISP taxonomy format.
 
 # Introduction
 
-Sharing threat information became a fundamental requirements in the Internet, security and intelligence community at large. Threat
+Sharing threat information became a fundamental requirements on the Internet, security and intelligence community at large. Threat
 information can include indicators of compromise, malicious file indicators, financial fraud indicators
 or even detailed information about a threat actor. While sharing such indicators or information, classification plays an important role
 to ensure adequate distribution, understanding, validation or action of the shared information. MISP taxonomies is a public repository
 of known vocabularies that can be used in threat information sharing.
 
-Machine tags were introduced in 2007 [@?machine-tags] to allow users to be more precise when tagging their picture with geolocation.
-So a machine tag is a tag which use a special syntax to provide more information to user and machines. Machine tags are also known
-as triple tags due to the their format.
+Machine tags were introduced in 2007 [@?machine-tags] to allow users to be more precise when tagging their pictures with geolocation.
+So a machine tag is a tag which uses a special syntax to provide more information to users and machines. Machine tags are also known
+as triple tags due to their format.
 
-In MISP taxonomy context, machine tags help analysts to classify their cybersecurity events, indicators or threats. MISP taxonomy can be used for classification, filtering, triggering action or visualization depending on their use in threat intelligence platforms like MISP [@?MISP-P].
+In the MISP taxonomy context, machine tags help analysts to classify their cybersecurity events, indicators or threats. MISP taxonomies can be used for classification, filtering, triggering actions or visualisation depending on their use in threat intelligence platforms such as MISP [@?MISP-P].
 
 ##  Conventions and Terminology
 
@@ -68,7 +68,7 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 A machine tag is composed of a namespace (**MUST**), a predicate (**MUST**) and an optional value (**OPTIONAL**).
 
-Machine tags are represented as a string. Below a set of sample machine tags for different namespaces like tlp, admiralty-scale or osint.
+Machine tags are represented as a string. Below listed are a set of sample machine tags for different namespaces such as tlp, admiralty-scale and osint.
 
 ~~~~
 tlp:amber
@@ -77,31 +77,31 @@ osint:source-type="blog-post"
 ~~~~
 
 The MISP taxonomy format describes how to define a machine tag namespace in a parseable format. The objective is to provide a simple format
-to describe machine tags (aka triple tags) vocabularies.
+to describe machine tag (aka triple tag) vocabularies.
 
 ## Overview
 
-The MISP taxonomy format uses the JSON [@!RFC4627] format. Each namespace is represented as a JSON object with meta information including the following fields namespace, description, version.
+The MISP taxonomy format uses the JSON [@!RFC4627] format. Each namespace is represented as a JSON object with meta information including the following fields: namespace, description, version.
 
 namespace defines the overall namespace of the machine tag. The namespace is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. A version is represented as a decimal and **MUST** be present.
 
 predicates defines all the predicates available in the namespace defined. predicates is represented as an array of JSON objects. predicates **MUST** be present and **MUST** at least content one element.
 
-values defines all the values for each predicate in the namespace defined. values **SHOULD** ne present.
+values defines all the values for each predicate in the namespace defined. values **SHOULD** be present.
 
 ## predicates
 
-predicates array contain one or more JSON objects which lists all the possible predicate. The JSON object contains two fields: value and expanded. value and expanded **MUST** be present. value is represented as a string and describes the predicate value. The predicate value **MUST** not contain spaces or colons. expanded is represented as a string and describes the human-readable version of the predicate value.
+The predicates array contains one or more JSON objects which lists all the possible predicates. The JSON object contains two fields: value and expanded. value and expanded **MUST** be present. value is represented as a string and describes the predicate value. The predicate value **MUST** not contain spaces or colons. expanded is represented as a string and describes the human-readable version of the predicate value.
 
 ## values
 
-values array contain one or more JSON objects which lists all the possible values of a predicate. The JSON object contain two fields: predicate and entry. predicate is represented as a string and describes the predicate value. entry is an array with one or more JSON objects. The JSON object contains two fields: value and expanded. value and expanded **MUST** be present. value is represented as a string and describe the value machine parsable. expanded is represented as a string and describes the human-readable version of the value.
+The values array contain one or more JSON objects which lists all the possible values of a predicate. The JSON object contains two fields: predicate and entry. predicate is represented as a string and describes the predicate value. entry is an array with one or more JSON objects. The JSON object contains two fields: value and expanded. value and expanded **MUST** be present. value is represented as a string and describes the machine parsable value. expanded is represented as a string and describes the human-readable version of the value.
 
 ## optional fields
 
 ### colour
 
-colour fields **MAY** be used at predicates or values level to set a specify colour that *MAY** be used by the implementation. The colour field is described as an RGB colour fill in hexadecimal representation.
+colour fields **MAY** be used at predicates or values level to set a specify colour that **MAY** be used by the implementation. The colour field is described as an RGB colour fill in hexadecimal representation.
 
 Example use of the colour field in the Traffic Light Protocol (TLP):
 
@@ -125,12 +125,12 @@ Example use of the colour field in the Traffic Light Protocol (TLP):
 
 ### description
 
-description fields **MAY** be used at predicates or values level to add a descriptive and human-readable information about the specific predicate or value. The field is represented as a string. Implementations **MAY* use the description field to improve more contextual information. The description at the namespace level is a **MUST** as described above.
+description fields **MAY** be used at predicates or values level to add a descriptive and human-readable information about the specific predicate or value. The field is represented as a string. Implementations **MAY** use the description field to improve more contextual information. The description at the namespace level is a **MUST** as described above.
 
 ### numerical_value
 
-numerical_value fields **MAY** be used at predicates or values level to add a machine-readable numeric value to a specific predicate or value.
-The field is represented as JSON number. Implementations **SHOULD** use the decimal value provided to support scoring or filtering.
+numerical_value fields **MAY** be used at a predicate or value level to add a machine-readable numeric value to a specific predicate or value.
+The field is represented as a JSON number. Implementations **SHOULD** use the decimal value provided to support scoring or filtering.
 
 Example use of the numerical_value in the MISP confidence level:
 
