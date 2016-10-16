@@ -16,3 +16,7 @@ This repository is the official source of the specification and formats in MISP.
 
 * misp-collaborative-voting-format which describes the collaborative voting and scoring format for the feeds providers.
 
+# Contribution
+
+If you want to contribute to the MISP specifications, feel free to [open an issue](https://github.com/MISP/misp-rfc/issues).
+
