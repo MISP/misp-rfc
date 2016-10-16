@@ -97,6 +97,81 @@ predicates array contain one or more JSON objects which lists all the possible p
 
 values array contain one or more JSON objects which lists all the possible values of a predicate. The JSON object contain two fields: predicate and entry. predicate is represented as a string and describes the predicate value. entry is an array with one or more JSON objects. The JSON object contains two fields: value and expanded. value and expanded **MUST** be present. value is represented as a string and describe the value machine parsable. expanded is represented as a string and describes the human-readable version of the value.
 
+## optional fields
+
+### colour
+
+colour fields **MAY** be used at predicates or values level to set a specify colour that *MAY** be used by the implementation. The colour field is described as an RGB colour fill in hexadecimal representation.
+
+Example use of the colour field in the Traffic Light Protocol (TLP):
+
+~~~~
+"predicates": [
+    {
+      "colour": "#CC0033",
+      "expanded": "(TLP:RED) Information exclusively and directly
+                   given to (a group of) individual recipients.
+                   Sharing outside is not legitimate.",
+      "value": "red"
+    },
+    {
+      "colour": "#FFC000",
+      "expanded": "(TLP:AMBER) Information exclusively given
+                   to an organization; sharing limited within
+                   the organization to be effectively acted upon.",
+      "value": "amber"
+    }...]
+~~~~
+
+### description
+
+description fields **MAY** be used at predicates or values level to add a descriptive and human-readable information about the specific predicate or value. The field is represented as a string. Implementations **MAY* use the description field to improve more contextual information. The description at the namespace level is a **MUST** as described above.
+
+### numerical_value
+
+numerical_value fields **MAY** be used at predicates or values level to add a machine-readable numeric value to a specific predicate or value.
+The field is represented as JSON number. Implementations **SHOULD** use the decimal value provided to support scoring or filtering.
+
+Example use of the numerical_value in the MISP confidence level:
+
+~~~~
+    {
+     "predicate": "confidence-level",
+     "entry": [
+        {
+          "expanded": "Completely confident",
+          "value": "completely-confident",
+          "numerical_value": 100
+        },
+        {
+          "expanded": "Usually confident",
+          "value": "usually-confident",
+          "numerical_value": 75
+        },
+        {
+          "expanded": "Fairly confident",
+          "value": "fairly-confident",
+          "numerical_value": 50
+        },
+        {
+          "expanded": "Rarely confident",
+          "value": "rarely-confident",
+          "numerical_value": 25
+        },
+        {
+          "expanded": "Unconfident",
+          "value": "unconfident",
+          "numerical_value": 0
+        },
+        {
+          "expanded": "Confidence cannot be evaluated",
+          "value": "confidence-cannot-be-evalued"
+        }
+     ]
+     }
+~~~~
+
+
 # Directory
 
 The MISP taxonomies directory is publicly available [@?MISP-T] in a git repository. The repository
@@ -132,7 +207,7 @@ A taxonomies array describes the taxonomy available with the description, name a
 }
 ~~~~
 
-# Sample
+# Sample Taxonomy in MISP taxonomy format
 
 ## Admiralty Scale Taxonomy
 
