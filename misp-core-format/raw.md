@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2016-10-15T00:00:00Z
+% date = 2016-11-21T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -206,7 +206,7 @@ distribution is represented by a JSON string. distribution **MUST** be present a
 
 sharing\_group\_id represents a human-readable identifier referencing a Sharing Group object that defines the distribution of the event, if distribution level "4" is set.
 
-sharing\_group\_id is represented by a JSON string and **MUST** be present. If a distribution level other than "4" is chosen the sharing\_group\_id **MUST** be set to "0".
+sharing\_group\_id is represented by a JSON string and **SHOULD** be present. If a distribution level other than "4" is chosen the sharing\_group\_id **MUST** be set to "0".
 
 
 ## Objects
@@ -396,7 +396,7 @@ comment is represented by a JSON string. comment **MAY** be present.
 
 sharing\_group\_id represents a human-readable identifier referencing a Sharing Group object that defines the distribution of the attribute, if distribution level "4" is set.
 
-sharing\_group\_id is represented by a JSON string and **MUST** be present. If a distribution level other than "4" is chosen the sharing\_group\_id **MUST** be set to "0".
+sharing\_group\_id is represented by a JSON string and **SHOULD** be present. If a distribution level other than "4" is chosen the sharing\_group\_id **MUST** be set to "0".
 
 #### deleted
 
