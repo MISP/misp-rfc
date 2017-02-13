@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: April 19, 2017                                 October 16, 2016
+Expires: August 17, 2017                               February 13, 2017
 
 
                           MISP taxonomy format
@@ -33,11 +33,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 19, 2017.
+   This Internet-Draft will expire on August 17, 2017.
 
 Copyright Notice
 
-   Copyright (c) 2016 IETF Trust and the persons identified as the
+   Copyright (c) 2017 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                 [Page 1]
+Dulaunoy & Iklody        Expires August 17, 2017                [Page 1]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
 Table of Contents
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                 [Page 2]
+Dulaunoy & Iklody        Expires August 17, 2017                [Page 2]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
 1.1.  Conventions and Terminology
@@ -145,7 +145,7 @@ Internet-Draft            MISP taxonomy format              October 2016
 
    namespace defines the overall namespace of the machine tag.  The
    namespace is represented as a string and MUST be present.  The
-   description is represented as a string and SHOULD be present.  A
+   description is represented as a string and MUST be present.  A
    version is represented as a decimal and MUST be present.
 
    predicates defines all the predicates available in the namespace
@@ -159,19 +159,19 @@ Internet-Draft            MISP taxonomy format              October 2016
 
    The predicates array contains one or more JSON objects which lists
    all the possible predicates.  The JSON object contains two fields:
-   value and expanded. value and expanded MUST be present. value is
-   represented as a string and describes the predicate value.  The
-   predicate value MUST not contain spaces or colons. expanded is
+   value and expanded. value MUST be present. expanded SHOULD be
+   present. value is represented as a string and describes the predicate
+   value.  The predicate value MUST not contain spaces or colons.
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                 [Page 3]
+Dulaunoy & Iklody        Expires August 17, 2017                [Page 3]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
-   represented as a string and describes the human-readable version of
-   the predicate value.
+   expanded is represented as a string and describes the human-readable
+   version of the predicate value.
 
 2.3.  values
 
@@ -180,10 +180,10 @@ Internet-Draft            MISP taxonomy format              October 2016
    predicate and entry. predicate is represented as a string and
    describes the predicate value. entry is an array with one or more
    JSON objects.  The JSON object contains two fields: value and
-   expanded. value and expanded MUST be present. value is represented as
-   a string and describes the machine parsable value. expanded is
-   represented as a string and describes the human-readable version of
-   the value.
+   expanded. value MUST be present. expanded SHOULD be present. value is
+   represented as a string and describes the machine parsable value.
+   expanded is represented as a string and describes the human-readable
+   version of the value.
 
 2.4.  optional fields
 
@@ -221,9 +221,9 @@ Internet-Draft            MISP taxonomy format              October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                 [Page 4]
+Dulaunoy & Iklody        Expires August 17, 2017                [Page 4]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
    contextual information.  The description at the namespace level is a
@@ -277,9 +277,9 @@ Internet-Draft            MISP taxonomy format              October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                 [Page 5]
+Dulaunoy & Iklody        Expires August 17, 2017                [Page 5]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
 3.  Directory
@@ -333,9 +333,9 @@ Internet-Draft            MISP taxonomy format              October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                 [Page 6]
+Dulaunoy & Iklody        Expires August 17, 2017                [Page 6]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
           "value": "source-reliability",
@@ -389,9 +389,9 @@ Internet-Draft            MISP taxonomy format              October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                 [Page 7]
+Dulaunoy & Iklody        Expires August 17, 2017                [Page 7]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
             },
@@ -445,9 +445,9 @@ Internet-Draft            MISP taxonomy format              October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                 [Page 8]
+Dulaunoy & Iklody        Expires August 17, 2017                [Page 8]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
          {
@@ -501,9 +501,9 @@ Internet-Draft            MISP taxonomy format              October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                 [Page 9]
+Dulaunoy & Iklody        Expires August 17, 2017                [Page 9]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
            "expanded": "75% Probable",
@@ -557,9 +557,9 @@ Internet-Draft            MISP taxonomy format              October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                [Page 10]
+Dulaunoy & Iklody        Expires August 17, 2017               [Page 10]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
    ]
@@ -613,9 +613,9 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                [Page 11]
+Dulaunoy & Iklody        Expires August 17, 2017               [Page 11]
 
-Internet-Draft            MISP taxonomy format              October 2016
+Internet-Draft            MISP taxonomy format             February 2017
 
 
    Andras Iklody
@@ -669,4 +669,4 @@ Internet-Draft            MISP taxonomy format              October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 19, 2017                [Page 12]
+Dulaunoy & Iklody        Expires August 17, 2017               [Page 12]
