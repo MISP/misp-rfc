@@ -332,7 +332,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other
 
 **Other**
-:   comment, text, other
+:   comment, text, other, size-in-bytes, counter, datetime, cpe, port
 
 Attributes are based on the usage within their different communities. Attributes can be extended on a regular basis and this reference document is updated accordingly.
 
@@ -519,7 +519,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other
 
 **Other**
-:   comment, text, other
+:   comment, text, other, size-in-bytes, counter, datetime, cpe, port
 
 Attributes are based on the usage within their different communities. Attributes can be extended on a regular basis and this reference document is updated accordingly.
 
