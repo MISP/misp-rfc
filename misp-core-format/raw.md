@@ -331,6 +331,9 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 **Financial fraud**
 :   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other
 
+**Support tool**
+:   attachment, link, comment, text, other
+
 **Other**
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port
 
@@ -517,6 +520,9 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 
 **Financial fraud**
 :   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other
+
+**Support tool**
+:   attachment, link, comment, text, other
 
 **Other**
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port
