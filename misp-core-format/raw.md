@@ -657,6 +657,59 @@ name **MUST** be present. colour, id and exportable **SHALL** be present.
         "id": "2" }]
 ~~~~
 
+## Galaxy
+
+A galaxy is a simple method to express a large object called cluster that can be attached to MISP events. A cluster can be composed of one or more elements. Elements are expressed as key-values.
+
+### Sample Galaxy
+
+~~~~
+"Galaxy": [ {
+           "id": "18",
+           "uuid": "698774c7-8022-42c4-917f-8d6e4f06ada3",
+           "name": "Threat Actor",
+           "type": "threat-actor",
+           "description": "Threat actors are characteristics of malicious actors
+                          (or adversaries) representing a cyber attack threat
+                          including presumed intent and historically observed behaviour.",
+                "version": "1",
+        "GalaxyCluster": [
+            {
+                "id": "1699",
+                "uuid": "7cdff317-a673-4474-84ec-4f1754947823",
+                "type": "threat-actor",
+                "value": "Anunak",
+                "tag_name": "misp-galaxy:threat-actor=\"Anunak\"",
+                "description": "Groups targeting financial organizations
+                    or people with significant financial assets.",
+                "galaxy_id": "18",
+                "source": "MISP Project",
+                "authors": [
+                    "Alexandre Dulaunoy",
+                    "Florian Roth",
+                    "Thomas Schreck",
+                    "Timo Steffens",
+                    "Various"
+                ],
+                "tag_id": "111",
+                        "meta": {
+                            "synonyms": [
+                                "Carbanak",
+                                "Carbon Spider"
+                            ],
+                            "country": [
+                                "RU"
+                            ],
+                            "motive": [
+                                "Cybercrime"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+~~~~
+
 # JSON Schema
 
 The JSON Schema [@?JSON-SCHEMA] below defines the structure of the MISP core format
