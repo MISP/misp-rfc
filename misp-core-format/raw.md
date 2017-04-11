@@ -641,7 +641,7 @@ value is represented by a JSON string. value **MUST** be present.
 
 ## Tag
 
-A Tag is a simple method to classify an event with a simple tag name. The tag name can be freely chosen. The tag name can be also chosen from a fixed machine-tag vocabulary called MISP taxonomies[[@?MISP-T]]. A Tag is represented as a JSON array where each element describes each tag associated. A Tag array SHALL be, at least, at Event level. A tag element is described with a name, id, colour and exportable flag.
+A tag is a simple method to classify an event with a simple string. The tag name can be freely chosen. The tag name can be also chosen from a fixed machine-tag vocabulary called MISP taxonomies[[@?MISP-T]]. When an event is distributed outside an organisation, the use of MISP taxonomies[[@?MISP-T]] is **RECOMMENDED** to ensure a coherent naming of the tags. A tag is represented as a JSON array where each element describes each tag associated. A tag array **SHALL** be at event level or attribute level. A tag element is described with a name, id, colour and exportable flag.
 
 exportable represents a setting if the tag is kept local or exportable to other MISP instances. exportable is represented by a JSON boolean. id is a human-readable identifier that references the tag on the local instance. colour represents an RGB value of the tag.
 
