@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: April 18, 2017                                 October 15, 2016
+Expires: October 12, 2017                                 April 10, 2017
 
 
                             MISP core format
@@ -37,11 +37,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 18, 2017.
+   This Internet-Draft will expire on October 12, 2017.
 
 Copyright Notice
 
-   Copyright (c) 2016 IETF Trust and the persons identified as the
+   Copyright (c) 2017 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody        Expires April 18, 2017                 [Page 1]
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 1]
 
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
    include Simplified BSD License text as described in Section 4.e of
@@ -76,23 +76,26 @@ Table of Contents
      2.4.  Attribute . . . . . . . . . . . . . . . . . . . . . . . .   8
        2.4.1.  Sample Attribute Object . . . . . . . . . . . . . . .   8
        2.4.2.  Attribute Attributes  . . . . . . . . . . . . . . . .   8
-     2.5.  ShadowAttribute . . . . . . . . . . . . . . . . . . . . .  13
-       2.5.1.  Sample Attribute Object . . . . . . . . . . . . . . .  13
+     2.5.  ShadowAttribute . . . . . . . . . . . . . . . . . . . . .  14
+       2.5.1.  Sample Attribute Object . . . . . . . . . . . . . . .  14
        2.5.2.  ShadowAttribute Attributes  . . . . . . . . . . . . .  14
-       2.5.3.  Org . . . . . . . . . . . . . . . . . . . . . . . . .  18
-     2.6.  Tag . . . . . . . . . . . . . . . . . . . . . . . . . . .  19
-       2.6.1.  Sample Tag  . . . . . . . . . . . . . . . . . . . . .  19
-   3.  Manifest  . . . . . . . . . . . . . . . . . . . . . . . . . .  19
-     3.1.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .  20
-       3.1.1.  Sample Manifest . . . . . . . . . . . . . . . . . . .  21
-   4.  Implementation  . . . . . . . . . . . . . . . . . . . . . . .  23
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  23
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  23
-   7.  Sample MISP file  . . . . . . . . . . . . . . . . . . . . . .  23
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  23
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  23
-     8.2.  Informative References  . . . . . . . . . . . . . . . . .  24
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  24
+       2.5.3.  Org . . . . . . . . . . . . . . . . . . . . . . . . .  19
+     2.6.  Tag . . . . . . . . . . . . . . . . . . . . . . . . . . .  20
+       2.6.1.  Sample Tag  . . . . . . . . . . . . . . . . . . . . .  20
+     2.7.  Galaxy  . . . . . . . . . . . . . . . . . . . . . . . . .  21
+       2.7.1.  Sample Galaxy . . . . . . . . . . . . . . . . . . . .  21
+   3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  23
+   4.  Manifest  . . . . . . . . . . . . . . . . . . . . . . . . . .  32
+     4.1.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .  32
+       4.1.1.  Sample Manifest . . . . . . . . . . . . . . . . . . .  33
+   5.  Implementation  . . . . . . . . . . . . . . . . . . . . . . .  35
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  35
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  35
+   8.  Sample MISP file  . . . . . . . . . . . . . . . . . . . . . .  35
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  35
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  35
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  36
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  36
 
 1.  Introduction
 
@@ -103,16 +106,16 @@ Table of Contents
    about a threat actor.  MISP [MISP-P] started as an open source
    project in late 2011 and the MISP format started to be widely used as
    an exchange format within the community in the past years.  The aim
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 2]
+
+Internet-Draft              MISP core format                  April 2017
+
+
    of this document is to describe the specification and the MISP core
    format.
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                 [Page 2]
-
-Internet-Draft              MISP core format                October 2016
-
 
 1.1.  Conventions and Terminology
 
@@ -162,12 +165,9 @@ Internet-Draft              MISP core format                October 2016
 
 
 
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                 [Page 3]
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 3]
 
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
 2.2.1.3.  published
@@ -221,9 +221,9 @@ Internet-Draft              MISP core format                October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 18, 2017                 [Page 4]
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 4]
 
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
    2:
@@ -277,9 +277,9 @@ Internet-Draft              MISP core format                October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 18, 2017                 [Page 5]
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 5]
 
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
 2.2.1.11.  orgc_id
@@ -333,14 +333,14 @@ Internet-Draft              MISP core format                October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 18, 2017                 [Page 6]
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 6]
 
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
-   sharing_group_id is represented by a JSON string and MUST be present.
-   If a distribution level other than "4" is chosen the sharing_group_id
-   MUST be set to "0".
+   sharing_group_id is represented by a JSON string and SHOULD be
+   present.  If a distribution level other than "4" is chosen the
+   sharing_group_id MUST be set to "0".
 
 2.3.  Objects
 
@@ -389,9 +389,9 @@ Internet-Draft              MISP core format                October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 18, 2017                 [Page 7]
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 7]
 
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
 2.4.  Attribute
@@ -445,9 +445,9 @@ Internet-Draft              MISP core format                October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 18, 2017                 [Page 8]
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 8]
 
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
 2.4.2.3.  type
@@ -461,65 +461,70 @@ Internet-Draft              MISP core format                October 2016
    category-type combinations is as follows:
 
    Internal reference
-      text, link, comment, other
+      text, link, comment, other, hex
 
    Targeting data
       target-user, target-email, target-machine, target-org, target-
       location, target-external, comment
 
    Antivirus detection
-      link, comment, text, attachment, other
+      link, comment, text, hex, attachment, other
 
    Payload delivery
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, authentihash, pehash, tlsh, filename,
+      ssdeep, imphash, impfuzzy, authentihash, pehash, tlsh, filename,
       filename|md5, filename|sha1, filename|sha224, filename|sha256,
       filename|sha384, filename|sha512, filename|sha512/224,
       filename|sha512/256, filename|authentihash, filename|ssdeep,
-      filename|tlsh, filename|imphash, filename|pehash, ip-src, ip-dst,
-      hostname, domain, email-src, email-dst, email-subject, email-
-      attachment, url, user-agent, AS, pattern-in-file, pattern-in-
-      traffic, yara, attachment, malware-sample, link, malware-type,
-      comment, text, vulnerability, x509-fingerprint-sha1, other
+      filename|tlsh, filename|imphash, filename|impfuzzy,
+      filename|pehash, ip-src, ip-dst, hostname, domain, email-src,
+      email-dst, email-subject, email-attachment, url, user-agent, AS,
+      pattern-in-file, pattern-in-traffic, yara, attachment, malware-
+      sample, link, malware-type, comment, text, vulnerability, x509-
+      fingerprint-sha1, other, ip-dst|port, ip-src|port, hostname|port,
+      email-dst-display-name, email-src-display-name, email-header,
+      email-reply-to, email-x-mailer, email-mime-boundary, email-thread-
+      index, email-message-id, mobile-application-id
 
    Artifacts dropped
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, authentihash, filename, filename|md5,
+      ssdeep, imphash, impfuzzy, authentihash, filename, filename|md5,
       filename|sha1, filename|sha224, filename|sha256, filename|sha384,
       filename|sha512, filename|sha512/224, filename|sha512/256,
       filename|authentihash, filename|ssdeep, filename|tlsh,
-      filename|imphash, filename|pehash, regkey, regkey|value, pattern-
-      in-file, pattern-in-memory, pdb, yara, attachment, malware-sample,
-      named pipe, mutex, windows-scheduled-task, windows-service-name,
-      windows-service-displayname, comment, text, x509-fingerprint-sha1,
-      other
+      filename|imphash, filename|impfuzzy, filename|pehash, regkey,
+      regkey|value, pattern-in-file, pattern-in-memory, pdb, yara,
+      sigma, attachment, malware-sample, named pipe, mutex, windows-
+      scheduled-task, windows-service-name, windows-service-displayname,
+      comment, text, hex, x509-fingerprint-sha1, other
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 9]
+
+Internet-Draft              MISP core format                  April 2017
+
 
    Payload installation
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
       ssdeep, imphash, authentihash, pehash, tlsh, filename,
       filename|md5, filename|sha1, filename|sha224, filename|sha256,
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                 [Page 9]
-
-Internet-Draft              MISP core format                October 2016
-
-
       filename|sha384, filename|sha512, filename|sha512/224,
       filename|sha512/256, filename|authentihash, filename|ssdeep,
       filename|tlsh, filename|imphash, filename|pehash, pattern-in-file,
       pattern-in-traffic, pattern-in-memory, yara, vulnerability,
-      attachment, malware-sample, malware-type, comment, text, x509-
-      fingerprint-sha1, other
+      attachment, malware-sample, malware-type, comment, text, hex,
+      x509-fingerprint-sha1, mobile-application-id, other
 
    Persistence mechanism
-      filename, regkey, regkey|value, comment, text, other
+      filename, regkey, regkey|value, comment, text, other, text
 
    Network activity
       ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri,
       user-agent, http-method, AS, snort, pattern-in-file, pattern-in-
-      traffic, attachment, comment, text, x509-fingerprint-sha1, other
+      traffic, attachment, comment, text, x509-fingerprint-sha1, other,
+      hex
 
    Payload type
       comment, text, other
@@ -534,14 +539,41 @@ Internet-Draft              MISP core format                October 2016
       filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url,
       user-agent, regkey, regkey|value, AS, snort, pattern-in-file,
       pattern-in-traffic, pattern-in-memory, vulnerability, attachment,
-      malware-sample, link, comment, text, x509-fingerprint-sha1, other
+      malware-sample, link, comment, text, x509-fingerprint-sha1,
+      github-repository, other
 
    Financial fraud
       btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn,
-      comment, text, other
+      comment, text, other, hex
+
+   Support tool
+      attachment, link, comment, text, other, hex
+
+   Social network
+      github-username, github-repository, github-organisation, jabber-
+      id, twitter-id, email-src, email-dst, comment, text, other
+
+   Person
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 10]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+      first-name, middle-name, last-name, date-of-birth, place-of-birth,
+      gender, passport-number, passport-country, passport-expiration,
+      redress-number, nationality, visa-number, issue-date-of-the-visa,
+      primary-residence, country-of-residence, special-service-request,
+      frequent-flyer-number, travel-details, payment-details, place-
+      port-of-original-embarkation, place-port-of-clearance, place-port-
+      of-onward-foreign-destination, passenger-name-record-locator-
+      number, comment, text, other
 
    Other
-      comment, text, other
+      comment, text, other, size-in-bytes, counter, datetime, cpe, port,
+      float, hex
 
    Attributes are based on the usage within their different communities.
    Attributes can be extended on a regular basis and this reference
@@ -552,15 +584,6 @@ Internet-Draft              MISP core format                October 2016
    category represents the intent of what the attribute is describing as
    selected by the attribute creator, using a list of pre-defined
    attribute categories.
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 10]
-
-Internet-Draft              MISP core format                October 2016
-
 
    category is represented as a JSON string. category MUST be present
    and it MUST be a valid selection for the chosen type.  The list of
@@ -584,6 +607,16 @@ Internet-Draft              MISP core format                October 2016
    the newly created event's id on the instance.
 
    event_id is represented as a JSON string. event_id MUST be present.
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 11]
+
+Internet-Draft              MISP core format                  April 2017
+
 
 2.4.2.7.  distribution
 
@@ -610,14 +643,6 @@ Internet-Draft              MISP core format                October 2016
       Sharing Group
 
    5
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 11]
-
-Internet-Draft              MISP core format                October 2016
-
-
       Inherit Event
 
 2.4.2.8.  timestamp
@@ -640,9 +665,18 @@ Internet-Draft              MISP core format                October 2016
    Sharing Group object that defines the distribution of the attribute,
    if distribution level "4" is set.
 
-   sharing_group_id is represented by a JSON string and MUST be present.
-   If a distribution level other than "4" is chosen the sharing_group_id
-   MUST be set to "0".
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 12]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+   sharing_group_id is represented by a JSON string and SHOULD be
+   present.  If a distribution level other than "4" is chosen the
+   sharing_group_id MUST be set to "0".
 
 2.4.2.11.  deleted
 
@@ -661,18 +695,6 @@ Internet-Draft              MISP core format                October 2016
 
    data is represented by a JSON string in base64 encoding. data MUST be
    set for attributes of type malware-sample and attachment.
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 12]
-
-Internet-Draft              MISP core format                October 2016
-
 
 2.4.2.13.  RelatedAttribute
 
@@ -698,6 +720,16 @@ Internet-Draft              MISP core format                October 2016
    containing attribute's ID in the old_id field and the event's ID in
    the event_id field.
 
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 13]
+
+Internet-Draft              MISP core format                  April 2017
+
+
 2.4.2.15.  value
 
    value represents the payload of an attribute.  The format of the
@@ -718,17 +750,6 @@ Internet-Draft              MISP core format                October 2016
    revocation flag.
 
 2.5.1.  Sample Attribute Object
-
-
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 13]
-
-Internet-Draft              MISP core format                October 2016
-
 
 "ShadowAttribute":  {
                        "id": "8",
@@ -752,6 +773,18 @@ Internet-Draft              MISP core format                October 2016
                    }
 
 2.5.2.  ShadowAttribute Attributes
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 14]
+
+Internet-Draft              MISP core format                  April 2017
+
 
 2.5.2.1.  uuid
 
@@ -779,46 +812,51 @@ Internet-Draft              MISP core format                October 2016
    MUST be a valid selection for the chosen category.  The list of valid
    category-type combinations is as follows:
 
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 14]
-
-Internet-Draft              MISP core format                October 2016
-
-
    Internal reference
-      text, link, comment, other
+      text, link, comment, other, hex
 
    Targeting data
       target-user, target-email, target-machine, target-org, target-
       location, target-external, comment
 
    Antivirus detection
-      link, comment, text, attachment, other
+      link, comment, text, hex, attachment, other
 
    Payload delivery
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, authentihash, pehash, tlsh, filename,
+      ssdeep, imphash, impfuzzy, authentihash, pehash, tlsh, filename,
       filename|md5, filename|sha1, filename|sha224, filename|sha256,
       filename|sha384, filename|sha512, filename|sha512/224,
       filename|sha512/256, filename|authentihash, filename|ssdeep,
-      filename|tlsh, filename|imphash, filename|pehash, ip-src, ip-dst,
-      hostname, domain, email-src, email-dst, email-subject, email-
-      attachment, url, user-agent, AS, pattern-in-file, pattern-in-
-      traffic, yara, attachment, malware-sample, link, malware-type,
-      comment, text, vulnerability, x509-fingerprint-sha1, other
+      filename|tlsh, filename|imphash, filename|impfuzzy,
+      filename|pehash, ip-src, ip-dst, hostname, domain, email-src,
+      email-dst, email-subject, email-attachment, url, user-agent, AS,
+      pattern-in-file, pattern-in-traffic, yara, attachment, malware-
+      sample, link, malware-type, comment, text, vulnerability, x509-
+      fingerprint-sha1, other, ip-dst|port, ip-src|port, hostname|port,
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 15]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+      email-dst-display-name, email-src-display-name, email-header,
+      email-reply-to, email-x-mailer, email-mime-boundary, email-thread-
+      index, email-message-id, mobile-application-id
 
    Artifacts dropped
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, authentihash, filename, filename|md5,
+      ssdeep, imphash, impfuzzy, authentihash, filename, filename|md5,
       filename|sha1, filename|sha224, filename|sha256, filename|sha384,
       filename|sha512, filename|sha512/224, filename|sha512/256,
       filename|authentihash, filename|ssdeep, filename|tlsh,
-      filename|imphash, filename|pehash, regkey, regkey|value, pattern-
-      in-file, pattern-in-memory, pdb, yara, attachment, malware-sample,
-      named pipe, mutex, windows-scheduled-task, windows-service-name,
-      windows-service-displayname, comment, text, x509-fingerprint-sha1,
-      other
+      filename|imphash, filename|impfuzzy, filename|pehash, regkey,
+      regkey|value, pattern-in-file, pattern-in-memory, pdb, yara,
+      sigma, attachment, malware-sample, named pipe, mutex, windows-
+      scheduled-task, windows-service-name, windows-service-displayname,
+      comment, text, hex, x509-fingerprint-sha1, other
 
    Payload installation
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
@@ -828,24 +866,17 @@ Internet-Draft              MISP core format                October 2016
       filename|sha512/256, filename|authentihash, filename|ssdeep,
       filename|tlsh, filename|imphash, filename|pehash, pattern-in-file,
       pattern-in-traffic, pattern-in-memory, yara, vulnerability,
-      attachment, malware-sample, malware-type, comment, text, x509-
-      fingerprint-sha1, other
+      attachment, malware-sample, malware-type, comment, text, hex,
+      x509-fingerprint-sha1, mobile-application-id, other
 
    Persistence mechanism
-      filename, regkey, regkey|value, comment, text, other
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 15]
-
-Internet-Draft              MISP core format                October 2016
-
+      filename, regkey, regkey|value, comment, text, other, text
 
    Network activity
       ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri,
       user-agent, http-method, AS, snort, pattern-in-file, pattern-in-
-      traffic, attachment, comment, text, x509-fingerprint-sha1, other
+      traffic, attachment, comment, text, x509-fingerprint-sha1, other,
+      hex
 
    Payload type
       comment, text, other
@@ -859,15 +890,42 @@ Internet-Draft              MISP core format                October 2016
       md5, sha1, sha256, filename, filename|md5, filename|sha1,
       filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url,
       user-agent, regkey, regkey|value, AS, snort, pattern-in-file,
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 16]
+
+Internet-Draft              MISP core format                  April 2017
+
+
       pattern-in-traffic, pattern-in-memory, vulnerability, attachment,
-      malware-sample, link, comment, text, x509-fingerprint-sha1, other
+      malware-sample, link, comment, text, x509-fingerprint-sha1,
+      github-repository, other
 
    Financial fraud
       btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn,
-      comment, text, other
+      comment, text, other, hex
+
+   Support tool
+      attachment, link, comment, text, other, hex
+
+   Social network
+      github-username, github-repository, github-organisation, jabber-
+      id, twitter-id, email-src, email-dst, comment, text, other
+
+   Person
+      first-name, middle-name, last-name, date-of-birth, place-of-birth,
+      gender, passport-number, passport-country, passport-expiration,
+      redress-number, nationality, visa-number, issue-date-of-the-visa,
+      primary-residence, country-of-residence, special-service-request,
+      frequent-flyer-number, travel-details, payment-details, place-
+      port-of-original-embarkation, place-port-of-clearance, place-port-
+      of-onward-foreign-destination, passenger-name-record-locator-
+      number, comment, text, other
 
    Other
-      comment, text, other
+      comment, text, other, size-in-bytes, counter, datetime, cpe, port,
+      float, hex
 
    Attributes are based on the usage within their different communities.
    Attributes can be extended on a regular basis and this reference
@@ -888,15 +946,16 @@ Internet-Draft              MISP core format                October 2016
    to_ids represents whether the Attribute to be created if the
    ShadowAttribute is accepted is meant to be actionable.  Actionable
    defined attributes that can be used in automated processes as a
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 17]
+
+Internet-Draft              MISP core format                  April 2017
+
+
    pattern for detection in Local or Network Intrusion Detection System,
    log analysis tools or even filtering mechanisms.
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 16]
-
-Internet-Draft              MISP core format                October 2016
-
 
    to_ids is represented as a JSON boolean. to_ids MUST be present.
 
@@ -940,19 +999,21 @@ Internet-Draft              MISP core format                October 2016
 
    comment is represented by a JSON string. comment MAY be present.
 
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 18]
+
+Internet-Draft              MISP core format                  April 2017
+
+
 2.5.2.10.  org_id
 
    org_id represents a human-readable identifier referencing the
    proposal creator's Organisation object.
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 17]
-
-Internet-Draft              MISP core format                October 2016
-
 
    Whilst attributes can only be created by the event creator
    organisation, shadow attributes can be created by third parties.
@@ -998,17 +1059,16 @@ Internet-Draft              MISP core format                October 2016
    [RFC4122] of the organization.  The organization UUID is globally
    assigned to an organization and SHALL be kept overtime.
 
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 19]
+
+Internet-Draft              MISP core format                  April 2017
+
+
    The name is a readable description of the organization and SHOULD be
    present.  The id is a human-readable identifier generated by the
    instance and used as reference in the event.
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 18]
-
-Internet-Draft              MISP core format                October 2016
-
 
    uuid, name and id are represented as a JSON string. uuid, name and id
    MUST be present.
@@ -1030,13 +1090,15 @@ Internet-Draft              MISP core format                October 2016
 
 2.6.  Tag
 
-   A Tag is a simple method to classify an event with a simple tag name.
+   A tag is a simple method to classify an event with a simple string.
    The tag name can be freely chosen.  The tag name can be also chosen
    from a fixed machine-tag vocabulary called MISP taxonomies[[MISP-T]].
-   A Tag is represented as a JSON array where each element describes
-   each tag associated.  A Tag array SHALL be, at least, at Event level.
-   A tag element is described with a name, id, colour and exportable
-   flag.
+   When an event is distributed outside an organisation, the use of MISP
+   taxonomies[[MISP-T]] is RECOMMENDED to ensure a coherent naming of
+   the tags.  A tag is represented as a JSON array where each element
+   describes each tag associated.  A tag array SHALL be at event level
+   or attribute level.  A tag element is described with a name, id,
+   colour and exportable flag.
 
    exportable represents a setting if the tag is kept local or
    exportable to other MISP instances. exportable is represented by a
@@ -1053,23 +1115,659 @@ Internet-Draft              MISP core format                October 2016
                                "name": "tlp:white",
                                "id": "2" }]
 
-3.  Manifest
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 20]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+2.7.  Galaxy
+
+   A galaxy is a simple method to express a large object called cluster
+   that can be attached to MISP events.  A cluster can be composed of
+   one or more elements.  Elements are expressed as key-values.
+
+2.7.1.  Sample Galaxy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 21]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+"Galaxy": [ {
+           "id": "18",
+           "uuid": "698774c7-8022-42c4-917f-8d6e4f06ada3",
+           "name": "Threat Actor",
+           "type": "threat-actor",
+           "description": "Threat actors are characteristics of malicious actors
+                          (or adversaries) representing a cyber attack threat
+                          including presumed intent and historically observed behaviour.",
+                "version": "1",
+        "GalaxyCluster": [
+            {
+                "id": "1699",
+                "uuid": "7cdff317-a673-4474-84ec-4f1754947823",
+                "type": "threat-actor",
+                "value": "Anunak",
+                "tag_name": "misp-galaxy:threat-actor=\"Anunak\"",
+                "description": "Groups targeting financial organizations
+                    or people with significant financial assets.",
+                "galaxy_id": "18",
+                "source": "MISP Project",
+                "authors": [
+                    "Alexandre Dulaunoy",
+                    "Florian Roth",
+                    "Thomas Schreck",
+                    "Timo Steffens",
+                    "Various"
+                ],
+                "tag_id": "111",
+                        "meta": {
+                            "synonyms": [
+                                "Carbanak",
+                                "Carbon Spider"
+                            ],
+                            "country": [
+                                "RU"
+                            ],
+                            "motive": [
+                                "Cybercrime"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 22]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+3.  JSON Schema
+
+   The JSON Schema [JSON-SCHEMA] below defines the structure of the MISP
+   core format as literally described before.  The JSON Schema is used
+   to validate MISP events at creation time or parsing.
+
+ {
+   "$schema": "http://json-schema.org/draft-04/schema#",
+   "title": "Validator for misp events",
+   "id": "https://github.com/MISP/MISP/blob/2.4/format/2.4/schema.json",
+   "defs": {
+     "org": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "name": {
+           "type": "string"
+         },
+         "uuid": {
+           "type": "string"
+         }
+       },
+       "required": [
+         "uuid"
+       ]
+     },
+     "orgc": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "name": {
+           "type": "string"
+         },
+         "uuid": {
+           "type": "string"
+         }
+       },
+       "required": [
+         "uuid"
+       ]
+     },
+     "sharing_group": {
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 23]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "name": {
+           "type": "string"
+         },
+         "releasability": {
+           "type": "string"
+         },
+         "description": {
+           "type": "string"
+         },
+         "uuid": {
+           "type": "string"
+         },
+         "organisation_uuid": {
+           "type": "string"
+         },
+         "org_id": {
+           "type": "string"
+         },
+         "sync_user_id": {
+           "type": "string"
+         },
+         "active": {
+           "type": "boolean"
+         },
+         "created": {
+           "type": "string"
+         },
+         "modified": {
+           "type": "string"
+         },
+         "local": {
+           "type": "boolean"
+         },
+         "roaming": {
+           "type": "boolean"
+         },
+         "Organisation": {
+           "$ref": "#/defs/org"
+         },
+         "SharingGroupOrg": {
+           "type": "array",
+           "uniqueItems": true,
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 24]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+           "items": {
+             "$ref": "#/defs/sharing_group_org"
+           }
+         },
+         "SharingGroupServer": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/sharing_group_server"
+           }
+         },
+         "required": [
+           "uuid"
+         ]
+       },
+       "required": [
+         "uuid"
+       ]
+     },
+     "sharing_group_org": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "sharing_group_id": {
+           "type": "string"
+         },
+         "org_id": {
+           "type": "string"
+         },
+         "extend": {
+           "type": "boolean"
+         },
+         "Organisation": {
+           "$ref": "#/defs/org"
+         }
+       }
+     },
+     "sharing_group_server": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "sharing_group_id": {
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 25]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+           "type": "string"
+         },
+         "server_id": {
+           "type": "string"
+         },
+         "all_orgs": {
+           "type": "boolean"
+         },
+         "Server": {
+           "$ref": "#/defs/server"
+         }
+       }
+     },
+     "server": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "url": {
+           "type": "string"
+         },
+         "name": {
+           "type": "string"
+         }
+       }
+     },
+     "attribute": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "type": {
+           "type": "string"
+         },
+         "category": {
+           "type": "string"
+         },
+         "to_ids": {
+           "type": "boolean"
+         },
+         "uuid": {
+           "type": "string"
+         },
+         "event_id": {
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 26]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+           "type": "string"
+         },
+         "distribution": {
+           "type": "string"
+         },
+         "timestamp": {
+           "type": "string"
+         },
+         "comment": {
+           "type": "string"
+         },
+         "sharing_group_id": {
+           "type": "string"
+         },
+         "deleted": {
+           "type": "boolean"
+         },
+         "disable_correlation": {
+           "type": "boolean"
+         },
+         "value": {
+           "type": "string"
+         },
+         "data": {
+           "type": "string"
+         },
+         "SharingGroup": {
+           "$ref": "#/defs/sharing_group"
+         },
+         "ShadowAttribute": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/attribute"
+           }
+         },
+         "Tag": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/tag"
+           }
+         }
+       }
+     },
+     "event": {
+       "type": "object",
+       "additionalProperties": false,
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 27]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "orgc_id": {
+           "type": "string"
+         },
+         "org_id": {
+           "type": "string"
+         },
+         "date": {
+           "type": "string"
+         },
+         "threat_level_id": {
+           "type": "string"
+         },
+         "info": {
+           "type": "string"
+         },
+         "published": {
+           "type": "boolean"
+         },
+         "uuid": {
+           "type": "string"
+         },
+         "attribute_count": {
+           "type": "string"
+         },
+         "analysis": {
+           "type": "string"
+         },
+         "timestamp": {
+           "type": "string"
+         },
+         "distribution": {
+           "type": "string"
+         },
+         "proposal_email_lock": {
+           "type": "boolean"
+         },
+         "locked": {
+           "type": "boolean"
+         },
+         "publish_timestamp": {
+           "type": "string"
+         },
+         "sharing_group_id": {
+           "type": "string"
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 28]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+         },
+         "disable_correlation": {
+           "type": "boolean"
+         },
+         "event_creator_email": {
+           "type": "string"
+         },
+         "Org": {
+           "$ref": "#/defs/org"
+         },
+         "Orgc": {
+           "$ref": "#/defs/org"
+         },
+         "SharingGroup": {
+           "$ref": "#/defs/sharing_group"
+         },
+         "Attribute": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/attribute"
+           }
+         },
+         "ShadowAttribute": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/attribute"
+           }
+         },
+         "RelatedEvent": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "type": "object",
+             "additionalProperties": false,
+             "properties": {
+                 "Event":{
+                   "$ref": "#/defs/event"
+                 }
+             }
+           }
+         },
+         "Galaxy": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/galaxy"
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 29]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+           }
+         },
+         "Tag": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/tag"
+           }
+         }
+       }
+     },
+     "tag": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "name": {
+           "type": "string"
+         },
+         "colour": {
+           "type": "string"
+         },
+         "exportable": {
+           "type": "boolean"
+         },
+         "hide_tag": {
+           "type": "boolean"
+         }
+       }
+     },
+     "galaxy": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "uuid": {
+           "type": "string"
+         },
+         "name": {
+           "type": "string"
+         },
+         "type": {
+           "type": "string"
+         },
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 30]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+         "description": {
+           "type": "string"
+         },
+         "version": {
+           "type": "string"
+         },
+         "GalaxyCluster": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/galaxy_cluster"
+           }
+         }
+       }
+     },
+     "galaxy_cluster": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "uuid": {
+           "type": "string"
+         },
+         "type": {
+           "type": "string"
+         },
+         "value": {
+           "type": "string"
+         },
+         "tag_name": {
+           "type": "string"
+         },
+         "description": {
+           "type": "string"
+         },
+         "galaxy_id": {
+           "type": "string"
+         },
+         "source": {
+           "type": "string"
+         },
+         "authors": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "type": "string"
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 31]
+
+Internet-Draft              MISP core format                  April 2017
+
+
+           }
+         },
+         "tag_id": {
+           "type": "string"
+         },
+         "meta": {
+           "type": "object"
+         }
+       }
+     }
+   },
+   "type": "object",
+   "properties": {
+     "Event": {
+       "$ref": "#/defs/event"
+     }
+   },
+   "required": [
+     "Event"
+   ]
+ }
+
+4.  Manifest
 
    MISP events can be shared over an HTTP repository, a file package or
    USB key.  A manifest file is used to provide an index of MISP events
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 19]
-
-Internet-Draft              MISP core format                October 2016
-
-
    allowing to only fetch the recently updated files without the need to
    parse each json file.
 
-3.1.  Format
+4.1.  Format
 
    A manifest file is a simple JSON file named manifest.json in a
    directory where the MISP events are located.  Each MISP event is a
@@ -1087,6 +1785,14 @@ Internet-Draft              MISP core format                October 2016
    o  Orgc object (MUST)
 
    o  analysis (SHALL)
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 32]
+
+Internet-Draft              MISP core format                  April 2017
+
 
    o  timestamp (MUST)
 
@@ -1110,6 +1816,7 @@ Internet-Draft              MISP core format                October 2016
    detached PGP signature for a manifest file is a manifest.json.pgp
    file containing the PGP signature.
 
+4.1.1.  Sample Manifest
 
 
 
@@ -1117,65 +1824,30 @@ Internet-Draft              MISP core format                October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 20]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 33]
 
-Internet-Draft              MISP core format                October 2016
-
-
-3.1.1.  Sample Manifest
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 21]
-
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
 {
@@ -1229,12 +1901,12 @@ Internet-Draft              MISP core format                October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 22]
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 34]
 
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
-4.  Implementation
+5.  Implementation
 
    MISP format is implemented by different software including the MISP
    threat sharing platform and libraries like PyMISP [MISP-P].
@@ -1244,7 +1916,7 @@ Internet-Draft              MISP core format                October 2016
    representation of the format in data-structure of other
    implementations.
 
-5.  Security Considerations
+6.  Security Considerations
 
    MISP events might contain sensitive or confidential information.
    Adequate access control and encryption measures shall be implemented
@@ -1255,16 +1927,16 @@ Internet-Draft              MISP core format                October 2016
    inputs beside the standard threat information that might already
    include malicious intended inputs.
 
-6.  Acknowledgements
+7.  Acknowledgements
 
    The authors wish to thank all the MISP community to support the
    creation of open standards in threat intelligence sharing.
 
-7.  Sample MISP file
+8.  Sample MISP file
 
-8.  References
+9.  References
 
-8.1.  Normative References
+9.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1285,9 +1957,9 @@ Internet-Draft              MISP core format                October 2016
 
 
 
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 23]
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 35]
 
-Internet-Draft              MISP core format                October 2016
+Internet-Draft              MISP core format                  April 2017
 
 
    [RFC4880]  Callas, J., Donnerhacke, L., Finney, H., Shaw, D., and R.
@@ -1295,7 +1967,12 @@ Internet-Draft              MISP core format                October 2016
               DOI 10.17487/RFC4880, November 2007,
               <http://www.rfc-editor.org/info/rfc4880>.
 
-8.2.  Informative References
+9.2.  Informative References
+
+   [JSON-SCHEMA]
+              "JSON Schema: A Media Type for Describing JSON Documents",
+              2016, <https://tools.ietf.org/html/draft-wright-json-
+              schema>.
 
    [MISP-P]   MISP, , "MISP Project - Malware Information Sharing
               Platform and Threat Sharing", <https://github.com/MISP>.
@@ -1336,9 +2013,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 18, 2017                [Page 24]
+Dulaunoy & Iklody       Expires October 12, 2017               [Page 36]
