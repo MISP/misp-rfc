@@ -657,6 +657,462 @@ name **MUST** be present. colour, id and exportable **SHALL** be present.
         "id": "2" }]
 ~~~~
 
+# JSON Schema
+
+The JSON Schema [@?JSON-SCHEMA] below defines the structure of the MISP core format
+as literally described before. The JSON Schema is used to validate MISP events at creation time
+or parsing.
+
+~~~~
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Validator for misp events",
+  "id": "https://github.com/MISP/MISP/blob/2.4/format/2.4/schema.json",
+  "defs": {
+    "org": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uuid"
+      ]
+    },
+    "orgc": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uuid"
+      ]
+    },
+    "sharing_group": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "releasability": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "organisation_uuid": {
+          "type": "string"
+        },
+        "org_id": {
+          "type": "string"
+        },
+        "sync_user_id": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "created": {
+          "type": "string"
+        },
+        "modified": {
+          "type": "string"
+        },
+        "local": {
+          "type": "boolean"
+        },
+        "roaming": {
+          "type": "boolean"
+        },
+        "Organisation": {
+          "$ref": "#/defs/org"
+        },
+        "SharingGroupOrg": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/sharing_group_org"
+          }
+        },
+        "SharingGroupServer": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/sharing_group_server"
+          }
+        },
+        "required": [
+          "uuid"
+        ]
+      },
+      "required": [
+        "uuid"
+      ]
+    },
+    "sharing_group_org": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sharing_group_id": {
+          "type": "string"
+        },
+        "org_id": {
+          "type": "string"
+        },
+        "extend": {
+          "type": "boolean"
+        },
+        "Organisation": {
+          "$ref": "#/defs/org"
+        }
+      }
+    },
+    "sharing_group_server": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sharing_group_id": {
+          "type": "string"
+        },
+        "server_id": {
+          "type": "string"
+        },
+        "all_orgs": {
+          "type": "boolean"
+        },
+        "Server": {
+          "$ref": "#/defs/server"
+        }
+      }
+    },
+    "server": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "attribute": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "to_ids": {
+          "type": "boolean"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "distribution": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "sharing_group_id": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "disable_correlation": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "SharingGroup": {
+          "$ref": "#/defs/sharing_group"
+        },
+        "ShadowAttribute": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/attribute"
+          }
+        },
+        "Tag": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/tag"
+          }
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orgc_id": {
+          "type": "string"
+        },
+        "org_id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "threat_level_id": {
+          "type": "string"
+        },
+        "info": {
+          "type": "string"
+        },
+        "published": {
+          "type": "boolean"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "attribute_count": {
+          "type": "string"
+        },
+        "analysis": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "distribution": {
+          "type": "string"
+        },
+        "proposal_email_lock": {
+          "type": "boolean"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "publish_timestamp": {
+          "type": "string"
+        },
+        "sharing_group_id": {
+          "type": "string"
+        },
+        "disable_correlation": {
+          "type": "boolean"
+        },
+        "event_creator_email": {
+          "type": "string"
+        },
+        "Org": {
+          "$ref": "#/defs/org"
+        },
+        "Orgc": {
+          "$ref": "#/defs/org"
+        },
+        "SharingGroup": {
+          "$ref": "#/defs/sharing_group"
+        },
+        "Attribute": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/attribute"
+          }
+        },
+        "ShadowAttribute": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/attribute"
+          }
+        },
+        "RelatedEvent": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Event":{
+                  "$ref": "#/defs/event"
+                }
+            }
+          }
+        },
+        "Galaxy": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/galaxy"
+          }
+        },
+        "Tag": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/tag"
+          }
+        }
+      }
+    },
+    "tag": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "colour": {
+          "type": "string"
+        },
+        "exportable": {
+          "type": "boolean"
+        },
+        "hide_tag": {
+          "type": "boolean"
+        }
+      }
+    },
+    "galaxy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "GalaxyCluster": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/galaxy_cluster"
+          }
+        }
+      }
+    },
+    "galaxy_cluster": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "tag_name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "galaxy_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "authors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "tag_id": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "Event": {
+      "$ref": "#/defs/event"
+    }
+  },
+  "required": [
+    "Event"
+  ]
+}
+~~~~
+
 # Manifest
 
 MISP events can be shared over an HTTP repository, a file package or USB key. A manifest file is used to
@@ -780,6 +1236,14 @@ of open standards in threat intelligence sharing.
    <title>MISP Taxonomies - shared and common vocabularies of tags</title>
    <author initials='' surname='MISP' fullname='MISP Community'></author>
    <date></date>
+  </front>
+</reference>
+
+<reference anchor='JSON-SCHEMA' target='https://tools.ietf.org/html/draft-wright-json-schema'>
+  <front>
+    <title>JSON Schema: A Media Type for Describing JSON Documents</title>
+    <author initials='' surname='' fullname='Austin Wright'></author>
+    <date year="2016"></date>
   </front>
 </reference>
 
