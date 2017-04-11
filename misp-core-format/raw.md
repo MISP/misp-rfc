@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2016-11-21T00:00:00Z
+% date = 2017-04-10T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -335,7 +335,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   attachment, link, comment, text, other
 
 **Other**
-:   comment, text, other, size-in-bytes, counter, datetime, cpe, port
+:   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex
 
 Attributes are based on the usage within their different communities. Attributes can be extended on a regular basis and this reference document is updated accordingly.
 
@@ -525,7 +525,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   attachment, link, comment, text, other
 
 **Other**
-:   comment, text, other, size-in-bytes, counter, datetime, cpe, port
+:   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex
 
 Attributes are based on the usage within their different communities. Attributes can be extended on a regular basis and this reference document is updated accordingly.
 
