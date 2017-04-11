@@ -296,28 +296,28 @@ type represents the means through which an attribute tries to describe the inten
 type is represented as a JSON string. type **MUST** be present and it **MUST** be a valid selection for the chosen category. The list of valid category-type combinations is as follows:
 
 **Internal reference**
-:   text, link, comment, other
+:   text, link, comment, other, hex
 
 **Targeting data**
 :   target-user, target-email, target-machine, target-org, target-location, target-external, comment
 
 **Antivirus detection**
-:   link, comment, text, attachment, other
+:   link, comment, text, hex, attachment, other
 
 **Payload delivery**
-:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, ip-src, ip-dst, hostname, domain, email-src, email-dst, email-subject, email-attachment, url, user-agent, AS, pattern-in-file, pattern-in-traffic, yara, attachment, malware-sample, link, malware-type, comment, text, vulnerability, x509-fingerprint-sha1, other
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, impfuzzy, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, ip-src, ip-dst, hostname, domain, email-src, email-dst, email-subject, email-attachment, url, user-agent, AS, pattern-in-file, pattern-in-traffic, yara, attachment, malware-sample, link, malware-type, comment, text, vulnerability, x509-fingerprint-sha1, other, ip-dst|port, ip-src|port, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, mobile-application-id
 
 **Artifacts dropped**
-:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, pdb, yara, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, x509-fingerprint-sha1, other
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, impfuzzy, authentihash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, pdb, yara, sigma, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, hex, x509-fingerprint-sha1, other
 
 **Payload installation**
-:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, yara, vulnerability, attachment, malware-sample, malware-type, comment, text, x509-fingerprint-sha1, other
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, yara, vulnerability, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, mobile-application-id, other
 
 **Persistence mechanism**
-:   filename, regkey, regkey|value, comment, text, other
+:   filename, regkey, regkey|value, comment, text, other, text
 
 **Network activity**
-:   ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, pattern-in-traffic, attachment, comment, text, x509-fingerprint-sha1, other
+:   ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, pattern-in-traffic, attachment, comment, text, x509-fingerprint-sha1, other, hex
 
 **Payload type**
 :   comment, text, other
@@ -326,13 +326,19 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   threat-actor, campaign-name, campaign-id, whois-registrant-phone, whois-registrant-email, whois-registrant-name, whois-registrar, whois-creation-date, comment, text, x509-fingerprint-sha1, other
 
 **External analysis**
-:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, other
+:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, github-repository, other
 
 **Financial fraud**
-:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other
+:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other, hex
 
 **Support tool**
-:   attachment, link, comment, text, other
+:   attachment, link, comment, text, other, hex
+
+**Social network**
+:   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, comment, text, other
+
+**Person**
+:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other
 
 **Other**
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex
@@ -409,8 +415,8 @@ deleted is represented by a JSON boolean. deleted **MUST** be present.
 
 #### data
 
-data contains the base64 encoded contents of an attachment or a malware sample. For malware samples, 
-the sample **MUST** be encrypted using a password protected zip archive, with the password being "infected". 
+data contains the base64 encoded contents of an attachment or a malware sample. For malware samples,
+the sample **MUST** be encrypted using a password protected zip archive, with the password being "infected".
 
 data is represented by a JSON string in base64 encoding. data **MUST** be set for attributes of type malware-sample and attachment.
 
@@ -435,9 +441,9 @@ value is represented by a JSON string. value **MUST** be present.
 
 ## ShadowAttribute
 
-ShadowAttributes are 3rd party created attributes that either propose to add new information to an event or modify existing information. They are not meant to be actionable until the event creator accepts them - at which point they will be converted into attributes or modify an existing attribute. 
+ShadowAttributes are 3rd party created attributes that either propose to add new information to an event or modify existing information. They are not meant to be actionable until the event creator accepts them - at which point they will be converted into attributes or modify an existing attribute.
 
-They are similar in structure to Attributes but additionally carry a reference to the creator of the ShadowAttribute as well as a revocation flag. 
+They are similar in structure to Attributes but additionally carry a reference to the creator of the ShadowAttribute as well as a revocation flag.
 
 ### Sample Attribute Object
 
@@ -486,28 +492,28 @@ type represents the means through which an attribute tries to describe the inten
 type is represented as a JSON string. type **MUST** be present and it **MUST** be a valid selection for the chosen category. The list of valid category-type combinations is as follows:
 
 **Internal reference**
-:   text, link, comment, other
+:   text, link, comment, other, hex
 
 **Targeting data**
 :   target-user, target-email, target-machine, target-org, target-location, target-external, comment
 
 **Antivirus detection**
-:   link, comment, text, attachment, other
+:   link, comment, text, hex, attachment, other
 
 **Payload delivery**
-:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, ip-src, ip-dst, hostname, domain, email-src, email-dst, email-subject, email-attachment, url, user-agent, AS, pattern-in-file, pattern-in-traffic, yara, attachment, malware-sample, link, malware-type, comment, text, vulnerability, x509-fingerprint-sha1, other
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, impfuzzy, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, ip-src, ip-dst, hostname, domain, email-src, email-dst, email-subject, email-attachment, url, user-agent, AS, pattern-in-file, pattern-in-traffic, yara, attachment, malware-sample, link, malware-type, comment, text, vulnerability, x509-fingerprint-sha1, other, ip-dst|port, ip-src|port, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, mobile-application-id
 
 **Artifacts dropped**
-:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, pdb, yara, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, x509-fingerprint-sha1, other
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, impfuzzy, authentihash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, pdb, yara, sigma, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, hex, x509-fingerprint-sha1, other
 
 **Payload installation**
-:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, yara, vulnerability, attachment, malware-sample, malware-type, comment, text, x509-fingerprint-sha1, other
+:   md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, ssdeep, imphash, authentihash, pehash, tlsh, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|authentihash, filename|ssdeep, filename|tlsh, filename|imphash, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, yara, vulnerability, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, mobile-application-id, other
 
 **Persistence mechanism**
-:   filename, regkey, regkey|value, comment, text, other
+:   filename, regkey, regkey|value, comment, text, other, text
 
 **Network activity**
-:   ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, pattern-in-traffic, attachment, comment, text, x509-fingerprint-sha1, other
+:   ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, pattern-in-traffic, attachment, comment, text, x509-fingerprint-sha1, other, hex
 
 **Payload type**
 :   comment, text, other
@@ -516,13 +522,19 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   threat-actor, campaign-name, campaign-id, whois-registrant-phone, whois-registrant-email, whois-registrant-name, whois-registrar, whois-creation-date, comment, text, x509-fingerprint-sha1, other
 
 **External analysis**
-:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, other
+:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, github-repository, other
 
 **Financial fraud**
-:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other
+:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other, hex
 
 **Support tool**
-:   attachment, link, comment, text, other
+:   attachment, link, comment, text, other, hex
+
+**Social network**
+:   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, comment, text, other
+
+**Person**
+:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other
 
 **Other**
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex
@@ -593,8 +605,8 @@ deleted is represented by a JSON boolean. deleted **SHOULD** be present.
 
 #### data
 
-data contains the base64 encoded contents of an attachment or a malware sample. For malware samples, 
-the sample **MUST** be encrypted using a password protected zip archive, with the password being "infected". 
+data contains the base64 encoded contents of an attachment or a malware sample. For malware samples,
+the sample **MUST** be encrypted using a password protected zip archive, with the password being "infected".
 
 data is represented by a JSON string in base64 encoding. data **MUST** be set for shadow attributes of type malware-sample and attachment.
 
@@ -773,5 +785,3 @@ of open standards in threat intelligence sharing.
 
 
 {backmatter}
-
-
