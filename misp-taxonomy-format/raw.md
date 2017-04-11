@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2017-02-13T00:00:00Z
+% date = 2017-04-10T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -40,7 +40,8 @@
 
 This document describes the MISP taxonomy format which describes a simple JSON format to
 represent machine tags (also called triple tags) vocabularies. A public directory of common vocabularies
-MISP taxonomies is available and relies on the MISP taxonomy format.
+MISP taxonomies is available and relies on the MISP taxonomy format. MISP taxonomies are used to classify
+cyber security events, threats or indicators.
 
 {mainmatter}
 
@@ -188,7 +189,7 @@ A taxonomies array describes the taxonomy available with the description, name a
   "version": "20161009",
   "license": "CC-0",
   "description": "Manifest file of MISP taxonomies available.",
-  "url": 
+  "url":
     "https://raw.githubusercontent.com/MISP/misp-taxonomies/master/",
   "path": "machinetag.json",
   "taxonomies": [
@@ -418,6 +419,128 @@ A taxonomies array describes the taxonomy available with the description, name a
 
 ~~~~
 
+# JSON Schema
+
+The JSON Schema [@?JSON-SCHEMA] below defines the structure of the MISP taxonomy document
+as literally described before. The JSON Schema is used validating a MISP taxonomy. The validation
+is a *MUST* if the taxonomy is included in the MISP taxonomies directory.
+
+~~~~
+{
+  "required": [
+    "namespace",
+    "description",
+    "version",
+    "predicates"
+  ],
+  "properties": {
+    "refs": {
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "type": "array"
+    },
+    "values": {
+      "items": {
+        "$ref": "#/defs/entry",
+        "type": "object"
+      },
+      "uniqueItems": true,
+      "type": "array"
+    },
+    "predicates": {
+      "items": {
+        "$ref": "#/defs/predicate",
+        "type": "object"
+      },
+      "uniqueItems": true,
+      "type": "array"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "expanded": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "defs": {
+    "required": [
+      "predicate"
+    ],
+    "entry": {
+      "properties": {
+        "entry": {
+          "items": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "numerical_value": {
+                "type": "number"
+              },
+              "expanded": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "type": "object"
+          },
+          "uniqueItems": true,
+          "type": "array"
+        },
+        "predicate": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "predicate": {
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "expanded": {
+          "type": "string"
+        },
+        "numerical_value": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "colour": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    }
+  },
+  "id": "https://github.com/MISP/misp-taxonomies/blob/master/schema.json",
+  "title": "Validator for misp-taxonomies",
+  "$schema": "http://json-schema.org/schema#"
+}
+~~~~
+
 # Acknowledgements
 
 The authors wish to thank all the MISP community to support the creation
@@ -447,7 +570,13 @@ of open standards in threat intelligence sharing.
   </front>
 </reference>
 
+<reference anchor='JSON-SCHEMA' target='https://tools.ietf.org/html/draft-wright-json-schema'>
+  <front>
+    <title>JSON Schema: A Media Type for Describing JSON Documents</title>
+    <author initials='' surname='' fullname='Austin Wright'></author>
+    <date year="2016"></date>
+  </front>
+</reference>
+
 
 {backmatter}
-
-
