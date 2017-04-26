@@ -108,16 +108,16 @@ info is represented as a JSON string. info **MUST** be present.
 
 threat_level_id represents the threat level.
 
-0:
+4:
 :   Undefined
 
-1:
+3:
 :   Low
 
 2:
 :   Medium
 
-3:
+1:
 :   High
 
 If a higher granularity is required, a MISP taxonomy applied as a Tag **SHOULD** be preferred.
