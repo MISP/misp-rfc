@@ -144,22 +144,22 @@ Internet-Draft            MISP taxonomy format                April 2017
 
    The MISP taxonomy format uses the JSON [RFC4627] format.  Each
    namespace is represented as a JSON object with meta information
-   including the following fields: namespace, description, version.
+   including the following fields: namespace, description, version,
+   type.
 
    namespace defines the overall namespace of the machine tag.  The
    namespace is represented as a string and MUST be present.  The
    description is represented as a string and MUST be present.  A
-   version is represented as a decimal and MUST be present.
+   version is represented as a decimal and MUST be present.  A type
+   defines where a specific taxonomy is applicable and a type can be
+   applicable at event, user or org level.  The type is represented as
+   an array containing one or more type and SHOULD be present.  If a
+   type is not mentioned, by default, the taxonomy is applicable at
+   event level only.
 
    predicates defines all the predicates available in the namespace
    defined. predicates is represented as an array of JSON objects.
    predicates MUST be present and MUST at least content one element.
-
-   values defines all the values for each predicate in the namespace
-   defined. values SHOULD be present.
-
-
-
 
 
 
@@ -169,6 +169,9 @@ Dulaunoy & Iklody       Expires October 12, 2017                [Page 3]
 
 Internet-Draft            MISP taxonomy format                April 2017
 
+
+   values defines all the values for each predicate in the namespace
+   defined. values SHOULD be present.
 
 2.2.  predicates
 
@@ -203,6 +206,26 @@ Internet-Draft            MISP taxonomy format                April 2017
 
    Example use of the colour field in the Traffic Light Protocol (TLP):
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2017                [Page 4]
+
+Internet-Draft            MISP taxonomy format                April 2017
+
+
     "predicates": [
         {
           "colour": "#CC0033",
@@ -218,13 +241,6 @@ Internet-Draft            MISP taxonomy format                April 2017
                        the organization to be effectively acted upon.",
           "value": "amber"
         }...]
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 4]
-
-Internet-Draft            MISP taxonomy format                April 2017
-
 
 2.4.2.  description
 
@@ -244,22 +260,6 @@ Internet-Draft            MISP taxonomy format                April 2017
    filtering.
 
    Example use of the numerical_value in the MISP confidence level:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
