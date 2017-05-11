@@ -99,7 +99,7 @@ published is represented as a JSON boolean. published **MUST** be present.
 
 #### info
 
-info represents the information field of the event. info a free-text value to provide a human-readable summary
+info represents the information field of the event. info is a free-text value to provide a human-readable summary
 of the event. info **SHOULD** NOT be bigger than 256 characters and **SHOULD** NOT include new-lines.
 
 info is represented as a JSON string. info **MUST** be present.
