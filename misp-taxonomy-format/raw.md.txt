@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: October 12, 2017                                 April 10, 2017
+Expires: March 8, 2018                                 September 4, 2017
 
 
                           MISP taxonomy format
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 12, 2017.
+   This Internet-Draft will expire on March 8, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 1]
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 1]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
    the Trust Legal Provisions and are provided without warranty as
@@ -82,7 +82,7 @@ Table of Contents
    6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  14
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .  14
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .  15
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
 
 1.  Introduction
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 2]
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 2]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
    visualisation depending on their use in threat intelligence platforms
@@ -165,9 +165,9 @@ Internet-Draft            MISP taxonomy format                April 2017
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 3]
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 3]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
    values defines all the values for each predicate in the namespace
@@ -221,9 +221,9 @@ Internet-Draft            MISP taxonomy format                April 2017
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 4]
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 4]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
     "predicates": [
@@ -277,9 +277,9 @@ Internet-Draft            MISP taxonomy format                April 2017
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 5]
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 5]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
               {
@@ -333,9 +333,9 @@ Internet-Draft            MISP taxonomy format                April 2017
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 6]
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 6]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
 3.1.  Sample Manifest
@@ -389,9 +389,9 @@ Internet-Draft            MISP taxonomy format                April 2017
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 7]
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 7]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
               "value": "a",
@@ -445,9 +445,9 @@ Internet-Draft            MISP taxonomy format                April 2017
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 8]
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 8]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
             {
@@ -501,9 +501,9 @@ Internet-Draft            MISP taxonomy format                April 2017
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017                [Page 9]
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 9]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
        "predicate": "source-type"
@@ -557,9 +557,9 @@ Internet-Draft            MISP taxonomy format                April 2017
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017               [Page 10]
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 10]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
            "description": "30% Probably not"
@@ -608,79 +608,25 @@ Internet-Draft            MISP taxonomy format                April 2017
    used validating a MISP taxonomy.  The validation is a _MUST_ if the
    taxonomy is included in the MISP taxonomies directory.
 
-{
-  "required": [
+    {
+      "$schema": "http://json-schema.org/schema#",
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2017               [Page 11]
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 11]
 
-Internet-Draft            MISP taxonomy format                April 2017
+Internet-Draft            MISP taxonomy format            September 2017
 
 
-    "namespace",
-    "description",
-    "version",
-    "predicates"
-  ],
-  "properties": {
-    "refs": {
-      "items": {
-        "type": "string"
-      },
-      "uniqueItems": true,
-      "type": "array"
-    },
-    "values": {
-      "items": {
-        "$ref": "#/defs/entry",
-        "type": "object"
-      },
-      "uniqueItems": true,
-      "type": "array"
-    },
-    "predicates": {
-      "items": {
-        "$ref": "#/defs/predicate",
-        "type": "object"
-      },
-      "uniqueItems": true,
-      "type": "array"
-    },
-    "version": {
-      "type": "integer"
-    },
-    "description": {
-      "type": "string"
-    },
-    "expanded": {
-      "type": "string"
-    },
-    "namespace": {
-      "type": "string"
-    }
-  },
-  "additionalProperties": false,
-  "type": "object",
-  "defs": {
-    "required": [
-      "predicate"
-    ],
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2017               [Page 12]
-
-Internet-Draft            MISP taxonomy format                April 2017
-
-
-    "entry": {
-      "properties": {
+      "title": "Validator for misp-taxonomies",
+      "id": "https://www.github.com/MISP/misp-taxonomies/schema.json",
+      "defs": {
         "entry": {
+          "type": "array",
+          "uniqueItems": true,
           "items": {
-            "required": [
-              "value"
-            ],
+            "type": "object",
+            "additionalProperties": false,
             "properties": {
               "numerical_value": {
                 "type": "number"
@@ -691,60 +637,131 @@ Internet-Draft            MISP taxonomy format                April 2017
               "description": {
                 "type": "string"
               },
+              "colour": {
+                "type": "string"
+              },
               "value": {
+                "type": "string"
+              },
+              "required": [
+                "value"
+              ]
+            }
+          }
+        },
+        "values": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "entry": {
+                "$ref": "#/defs/entry"
+              },
+              "predicate": {
                 "type": "string"
               }
             },
-            "additionalProperties": false,
-            "type": "object"
-          },
-          "uniqueItems": true,
-          "type": "array"
+            "required": [
+              "predicate"
+            ]
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 12]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+          }
         },
-        "predicate": {
-          "type": "string"
+        "predicates": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "numerical_value": {
+                "type": "number"
+              },
+              "colour": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "expanded": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "required": [
+                "value"
+              ]
+            }
+          }
         }
       },
+      "type": "object",
       "additionalProperties": false,
-      "type": "object"
-    },
-    "predicate": {
-      "required": [
-        "value"
-      ],
       "properties": {
-        "expanded": {
-          "type": "string"
-        },
-        "numerical_value": {
-          "type": "number"
+        "version": {
+          "type": "integer"
         },
         "description": {
           "type": "string"
         },
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2017               [Page 13]
-
-Internet-Draft            MISP taxonomy format                April 2017
-
-
-        "colour": {
+        "expanded": {
           "type": "string"
         },
-        "value": {
+        "namespace": {
           "type": "string"
+        },
+        "type": {
+          "type": "array",
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 13]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "org",
+              "user",
+              "attribute",
+              "event"
+            ]
+          }
+        },
+        "refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "predicates": {
+          "$ref": "#/defs/predicates"
+        },
+        "values": {
+          "$ref": "#/defs/values"
         }
       },
-      "additionalProperties": false,
-      "type": "object"
+      "required": [
+        "namespace",
+        "description",
+        "version",
+        "predicates"
+      ]
     }
-  },
-  "id": "https://github.com/MISP/misp-taxonomies/blob/master/schema.json",
-  "title": "Validator for misp-taxonomies",
-  "$schema": "http://json-schema.org/schema#"
-}
 
 6.  Acknowledgements
 
@@ -757,13 +774,22 @@ Internet-Draft            MISP taxonomy format                April 2017
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <http://www.rfc-editor.org/info/rfc2119>.
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
+
+
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 14]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
 
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627,
-              DOI 10.17487/RFC4627, July 2006,
-              <http://www.rfc-editor.org/info/rfc4627>.
+              DOI 10.17487/RFC4627, July 2006, <https://www.rfc-
+              editor.org/info/rfc4627>.
 
 7.2.  Informative References
 
@@ -777,15 +803,6 @@ Internet-Draft            MISP taxonomy format                April 2017
               <https://www.flickr.com/groups/51035612836@N01/
               discuss/72157594497877875/>.
 
-
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2017               [Page 14]
-
-Internet-Draft            MISP taxonomy format                April 2017
-
-
    [MISP-P]   MISP, , "MISP Project - Malware Information Sharing
               Platform and Threat Sharing", <https://github.com/MISP>.
 
@@ -796,7 +813,7 @@ Authors' Addresses
 
    Alexandre Dulaunoy
    Computer Incident Response Center Luxembourg
-   41, avenue de la gare
+   16, bd d'Avranches
    Luxembourg  L-1611
    Luxembourg
 
@@ -806,7 +823,7 @@ Authors' Addresses
 
    Andras Iklody
    Computer Incident Response Center Luxembourg
-   41, avenue de la gare
+   16, bd d'Avranches
    Luxembourg  L-1611
    Luxembourg
 
@@ -820,21 +837,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2017               [Page 15]
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 15]

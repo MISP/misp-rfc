@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2017-04-10T00:00:00Z
+% date = 2017-09-04T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -17,7 +17,7 @@
 %  email = "alexandre.dulaunoy@circl.lu"
 %  phone = "+352 247 88444"
 %   [author.address.postal]
-%   street = "41, avenue de la gare"
+%   street = "16, bd d'Avranches"
 %   city = "Luxembourg"
 %   code = "L-1611"
 %   country = "Luxembourg"
@@ -31,7 +31,7 @@
 %  email = "andras.iklody@circl.lu"
 %  phone = "+352 247 88444"
 %   [author.address.postal]
-%   street = "41, avenue de la gare"
+%   street = " 16, bd d'Avranches"
 %   city = "Luxembourg"
 %   code = "L-1611"
 %   country = "Luxembourg"
@@ -427,36 +427,89 @@ is a *MUST* if the taxonomy is included in the MISP taxonomies directory.
 
 ~~~~
 {
-  "required": [
-    "namespace",
-    "description",
-    "version",
-    "predicates"
-  ],
-  "properties": {
-    "refs": {
-      "items": {
-        "type": "string"
-      },
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Validator for misp-taxonomies",
+  "id": "https://www.github.com/MISP/misp-taxonomies/schema.json",
+  "defs": {
+    "entry": {
+      "type": "array",
       "uniqueItems": true,
-      "type": "array"
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "numerical_value": {
+            "type": "number"
+          },
+          "expanded": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "colour": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "required": [
+            "value"
+          ]
+        }
+      }
     },
     "values": {
-      "items": {
-        "$ref": "#/defs/entry",
-        "type": "object"
-      },
+      "type": "array",
       "uniqueItems": true,
-      "type": "array"
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "entry": {
+            "$ref": "#/defs/entry"
+          },
+          "predicate": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "predicate"
+        ]
+      }
     },
     "predicates": {
-      "items": {
-        "$ref": "#/defs/predicate",
-        "type": "object"
-      },
+      "type": "array",
       "uniqueItems": true,
-      "type": "array"
-    },
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "numerical_value": {
+            "type": "number"
+          },
+          "colour": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "expanded": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "required": [
+            "value"
+          ]
+        }
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
     "version": {
       "type": "integer"
     },
@@ -468,76 +521,40 @@ is a *MUST* if the taxonomy is included in the MISP taxonomies directory.
     },
     "namespace": {
       "type": "string"
-    }
-  },
-  "additionalProperties": false,
-  "type": "object",
-  "defs": {
-    "required": [
-      "predicate"
-    ],
-    "entry": {
-      "properties": {
-        "entry": {
-          "items": {
-            "required": [
-              "value"
-            ],
-            "properties": {
-              "numerical_value": {
-                "type": "number"
-              },
-              "expanded": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false,
-            "type": "object"
-          },
-          "uniqueItems": true,
-          "type": "array"
-        },
-        "predicate": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object"
     },
-    "predicate": {
-      "required": [
-        "value"
-      ],
-      "properties": {
-        "expanded": {
-          "type": "string"
-        },
-        "numerical_value": {
-          "type": "number"
-        },
-        "description": {
-          "type": "string"
-        },
-        "colour": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "type": "object"
+    "type": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "org",
+          "user",
+          "attribute",
+          "event"
+        ]
+      }
+    },
+    "refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "predicates": {
+      "$ref": "#/defs/predicates"
+    },
+    "values": {
+      "$ref": "#/defs/values"
     }
   },
-  "id": "https://github.com/MISP/misp-taxonomies/blob/master/schema.json",
-  "title": "Validator for misp-taxonomies",
-  "$schema": "http://json-schema.org/schema#"
+  "required": [
+    "namespace",
+    "description",
+    "version",
+    "predicates"
+  ]
 }
 ~~~~
 
