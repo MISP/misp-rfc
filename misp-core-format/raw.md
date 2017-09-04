@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2017-04-10T00:00:00Z
+% date = 2017-09-04T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -17,9 +17,9 @@
 %  email = "alexandre.dulaunoy@circl.lu"
 %  phone = "+352 247 88444"
 %   [author.address.postal]
-%   street = "41, avenue de la gare"
+%   street = "16, bd d'Avranches"
 %   city = "Luxembourg"
-%   code = "L-1611"
+%   code = "L-1160"
 %   country = "Luxembourg"
 % [[author]]
 % initials="A."
@@ -31,9 +31,9 @@
 %  email = "andras.iklody@circl.lu"
 %  phone = "+352 247 88444"
 %   [author.address.postal]
-%   street = "41, avenue de la gare"
+%   street = "16, bd d'Avranches"
 %   city = "Luxembourg"
-%   code = "L-1611"
+%   code = "L-1160"
 %   country = "Luxembourg"
 
 .# Abstract
@@ -329,7 +329,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, github-repository, other
 
 **Financial fraud**
-:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other, hex
+:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, phone-number, comment, text, other, hex
 
 **Support tool**
 :   attachment, link, comment, text, other, hex
@@ -338,10 +338,10 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, comment, text, other
 
 **Person**
-:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other
+:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number
 
 **Other**
-:   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex
+:   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number
 
 Attributes are based on the usage within their different communities. Attributes can be extended on a regular basis and this reference document is updated accordingly.
 
@@ -525,7 +525,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, github-repository, other
 
 **Financial fraud**
-:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, comment, text, other, hex
+:   btc, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, phone-number, comment, text, other, hex
 
 **Support tool**
 :   attachment, link, comment, text, other, hex
@@ -534,10 +534,10 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, comment, text, other
 
 **Person**
-:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other
+:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number
 
 **Other**
-:   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex
+:   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number
 
 Attributes are based on the usage within their different communities. Attributes can be extended on a regular basis and this reference document is updated accordingly.
 
