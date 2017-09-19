@@ -638,6 +638,160 @@ value represents the payload of an attribute. The format of the value is depende
 
 value is represented by a JSON string. value **MUST** be present.
 
+## Object
+
+Objects serve as a contextual bond between a list of attributes within an event. Their main purpose is to describe more complex structures than can be described by a single attribute
+Each object is created using an Object Template and carries the meta-data of the template used for its creation within. Objects belong to a meta-category and are defined by a name.
+
+The schema used is described by the template_uuid and template_version fields.
+
+A MISP document containing an Object **MUST** contain a name, a meta-category, a description, a template_uuid and a template_version as described in the "Object Attributes" section.
+
+### Sample Object object
+
+~~~~~
+"Object": {
+           "id": "588",
+           "name": "file",
+           "meta-category": "file",
+           "description": "File object describing a file with meta-information",
+           "template_uuid": "688c46fb-5edb-40a3-8273-1af7923e2215",
+           "template_version": "3",
+           "event_id": "56",
+           "uuid": "398b0094-0384-4c48-9bf0-22b3dff9c4d3",
+           "timestamp": "1505747965",
+           "distribution": "5",
+           "sharing_group_id": "0",
+           "comment": "",
+           "deleted": false,
+           "ObjectReference": [],
+           "Attribute": [
+                         "id": "7822",
+                         "type": "filename",
+                         "category": "Payload delivery",
+                         "to_ids": true,
+                         "uuid": "59bfe3fb-bde0-4dfe-b5b1-2b10a07724d1",
+                         "event_id": "56",
+                         "distribution": "0",
+                         "timestamp": "1505747963",
+                         "comment": "",
+                         "sharing_group_id": "0",
+                         "deleted": false,
+                         "disable_correlation": false,
+                         "object_id": "588",
+                         "object_relation": "filename",
+                         "value": "StarCraft.exe",
+                         "ShadowAttribute": []
+                        ]
+          }
+~~~~~
+
+### Object Attributes
+
+#### uuid
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object. The uuid **MUST** be preserved
+for any updates or transfer of the same object. UUID version 4 is **RECOMMENDED** when assigning it to a new object.
+
+#### id
+
+id represents the human-readable identifier associated to the object for a specific MISP instance.
+
+id is represented as a JSON string. id **SHALL** be present.
+
+#### name
+
+name represents the human-readable name of the object describing the intent of the object package.
+
+name is represented as a JSON string. name **MUST** be present
+
+#### meta-category
+
+meta-category represents the sub-category of objects that the given object belongs to. meta-categories are not
+tied to a fixed list of options but can be created on the fly.
+
+meta-category is represented as a JSON string. meta-category **MUST** be present
+
+#### description
+
+description is a human-readable description of the given object type, as derived from the template used for creation.
+
+description is represented as a JSON string. id **SHALL** be present.
+
+#### template_uuid
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the template used to create the object. The uuid **MUST** be preserved
+to preserve the object's association with the correct template used for creation. UUID version 4 is **RECOMMENDED** when assigning it to a new object.
+
+#### template_version
+
+template_version represents a numeric incrementing version of the template used to create the object. It is used to associate the object to the
+correct version of the template and together with the template_uuid forms an association to the correct template type and version.
+
+version is represented as a JSON string. version **MUST** be present.
+
+#### event_id
+
+event_id represents the human-readable identifier of the event that the object belongs to on a specific MISP instance.
+
+event_id is represented as a JSON string. event_id **SHALL** be present.
+
+#### timestamp
+
+timestamp represents a reference time when the object was created or last modified. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+
+timestamp is represented as a JSON string. timestamp **MUST** be present.
+
+#### distribution
+
+distribution represents the basic distribution rules of the object. The system must adhere to the distribution setting for access control and for dissemination of the object.
+
+distribution is represented by a JSON string. distribution **MUST** be present and be one of the following options:
+
+0
+:   Your Organisation Only
+
+1
+:   This Community Only
+
+2
+:   Connected Communities
+
+3
+:   All Communities
+
+4
+:   Sharing Group
+
+#### sharing_group_id
+
+sharing\_group\_id represents a human-readable identifier referencing a Sharing Group object that defines the distribution of the object, if distribution level "4" is set.
+
+sharing\_group\_id is represented by a JSON string and **SHOULD** be present. If a distribution level other than "4" is chosen the sharing\_group\_id **MUST** be set to "0".
+
+#### comment
+
+comment is a contextual comment field.
+
+comment is represented by a JSON string. comment **MAY** be present.
+
+#### deleted
+
+deleted represents a setting that allows attributes to be revoked. Revoked attributes are not actionable and exist merely to inform other instances of a revocation.
+
+deleted is represented by a JSON boolean. deleted **MUST** be present.
+
+#### Attribute
+
+Attribute is an array of attributes that describe the object with data.
+
+Each attribute in an object **MUST** contain the parent event's ID in the event_id field and the parent object's ID in the object_id field.
+
+#### ObjectReference
+
+ObjectReference is an array of object references that describe a relationship between the parent object and another object or attribute contained within the same event.
+
+Each Object reference must contain
 
 ## Tag
 
