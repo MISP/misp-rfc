@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2017-09-04T00:00:00Z
+% date = 2017-09-20T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -651,39 +651,39 @@ A MISP document containing an Object **MUST** contain a name, a meta-category, a
 
 ~~~~~
 "Object": {
-           "id": "588",
-           "name": "file",
-           "meta-category": "file",
-           "description": "File object describing a file with meta-information",
-           "template_uuid": "688c46fb-5edb-40a3-8273-1af7923e2215",
-           "template_version": "3",
-           "event_id": "56",
-           "uuid": "398b0094-0384-4c48-9bf0-22b3dff9c4d3",
-           "timestamp": "1505747965",
-           "distribution": "5",
-           "sharing_group_id": "0",
-           "comment": "",
-           "deleted": false,
-           "ObjectReference": [],
-           "Attribute": [
-                         "id": "7822",
-                         "type": "filename",
-                         "category": "Payload delivery",
-                         "to_ids": true,
-                         "uuid": "59bfe3fb-bde0-4dfe-b5b1-2b10a07724d1",
-                         "event_id": "56",
-                         "distribution": "0",
-                         "timestamp": "1505747963",
-                         "comment": "",
-                         "sharing_group_id": "0",
-                         "deleted": false,
-                         "disable_correlation": false,
-                         "object_id": "588",
-                         "object_relation": "filename",
-                         "value": "StarCraft.exe",
-                         "ShadowAttribute": []
-                        ]
-          }
+   "id": "588",
+   "name": "file",
+   "meta-category": "file",
+   "description": "File object describing a file with meta-information",
+   "template_uuid": "688c46fb-5edb-40a3-8273-1af7923e2215",
+   "template_version": "3",
+   "event_id": "56",
+   "uuid": "398b0094-0384-4c48-9bf0-22b3dff9c4d3",
+   "timestamp": "1505747965",
+   "distribution": "5",
+   "sharing_group_id": "0",
+   "comment": "",
+   "deleted": false,
+   "ObjectReference": [],
+   "Attribute": [
+                 "id": "7822",
+                 "type": "filename",
+                 "category": "Payload delivery",
+                 "to_ids": true,
+                 "uuid": "59bfe3fb-bde0-4dfe-b5b1-2b10a07724d1",
+                 "event_id": "56",
+                 "distribution": "0",
+                 "timestamp": "1505747963",
+                 "comment": "",
+                 "sharing_group_id": "0",
+                 "deleted": false,
+                 "disable_correlation": false,
+                 "object_id": "588",
+                 "object_relation": "filename",
+                 "value": "StarCraft.exe",
+                 "ShadowAttribute": []
+                ]
+}
 ~~~~~
 
 ### Object Attributes
