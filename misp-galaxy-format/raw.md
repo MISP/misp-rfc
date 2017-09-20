@@ -44,7 +44,7 @@ This document describes the MISP galaxy format which describes a simple JSON for
 
 # Introduction
 
-Sharing threat information became a fundamental requirements on the Internet, security and intelligence community at large. Threat information can include indicators of compromise, malicious file indicators, financial fraud indicators or even detailed information about a threat actor. Some of these informations, such as malwares or threat actors are common to several security events. MISP galaxy is a public repository of known malwares, threats actors or methods that can be used in threat information sharing.
+Sharing threat information became a fundamental requirements on the Internet, security and intelligence community at large. Threat information can include indicators of compromise, malicious file indicators, financial fraud indicators or even detailed information about a threat actor. Some of these informations, such as malwares or threat actors are common to several security events. MISP galaxy is a public repository of known malwares, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing..
 
 In the MISP galaxy context, clusters help analysts to give more informations about their cybersecurity events, indicators or threats. MISP galaxies can be used for classification, filtering, triggering actions or visualisation depending on their use in threat intelligence platforms such as MISP [@?MISP-P].
 
@@ -71,11 +71,11 @@ Values are represented as an array containing one or more value and **MUST** be 
 ## values
 
 The values array contains one or more JSON objects which represents all the possible values in the galaxy. The JSON object contains three fields: value description and meta.
-The value is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. The meta or metadata is represented as a JSON object and **SHOULD** be present.
+The value is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. The meta or metadata is represented as a JSON list and **SHOULD** be present.
 
 ## meta
 
-Meta or metadata JSON object contains one or more elements which give complementary information about the value. Meta **MAY** contains the following fields: properties, complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, derivated_from, status, date, encryption, extensions, ransomnotes.
+Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as 'properties, complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, derivated_from, status, date, encryption, extensions, ransomnotes' wherever applicable.
 
 properties is used to provide clusters with additional properties. Properties are represented as an array containing one or more strings ans **MAY** be present.
 
