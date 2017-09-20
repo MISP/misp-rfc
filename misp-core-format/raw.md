@@ -787,11 +787,101 @@ Attribute is an array of attributes that describe the object with data.
 
 Each attribute in an object **MUST** contain the parent event's ID in the event_id field and the parent object's ID in the object_id field.
 
-#### ObjectReference
+## Object References
 
-ObjectReference is an array of object references that describe a relationship between the parent object and another object or attribute contained within the same event.
+Object References serve as a logical link between an Object and another referenced Object or Attribute. The relationship is categorised by an enumerated value from a fixed vocabulary.
 
-Each Object reference must contain
+All Object References **MUST** contain an object_uuid, a referenced_uuid and a relationship type.
+
+### Sample ObjectReference object
+
+~~~~~
+"ObjectReference": {
+                    "id": "195",
+                    "uuid": "59c21a2c-c0ac-4083-93b3-363da07724d1",
+                    "timestamp": "1505892908",
+                    "object_id": "591",
+                    "event_id": "113",
+                    "referenced_id": "590",
+                    "referenced_type": "1",
+                    "relationship_type": "derived-from",
+                    "comment": "",
+                    "deleted": false,
+                    "object_uuid": "59c1134d-8a40-4c14-ad94-0f7ba07724d1",
+                    "referenced_uuid": "59c1133c-9adc-4d06-a34b-0f7ca07724d1",
+                   }
+~~~~~
+
+### ObjectReference Attributes
+
+#### uuid
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved
+for any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference.
+
+#### id
+
+id represents the human-readable identifier associated to the object reference for a specific MISP instance.
+
+id is represented as a JSON string. id **SHALL** be present.
+
+#### timestamp
+
+timestamp represents a reference time when the object was created or last modified. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+
+timestamp is represented as a JSON string. timestamp **MUST** be present.
+
+#### object_id
+
+object_id represents the human-readable identifier of the object that the object reference belongs to on a specific MISP instance.
+
+event_id is represented as a JSON string. event_id **SHALL** be present.
+
+#### event_id
+
+event_id represents the human-readable identifier of the event that the object reference belongs to on a specific MISP instance.
+
+event_id is represented as a JSON string. event_id **SHALL** be present.
+
+#### referenced_id
+
+referenced_id represents the human-readable identifier of the object or attribute that the parent object  of the object reference points to on a specific MISP instance.
+
+referenced_id is represented as a JSON string. referenced_id **MAY** be present.
+
+#### referenced_type
+
+referenced_type represents the numeric value describing what the object reference points to, "0" representing an attribute and "1" representing an object
+
+referenced_type is represented as a JSON string. referenced_type **MAY** be present.
+
+#### relationship_type
+
+relationship_type represents the human-readable context of the relationship between an object and another object or attribute as described by the object_reference.
+
+referenced_type is represented as a JSON string. referenced_type **MUST** be present.
+
+#### comment
+
+comment is a contextual comment field.
+
+comment is represented by a JSON string. comment **MAY** be present.
+
+#### deleted
+
+deleted represents a setting that allows object references to be revoked. Revoked object references are not actionable and exist merely to inform other instances of a revocation.
+
+deleted is represented by a JSON boolean. deleted **MUST** be present.
+
+#### object_uuid
+
+object_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object that the given object reference belongs to. The object_uuid **MUST** be preserved
+to preserve the object reference's association with the object.
+
+#### referenced_uuid
+
+referenced_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object or attribute that is being referenced by the object reference. The referenced_uuid **MUST** be preserved
+to preserve the object reference's association with the object or attribute.
 
 ## Tag
 
