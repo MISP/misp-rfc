@@ -791,6 +791,8 @@ Each attribute in an object **MUST** contain the parent event's ID in the event_
 
 Object References serve as a logical link between an Object and another referenced Object or Attribute. The relationship is categorised by an enumerated value from a fixed vocabulary.
 
+The relationship_type is recommended to be taken from the MISP object relationship list [[@?MISP-R]] is **RECOMMENDED** to ensure a coherent naming of the tags
+
 All Object References **MUST** contain an object_uuid, a referenced_uuid and a relationship type.
 
 ### Sample ObjectReference object
@@ -859,7 +861,7 @@ referenced_type is represented as a JSON string. referenced_type **MAY** be pres
 
 relationship_type represents the human-readable context of the relationship between an object and another object or attribute as described by the object_reference.
 
-referenced_type is represented as a JSON string. referenced_type **MUST** be present.
+referenced_type is represented as a JSON string. relationship_type **MUST** be present.
 
 #### comment
 
@@ -1531,6 +1533,14 @@ of open standards in threat intelligence sharing.
 <reference anchor='MISP-T' target='https://github.com/MISP/misp-taxonomies'>
   <front>
    <title>MISP Taxonomies - shared and common vocabularies of tags</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+
+<reference anchor='MISP-R' target='https://github.com/MISP/misp-objects/tree/master/relationships'>
+  <front>
+   <title>MISP Object Relationship Types - common vocabulary of relationships</title>
    <author initials='' surname='MISP' fullname='MISP Community'></author>
    <date></date>
   </front>
