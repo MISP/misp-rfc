@@ -1,11 +1,11 @@
-% Title = "MISP taxonomy format"
-% abbrev = "MISP taxonomy format"
+% Title = "MISP galaxy format"
+% abbrev = "MISP galaxy format"
 % category = "info"
-% docName = "draft-dulaunoy-misp-taxonomy-format"
+% docName = "draft-dulaunoy-misp-galaxy-format"
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2017-09-04T00:00:00Z
+% date = 2017-09-21T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -35,6 +35,22 @@
 %   city = "Luxembourg"
 %   code = "L-1611"
 %   country = "Luxembourg"
+% [[author]]
+% initials="D."
+% surname="Servili"
+% fullname="Deborah"
+% abbrev="CIRCL"
+% organization = "Computer Incident Response Center Luxembourg"
+%  [author.address]
+%  email = "deborah.servili@circl.lu"
+%  phone = "+352 247 88444"
+%   [author.address.postal]
+%   street = " 16, bd d'Avranches"
+%   city = "Luxembourg"
+%   code = "L-1611"
+%   country = "Luxembourg"
+
+
 
 .# Abstract
 
@@ -58,13 +74,13 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 A cluster is composed of a value (**MUST**), a description (**OPTIONAL**) and metadata (**OPTIONAL**).
 
-Clusters are represented as a json dictionary.
+Clusters are represented as a JSON [@!RFC4627] dictionary.
 
 ## Overview
 
 The MISP galaxy format uses the JSON [@!RFC4627] format. Each galaxy is represented as a JSON object with meta information including the following fields: name, uuid, description, version, type, authors, source, values.
 
-name defines teh name of the galaxy. The name is represented as a string and **MUST** be present. +uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved. For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference and **MUST** be present. The description is represented as a string and **MUST** be present. The uuid is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. The source is represented as a string and **MUST** be present. Authors are represented as an array containing one or more author and **MUST** be present.
+name defines the name of the galaxy. The name is represented as a string and **MUST** be present. The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved. For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference and **MUST** be present. The description is represented as a string and **MUST** be present. The uuid is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. The source is represented as a string and **MUST** be present. Authors are represented as an array containing one or more author and **MUST** be present.
 
 Values are represented as an array containing one or more value and **MUST** be present. Values defines all values available in the galaxy.
 
@@ -85,7 +101,7 @@ country, motive **MAY** be used to give further information in threat-actor gala
 
 colour fields MAY be used at predicates or values level to set a specify colour that MAY be used by the implementation. The colour field is described as an RGB colour fill in hexadecimal representation.
 
-encryption, extensions, ransomnotes **MAY** be used to give fursther information in ransomware galaxy. encryption is represented as a string and **SHALL** be present. extensions is represented as an array containing one or more strings and **SHALL** be present. ransomnotes is represented as an array containing one or more strings ans **SHALL** be present.
+encryption, extensions, ransomnotes **MAY** be used to give further information in ransomware galaxy. encryption is represented as a string and **SHALL** be present. extensions is represented as an array containing one or more strings and **SHALL** be present. ransomnotes is represented as an array containing one or more strings ans **SHALL** be present.
 
 date, status **MAY** be used to give time information about an cluster. date is represented as a string decribing a time or period and **SHALL** be present. status is represented as a string describing the current status of the clusters. It **MAY** also describe a time or period and **SHALL** be present.
 
