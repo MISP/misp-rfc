@@ -2265,8 +2265,8 @@ Internet-Draft              MISP core format              September 2017
 
 7.  Acknowledgements
 
-   The authors wish to thank all the MISP community to support the
-   creation of open standards in threat intelligence sharing.
+   The authors wish to thank all the MISP community who are supporting
+   the creation of open standards in threat intelligence sharing.
 
 8.  Sample MISP file
 

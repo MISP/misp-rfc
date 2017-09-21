@@ -69,9 +69,10 @@ Table of Contents
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.2.  values  . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.3.  meta  . . . . . . . . . . . . . . . . . . . . . . . . . .   3
-   3.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     3.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
-     3.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   3.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
+   4.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     4.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
+     4.2.  Informative References  . . . . . . . . . . . . . . . . .   5
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
@@ -104,7 +105,6 @@ Table of Contents
    metadata (OPTIONAL).
 
    Clusters are represented as a JSON [RFC4627] dictionary.
-
 
 
 
@@ -201,19 +201,19 @@ Internet-Draft             MISP galaxy format             September 2017
    ore string and SHALL be present. derivated_from is represented as an
    containing one or ore string and SHALL be present.
 
-3.  References
+3.  Acknowledgements
 
-3.1.  Normative References
+   The authors wish to thank all the MISP community who are supporting
+   the creation of open standards in threat intelligence sharing.
+
+4.  References
+
+4.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
               editor.org/info/rfc2119>.
-
-   [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
-              Unique IDentifier (UUID) URN Namespace", RFC 4122,
-              DOI 10.17487/RFC4122, July 2005, <https://www.rfc-
-              editor.org/info/rfc4122>.
 
 
 
@@ -226,12 +226,17 @@ Dulaunoy, et al.         Expires March 25, 2018                 [Page 4]
 Internet-Draft             MISP galaxy format             September 2017
 
 
+   [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
+              Unique IDentifier (UUID) URN Namespace", RFC 4122,
+              DOI 10.17487/RFC4122, July 2005, <https://www.rfc-
+              editor.org/info/rfc4122>.
+
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627,
               DOI 10.17487/RFC4627, July 2006, <https://www.rfc-
               editor.org/info/rfc4627>.
 
-3.2.  Informative References
+4.2.  Informative References
 
    [MISP-G]   MISP, , "MISP Galaxy -", <https://github.com/MISP/misp-
               galaxy>.
@@ -269,11 +274,6 @@ Authors' Addresses
 
    Phone: +352 247 88444
    Email: deborah.servili@circl.lu
-
-
-
-
-
 
 
 
