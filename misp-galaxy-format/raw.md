@@ -106,3 +106,39 @@ encryption, extensions, ransomnotes **MAY** be used to give further information 
 date, status **MAY** be used to give time information about an cluster. date is represented as a string decribing a time or period and **SHALL** be present. status is represented as a string describing the current status of the clusters. It **MAY** also describe a time or period and **SHALL** be present.
 
 derivated_from, refs, synonyms **SHALL** be used to give further informations. refs is represented as an containing one or ore string and **SHALL** be present. synonyms is represented as an containing one or ore string and **SHALL** be present. derivated_from is represented as an containing one or ore string and **SHALL** be present.
+
+<reference anchor='MISP-P' target='https://github.com/MISP'>
+  <front>
+   <title>MISP Project - Malware Information Sharing Platform and Threat Sharing</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+
+<reference anchor='MISP-T' target='https://github.com/MISP/misp-taxonomies'>
+  <front>
+   <title>MISP Taxonomies - shared and common vocabularies of tags</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+
+<reference anchor='MISP-R' target='https://github.com/MISP/misp-objects/tree/master/relationships'>
+  <front>
+   <title>MISP Object Relationship Types - common vocabulary of relationships</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+
+<reference anchor='JSON-SCHEMA' target='https://tools.ietf.org/html/draft-wright-json-schema'>
+  <front>
+    <title>JSON Schema: A Media Type for Describing JSON Documents</title>
+    <author initials='' surname='' fullname='Austin Wright'></author>
+    <date year="2016"></date>
+  </front>
+</reference>
+
+
+{backmatter}
+
