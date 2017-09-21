@@ -1,0 +1,840 @@
+
+
+
+
+Network Working Group                                        A. Dulaunoy
+Internet-Draft                                                 A. Iklody
+Intended status: Informational                                     CIRCL
+Expires: March 8, 2018                                 September 4, 2017
+
+
+                          MISP taxonomy format
+                  draft-dulaunoy-misp-taxonomy-format
+
+Abstract
+
+   This document describes the MISP taxonomy format which describes a
+   simple JSON format to represent machine tags (also called triple
+   tags) vocabularies.  A public directory of common vocabularies MISP
+   taxonomies is available and relies on the MISP taxonomy format.  MISP
+   taxonomies are used to classify cyber security events, threats or
+   indicators.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on March 8, 2018.
+
+Copyright Notice
+
+   Copyright (c) 2017 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 1]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Conventions and Terminology . . . . . . . . . . . . . . .   3
+   2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.2.  predicates  . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.3.  values  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.4.  optional fields . . . . . . . . . . . . . . . . . . . . .   4
+       2.4.1.  colour  . . . . . . . . . . . . . . . . . . . . . . .   4
+       2.4.2.  description . . . . . . . . . . . . . . . . . . . . .   5
+       2.4.3.  numerical_value . . . . . . . . . . . . . . . . . . .   5
+   3.  Directory . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+     3.1.  Sample Manifest . . . . . . . . . . . . . . . . . . . . .   7
+   4.  Sample Taxonomy in MISP taxonomy format . . . . . . . . . . .   7
+     4.1.  Admiralty Scale Taxonomy  . . . . . . . . . . . . . . . .   7
+     4.2.  Open Source Intelligence - Classification . . . . . . . .   9
+   5.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  11
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  14
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .  15
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
+
+1.  Introduction
+
+   Sharing threat information became a fundamental requirements on the
+   Internet, security and intelligence community at large.  Threat
+   information can include indicators of compromise, malicious file
+   indicators, financial fraud indicators or even detailed information
+   about a threat actor.  While sharing such indicators or information,
+   classification plays an important role to ensure adequate
+   distribution, understanding, validation or action of the shared
+   information.  MISP taxonomies is a public repository of known
+   vocabularies that can be used in threat information sharing.
+
+   Machine tags were introduced in 2007 [machine-tags] to allow users to
+   be more precise when tagging their pictures with geolocation.  So a
+   machine tag is a tag which uses a special syntax to provide more
+   information to users and machines.  Machine tags are also known as
+   triple tags due to their format.
+
+   In the MISP taxonomy context, machine tags help analysts to classify
+   their cybersecurity events, indicators or threats.  MISP taxonomies
+   can be used for classification, filtering, triggering actions or
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 2]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+   visualisation depending on their use in threat intelligence platforms
+   such as MISP [MISP-P].
+
+1.1.  Conventions and Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in RFC 2119 [RFC2119].
+
+2.  Format
+
+   A machine tag is composed of a namespace (MUST), a predicate (MUST)
+   and an optional value (OPTIONAL).
+
+   Machine tags are represented as a string.  Below listed are a set of
+   sample machine tags for different namespaces such as tlp, admiralty-
+   scale and osint.
+
+                tlp:amber
+                admiralty-scale:information-credibility="1"
+                osint:source-type="blog-post"
+
+   The MISP taxonomy format describes how to define a machine tag
+   namespace in a parseable format.  The objective is to provide a
+   simple format to describe machine tag (aka triple tag) vocabularies.
+
+2.1.  Overview
+
+   The MISP taxonomy format uses the JSON [RFC4627] format.  Each
+   namespace is represented as a JSON object with meta information
+   including the following fields: namespace, description, version,
+   type.
+
+   namespace defines the overall namespace of the machine tag.  The
+   namespace is represented as a string and MUST be present.  The
+   description is represented as a string and MUST be present.  A
+   version is represented as a decimal and MUST be present.  A type
+   defines where a specific taxonomy is applicable and a type can be
+   applicable at event, user or org level.  The type is represented as
+   an array containing one or more type and SHOULD be present.  If a
+   type is not mentioned, by default, the taxonomy is applicable at
+   event level only.
+
+   predicates defines all the predicates available in the namespace
+   defined. predicates is represented as an array of JSON objects.
+   predicates MUST be present and MUST at least content one element.
+
+
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 3]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+   values defines all the values for each predicate in the namespace
+   defined. values SHOULD be present.
+
+2.2.  predicates
+
+   The predicates array contains one or more JSON objects which lists
+   all the possible predicates.  The JSON object contains two fields:
+   value and expanded. value MUST be present. expanded SHOULD be
+   present. value is represented as a string and describes the predicate
+   value.  The predicate value MUST not contain spaces or colons.
+   expanded is represented as a string and describes the human-readable
+   version of the predicate value.
+
+2.3.  values
+
+   The values array contain one or more JSON objects which lists all the
+   possible values of a predicate.  The JSON object contains two fields:
+   predicate and entry. predicate is represented as a string and
+   describes the predicate value. entry is an array with one or more
+   JSON objects.  The JSON object contains two fields: value and
+   expanded. value MUST be present. expanded SHOULD be present. value is
+   represented as a string and describes the machine parsable value.
+   expanded is represented as a string and describes the human-readable
+   version of the value.
+
+2.4.  optional fields
+
+2.4.1.  colour
+
+   colour fields MAY be used at predicates or values level to set a
+   specify colour that MAY be used by the implementation.  The colour
+   field is described as an RGB colour fill in hexadecimal
+   representation.
+
+   Example use of the colour field in the Traffic Light Protocol (TLP):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 4]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+    "predicates": [
+        {
+          "colour": "#CC0033",
+          "expanded": "(TLP:RED) Information exclusively and directly
+                       given to (a group of) individual recipients.
+                       Sharing outside is not legitimate.",
+          "value": "red"
+        },
+        {
+          "colour": "#FFC000",
+          "expanded": "(TLP:AMBER) Information exclusively given
+                       to an organization; sharing limited within
+                       the organization to be effectively acted upon.",
+          "value": "amber"
+        }...]
+
+2.4.2.  description
+
+   description fields MAY be used at predicates or values level to add a
+   descriptive and human-readable information about the specific
+   predicate or value.  The field is represented as a string.
+   Implementations MAY use the description field to improve more
+   contextual information.  The description at the namespace level is a
+   MUST as described above.
+
+2.4.3.  numerical_value
+
+   numerical_value fields MAY be used at a predicate or value level to
+   add a machine-readable numeric value to a specific predicate or
+   value.  The field is represented as a JSON number.  Implementations
+   SHOULD use the decimal value provided to support scoring or
+   filtering.
+
+   Example use of the numerical_value in the MISP confidence level:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 5]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+              {
+               "predicate": "confidence-level",
+               "entry": [
+                  {
+                    "expanded": "Completely confident",
+                    "value": "completely-confident",
+                    "numerical_value": 100
+                  },
+                  {
+                    "expanded": "Usually confident",
+                    "value": "usually-confident",
+                    "numerical_value": 75
+                  },
+                  {
+                    "expanded": "Fairly confident",
+                    "value": "fairly-confident",
+                    "numerical_value": 50
+                  },
+                  {
+                    "expanded": "Rarely confident",
+                    "value": "rarely-confident",
+                    "numerical_value": 25
+                  },
+                  {
+                    "expanded": "Unconfident",
+                    "value": "unconfident",
+                    "numerical_value": 0
+                  },
+                  {
+                    "expanded": "Confidence cannot be evaluated",
+                    "value": "confidence-cannot-be-evalued"
+                  }
+               ]
+               }
+
+3.  Directory
+
+   The MISP taxonomies directory is publicly available [MISP-T] in a git
+   repository.  The repository contains a directory per namespace then a
+   file machinetag.json which contains the taxonomy as described in the
+   format above.  In the root of the repository, a MANIFEST.json exists
+   containing a list of all the taxonomies.
+
+   The MANIFEST.json file is composed of an JSON object with metadata
+   like version, license, description, url and path.  A taxonomies array
+   describes the taxonomy available with the description, name and
+   version field.
+
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 6]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+3.1.  Sample Manifest
+
+ {
+   "version": "20161009",
+   "license": "CC-0",
+   "description": "Manifest file of MISP taxonomies available.",
+   "url":
+     "https://raw.githubusercontent.com/MISP/misp-taxonomies/master/",
+   "path": "machinetag.json",
+   "taxonomies": [
+     {
+       "description": "The Admiralty Scale (also called the NATO System)
+                       is used to rank the reliability of a source and
+                       the credibility of an information.",
+       "name": "admiralty-scale",
+       "version": 1
+     },
+     {
+       "description": "Open Source Intelligence - Classification.",
+       "name": "osint",
+       "version": 2
+     }]
+ }
+
+4.  Sample Taxonomy in MISP taxonomy format
+
+4.1.  Admiralty Scale Taxonomy
+
+      "namespace": "admiralty-scale",
+      "description": "The Admiralty Scale (also called the NATO System)
+                      is used to rank the reliability of a source and
+                      the credibility of an information.",
+      "version": 1,
+      "predicates": [
+        {
+          "value": "source-reliability",
+          "expanded": "Source Reliability"
+        },
+        {
+          "value": "information-credibility",
+          "expanded": "Information Credibility"
+        }
+      ],
+      "values": [
+        {
+          "predicate": "source-reliability",
+          "entry": [
+            {
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 7]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+              "value": "a",
+              "expanded": "Completely reliable"
+            },
+            {
+              "value": "b",
+              "expanded": "Usually reliable"
+            },
+            {
+              "value": "c",
+              "expanded": "Fairly reliable"
+            },
+            {
+              "value": "d",
+              "expanded": "Not usually reliable"
+            },
+            {
+              "value": "e",
+              "expanded": "Unreliable"
+            },
+            {
+              "value": "f",
+              "expanded": "Reliability cannot be judged"
+            }
+          ]
+        },
+        {
+          "predicate": "information-credibility",
+          "entry": [
+            {
+              "value": "1",
+              "expanded": "Confirmed by other sources"
+            },
+            {
+              "value": "2",
+              "expanded": "Probably true"
+            },
+            {
+              "value": "3",
+              "expanded": "Possibly true"
+            },
+            {
+              "value": "4",
+              "expanded": "Doubtful"
+            },
+            {
+              "value": "5",
+              "expanded": "Improbable"
+            },
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 8]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+            {
+              "value": "6",
+              "expanded": "Truth cannot be judged"
+            }
+          ]
+        }
+      ]
+    }
+
+4.2.  Open Source Intelligence - Classification
+
+ {
+   "values": [
+     {
+       "entry": [
+         {
+           "expanded": "Blog post",
+           "value": "blog-post"
+         },
+         {
+           "expanded": "Technical or analysis report",
+           "value": "technical-report"
+         },
+         {
+           "expanded": "News report",
+           "value": "news-report"
+         },
+         {
+           "expanded": "Pastie-like website",
+           "value": "pastie-website"
+         },
+         {
+           "expanded": "Electronic forum",
+           "value": "electronic-forum"
+         },
+         {
+           "expanded": "Mailing-list",
+           "value": "mailing-list"
+         },
+         {
+           "expanded": "Block or Filter List",
+           "value": "block-or-filter-list"
+         },
+         {
+           "expanded": "Expansion",
+           "value": "expansion"
+         }
+       ],
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                 [Page 9]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+       "predicate": "source-type"
+     },
+     {
+       "predicate": "lifetime",
+       "entry": [
+         {
+           "value": "perpetual",
+           "expanded": "Perpetual",
+           "description": "Information available publicly on long-term"
+         },
+         {
+           "value": "ephemeral",
+           "expanded": "Ephemeral",
+           "description": "Information available publicly on short-term"
+         }
+       ]
+     },
+     {
+       "predicate": "certainty",
+       "entry": [
+         {
+           "numerical_value": 100,
+           "value": "100",
+           "expanded": "100% Certainty",
+           "description": "100% Certainty"
+         },
+         {
+           "numerical_value": 93,
+           "value": "93",
+           "expanded": "93% Almost certain",
+           "description": "93% Almost certain"
+         },
+         {
+           "numerical_value": 75,
+           "value": "75",
+           "expanded": "75% Probable",
+           "description": "75% Probable"
+         },
+         {
+           "numerical_value": 50,
+           "value": "50",
+           "expanded": "50% Chances about even",
+           "description": "50% Chances about even"
+         },
+         {
+           "numerical_value": 30,
+           "value": "30",
+           "expanded": "30% Probably not",
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 10]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+           "description": "30% Probably not"
+         },
+         {
+           "numerical_value": 7,
+           "value": "7",
+           "expanded": "7% Almost certainly not",
+           "description": "7% Almost certainly not"
+         },
+         {
+           "numerical_value": 0,
+           "value": "0",
+           "expanded": "0% Impossibility",
+           "description": "0% Impossibility"
+         }
+       ]
+     }
+   ],
+   "namespace": "osint",
+   "description": "Open Source Intelligence - Classification",
+   "version": 3,
+   "predicates": [
+     {
+       "value": "source-type",
+       "expanded": "Source Type"
+     },
+     {
+       "value": "lifetime",
+       "expanded": "Lifetime of the information
+                    as Open Source Intelligence"
+     },
+     {
+       "value": "certainty",
+       "expanded": "Certainty of the elements mentioned
+                    in this Open Source Intelligence"
+     }
+   ]
+ }
+
+
+5.  JSON Schema
+
+   The JSON Schema [JSON-SCHEMA] below defines the structure of the MISP
+   taxonomy document as literally described before.  The JSON Schema is
+   used validating a MISP taxonomy.  The validation is a _MUST_ if the
+   taxonomy is included in the MISP taxonomies directory.
+
+    {
+      "$schema": "http://json-schema.org/schema#",
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 11]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+      "title": "Validator for misp-taxonomies",
+      "id": "https://www.github.com/MISP/misp-taxonomies/schema.json",
+      "defs": {
+        "entry": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "numerical_value": {
+                "type": "number"
+              },
+              "expanded": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "colour": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "required": [
+                "value"
+              ]
+            }
+          }
+        },
+        "values": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "entry": {
+                "$ref": "#/defs/entry"
+              },
+              "predicate": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "predicate"
+            ]
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 12]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+          }
+        },
+        "predicates": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "numerical_value": {
+                "type": "number"
+              },
+              "colour": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "expanded": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "required": [
+                "value"
+              ]
+            }
+          }
+        }
+      },
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "expanded": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "type": {
+          "type": "array",
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 13]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "org",
+              "user",
+              "attribute",
+              "event"
+            ]
+          }
+        },
+        "refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "predicates": {
+          "$ref": "#/defs/predicates"
+        },
+        "values": {
+          "$ref": "#/defs/values"
+        }
+      },
+      "required": [
+        "namespace",
+        "description",
+        "version",
+        "predicates"
+      ]
+    }
+
+6.  Acknowledgements
+
+   The authors wish to thank all the MISP community to support the
+   creation of open standards in threat intelligence sharing.
+
+7.  References
+
+7.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
+
+
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 14]
+
+Internet-Draft            MISP taxonomy format            September 2017
+
+
+   [RFC4627]  Crockford, D., "The application/json Media Type for
+              JavaScript Object Notation (JSON)", RFC 4627,
+              DOI 10.17487/RFC4627, July 2006, <https://www.rfc-
+              editor.org/info/rfc4627>.
+
+7.2.  Informative References
+
+   [JSON-SCHEMA]
+              "JSON Schema: A Media Type for Describing JSON Documents",
+              2016, <https://tools.ietf.org/html/draft-wright-json-
+              schema>.
+
+   [machine-tags]
+              "Machine tags", 2007,
+              <https://www.flickr.com/groups/51035612836@N01/
+              discuss/72157594497877875/>.
+
+   [MISP-P]   MISP, , "MISP Project - Malware Information Sharing
+              Platform and Threat Sharing", <https://github.com/MISP>.
+
+   [MISP-T]   MISP, , "MISP Taxonomies - shared and common vocabularies
+              of tags", <https://github.com/MISP/misp-taxonomies>.
+
+Authors' Addresses
+
+   Alexandre Dulaunoy
+   Computer Incident Response Center Luxembourg
+   16, bd d'Avranches
+   Luxembourg  L-1611
+   Luxembourg
+
+   Phone: +352 247 88444
+   Email: alexandre.dulaunoy@circl.lu
+
+
+   Andras Iklody
+   Computer Incident Response Center Luxembourg
+   16, bd d'Avranches
+   Luxembourg  L-1611
+   Luxembourg
+
+   Phone: +352 247 88444
+   Email: andras.iklody@circl.lu
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires March 8, 2018                [Page 15]
