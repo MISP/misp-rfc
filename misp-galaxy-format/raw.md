@@ -60,7 +60,7 @@ This document describes the MISP galaxy format which describes a simple JSON for
 
 # Introduction
 
-Sharing threat information became a fundamental requirements on the Internet, security and intelligence community at large. Threat information can include indicators of compromise, malicious file indicators, financial fraud indicators or even detailed information about a threat actor. Some of these informations, such as malwares or threat actors are common to several security events. MISP galaxy is a public repository of known malwares, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing..
+Sharing threat information became a fundamental requirements on the Internet, security and intelligence community at large. Threat information can include indicators of compromise, malicious file indicators, financial fraud indicators or even detailed information about a threat actor. Some of these informations, such as malware or threat actors are common to several security events. MISP galaxy is a public repository [@?MISP-G] of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing.
 
 In the MISP galaxy context, clusters help analysts to give more informations about their cybersecurity events, indicators or threats. MISP galaxies can be used for classification, filtering, triggering actions or visualisation depending on their use in threat intelligence platforms such as MISP [@?MISP-P].
 
@@ -118,6 +118,14 @@ derivated_from, refs, synonyms **SHALL** be used to give further informations. r
 <reference anchor='MISP-T' target='https://github.com/MISP/misp-taxonomies'>
   <front>
    <title>MISP Taxonomies - shared and common vocabularies of tags</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+
+<reference anchor='MISP-G' target='https://github.com/MISP/misp-galaxy'>
+  <front>
+   <title>MISP Galaxy -</title>
    <author initials='' surname='MISP' fullname='MISP Community'></author>
    <date></date>
   </front>
