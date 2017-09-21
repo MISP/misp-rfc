@@ -107,6 +107,11 @@ date, status **MAY** be used to give time information about an cluster. date is 
 
 derivated_from, refs, synonyms **SHALL** be used to give further informations. refs is represented as an containing one or ore string and **SHALL** be present. synonyms is represented as an containing one or ore string and **SHALL** be present. derivated_from is represented as an containing one or ore string and **SHALL** be present.
 
+# Acknowledgements
+
+The authors wish to thank all the MISP community who are supporting the creation
+of open standards in threat intelligence sharing.
+
 <reference anchor='MISP-P' target='https://github.com/MISP'>
   <front>
    <title>MISP Project - Malware Information Sharing Platform and Threat Sharing</title>

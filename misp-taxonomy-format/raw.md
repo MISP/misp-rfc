@@ -560,7 +560,7 @@ is a *MUST* if the taxonomy is included in the MISP taxonomies directory.
 
 # Acknowledgements
 
-The authors wish to thank all the MISP community to support the creation
+The authors wish to thank all the MISP community who are supporting the creation
 of open standards in threat intelligence sharing.
 
 <reference anchor='MISP-P' target='https://github.com/MISP'>

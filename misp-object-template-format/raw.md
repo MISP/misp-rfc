@@ -223,7 +223,7 @@ A relationships directory is also included, containing a definition.json file wh
 
 # Acknowledgements
 
-The authors wish to thank all the MISP community to support the creation
+The authors wish to thank all the MISP community who are supporting the creation
 of open standards in threat intelligence sharing.
 
 <reference anchor='MISP-P' target='https://github.com/MISP'>

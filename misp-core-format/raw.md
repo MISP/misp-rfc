@@ -1516,7 +1516,7 @@ standard threat information that might already include malicious intended inputs
 
 # Acknowledgements
 
-The authors wish to thank all the MISP community to support the creation
+The authors wish to thank all the MISP community who are supporting the creation
 of open standards in threat intelligence sharing.
 
 # Sample MISP file
