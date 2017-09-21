@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2017-09-04T00:00:00Z
+% date = 2017-09-21T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -39,7 +39,7 @@
 .# Abstract
 
 
-This document describes the MISP object template format which describes a simple JSON format to represent the various templates used to construct MISP objects. A public directory of common vocabularies MISP object templates is available and relies on the MISP object reference format.
+This document describes the MISP object template format which describes a simple JSON format to represent the various templates used to construct MISP objects. A public directory of common vocabularies MISP object templates [@?MISP-O] is available and relies on the MISP object reference format.
 
 {mainmatter}
 
@@ -47,7 +47,7 @@ This document describes the MISP object template format which describes a simple
 
 Due to the increased maturity of threat information sharing, the need arose for more complex and exhaustive data-points to be shared across the various sharing communities. MISP's information sharing in general relied on a flat structure of attributes contained within an event, where attributes served as atomic secluded data-points with some commonalities as defined by the encapsulating event. However, this flat structure restricted the use of more diverse and complex data-points described by a list of atomic values, a problem solved by the MISP object structure.
 
-MISP objects combine a list of attributes to represent a singular object with various facets. In order to bootstrap the object creation process and to maintain uniformity among objects describing similar data-points, the MISP object template format serves as a reuseable and share-able blueprint format.
+MISP objects combine a list of attributes to represent a singular object with various facets. In order to bootstrap the object creation process and to maintain uniformity among objects describing similar data-points, the MISP object template format serves as a reusable and share-able blueprint format.
 
 MISP object templates also include a vocabulary to describe the various inter object and object to attribute relationships and are leveraged by MISP object references.
 
@@ -63,7 +63,7 @@ MISP object templates are composed of the MISP object template (**MUST**) struct
 
 MISP object templates themselves consist of a name (**MUST**), a meta-category (**MUST**) and a description (**SHOULD**). They are identified by a uuid (**MUST**) and a version (**MUST**). The list of requirements when it comes to the contained MISP object template elements is defined in the requirements field (**OPTIONAL**).
 
-MISP object template elements consist of an object\_relation (**MUST**) a type (**MUST**) an object\_template\_id (**SHOULD**) a ui\_priority (**SHOULD**) a list of categories (**MAY**), a list of sane\_default values (**MAY**) a values_list (**MAY**)
+MISP object template elements consist of an object\_relation (**MUST**) a type (**MUST**) an object\_template\_id (**SHOULD**) a ui\_priority (**SHOULD**) a list of categories (**MAY**), a list of sane\_default values (**MAY**) a values\_list (**MAY**)
 
 ## Overview
 
@@ -129,7 +129,7 @@ misp-attribute is represented by a JSON string or a JSON object with a list of v
 
 The misp-attribute field **MUST** be present.
 
-#### disable_correlation
+#### disable\_correlation
 
 disable\_correlation is represented by a JSON boolean. The disable\_correlation field flags the attribute(s) created by the given object template element to be marked as non correlating.
 
@@ -143,7 +143,7 @@ The categories field **MAY** be present.
 
 #### multiple
 
-multiple is represented by a JSON boolean value. It marks the MISP object template element as a multiple input field, allowing for several attributes to be created by the eleemnt within the same object.
+multiple is represented by a JSON boolean value. It marks the MISP object template element as a multiple input field, allowing for several attributes to be created by the element within the same object.
 
 The multiple field **MAY** be present.
 
@@ -151,19 +151,14 @@ The multiple field **MAY** be present.
 
 ~~~~
 {
-  "name": "credit-card",
-  "description": "A payment card like credit card, debit card or any similar cards which can be used for financial transactions.",
-  "meta-category": "financial",
-  "uuid": "2b9c57aa-daba-4330-a738-56f18743b0c7",
-  "version": 1,
   "requiredOneOf": [
     "cc-number"
   ],
   "attributes": {
     "version": {
-      "description": "yabin.py and regex.txt version used for the generation of the yara rules.",
+      "description": "Version of the card.",
       "ui-priority": 0,
-      "misp-attribute": "comment"
+      "misp-attribute": "text"
     },
     "comment": {
       "description": "A description of the card.",
@@ -171,7 +166,7 @@ The multiple field **MAY** be present.
       "misp-attribute": "comment"
     },
     "card-security-code": {
-      "description": "Card security code as embossed or printed on the card.",
+      "description": "Card security code (CSC, CVD, CVV, CVC and SPC) as embossed or printed on the card.",
       "ui-priority": 0,
       "misp-attribute": "text"
     },
@@ -195,9 +190,13 @@ The multiple field **MAY** be present.
       "ui-priority": 0,
       "misp-attribute": "cc-number"
     }
-  }
+  },
+  "version": 2,
+  "description": "A payment card like credit card, debit card or any similar cards which can be used for financial transactions.",
+  "meta-category": "financial",
+  "uuid": "2b9c57aa-daba-4330-a738-56f18743b0c7",
+  "name": "credit-card"
 }
-
 ~~~~
 
 ### Object Relationships
@@ -218,7 +217,7 @@ format is represented by a JSON list containing a list of formats that the relat
 
 # Directory
 
-The MISP object template directory is publicly available [@?MISP-O] in a git repository. The repository contains an objects directory, which contains a directory per object type, containing a file named definition.json which contains the definition of the object template in the above described format. 
+The MISP object template directory is publicly available [@?MISP-O] in a git repository. The repository contains an objects directory, which contains a directory per object type, containing a file named definition.json which contains the definition of the object template in the above described format.
 
 A relationships directory is also included, containing a definition.json file which contains a list of MISP object relation definitions
 
