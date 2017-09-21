@@ -5,20 +5,19 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: March 8, 2018                                 September 4, 2017
+Expires: March 25, 2018                               September 21, 2017
 
 
-                          MISP taxonomy format
-                  draft-dulaunoy-misp-taxonomy-format
+                      MISP object template format
+               draft-dulaunoy-misp-object-template-format
 
 Abstract
 
-   This document describes the MISP taxonomy format which describes a
-   simple JSON format to represent machine tags (also called triple
-   tags) vocabularies.  A public directory of common vocabularies MISP
-   taxonomies is available and relies on the MISP taxonomy format.  MISP
-   taxonomies are used to classify cyber security events, threats or
-   indicators.
+   This document describes the MISP object template format which
+   describes a simple JSON format to represent the various templates
+   used to construct MISP objects.  A public directory of common
+   vocabularies MISP object templates [MISP-O] is available and relies
+   on the MISP object reference format.
 
 Status of This Memo
 
@@ -35,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 8, 2018.
+   This Internet-Draft will expire on March 25, 2018.
 
 Copyright Notice
 
@@ -49,73 +48,54 @@ Copyright Notice
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
-
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 1]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
+
+
+
+Dulaunoy & Iklody        Expires March 25, 2018                 [Page 1]
+
+Internet-Draft         MISP object template format        September 2017
+
 
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-     1.1.  Conventions and Terminology . . . . . . . . . . . . . . .   3
+     1.1.  Conventions and Terminology . . . . . . . . . . . . . . .   2
    2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.2.  predicates  . . . . . . . . . . . . . . . . . . . . . . .   4
-     2.3.  values  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     2.4.  optional fields . . . . . . . . . . . . . . . . . . . . .   4
-       2.4.1.  colour  . . . . . . . . . . . . . . . . . . . . . . .   4
-       2.4.2.  description . . . . . . . . . . . . . . . . . . . . .   5
-       2.4.3.  numerical_value . . . . . . . . . . . . . . . . . . .   5
-   3.  Directory . . . . . . . . . . . . . . . . . . . . . . . . . .   6
-     3.1.  Sample Manifest . . . . . . . . . . . . . . . . . . . . .   7
-   4.  Sample Taxonomy in MISP taxonomy format . . . . . . . . . . .   7
-     4.1.  Admiralty Scale Taxonomy  . . . . . . . . . . . . . . . .   7
-     4.2.  Open Source Intelligence - Classification . . . . . . . .   9
-   5.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  11
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  14
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .  15
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
+       2.1.1.  Object Template . . . . . . . . . . . . . . . . . . .   3
+       2.1.2.  attributes  . . . . . . . . . . . . . . . . . . . . .   4
+       2.1.3.  Sample Object Template object . . . . . . . . . . . .   5
+       2.1.4.  Object Relationships  . . . . . . . . . . . . . . . .   7
+   3.  Directory . . . . . . . . . . . . . . . . . . . . . . . . . .   7
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   7
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
+     5.2.  Informative References  . . . . . . . . . . . . . . . . .   8
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
 
 1.  Introduction
 
-   Sharing threat information became a fundamental requirements on the
-   Internet, security and intelligence community at large.  Threat
-   information can include indicators of compromise, malicious file
-   indicators, financial fraud indicators or even detailed information
-   about a threat actor.  While sharing such indicators or information,
-   classification plays an important role to ensure adequate
-   distribution, understanding, validation or action of the shared
-   information.  MISP taxonomies is a public repository of known
-   vocabularies that can be used in threat information sharing.
+   Due to the increased maturity of threat information sharing, the need
+   arose for more complex and exhaustive data-points to be shared across
+   the various sharing communities.  MISP's information sharing in
+   general relied on a flat structure of attributes contained within an
+   event, where attributes served as atomic secluded data-points with
+   some commonalities as defined by the encapsulating event.  However,
+   this flat structure restricted the use of more diverse and complex
+   data-points described by a list of atomic values, a problem solved by
+   the MISP object structure.
 
-   Machine tags were introduced in 2007 [machine-tags] to allow users to
-   be more precise when tagging their pictures with geolocation.  So a
-   machine tag is a tag which uses a special syntax to provide more
-   information to users and machines.  Machine tags are also known as
-   triple tags due to their format.
+   MISP objects combine a list of attributes to represent a singular
+   object with various facets.  In order to bootstrap the object
+   creation process and to maintain uniformity among objects describing
+   similar data-points, the MISP object template format serves as a
+   reusable and share-able blueprint format.
 
-   In the MISP taxonomy context, machine tags help analysts to classify
-   their cybersecurity events, indicators or threats.  MISP taxonomies
-   can be used for classification, filtering, triggering actions or
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 2]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
-   visualisation depending on their use in threat intelligence platforms
-   such as MISP [MISP-P].
+   MISP object templates also include a vocabulary to describe the
+   various inter object and object to attribute relationships and are
+   leveraged by MISP object references.
 
 1.1.  Conventions and Terminology
 
@@ -123,654 +103,282 @@ Internet-Draft            MISP taxonomy format            September 2017
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in RFC 2119 [RFC2119].
 
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires March 25, 2018                 [Page 2]
+
+Internet-Draft         MISP object template format        September 2017
+
+
 2.  Format
 
-   A machine tag is composed of a namespace (MUST), a predicate (MUST)
-   and an optional value (OPTIONAL).
+   MISP object templates are composed of the MISP object template (MUST)
+   structure itself and a list of MISP object template elements (SHOULD)
+   describing the list of possible attributes belonging to the resulting
+   object, along with their context and settings.
 
-   Machine tags are represented as a string.  Below listed are a set of
-   sample machine tags for different namespaces such as tlp, admiralty-
-   scale and osint.
+   MISP object templates themselves consist of a name (MUST), a meta-
+   category (MUST) and a description (SHOULD).  They are identified by a
+   uuid (MUST) and a version (MUST).  The list of requirements when it
+   comes to the contained MISP object template elements is defined in
+   the requirements field (OPTIONAL).
 
-                tlp:amber
-                admiralty-scale:information-credibility="1"
-                osint:source-type="blog-post"
-
-   The MISP taxonomy format describes how to define a machine tag
-   namespace in a parseable format.  The objective is to provide a
-   simple format to describe machine tag (aka triple tag) vocabularies.
+   MISP object template elements consist of an object_relation (MUST) a
+   type (MUST) an object_template_id (SHOULD) a ui_priority (SHOULD) a
+   list of categories (MAY), a list of sane_default values (MAY) a
+   values_list (MAY)
 
 2.1.  Overview
 
-   The MISP taxonomy format uses the JSON [RFC4627] format.  Each
-   namespace is represented as a JSON object with meta information
-   including the following fields: namespace, description, version,
-   type.
+   The MISP object template format uses the JSON [RFC4627] format.  Each
+   template is represented as a JSON object with meta information
+   including the following fields: uuid, requiredOneOf, description,
+   version, meta-category, name.
 
-   namespace defines the overall namespace of the machine tag.  The
-   namespace is represented as a string and MUST be present.  The
-   description is represented as a string and MUST be present.  A
-   version is represented as a decimal and MUST be present.  A type
-   defines where a specific taxonomy is applicable and a type can be
-   applicable at event, user or org level.  The type is represented as
-   an array containing one or more type and SHOULD be present.  If a
-   type is not mentioned, by default, the taxonomy is applicable at
-   event level only.
+2.1.1.  Object Template
 
-   predicates defines all the predicates available in the namespace
-   defined. predicates is represented as an array of JSON objects.
-   predicates MUST be present and MUST at least content one element.
+2.1.1.1.  uuid
+
+   uuid represents the Universally Unique IDentifier (UUID) [RFC4122] of
+   the object template.  The uuid MUST be preserved for to keep
+   consistency of the templates across instances.  UUID version 4 is
+   RECOMMENDED when assigning it to a new object template.
+
+   uuid is represented as a JSON string. uuid MUST be present.
+
+2.1.1.2.  requiredOneOf
+
+   requiredOneOf is represented as a JSON list and contains a list of
+   attribute relationships of which one must be present in the object to
+   be created based on the given template.  The requiredOneOf field MAY
+   be present.
+
+2.1.1.3.  required
+
+   requiredOneOf is represented as a JSON list and contains a list of
+   attribute relationships of which all must be present in the object to
 
 
 
 
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 3]
+Dulaunoy & Iklody        Expires March 25, 2018                 [Page 3]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft         MISP object template format        September 2017
 
 
-   values defines all the values for each predicate in the namespace
-   defined. values SHOULD be present.
+   be created based on the given template.  The required field MAY be
+   present.
 
-2.2.  predicates
+2.1.1.4.  description
 
-   The predicates array contains one or more JSON objects which lists
-   all the possible predicates.  The JSON object contains two fields:
-   value and expanded. value MUST be present. expanded SHOULD be
-   present. value is represented as a string and describes the predicate
-   value.  The predicate value MUST not contain spaces or colons.
-   expanded is represented as a string and describes the human-readable
-   version of the predicate value.
+   description is represented as a JSON string and contains the assigned
+   meaning given to objects created using this template.  The
+   description field MUST be present.
 
-2.3.  values
+2.1.1.5.  version
 
-   The values array contain one or more JSON objects which lists all the
-   possible values of a predicate.  The JSON object contains two fields:
-   predicate and entry. predicate is represented as a string and
-   describes the predicate value. entry is an array with one or more
-   JSON objects.  The JSON object contains two fields: value and
-   expanded. value MUST be present. expanded SHOULD be present. value is
-   represented as a string and describes the machine parsable value.
-   expanded is represented as a string and describes the human-readable
-   version of the value.
+   version represents a numeric incrementing version of the object
+   template.  It is used to associate the object to the correct version
+   of the template and together with the uuid field forms an association
+   to the correct template type and version.
 
-2.4.  optional fields
+   version is represented as a JSON string. version MUST be present.
 
-2.4.1.  colour
+2.1.1.6.  meta-category
 
-   colour fields MAY be used at predicates or values level to set a
-   specify colour that MAY be used by the implementation.  The colour
-   field is described as an RGB colour fill in hexadecimal
-   representation.
+   meta-category represents the sub-category of objects that the given
+   object template belongs to. meta-categories are not tied to a fixed
+   list of options but can be created on the fly.
 
-   Example use of the colour field in the Traffic Light Protocol (TLP):
+   meta-category is represented as a JSON string. meta-category MUST be
+   present
 
+2.1.1.7.  name
 
+   name represents the human-readable name of the objects created using
+   the given template, describing the intent of the object package.
 
+   name is represented as a JSON string. name MUST be present
 
+2.1.2.  attributes
 
+   attributes is represented as a JSON list and contains a list of
+   template elements used as a template for creating the individual
+   attributes within the object that is to be created with the object.
 
+   attributes is represented as a JSON list. attributes MUST be present.
 
+2.1.2.1.  description
 
-
-
-
-
-
-
+   description is represented as a JSON string and contains the
+   description of the given attribute in the context of the object with
+   the given relationship.  The description field MUST be present.
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 4]
+
+
+Dulaunoy & Iklody        Expires March 25, 2018                 [Page 4]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft         MISP object template format        September 2017
 
 
-    "predicates": [
-        {
-          "colour": "#CC0033",
-          "expanded": "(TLP:RED) Information exclusively and directly
-                       given to (a group of) individual recipients.
-                       Sharing outside is not legitimate.",
-          "value": "red"
-        },
-        {
-          "colour": "#FFC000",
-          "expanded": "(TLP:AMBER) Information exclusively given
-                       to an organization; sharing limited within
-                       the organization to be effectively acted upon.",
-          "value": "amber"
-        }...]
+2.1.2.2.  ui-priority
 
-2.4.2.  description
+   ui-priority is represented by a numeric values in JSON string format
+   and is meant to provide a priority for the given element in the
+   object template visualisation.  The ui-priority MAY be present.
 
-   description fields MAY be used at predicates or values level to add a
-   descriptive and human-readable information about the specific
-   predicate or value.  The field is represented as a string.
-   Implementations MAY use the description field to improve more
-   contextual information.  The description at the namespace level is a
-   MUST as described above.
+2.1.2.3.  misp-attribute
 
-2.4.3.  numerical_value
+   misp-attribute is represented by a JSON string or a JSON object with
+   a list of values.  The value(s) are taken from the pool of types
+   defined by the MISP core format's Attribute Object's type list. type
+   can contain a JSON object with a list of suggested value alternatives
+   encapsulated in a list within a sane_default key or a list of
+   enforced value alternatives encapsulated in a list_values key.
 
-   numerical_value fields MAY be used at a predicate or value level to
-   add a machine-readable numeric value to a specific predicate or
-   value.  The field is represented as a JSON number.  Implementations
-   SHOULD use the decimal value provided to support scoring or
-   filtering.
+   The misp-attribute field MUST be present.
 
-   Example use of the numerical_value in the MISP confidence level:
+2.1.2.4.  disable_correlation
 
+   disable_correlation is represented by a JSON boolean.  The
+   disable_correlation field flags the attribute(s) created by the given
+   object template element to be marked as non correlating.
 
+   The misp-attribute field MAY be present.
 
+2.1.2.5.  categories
 
+   categories is represented by a JSON list containing one or several
+   valid options from the list of verbs valid for the category field in
+   the Attribute object within the MISP core format.
 
+   The categories field MAY be present.
 
+2.1.2.6.  multiple
 
+   multiple is represented by a JSON boolean value.  It marks the MISP
+   object template element as a multiple input field, allowing for
+   several attributes to be created by the element within the same
+   object.
 
+   The multiple field MAY be present.
 
-
-
-
+2.1.3.  Sample Object Template object
 
 
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 5]
+
+
+
+Dulaunoy & Iklody        Expires March 25, 2018                 [Page 5]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft         MISP object template format        September 2017
 
 
-              {
-               "predicate": "confidence-level",
-               "entry": [
-                  {
-                    "expanded": "Completely confident",
-                    "value": "completely-confident",
-                    "numerical_value": 100
-                  },
-                  {
-                    "expanded": "Usually confident",
-                    "value": "usually-confident",
-                    "numerical_value": 75
-                  },
-                  {
-                    "expanded": "Fairly confident",
-                    "value": "fairly-confident",
-                    "numerical_value": 50
-                  },
-                  {
-                    "expanded": "Rarely confident",
-                    "value": "rarely-confident",
-                    "numerical_value": 25
-                  },
-                  {
-                    "expanded": "Unconfident",
-                    "value": "unconfident",
-                    "numerical_value": 0
-                  },
-                  {
-                    "expanded": "Confidence cannot be evaluated",
-                    "value": "confidence-cannot-be-evalued"
-                  }
-               ]
-               }
+{
+  "name": "credit-card",
+  "description": "A payment card like credit card, debit card or any similar cards which can be used for financial transactions.",
+  "meta-category": "financial",
+  "uuid": "2b9c57aa-daba-4330-a738-56f18743b0c7",
+  "version": 1,
+  "requiredOneOf": [
+    "cc-number"
+  ],
+  "attributes": {
+    "version": {
+      "description": "yabin.py and regex.txt version used for the generation of the yara rules.",
+      "ui-priority": 0,
+      "misp-attribute": "comment"
+    },
+    "comment": {
+      "description": "A description of the card.",
+      "ui-priority": 0,
+      "misp-attribute": "comment"
+    },
+    "card-security-code": {
+      "description": "Card security code as embossed or printed on the card.",
+      "ui-priority": 0,
+      "misp-attribute": "text"
+    },
+    "name": {
+      "description": "Name of the card owner.",
+      "ui-priority": 0,
+      "misp-attribute": "text"
+    },
+    "issued": {
+      "description": "Initial date of validity or issued date.",
+      "ui-priority": 0,
+      "misp-attribute": "datetime"
+    },
+    "expiration": {
+      "description": "Maximum date of validity",
+      "ui-priority": 0,
+      "misp-attribute": "datetime"
+    },
+    "cc-number": {
+      "description": "credit-card number as encoded on the card.",
+      "ui-priority": 0,
+      "misp-attribute": "cc-number"
+    }
+  }
+}
+
+
+
+
+Dulaunoy & Iklody        Expires March 25, 2018                 [Page 6]
+
+Internet-Draft         MISP object template format        September 2017
+
+
+2.1.4.  Object Relationships
+
+2.1.4.1.  name
+
+   name represents the human-readable relationship type which can be
+   used when creating MISP object relations.
+
+   name is represented as a JSON string. name MUST be present
+
+2.1.4.2.  description
+
+   description is represented as a JSON string and contains the
+   description of the object relationship type.  The description field
+   MUST be present.
+
+2.1.4.3.  format
+
+   format is represented by a JSON list containing a list of formats
+   that the relationship type is valid for and can be mapped to.  The
+   format field MUST be present
 
 3.  Directory
 
-   The MISP taxonomies directory is publicly available [MISP-T] in a git
-   repository.  The repository contains a directory per namespace then a
-   file machinetag.json which contains the taxonomy as described in the
-   format above.  In the root of the repository, a MANIFEST.json exists
-   containing a list of all the taxonomies.
+   The MISP object template directory is publicly available [MISP-O] in
+   a git repository.  The repository contains an objects directory,
+   which contains a directory per object type, containing a file named
+   definition.json which contains the definition of the object template
+   in the above described format.
 
-   The MANIFEST.json file is composed of an JSON object with metadata
-   like version, license, description, url and path.  A taxonomies array
-   describes the taxonomy available with the description, name and
-   version field.
+   A relationships directory is also included, containing a
+   definition.json file which contains a list of MISP object relation
+   definitions
 
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 6]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
-3.1.  Sample Manifest
-
- {
-   "version": "20161009",
-   "license": "CC-0",
-   "description": "Manifest file of MISP taxonomies available.",
-   "url":
-     "https://raw.githubusercontent.com/MISP/misp-taxonomies/master/",
-   "path": "machinetag.json",
-   "taxonomies": [
-     {
-       "description": "The Admiralty Scale (also called the NATO System)
-                       is used to rank the reliability of a source and
-                       the credibility of an information.",
-       "name": "admiralty-scale",
-       "version": 1
-     },
-     {
-       "description": "Open Source Intelligence - Classification.",
-       "name": "osint",
-       "version": 2
-     }]
- }
-
-4.  Sample Taxonomy in MISP taxonomy format
-
-4.1.  Admiralty Scale Taxonomy
-
-      "namespace": "admiralty-scale",
-      "description": "The Admiralty Scale (also called the NATO System)
-                      is used to rank the reliability of a source and
-                      the credibility of an information.",
-      "version": 1,
-      "predicates": [
-        {
-          "value": "source-reliability",
-          "expanded": "Source Reliability"
-        },
-        {
-          "value": "information-credibility",
-          "expanded": "Information Credibility"
-        }
-      ],
-      "values": [
-        {
-          "predicate": "source-reliability",
-          "entry": [
-            {
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 7]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
-              "value": "a",
-              "expanded": "Completely reliable"
-            },
-            {
-              "value": "b",
-              "expanded": "Usually reliable"
-            },
-            {
-              "value": "c",
-              "expanded": "Fairly reliable"
-            },
-            {
-              "value": "d",
-              "expanded": "Not usually reliable"
-            },
-            {
-              "value": "e",
-              "expanded": "Unreliable"
-            },
-            {
-              "value": "f",
-              "expanded": "Reliability cannot be judged"
-            }
-          ]
-        },
-        {
-          "predicate": "information-credibility",
-          "entry": [
-            {
-              "value": "1",
-              "expanded": "Confirmed by other sources"
-            },
-            {
-              "value": "2",
-              "expanded": "Probably true"
-            },
-            {
-              "value": "3",
-              "expanded": "Possibly true"
-            },
-            {
-              "value": "4",
-              "expanded": "Doubtful"
-            },
-            {
-              "value": "5",
-              "expanded": "Improbable"
-            },
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 8]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
-            {
-              "value": "6",
-              "expanded": "Truth cannot be judged"
-            }
-          ]
-        }
-      ]
-    }
-
-4.2.  Open Source Intelligence - Classification
-
- {
-   "values": [
-     {
-       "entry": [
-         {
-           "expanded": "Blog post",
-           "value": "blog-post"
-         },
-         {
-           "expanded": "Technical or analysis report",
-           "value": "technical-report"
-         },
-         {
-           "expanded": "News report",
-           "value": "news-report"
-         },
-         {
-           "expanded": "Pastie-like website",
-           "value": "pastie-website"
-         },
-         {
-           "expanded": "Electronic forum",
-           "value": "electronic-forum"
-         },
-         {
-           "expanded": "Mailing-list",
-           "value": "mailing-list"
-         },
-         {
-           "expanded": "Block or Filter List",
-           "value": "block-or-filter-list"
-         },
-         {
-           "expanded": "Expansion",
-           "value": "expansion"
-         }
-       ],
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 9]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
-       "predicate": "source-type"
-     },
-     {
-       "predicate": "lifetime",
-       "entry": [
-         {
-           "value": "perpetual",
-           "expanded": "Perpetual",
-           "description": "Information available publicly on long-term"
-         },
-         {
-           "value": "ephemeral",
-           "expanded": "Ephemeral",
-           "description": "Information available publicly on short-term"
-         }
-       ]
-     },
-     {
-       "predicate": "certainty",
-       "entry": [
-         {
-           "numerical_value": 100,
-           "value": "100",
-           "expanded": "100% Certainty",
-           "description": "100% Certainty"
-         },
-         {
-           "numerical_value": 93,
-           "value": "93",
-           "expanded": "93% Almost certain",
-           "description": "93% Almost certain"
-         },
-         {
-           "numerical_value": 75,
-           "value": "75",
-           "expanded": "75% Probable",
-           "description": "75% Probable"
-         },
-         {
-           "numerical_value": 50,
-           "value": "50",
-           "expanded": "50% Chances about even",
-           "description": "50% Chances about even"
-         },
-         {
-           "numerical_value": 30,
-           "value": "30",
-           "expanded": "30% Probably not",
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 10]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
-           "description": "30% Probably not"
-         },
-         {
-           "numerical_value": 7,
-           "value": "7",
-           "expanded": "7% Almost certainly not",
-           "description": "7% Almost certainly not"
-         },
-         {
-           "numerical_value": 0,
-           "value": "0",
-           "expanded": "0% Impossibility",
-           "description": "0% Impossibility"
-         }
-       ]
-     }
-   ],
-   "namespace": "osint",
-   "description": "Open Source Intelligence - Classification",
-   "version": 3,
-   "predicates": [
-     {
-       "value": "source-type",
-       "expanded": "Source Type"
-     },
-     {
-       "value": "lifetime",
-       "expanded": "Lifetime of the information
-                    as Open Source Intelligence"
-     },
-     {
-       "value": "certainty",
-       "expanded": "Certainty of the elements mentioned
-                    in this Open Source Intelligence"
-     }
-   ]
- }
-
-
-5.  JSON Schema
-
-   The JSON Schema [JSON-SCHEMA] below defines the structure of the MISP
-   taxonomy document as literally described before.  The JSON Schema is
-   used validating a MISP taxonomy.  The validation is a _MUST_ if the
-   taxonomy is included in the MISP taxonomies directory.
-
-    {
-      "$schema": "http://json-schema.org/schema#",
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 11]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
-      "title": "Validator for misp-taxonomies",
-      "id": "https://www.github.com/MISP/misp-taxonomies/schema.json",
-      "defs": {
-        "entry": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "numerical_value": {
-                "type": "number"
-              },
-              "expanded": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "colour": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              },
-              "required": [
-                "value"
-              ]
-            }
-          }
-        },
-        "values": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "entry": {
-                "$ref": "#/defs/entry"
-              },
-              "predicate": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "predicate"
-            ]
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 12]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
-          }
-        },
-        "predicates": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "numerical_value": {
-                "type": "number"
-              },
-              "colour": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "expanded": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              },
-              "required": [
-                "value"
-              ]
-            }
-          }
-        }
-      },
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "version": {
-          "type": "integer"
-        },
-        "description": {
-          "type": "string"
-        },
-        "expanded": {
-          "type": "string"
-        },
-        "namespace": {
-          "type": "string"
-        },
-        "type": {
-          "type": "array",
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 13]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "enum": [
-              "org",
-              "user",
-              "attribute",
-              "event"
-            ]
-          }
-        },
-        "refs": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "predicates": {
-          "$ref": "#/defs/predicates"
-        },
-        "values": {
-          "$ref": "#/defs/values"
-        }
-      },
-      "required": [
-        "namespace",
-        "description",
-        "version",
-        "predicates"
-      ]
-    }
-
-6.  Acknowledgements
+4.  Acknowledgements
 
    The authors wish to thank all the MISP community to support the
    creation of open standards in threat intelligence sharing.
 
-7.  References
+5.  References
 
-7.1.  Normative References
+5.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -781,33 +389,25 @@ Internet-Draft            MISP taxonomy format            September 2017
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 14]
+Dulaunoy & Iklody        Expires March 25, 2018                 [Page 7]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft         MISP object template format        September 2017
 
+
+   [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
+              Unique IDentifier (UUID) URN Namespace", RFC 4122,
+              DOI 10.17487/RFC4122, July 2005, <https://www.rfc-
+              editor.org/info/rfc4122>.
 
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627,
               DOI 10.17487/RFC4627, July 2006, <https://www.rfc-
               editor.org/info/rfc4627>.
 
-7.2.  Informative References
+5.2.  Informative References
 
-   [JSON-SCHEMA]
-              "JSON Schema: A Media Type for Describing JSON Documents",
-              2016, <https://tools.ietf.org/html/draft-wright-json-
-              schema>.
-
-   [machine-tags]
-              "Machine tags", 2007,
-              <https://www.flickr.com/groups/51035612836@N01/
-              discuss/72157594497877875/>.
-
-   [MISP-P]   MISP, , "MISP Project - Malware Information Sharing
-              Platform and Threat Sharing", <https://github.com/MISP>.
-
-   [MISP-T]   MISP, , "MISP Taxonomies - shared and common vocabularies
-              of tags", <https://github.com/MISP/misp-taxonomies>.
+   [MISP-O]   MISP, , "MISP Objects - shared and common object
+              templates", <https://github.com/MISP/misp-objects>.
 
 Authors' Addresses
 
@@ -837,4 +437,12 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 15]
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires March 25, 2018                 [Page 8]
