@@ -1,15 +1,21 @@
-# MISP formats
+# MISP standard formats
 
-This repository is the official source of the specification and formats in MISP. All the format can be freely reused.
+This repository is the official source of the specification and formats used in the MISP project.
 
-## MISP Format in use and implemented in multiple software
+The formats are described to support other implementations which reuse the format and ensuring an interoperability
+with existing MISP software and other Threat Intelligence Platforms.
+
+All the formats can be freely reused by everyone.
+
+## MISP Formats in use and implemented in multiple software
 
 * [misp-core-format](misp-core-format/raw.md.txt) ([markdown source](misp-core-format/raw.md)) which describes the core JSON format of MISP. Current Internet-Draft: [01](https://tools.ietf.org/html/draft-dulaunoy-misp-core-format)
 * [misp-taxonomy-format](misp-taxonomy-format/raw.md.txt) ([markdown source](misp-taxonomy-format/raw.md)) which describes the taxonomy JSON format of MISP. Current Internet-Draft: [02](https://tools.ietf.org/html/draft-dulaunoy-misp-taxonomy-format)
+* [misp-galaxy-format](misp-galaxy-format/raw.md.txt) which describes the [galaxy](https://github.com/MISP/misp-galaxy) template format used to expand the threat actor modelling of MISP.
+* [misp-object-template-format](misp-object-template-format/raw.md.txt) which describes the [object](https://github.com/MISP/misp-objects) template format to add combinedand composite object to the MISP core format.
 
 ## MISP Format in design phase and implemented in at least one software prototype
 
-* misp-galaxy-format which describes the [galaxy](https://github.com/MISP/misp-galaxy) format used to expand the threat actor modelling of MISP.
 * misp-modules-protocol which describes the [misp-modules](https://github.com/MISP/misp-modules) protocol used between MISP and misp-modules.
 
 ## MISP Format in design phase
