@@ -1,4 +1,4 @@
-# MISP standard formats
+# MISP standards
 
 This repository is the official source of the specification and formats used in the MISP project.
 
