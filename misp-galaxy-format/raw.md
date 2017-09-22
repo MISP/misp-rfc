@@ -38,7 +38,7 @@
 % [[author]]
 % initials="D."
 % surname="Servili"
-% fullname="Deborah"
+% fullname="Deborah Servili"
 % abbrev="CIRCL"
 % organization = "Computer Incident Response Center Luxembourg"
 %  [author.address]
