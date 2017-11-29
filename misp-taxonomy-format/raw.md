@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2017-09-04T00:00:00Z
+% date = 2017-11-29T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -84,7 +84,7 @@ to describe machine tag (aka triple tag) vocabularies.
 
 The MISP taxonomy format uses the JSON [@!RFC4627] format. Each namespace is represented as a JSON object with meta information including the following fields: namespace, description, version, type.
 
-namespace defines the overall namespace of the machine tag. The namespace is represented as a string and **MUST** be present. The description is represented as a string and **MUST** be present. A version is represented as a decimal and **MUST** be present. A type defines where a specific taxonomy is applicable and a type can be applicable at event, user or org level. The type is represented as an array containing one or more type and **SHOULD** be present. If a type is not mentioned, by default, the taxonomy is applicable at event level only.
+namespace defines the overall namespace of the machine tag. The namespace is represented as a string and **MUST** be present. The description is represented as a string and **MUST** be present. A version is represented as a decimal and **MUST** be present. A type defines where a specific taxonomy is applicable and a type can be applicable at event, user or org level. The type is represented as an array containing one or more type and **SHOULD** be present. If a type is not mentioned, by default, the taxonomy is applicable at event level only. An exclusive boolean property **MAY** be present and defines at namespace level if the predicates are mutually exclusive.
 
 predicates defines all the predicates available in the namespace defined. predicates is represented as an array of JSON objects. predicates **MUST** be present and **MUST** at least content one element.
 
@@ -92,7 +92,7 @@ values defines all the values for each predicate in the namespace defined. value
 
 ## predicates
 
-The predicates array contains one or more JSON objects which lists all the possible predicates. The JSON object contains two fields: value and expanded. value **MUST** be present. expanded **SHOULD** be present. value is represented as a string and describes the predicate value. The predicate value **MUST** not contain spaces or colons. expanded is represented as a string and describes the human-readable version of the predicate value.
+The predicates array contains one or more JSON objects which lists all the possible predicates. The JSON object contains two fields: value and expanded. value **MUST** be present. expanded **SHOULD** be present. value is represented as a string and describes the predicate value. The predicate value **MUST** not contain spaces or colons. expanded is represented as a string and describes the human-readable version of the predicate value. An exclusive property **MAY** be present and defines at namespace level if the values are mutually exclusive.
 
 ## values
 
@@ -500,6 +500,9 @@ is a *MUST* if the taxonomy is included in the MISP taxonomies directory.
           "value": {
             "type": "string"
           },
+          "exclusive": {
+            "type": "boolean"
+          },
           "required": [
             "value"
           ]
@@ -521,6 +524,9 @@ is a *MUST* if the taxonomy is included in the MISP taxonomies directory.
     },
     "namespace": {
       "type": "string"
+    },
+    "exclusive": {
+      "type": "boolean"
     },
     "type": {
       "type": "array",
