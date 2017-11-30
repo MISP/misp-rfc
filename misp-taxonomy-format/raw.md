@@ -133,6 +133,9 @@ description fields **MAY** be used at predicates or values level to add a descri
 numerical_value fields **MAY** be used at a predicate or value level to add a machine-readable numeric value to a specific predicate or value.
 The field is represented as a JSON number. Implementations **SHOULD** use the decimal value provided to support scoring or filtering.
 
+The decimal range for numerical_value **SHOULD** use a range from 0 up to 100. The range is recommended to support common mathematical properties
+among taxonomies.
+
 Example use of the numerical_value in the MISP confidence level:
 
 ~~~~
