@@ -22,6 +22,14 @@ All the formats can be freely reused by everyone.
 
 * misp-collaborative-voting-format which describes the collaborative voting and scoring format for the feeds providers.
 
+## Sample files
+
+If you want to see how a threat intelligence can be easily expressed in MISP standard, the following resources might give you some ideas:
+
+* [CIRCL OSINT MISP Feed](https://www.circl.lu/doc/misp/feed-osint/)
+
+[Installing MISP](https://www.misp-project.org/download/) is also another option to see the MISP standards in action. The MISP standards are actively used in the MISP threat intelligence platform to support the complete chain from intelligence creation, sharing, distribution and synchronisation.
+
 # Contribution
 
 If you want to contribute to the MISP specifications, feel free to [open an issue](https://github.com/MISP/misp-rfc/issues).
