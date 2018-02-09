@@ -903,6 +903,74 @@ name **MUST** be present. colour, id and exportable **SHALL** be present.
         "id": "2" }]
 ~~~~
 
+## Sighting
+
+A sighting is an ascertainment which describes if an attribute has been seen under a specific set of conditions. The sighting can include the organisation who sighted the attribute or can
+be anonymized without revealing the organisation. Sighting is composed of a JSON array where each element describes one sighting. A sighting element is a JSON object composed of the following values.
+
+
+type **MUST** be present. type describes the type of sighting. MISP allows 3 default types:
+
+| Sighting type |                               Description                              |
+|---------------|:----------------------------------------------------------------------:|
+| 0             | denotes an attribute which has been seen                               |
+| 1             | denotes an attribute which has been seen as false-positive             |
+| 2             | denotes an attribute which will be expired at the time of the sighting |
+
+uuid **MUST** be present. uuid references the attribute uuid sighted.
+
+date_sighting **MUST** be present. date_sighting is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). date_sighting represents when the reference attribute uuid is sighted.
+
+source **MAY** be present. source is represented as a JSON string. source represents the human-readable of the sighting source which can be a software (e.g. SIEM), tool or even a specific analyst process.
+
+id, event_id and attribute_id **MAY** be present.
+
+id represents the human-readable identifier of the sighting reference which belongs to a specific MISP instance.
+event_id represents the human-readable identifier of the event referenced by the sighting and belongs to a specific MISP instance.
+attribute_id represents the human-readable identifier of the attribute referenced by the sighting and belongs to a specific MISP instance.
+
+org_id **MAY** be present along the JSON object describing the organisation. If the org_id is not present, the sighted is considered as anonymized.
+
+org_id represents the human-readable identifier of the organisation which did the sighting and belongs to a specific MISP instance.
+
+### Sample Sighting
+
+~~~~
+"Sighting": [
+		   {
+				"id": "13599",
+				"attribute_id": "1201615",
+				"event_id": "10164",
+				"org_id": "2",
+				"date_sighting": "1517581400",
+				"uuid": "5a747459-41b4-4826-9b29-42dd950d210f",
+				"source": "M2M-CIRCL",
+				"type": "0",
+				"Organisation": {
+					"id": "2",
+					"uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+					"name": "CIRCL"
+				}
+			},
+			{
+				"id": "13601",
+				"attribute_id": "1201615",
+				"event_id": "10164",
+				"org_id": "2",
+				"date_sighting": "1517581401",
+				"uuid": "5a74745a-a190-4d04-b719-4916950d210f",
+				"source": "M2M-CIRCL",
+				"type": "0",
+				"Organisation": {
+					"id": "2",
+					"uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+					"name": "CIRCL"
+				}
+			}
+		]
+~~~~
+
+
 ## Galaxy
 
 A galaxy is a simple method to express a large object called cluster that can be attached to MISP events. A cluster can be composed of one or more elements. Elements are expressed as key-values.
