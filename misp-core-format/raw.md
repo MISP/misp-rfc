@@ -338,7 +338,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, comment, text, other
 
 **Person**
-:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number
+:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number, identity-card-number
 
 **Other**
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number
@@ -534,7 +534,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, comment, text, other
 
 **Person**
-:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number
+:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number, identity-card-number
 
 **Other**
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number
