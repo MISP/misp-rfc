@@ -54,7 +54,7 @@
 
 .# Abstract
 
-This document describes the MISP galaxy format which describes a simple JSON format to represent galaxies and clusters that can be attached to MISP events or attributes. A public directory of MISP galaxies is available and relies on the MISP galaxy format. MISP galaxies are used to add further informations on a MISP event.MISP galaxy is a public repository [@?MISP-G] of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing.
+This document describes the MISP galaxy format which describes a simple JSON format to represent galaxies and clusters that can be attached to MISP events or attributes. A public directory of MISP galaxies is available and relies on the MISP galaxy format. MISP galaxies are used to add further informations on a MISP event. MISP galaxy is a public repository [@?MISP-G] of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing.
 
 {mainmatter}
 
@@ -86,8 +86,9 @@ Values are represented as an array containing one or more value and **MUST** be 
 
 ## values
 
-The values array contains one or more JSON objects which represents all the possible values in the galaxy. The JSON object contains three fields: value description and meta.
+The values array contains one or more JSON objects which represents all the possible values in the galaxy. The JSON object contains four fields: value, description, uuid and meta.
 The value is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. The meta or metadata is represented as a JSON list and **SHOULD** be present.
+The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. The uuid **SHOULD** can be present and **MUST** be preserved.
 
 ## meta
 
@@ -103,7 +104,7 @@ colour fields MAY be used at predicates or values level to set a specify colour 
 
 encryption, extensions, ransomnotes **MAY** be used to give further information in ransomware galaxy. encryption is represented as a string and **SHALL** be present. extensions is represented as an array containing one or more strings and **SHALL** be present. ransomnotes is represented as an array containing one or more strings ans **SHALL** be present.
 
-date, status **MAY** be used to give time information about an cluster. date is represented as a string decribing a time or period and **SHALL** be present. status is represented as a string describing the current status of the clusters. It **MAY** also describe a time or period and **SHALL** be present.
+date, status **MAY** be used to give time information about an cluster. date is represented as a string describing a time or period and **SHALL** be present. status is represented as a string describing the current status of the clusters. It **MAY** also describe a time or period and **SHALL** be present.
 
 derivated_from, refs, synonyms **SHALL** be used to give further informations. refs is represented as an containing one or ore string and **SHALL** be present. synonyms is represented as an containing one or ore string and **SHALL** be present. derivated_from is represented as an containing one or ore string and **SHALL** be present.
 
