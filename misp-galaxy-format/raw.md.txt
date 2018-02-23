@@ -18,7 +18,10 @@ Abstract
    simple JSON format to represent galaxies and clusters that can be
    attached to MISP events or attributes.  A public directory of MISP
    galaxies is available and relies on the MISP galaxy format.  MISP
-   galaxies are used to add further informations on a MISP event.
+   galaxies are used to add further informations on a MISP event.  MISP
+   galaxy is a public repository [MISP-G] of known malware, threats
+   actors and various other collections of data that can be used to
+   mark, classify or label data in threat information sharing.
 
 Status of This Memo
 
@@ -47,9 +50,6 @@ Copyright Notice
    (http://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
-   to this document.  Code Components extracted from this document must
-   include Simplified BSD License text as described in Section 4.e of
-
 
 
 
@@ -58,6 +58,8 @@ Dulaunoy, et al.         Expires March 25, 2018                 [Page 1]
 Internet-Draft             MISP galaxy format             September 2017
 
 
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
 
@@ -104,8 +106,6 @@ Table of Contents
    A cluster is composed of a value (MUST), a description (OPTIONAL) and
    metadata (OPTIONAL).
 
-   Clusters are represented as a JSON [RFC4627] dictionary.
-
 
 
 
@@ -113,6 +113,8 @@ Dulaunoy, et al.         Expires March 25, 2018                 [Page 2]
 
 Internet-Draft             MISP galaxy format             September 2017
 
+
+   Clusters are represented as a JSON [RFC4627] dictionary.
 
 2.1.  Overview
 
@@ -139,11 +141,13 @@ Internet-Draft             MISP galaxy format             September 2017
 2.2.  values
 
    The values array contains one or more JSON objects which represents
-   all the possible values in the galaxy.  The JSON object contains
-   three fields: value description and meta.  The value is represented
+   all the possible values in the galaxy.  The JSON object contains four
+   fields: value, description, uuid and meta.  The value is represented
    as a string and MUST be present.  The description is represented as a
    string and SHOULD be present.  The meta or metadata is represented as
-   a JSON list and SHOULD be present.
+   a JSON list and SHOULD be present.  The uuid represents the
+   Universally Unique IDentifier (UUID) [RFC4122] of the value
+   reference.  The uuid SHOULD can be present and MUST be preserved.
 
 2.3.  meta
 
@@ -157,11 +161,7 @@ Internet-Draft             MISP galaxy format             September 2017
    Properties are represented as an array containing one or more strings
    ans MAY be present.
 
-   complexity, effectiveness, impact, possible_issues MAY be used to
-   give further information in preventive-measure galaxy. complexity is
-   represented by an enumerated value from a fixed vocabulary and SHALL
-   be present. effectiveness is represented by an enumerated value from
-   a fixed vocabulary and SHALL be present. impact is represented by an
+
 
 
 
@@ -170,6 +170,11 @@ Dulaunoy, et al.         Expires March 25, 2018                 [Page 3]
 Internet-Draft             MISP galaxy format             September 2017
 
 
+   complexity, effectiveness, impact, possible_issues MAY be used to
+   give further information in preventive-measure galaxy. complexity is
+   represented by an enumerated value from a fixed vocabulary and SHALL
+   be present. effectiveness is represented by an enumerated value from
+   a fixed vocabulary and SHALL be present. impact is represented by an
    enumerated value from a fixed vocabulary and SHALL be present.
    possible_issues is represented as a string and SHOULD be present.
 
@@ -190,7 +195,7 @@ Internet-Draft             MISP galaxy format             September 2017
    present.
 
    date, status MAY be used to give time information about an cluster.
-   date is represented as a string decribing a time or period and SHALL
+   date is represented as a string describing a time or period and SHALL
    be present. status is represented as a string describing the current
    status of the clusters.  It MAY also describe a time or period and
    SHALL be present.
@@ -210,11 +215,6 @@ Internet-Draft             MISP galaxy format             September 2017
 
 4.1.  Normative References
 
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
-              editor.org/info/rfc2119>.
-
 
 
 
@@ -225,6 +225,11 @@ Dulaunoy, et al.         Expires March 25, 2018                 [Page 4]
 
 Internet-Draft             MISP galaxy format             September 2017
 
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
 
    [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
               Unique IDentifier (UUID) URN Namespace", RFC 4122,
@@ -266,7 +271,18 @@ Authors' Addresses
    Email: andras.iklody@circl.lu
 
 
-   Deborah
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 25, 2018                 [Page 5]
+
+Internet-Draft             MISP galaxy format             September 2017
+
+
+   Deborah Servili
    Computer Incident Response Center Luxembourg
    16, bd d'Avranches
    Luxembourg  L-1611
@@ -277,4 +293,44 @@ Authors' Addresses
 
 
 
-Dulaunoy, et al.         Expires March 25, 2018                 [Page 5]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 25, 2018                 [Page 6]
