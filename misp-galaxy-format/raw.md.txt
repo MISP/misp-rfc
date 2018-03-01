@@ -5,8 +5,8 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                D. Servili
-Expires: March 25, 2018                                            CIRCL
-                                                      September 21, 2017
+Expires: October 3, 2018                                           CIRCL
+                                                           April 1, 2018
 
 
                            MISP galaxy format
@@ -38,11 +38,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 25, 2018.
+   This Internet-Draft will expire on October 3, 2018.
 
 Copyright Notice
 
-   Copyright (c) 2017 IETF Trust and the persons identified as the
+   Copyright (c) 2018 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy, et al.         Expires March 25, 2018                 [Page 1]
+Dulaunoy, et al.         Expires October 3, 2018                [Page 1]
 
-Internet-Draft             MISP galaxy format             September 2017
+Internet-Draft             MISP galaxy format                 April 2018
 
 
    to this document.  Code Components extracted from this document must
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Dulaunoy, et al.         Expires March 25, 2018                 [Page 2]
+Dulaunoy, et al.         Expires October 3, 2018                [Page 2]
 
-Internet-Draft             MISP galaxy format             September 2017
+Internet-Draft             MISP galaxy format                 April 2018
 
 
    Clusters are represented as a JSON [RFC4627] dictionary.
@@ -165,9 +165,9 @@ Internet-Draft             MISP galaxy format             September 2017
 
 
 
-Dulaunoy, et al.         Expires March 25, 2018                 [Page 3]
+Dulaunoy, et al.         Expires October 3, 2018                [Page 3]
 
-Internet-Draft             MISP galaxy format             September 2017
+Internet-Draft             MISP galaxy format                 April 2018
 
 
    complexity, effectiveness, impact, possible_issues MAY be used to
@@ -221,9 +221,9 @@ Internet-Draft             MISP galaxy format             September 2017
 
 
 
-Dulaunoy, et al.         Expires March 25, 2018                 [Page 4]
+Dulaunoy, et al.         Expires October 3, 2018                [Page 4]
 
-Internet-Draft             MISP galaxy format             September 2017
+Internet-Draft             MISP galaxy format                 April 2018
 
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -277,9 +277,9 @@ Authors' Addresses
 
 
 
-Dulaunoy, et al.         Expires March 25, 2018                 [Page 5]
+Dulaunoy, et al.         Expires October 3, 2018                [Page 5]
 
-Internet-Draft             MISP galaxy format             September 2017
+Internet-Draft             MISP galaxy format                 April 2018
 
 
    Deborah Servili
@@ -333,4 +333,4 @@ Internet-Draft             MISP galaxy format             September 2017
 
 
 
-Dulaunoy, et al.         Expires March 25, 2018                 [Page 6]
+Dulaunoy, et al.         Expires October 3, 2018                [Page 6]
