@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2017-09-21T00:00:00Z
+% date = 2018-04-01T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -155,4 +155,3 @@ of open standards in threat intelligence sharing.
 
 
 {backmatter}
-
