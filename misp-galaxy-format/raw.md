@@ -108,6 +108,8 @@ date, status **MAY** be used to give time information about an cluster. date is 
 
 derivated_from, refs, synonyms **SHALL** be used to give further informations. refs is represented as an containing one or ore string and **SHALL** be present. synonyms is represented as an containing one or ore string and **SHALL** be present. derivated_from is represented as an containing one or ore string and **SHALL** be present.
 
+source-uuid, target-uuid **SHALL** be used to describe relationships. source-uuid and target-uuid represent the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. source-uuid and target-uuid **MUST** be preserved. 
+
 # Acknowledgements
 
 The authors wish to thank all the MISP community who are supporting the creation
