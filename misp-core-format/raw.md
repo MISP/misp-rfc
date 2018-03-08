@@ -155,7 +155,7 @@ timestamp is represented as a JSON string. timestamp **MUST** be present.
 
 #### publish_timestamp
 
-publish_timestamp represents a reference time when the event was published on the instance. published_timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). At each publication of an event, publish_timestamp **MUST** be updated. The time zone **MUST** be UTC.
+publish_timestamp represents a reference time when the event was published on the instance. published_timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). At each publication of an event, publish_timestamp **MUST** be updated. The time zone **MUST** be UTC. If the published_timestamp is present and the published flag is set to false, the publish_timestamp represents the previous publication timestamp. If the event was never published, the published_timestamp **MUST** be set to 0.
 
 publish_timestamp is represented as a JSON string. publish_timestamp **MUST** be present.
 
