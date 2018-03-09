@@ -1520,7 +1520,7 @@ In addition to the fields originating from the event, the following fields can b
 - integrity:pgp represents a detached PGP signature [@!RFC4880] of the associated MISP event file to ensure integrity of the file. (**SHOULD**)
 
 If a detached PGP signature is used for each MISP event, a detached PGP signature is a **MUST** to ensure integrity of the manifest file.
-A detached PGP signature for a manifest file is a manifest.json.pgp file containing the PGP signature.
+A detached PGP signature for a manifest file is a manifest.json.asc file containing the PGP signature.
 
 ### Sample Manifest
 
@@ -1530,7 +1530,8 @@ A detached PGP signature for a manifest file is a manifest.json.pgp file contain
     "info": "Malspam 2016-08-31 (.wsf in .zip) - campaign: Photo",
     "Orgc": {
       "id": "2",
-      "name": "CIRCL"
+      "name": "CIRCL",
+      "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
     },
     "analysis": "0",
     "Tag": [
