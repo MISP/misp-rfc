@@ -96,7 +96,7 @@ Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** re
 
 properties is used to provide clusters with additional properties. Properties are represented as an array containing one or more strings ans **MAY** be present.
 
-derivated_from, refs, synonyms **SHALL** be used to give further informations. refs is represented as an containing one or ore string and **SHALL** be present. synonyms is represented as an containing one or ore string and **SHALL** be present. derivated_from is represented as an containing one or ore string and **SHALL** be present.
+derivated_from, refs, synonyms **SHALL** be used to give further informations. refs is represented as an containing one or more strings and **SHALL** be present. synonyms is represented as an containing one or more strings and **SHALL** be present. derivated_from is represented as an containing one or more strings and **SHALL** be present.
 
 date, status **MAY** be used to give time information about an cluster. date is represented as a string describing a time or period and **SHALL** be present. status is represented as a string describing the current status of the clusters. It **MAY** also describe a time or period and **SHALL** be present.
 
