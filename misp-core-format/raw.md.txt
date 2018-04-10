@@ -357,7 +357,7 @@ Internet-Draft              MISP core format                  April 2018
 2.2.1.15.  extends_uuid
 
    extends_uuid represents which event is extended by this event.  The
-   extend_uuid is described as an Universally Unique IDentifier (UUID)
+   extends_uuid is described as a Universally Unique IDentifier (UUID)
    [RFC4122] with the UUID of the extended event.
 
    extends_uuid is represented as a JSON string. extends_uuid SHOULD be
