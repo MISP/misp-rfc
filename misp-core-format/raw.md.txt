@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: August 13, 2018                                February 9, 2018
+Expires: October 12, 2018                                 April 10, 2018
 
 
                             MISP core format
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 13, 2018.
+   This Internet-Draft will expire on October 12, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018                [Page 1]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 1]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
    include Simplified BSD License text as described in Section 4.e of
@@ -72,12 +72,12 @@ Table of Contents
        2.2.1.  Event Attributes  . . . . . . . . . . . . . . . . . .   3
      2.3.  Objects . . . . . . . . . . . . . . . . . . . . . . . . .   7
        2.3.1.  Org . . . . . . . . . . . . . . . . . . . . . . . . .   7
-       2.3.2.  Orgc  . . . . . . . . . . . . . . . . . . . . . . . .   7
+       2.3.2.  Orgc  . . . . . . . . . . . . . . . . . . . . . . . .   8
      2.4.  Attribute . . . . . . . . . . . . . . . . . . . . . . . .   8
        2.4.1.  Sample Attribute Object . . . . . . . . . . . . . . .   8
-       2.4.2.  Attribute Attributes  . . . . . . . . . . . . . . . .   8
+       2.4.2.  Attribute Attributes  . . . . . . . . . . . . . . . .   9
      2.5.  ShadowAttribute . . . . . . . . . . . . . . . . . . . . .  14
-       2.5.1.  Sample Attribute Object . . . . . . . . . . . . . . .  14
+       2.5.1.  Sample Attribute Object . . . . . . . . . . . . . . .  15
        2.5.2.  ShadowAttribute Attributes  . . . . . . . . . . . . .  15
        2.5.3.  Org . . . . . . . . . . . . . . . . . . . . . . . . .  20
      2.6.  Object  . . . . . . . . . . . . . . . . . . . . . . . . .  21
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018                [Page 2]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 2]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018                [Page 3]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 3]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 2.2.1.2.  id
@@ -221,9 +221,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018                [Page 4]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 4]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 2.2.1.6.  analysis
@@ -277,9 +277,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018                [Page 5]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 5]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 2.2.1.10.  org_id
@@ -333,9 +333,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018                [Page 6]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 6]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
       All Communities
@@ -353,6 +353,15 @@ Internet-Draft              MISP core format               February 2018
    sharing_group_id is represented by a JSON string and SHOULD be
    present.  If a distribution level other than "4" is chosen the
    sharing_group_id MUST be set to "0".
+
+2.2.1.15.  extends_uuid
+
+   extends_uuid represents which event is extended by this event.  The
+   extend_uuid is described as an Universally Unique IDentifier (UUID)
+   [RFC4122] with the UUID of the extended event.
+
+   extends_uuid is represented as a JSON string. extends_uuid SHOULD be
+   present.
 
 2.3.  Objects
 
@@ -374,6 +383,17 @@ Internet-Draft              MISP core format               February 2018
 
 2.3.1.1.  Sample Org Object
 
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 7]
+
+Internet-Draft              MISP core format                  April 2018
+
+
           "Org": {
                   "id": "2",
                   "name": "CIRCL",
@@ -386,14 +406,6 @@ Internet-Draft              MISP core format               February 2018
 
    The uuid MUST be preserved for any updates or transfer of the same
    event.  UUID version 4 is RECOMMENDED when assigning it to a new
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018                [Page 7]
-
-Internet-Draft              MISP core format               February 2018
-
-
    event.  The organisation UUID is globally assigned to an organisation
    and SHALL be kept overtime.
 
@@ -418,6 +430,26 @@ Internet-Draft              MISP core format               February 2018
 
 2.4.1.  Sample Attribute Object
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 8]
+
+Internet-Draft              MISP core format                  April 2018
+
+
        "Attribute": {
                      "id": "346056",
                      "type": "comment",
@@ -437,18 +469,6 @@ Internet-Draft              MISP core format               February 2018
                     }
 
 2.4.2.  Attribute Attributes
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018                [Page 8]
-
-Internet-Draft              MISP core format               February 2018
-
 
 2.4.2.1.  uuid
 
@@ -478,6 +498,14 @@ Internet-Draft              MISP core format               February 2018
    category-type combinations is as follows:
 
    Internal reference
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 9]
+
+Internet-Draft              MISP core format                  April 2018
+
+
       text, link, comment, other, hex
 
    Targeting data
@@ -498,14 +526,6 @@ Internet-Draft              MISP core format               February 2018
       email-dst, email-subject, email-attachment, url, user-agent, AS,
       pattern-in-file, pattern-in-traffic, yara, attachment, malware-
       sample, link, malware-type, mime-type, comment, text,
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018                [Page 9]
-
-Internet-Draft              MISP core format               February 2018
-
-
       vulnerability, x509-fingerprint-sha1, other, ip-dst|port, ip-
       src|port, hostname|port, email-dst-display-name, email-src-
       display-name, email-header, email-reply-to, email-x-mailer, email-
@@ -534,6 +554,14 @@ Internet-Draft              MISP core format               February 2018
       filename|tlsh, filename|imphash, filename|pehash, pattern-in-file,
       mime-type, pattern-in-traffic, pattern-in-memory, yara,
       stix2-pattern, vulnerability, attachment, malware-sample, malware-
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 10]
+
+Internet-Draft              MISP core format                  April 2018
+
+
       type, comment, text, hex, x509-fingerprint-sha1, mobile-
       application-id, other
 
@@ -553,14 +581,6 @@ Internet-Draft              MISP core format               February 2018
       threat-actor, campaign-name, campaign-id, whois-registrant-phone,
       whois-registrant-email, whois-registrant-name, whois-registrar,
       whois-creation-date, comment, text, x509-fingerprint-sha1, other
-
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 10]
-
-Internet-Draft              MISP core format               February 2018
-
 
    External analysis
       md5, sha1, sha256, filename, filename|md5, filename|sha1,
@@ -591,6 +611,13 @@ Internet-Draft              MISP core format               February 2018
       of-onward-foreign-destination, passenger-name-record-locator-
       number, comment, text, other, phone-number, identity-card-number
 
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 11]
+
+Internet-Draft              MISP core format                  April 2018
+
+
    Other
       comment, text, other, size-in-bytes, counter, datetime, cpe, port,
       float, hex, phone-number
@@ -608,15 +635,6 @@ Internet-Draft              MISP core format               February 2018
    category is represented as a JSON string. category MUST be present
    and it MUST be a valid selection for the chosen type.  The list of
    valid category-type combinations is mentioned above.
-
-
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 11]
-
-Internet-Draft              MISP core format               February 2018
-
 
 2.4.2.5.  to_ids
 
@@ -648,6 +666,14 @@ Internet-Draft              MISP core format               February 2018
    present and be one of the following options:
 
    0
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 12]
+
+Internet-Draft              MISP core format                  April 2018
+
+
       Your Organisation Only
 
    1
@@ -664,15 +690,6 @@ Internet-Draft              MISP core format               February 2018
 
    5
       Inherit Event
-
-
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 12]
-
-Internet-Draft              MISP core format               February 2018
-
 
 2.4.2.8.  timestamp
 
@@ -705,6 +722,14 @@ Internet-Draft              MISP core format               February 2018
    Revoked attributes are not actionable and exist merely to inform
    other instances of a revocation.
 
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 13]
+
+Internet-Draft              MISP core format                  April 2018
+
+
    deleted is represented by a JSON boolean. deleted MUST be present.
 
 2.4.2.12.  data
@@ -722,14 +747,6 @@ Internet-Draft              MISP core format               February 2018
    RelatedAttribute is an array of attributes correlating with the
    current attribute.  Each element in the array represents an JSON
    object which contains an Attribute dictionnary with the external
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 13]
-
-Internet-Draft              MISP core format               February 2018
-
-
    attributes who correlate.  Each Attribute MUST include the id,
    org_id, info and a value.  Only the correlations found on the local
    instance are shown in RelatedAttribute.
@@ -761,6 +778,14 @@ Internet-Draft              MISP core format               February 2018
    ShadowAttributes are 3rd party created attributes that either propose
    to add new information to an event or modify existing information.
    They are not meant to be actionable until the event creator accepts
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 14]
+
+Internet-Draft              MISP core format                  April 2018
+
+
    them - at which point they will be converted into attributes or
    modify an existing attribute.
 
@@ -769,22 +794,6 @@ Internet-Draft              MISP core format               February 2018
    revocation flag.
 
 2.5.1.  Sample Attribute Object
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 14]
-
-Internet-Draft              MISP core format               February 2018
-
 
 "ShadowAttribute":  {
                        "id": "8",
@@ -825,6 +834,14 @@ Internet-Draft              MISP core format               February 2018
    represented as an unsigned integer.  id is represented as a JSON
    string. id SHALL be present.
 
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 15]
+
+Internet-Draft              MISP core format                  April 2018
+
+
 2.5.2.3.  type
 
    type represents the means through which an attribute tries to
@@ -834,13 +851,6 @@ Internet-Draft              MISP core format               February 2018
    type is represented as a JSON string. type MUST be present and it
    MUST be a valid selection for the chosen category.  The list of valid
    category-type combinations is as follows:
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 15]
-
-Internet-Draft              MISP core format               February 2018
-
 
    Internal reference
       text, link, comment, other, hex
@@ -879,6 +889,15 @@ Internet-Draft              MISP core format               February 2018
       regkey|value, pattern-in-file, pattern-in-memory, pdb, yara,
       sigma, gene, stix2-pattern, attachment, malware-sample, mime-type,
       named pipe, mutex, windows-scheduled-task, windows-service-name,
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 16]
+
+Internet-Draft              MISP core format                  April 2018
+
+
       windows-service-displayname, comment, text, hex, x509-fingerprint-
       sha1, other
 
@@ -890,14 +909,6 @@ Internet-Draft              MISP core format               February 2018
       filename|sha512/256, filename|authentihash, filename|ssdeep,
       filename|tlsh, filename|imphash, filename|pehash, mime-type,
       pattern-in-file, pattern-in-traffic, pattern-in-memory, yara,
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 16]
-
-Internet-Draft              MISP core format               February 2018
-
-
       stix2-pattern, vulnerability, attachment, malware-sample, malware-
       type, comment, text, hex, x509-fingerprint-sha1, mobile-
       application-id, other
@@ -935,6 +946,14 @@ Internet-Draft              MISP core format               February 2018
    Support tool
       attachment, link, comment, text, other, hex
 
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 17]
+
+Internet-Draft              MISP core format                  April 2018
+
+
    Social network
       github-username, github-repository, github-organisation, jabber-
       id, twitter-id, email-src, email-dst, comment, text, other
@@ -946,14 +965,6 @@ Internet-Draft              MISP core format               February 2018
       primary-residence, country-of-residence, special-service-request,
       frequent-flyer-number, travel-details, payment-details, place-
       port-of-original-embarkation, place-port-of-clearance, place-port-
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 17]
-
-Internet-Draft              MISP core format               February 2018
-
-
       of-onward-foreign-destination, passenger-name-record-locator-
       number, comment, text, other, phone-number, identity-card-number
 
@@ -990,6 +1001,15 @@ Internet-Draft              MISP core format               February 2018
    event_id represents a human-readable identifier referencing the Event
    object that the ShadowAttribute belongs to.
 
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 18]
+
+Internet-Draft              MISP core format                  April 2018
+
+
    The event_id SHOULD be updated when the event is imported to reflect
    the newly created event's id on the instance.
 
@@ -1001,15 +1021,6 @@ Internet-Draft              MISP core format               February 2018
    Attribute object that the ShadowAttribute belongs to.  A
    ShadowAttribute can this way target an existing Attribute, implying
    that it is a proposal to modify an existing Attribute, or
-
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 18]
-
-Internet-Draft              MISP core format               February 2018
-
-
    alternatively it can be a proposal to create a new Attribute for the
    containing Event.
 
@@ -1046,6 +1057,15 @@ Internet-Draft              MISP core format               February 2018
 
    org_id is represented by a JSON string and MUST be present.
 
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 19]
+
+Internet-Draft              MISP core format                  April 2018
+
+
 2.5.2.11.  proposal_to_delete
 
    proposal_to_delete is a boolean flag that sets whether the shadow
@@ -1057,14 +1077,6 @@ Internet-Draft              MISP core format               February 2018
 
    proposal_to_delete is a JSON boolean and it MUST be present.  If
    proposal_to_delete is set to true, old_id MUST NOT be 0.
-
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 19]
-
-Internet-Draft              MISP core format               February 2018
-
 
 2.5.2.12.  deleted
 
@@ -1100,6 +1112,16 @@ Internet-Draft              MISP core format               February 2018
    uuid, name and id are represented as a JSON string. uuid, name and id
    MUST be present.
 
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 20]
+
+Internet-Draft              MISP core format                  April 2018
+
+
 2.5.3.1.  Sample Org Object
 
           "Org": {
@@ -1114,13 +1136,6 @@ Internet-Draft              MISP core format               February 2018
    value is dependent on the type of the attribute.
 
    value is represented by a JSON string. value MUST be present.
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 20]
-
-Internet-Draft              MISP core format               February 2018
-
 
 2.6.  Object
 
@@ -1158,24 +1173,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 21]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 21]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 "Object": {
@@ -1229,9 +1229,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 22]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 22]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 2.6.2.2.  id
@@ -1285,9 +1285,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 23]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 23]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 2.6.2.8.  event_id
@@ -1341,9 +1341,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 24]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 24]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
    sharing_group_id is represented by a JSON string and SHOULD be
@@ -1397,9 +1397,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 25]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 25]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 "ObjectReference": {
@@ -1453,9 +1453,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 26]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 26]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 2.7.2.5.  event_id
@@ -1509,9 +1509,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 27]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 27]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 2.7.2.11.  object_uuid
@@ -1565,9 +1565,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 28]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 28]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
    element describes one singular instance of a sighting.  A sighting
@@ -1621,9 +1621,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 29]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 29]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 2.9.1.  Sample Sighting
@@ -1677,9 +1677,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 30]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 30]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 "Galaxy": [ {
@@ -1733,9 +1733,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 31]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 31]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 3.  JSON Schema
@@ -1789,9 +1789,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 32]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 32]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
        "type": "object",
@@ -1845,9 +1845,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 33]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 33]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
            "items": {
@@ -1901,9 +1901,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 34]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 34]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
            "type": "string"
@@ -1957,9 +1957,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 35]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 35]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
            "type": "string"
@@ -2013,9 +2013,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 36]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 36]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
        "properties": {
@@ -2069,9 +2069,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 37]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 37]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
          },
@@ -2125,9 +2125,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 38]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 38]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
            }
@@ -2181,9 +2181,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 39]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 39]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
          "description": {
@@ -2237,9 +2237,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 40]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 40]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
            }
@@ -2293,9 +2293,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 41]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 41]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
    o  timestamp (MUST)
@@ -2349,9 +2349,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 42]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 42]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
     "info": "Malspam 2016-04-27 - Locky",
@@ -2405,9 +2405,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 43]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 43]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 7.  Acknowledgements
@@ -2461,9 +2461,9 @@ Internet-Draft              MISP core format               February 2018
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 44]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 44]
 
-Internet-Draft              MISP core format               February 2018
+Internet-Draft              MISP core format                  April 2018
 
 
 Authors' Addresses
@@ -2517,4 +2517,4 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody        Expires August 13, 2018               [Page 45]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 45]
