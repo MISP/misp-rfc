@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2017-09-21T00:00:00Z
+% date = 2018-04-10T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -85,7 +85,7 @@ requiredOneOf is represented as a JSON list and contains a list of attribute rel
 
 #### required
 
-requiredOneOf is represented as a JSON list and contains a list of attribute relationships of which all must be present in the object to be created based on the given template. The required field **MAY** be present.
+required is represented as a JSON list and contains a list of attribute relationships of which all must be present in the object to be created based on the given template. The required field **MAY** be present.
 
 #### description
 
