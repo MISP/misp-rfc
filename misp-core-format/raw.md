@@ -212,7 +212,7 @@ sharing\_group\_id is represented by a JSON string and **SHOULD** be present. If
 
 #### extends_uuid
 
-extends\_uuid represents which event is extended by this event. The extend\_uuid is described as an Universally Unique IDentifier (UUID) [@!RFC4122] with the UUID of the extended event.
+extends\_uuid represents which event is extended by this event. The extends\_uuid is described as a Universally Unique IDentifier (UUID) [@!RFC4122] with the UUID of the extended event.
 
 extends\_uuid is represented as a JSON string. extends\_uuid **SHOULD** be present.
 
