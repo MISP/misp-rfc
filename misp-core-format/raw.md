@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2018-02-09T00:00:00Z
+% date = 2018-04-10T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -210,6 +210,11 @@ sharing\_group\_id represents a human-readable identifier referencing a Sharing 
 
 sharing\_group\_id is represented by a JSON string and **SHOULD** be present. If a distribution level other than "4" is chosen the sharing\_group\_id **MUST** be set to "0".
 
+#### extends_uuid
+
+extends\_uuid represents which event is extended by this event. The extend\_uuid is described as an Universally Unique IDentifier (UUID) [@!RFC4122] with the UUID of the extended event.
+
+extends\_uuid is represented as a JSON string. extends\_uuid **SHOULD** be present.
 
 ## Objects
 
