@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: March 25, 2018                               September 21, 2017
+Expires: October 12, 2018                                 April 10, 2018
 
 
                       MISP object template format
@@ -34,11 +34,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 25, 2018.
+   This Internet-Draft will expire on October 12, 2018.
 
 Copyright Notice
 
-   Copyright (c) 2017 IETF Trust and the persons identified as the
+   Copyright (c) 2018 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody        Expires March 25, 2018                 [Page 1]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 1]
 
-Internet-Draft         MISP object template format        September 2017
+Internet-Draft         MISP object template format            April 2018
 
 
 Table of Contents
@@ -66,14 +66,14 @@ Table of Contents
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
        2.1.1.  Object Template . . . . . . . . . . . . . . . . . . .   3
        2.1.2.  attributes  . . . . . . . . . . . . . . . . . . . . .   4
-       2.1.3.  Sample Object Template object . . . . . . . . . . . .   5
-       2.1.4.  Object Relationships  . . . . . . . . . . . . . . . .   7
-   3.  Directory . . . . . . . . . . . . . . . . . . . . . . . . . .   7
-   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   7
-   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
-     5.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
-     5.2.  Informative References  . . . . . . . . . . . . . . . . .   8
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
+       2.1.3.  Sample Object Template object . . . . . . . . . . . .   6
+       2.1.4.  Object Relationships  . . . . . . . . . . . . . . . .   9
+   3.  Directory . . . . . . . . . . . . . . . . . . . . . . . . . .  10
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  10
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  10
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .  10
+     5.2.  Informative References  . . . . . . . . . . . . . . . . .  10
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  11
 
 1.  Introduction
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Dulaunoy & Iklody        Expires March 25, 2018                 [Page 2]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 2]
 
-Internet-Draft         MISP object template format        September 2017
+Internet-Draft         MISP object template format            April 2018
 
 
 2.  Format
@@ -129,8 +129,8 @@ Internet-Draft         MISP object template format        September 2017
 
    MISP object template elements consist of an object_relation (MUST) a
    type (MUST) an object_template_id (SHOULD) a ui_priority (SHOULD) a
-   list of categories (MAY), a list of sane_default values (MAY) a
-   values_list (MAY)
+   list of categories (MAY), a list of sane_default values (MAY) or a
+   values_list (MAY).
 
 2.1.  Overview
 
@@ -159,15 +159,15 @@ Internet-Draft         MISP object template format        September 2017
 
 2.1.1.3.  required
 
-   requiredOneOf is represented as a JSON list and contains a list of
+   required is represented as a JSON list and contains a list of
    attribute relationships of which all must be present in the object to
 
 
 
 
-Dulaunoy & Iklody        Expires March 25, 2018                 [Page 3]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 3]
 
-Internet-Draft         MISP object template format        September 2017
+Internet-Draft         MISP object template format            April 2018
 
 
    be created based on the given template.  The required field MAY be
@@ -221,9 +221,9 @@ Internet-Draft         MISP object template format        September 2017
 
 
 
-Dulaunoy & Iklody        Expires March 25, 2018                 [Page 4]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 4]
 
-Internet-Draft         MISP object template format        September 2017
+Internet-Draft         MISP object template format            April 2018
 
 
 2.1.2.2.  ui-priority
@@ -268,8 +268,37 @@ Internet-Draft         MISP object template format        September 2017
 
    The multiple field MAY be present.
 
+2.1.2.7.  sane_default
+
+   sane_default is represented by a JSON list containing one or several
+   recommended/sane values for an attribute. sane_default is mutually
+   exclusive with values_list.
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 5]
+
+Internet-Draft         MISP object template format            April 2018
+
+
+   The sane_default field MAY be present.
+
+2.1.2.8.  values_list
+
+   values_list is represented by a JSON List containing one or several
+   of fixed values for an attribute. values_list is mutually exclusive
+   with sane_default.
+
+   The value_list field MAY be present.
+
 2.1.3.  Sample Object Template object
 
+   The MISP object template directory is publicly available [MISP-O] in
+   a git repository and contains more than 60 object templates.  As
+   illustration, two sample objects templates are included.
+
+2.1.3.1.  credit-card object template
 
 
 
@@ -277,9 +306,36 @@ Internet-Draft         MISP object template format        September 2017
 
 
 
-Dulaunoy & Iklody        Expires March 25, 2018                 [Page 5]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 6]
 
-Internet-Draft         MISP object template format        September 2017
+Internet-Draft         MISP object template format            April 2018
 
 
 {
@@ -333,10 +389,96 @@ Internet-Draft         MISP object template format        September 2017
 
 
 
-Dulaunoy & Iklody        Expires March 25, 2018                 [Page 6]
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 7]
 
-Internet-Draft         MISP object template format        September 2017
+Internet-Draft         MISP object template format            April 2018
 
+
+2.1.3.2.  credential object template
+
+{
+  "requiredOneOf": [
+    "password"
+  ],
+  "attributes": {
+    "text": {
+      "description": "A description of the credential(s)",
+      "disable_correlation": true,
+      "ui-priority": 1,
+      "misp-attribute": "text"
+    },
+    "username": {
+      "description": "Username related to the password(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text"
+    },
+    "password": {
+      "description": "Password",
+      "multiple": true,
+      "ui-priority": 1,
+      "misp-attribute": "text"
+    },
+    "type": {
+      "description": "Type of password(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "values_list": [
+        "password",
+        "api-key",
+        "encryption-key",
+        "unknown"
+      ]
+    },
+    "origin": {
+      "description": "Origin of the credential(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "sane_default": [
+        "bruteforce-scanning",
+        "malware-analysis",
+        "memory-analysis",
+        "network-analysis",
+        "leak",
+        "unknown"
+      ]
+    },
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 8]
+
+Internet-Draft         MISP object template format            April 2018
+
+
+    "format": {
+      "description": "Format of the password(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "values_list": [
+        "clear-text",
+        "hashed",
+        "encrypted",
+        "unknown"
+      ]
+    },
+    "notification": {
+      "description": "Mention of any notification(s) towards the potential owner(s) of the credential(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "multiple": true,
+      "values_list": [
+        "victim-notified",
+        "service-notified",
+        "none"
+      ]
+    }
+  },
+  "version": 2,
+  "description": "Credential describes one or more credential(s) including password(s), api key(s) or decryption key(s).",
+  "meta-category": "misc",
+  "uuid": "a27e98c9-9b0e-414c-8076-d201e039ca09",
+  "name": "credential"
+}
 
 2.1.4.  Object Relationships
 
@@ -345,7 +487,7 @@ Internet-Draft         MISP object template format        September 2017
    name represents the human-readable relationship type which can be
    used when creating MISP object relations.
 
-   name is represented as a JSON string. name MUST be present
+   name is represented as a JSON string. name MUST be present.
 
 2.1.4.2.  description
 
@@ -353,11 +495,22 @@ Internet-Draft         MISP object template format        September 2017
    description of the object relationship type.  The description field
    MUST be present.
 
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018                [Page 9]
+
+Internet-Draft         MISP object template format            April 2018
+
+
 2.1.4.3.  format
 
    format is represented by a JSON list containing a list of formats
    that the relationship type is valid for and can be mapped to.  The
-   format field MUST be present
+   format field MUST be present.
 
 3.  Directory
 
@@ -385,15 +538,6 @@ Internet-Draft         MISP object template format        September 2017
               DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
               editor.org/info/rfc2119>.
 
-
-
-
-
-Dulaunoy & Iklody        Expires March 25, 2018                 [Page 7]
-
-Internet-Draft         MISP object template format        September 2017
-
-
    [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
               Unique IDentifier (UUID) URN Namespace", RFC 4122,
               DOI 10.17487/RFC4122, July 2005, <https://www.rfc-
@@ -408,6 +552,15 @@ Internet-Draft         MISP object template format        September 2017
 
    [MISP-O]   MISP, , "MISP Objects - shared and common object
               templates", <https://github.com/MISP/misp-objects>.
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 10]
+
+Internet-Draft         MISP object template format            April 2018
+
 
 Authors' Addresses
 
@@ -445,4 +598,19 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody        Expires March 25, 2018                 [Page 8]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 11]
