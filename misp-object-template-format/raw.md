@@ -63,13 +63,11 @@ MISP object templates are composed of the MISP object template (**MUST**) struct
 
 MISP object templates themselves consist of a name (**MUST**), a meta-category (**MUST**) and a description (**SHOULD**). They are identified by a uuid (**MUST**) and a version (**MUST**). The list of requirements when it comes to the contained MISP object template elements is defined in the requirements field (**OPTIONAL**).
 
-MISP object template elements consist of an object\_relation (**MUST**) a type (**MUST**) an object\_template\_id (**SHOULD**) a ui\_priority (**SHOULD**) a list of categories (**MAY**), a list of sane\_default values (**MAY**) a values\_list (**MAY**)
+MISP object template elements consist of an object\_relation (**MUST**) a type (**MUST**) an object\_template\_id (**SHOULD**) a ui\_priority (**SHOULD**) a list of categories (**MAY**), a list of sane\_default values (**MAY**) or a values\_list (**MAY**).
 
 ## Overview
 
 The MISP object template format uses the JSON [@!RFC4627] format. Each template is represented as a JSON object with meta information including the following fields: uuid, requiredOneOf, description, version, meta-category, name.
-
-
 
 ### Object Template
 
@@ -147,7 +145,23 @@ multiple is represented by a JSON boolean value. It marks the MISP object templa
 
 The multiple field **MAY** be present.
 
+#### sane\_default
+
+sane\_default is represented by a JSON list containing one or several recommended/sane values for an attribute. sane\_default is mutually exclusive with values\_list.
+
+The sane\_default field **MAY** be present.
+
+#### values\_list
+
+values\_list is represented by a JSON List containing one or several of fixed values for an attribute. values\_list is mutually exclusive with sane\_default.
+
+The value\_list field **MAY** be present.
+
 ### Sample Object Template object
+
+The MISP object template directory is publicly available [@?MISP-O] in a git repository and contains more than 60 object templates. As illustration, two sample objects templates are included.
+
+#### credit-card object template
 
 ~~~~
 {
@@ -199,13 +213,93 @@ The multiple field **MAY** be present.
 }
 ~~~~
 
+#### credential object template
+
+~~~~
+{
+  "requiredOneOf": [
+    "password"
+  ],
+  "attributes": {
+    "text": {
+      "description": "A description of the credential(s)",
+      "disable_correlation": true,
+      "ui-priority": 1,
+      "misp-attribute": "text"
+    },
+    "username": {
+      "description": "Username related to the password(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text"
+    },
+    "password": {
+      "description": "Password",
+      "multiple": true,
+      "ui-priority": 1,
+      "misp-attribute": "text"
+    },
+    "type": {
+      "description": "Type of password(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "values_list": [
+        "password",
+        "api-key",
+        "encryption-key",
+        "unknown"
+      ]
+    },
+    "origin": {
+      "description": "Origin of the credential(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "sane_default": [
+        "bruteforce-scanning",
+        "malware-analysis",
+        "memory-analysis",
+        "network-analysis",
+        "leak",
+        "unknown"
+      ]
+    },
+    "format": {
+      "description": "Format of the password(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "values_list": [
+        "clear-text",
+        "hashed",
+        "encrypted",
+        "unknown"
+      ]
+    },
+    "notification": {
+      "description": "Mention of any notification(s) towards the potential owner(s) of the credential(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "multiple": true,
+      "values_list": [
+        "victim-notified",
+        "service-notified",
+        "none"
+      ]
+    }
+  },
+  "version": 2,
+  "description": "Credential describes one or more credential(s) including password(s), api key(s) or decryption key(s).",
+  "meta-category": "misc",
+  "uuid": "a27e98c9-9b0e-414c-8076-d201e039ca09",
+  "name": "credential"
+}
+~~~~
+
 ### Object Relationships
 
 #### name
 
 name represents the human-readable relationship type which can be used when creating MISP object relations.
 
-name is represented as a JSON string. name **MUST** be present
+name is represented as a JSON string. name **MUST** be present.
 
 #### description
 
@@ -213,7 +307,7 @@ description is represented as a JSON string and contains the description of the 
 
 #### format
 
-format is represented by a JSON list containing a list of formats that the relationship type is valid for and can be mapped to. The format field **MUST** be present
+format is represented by a JSON list containing a list of formats that the relationship type is valid for and can be mapped to. The format field **MUST** be present.
 
 # Directory
 
