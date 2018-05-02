@@ -181,7 +181,7 @@ Example use of the encryption, extensions, ransomnotes fields in the ransomware 
 
 source-uuid, target-uuid **SHALL** be used to describe relationships. source-uuid and target-uuid represent the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. source-uuid and target-uuid **MUST** be preserved.
 
-Example use of the source-uuid, target-uuid fields in the mitre-entreprise-attack-relationship galaxy:
+Example use of the source-uuid, target-uuid fields in the mitre-enterprise-attack-relationship galaxy:
 ~~~~
 {
   "meta": {
@@ -189,7 +189,7 @@ Example use of the source-uuid, target-uuid fields in the mitre-entreprise-attac
     "target-uuid": "2f1a9fd0-3b7c-4d77-a358-78db13adbe78"
   },
   "uuid": "cfc7da70-d7c5-4508-8f50-1c3107269633",
-  "value": "menuPass uses EvilGrab"
+  "value": "menuPass (G0045) uses EvilGrab (S0152)"
 }
 ~~~~
 
