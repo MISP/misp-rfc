@@ -82,7 +82,7 @@ The MISP galaxy format uses the JSON [@!RFC4627] format. Each galaxy is represen
 
 name defines the name of the galaxy. The name is represented as a string and **MUST** be present. The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved. For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference and **MUST** be present. The description is represented as a string and **MUST** be present. The uuid is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. The source is represented as a string and **MUST** be present. Authors are represented as an array containing one or more authors and **MUST** be present.
 
-Values are represented as an array containing one or more value and **MUST** be present. Values defines all values available in the galaxy.
+Values are represented as an array containing one or more values and **MUST** be present. Values defines all values available in the galaxy.
 
 ## values
 
