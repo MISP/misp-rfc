@@ -86,7 +86,7 @@ Values are represented as an array containing one or more values and **MUST** be
 
 ## values
 
-The values array contains one or more JSON objects which represents all the possible values in the galaxy. The JSON object contains four fields: value, description, uuid and meta.
+The values array contains one or more JSON objects which represent all the possible values in the galaxy. The JSON object contains four fields: value, description, uuid and meta.
 The value is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. The meta or metadata is represented as a JSON list and **SHOULD** be present.
 The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. The uuid **SHOULD** can be present and **MUST** be preserved.
 
