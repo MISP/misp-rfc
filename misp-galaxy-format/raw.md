@@ -80,13 +80,13 @@ Clusters are represented as a JSON [@!RFC4627] dictionary.
 
 The MISP galaxy format uses the JSON [@!RFC4627] format. Each galaxy is represented as a JSON object with meta information including the following fields: name, uuid, description, version, type, authors, source, values.
 
-name defines the name of the galaxy. The name is represented as a string and **MUST** be present. The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved. For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference and **MUST** be present. The description is represented as a string and **MUST** be present. The uuid is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. The source is represented as a string and **MUST** be present. Authors are represented as an array containing one or more author and **MUST** be present.
+name defines the name of the galaxy. The name is represented as a string and **MUST** be present. The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved. For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference and **MUST** be present. The description is represented as a string and **MUST** be present. The uuid is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. The source is represented as a string and **MUST** be present. Authors are represented as an array containing one or more authors and **MUST** be present.
 
-Values are represented as an array containing one or more value and **MUST** be present. Values defines all values available in the galaxy.
+Values are represented as an array containing one or more values and **MUST** be present. Values defines all values available in the galaxy.
 
 ## values
 
-The values array contains one or more JSON objects which represents all the possible values in the galaxy. The JSON object contains four fields: value, description, uuid and meta.
+The values array contains one or more JSON objects which represent all the possible values in the galaxy. The JSON object contains four fields: value, description, uuid and meta.
 The value is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. The meta or metadata is represented as a JSON list and **SHOULD** be present.
 The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. The uuid **SHOULD** can be present and **MUST** be preserved.
 
@@ -100,7 +100,7 @@ derivated_from, refs, synonyms **SHALL** be used to give further informations. r
 
 date, status **MAY** be used to give time information about an cluster. date is represented as a string describing a time or period and **SHALL** be present. status is represented as a string describing the current status of the clusters. It **MAY** also describe a time or period and **SHALL** be present.
 
-colour fields MAY be used at predicates or values level to set a specify colour that MAY be used by the implementation. The colour field is described as an RGB colour fill in hexadecimal representation.
+colour fields **MAY** be used at predicates or values level to set a specify colour that **MAY** be used by the implementation. The colour field is described as an RGB colour fill in hexadecimal representation.
 
 complexity, effectiveness, impact, possible_issues **MAY** be used to give further information in preventive-measure galaxy. complexity is represented by an enumerated value from a fixed vocabulary and **SHALL** be present. effectiveness is represented by an enumerated value from a fixed vocabulary and **SHALL** be present. impact is represented by an enumerated value from a fixed vocabulary and **SHALL** be present. possible_issues is represented as a string and **SHOULD** be present.
 
@@ -181,7 +181,7 @@ Example use of the encryption, extensions, ransomnotes fields in the ransomware 
 
 source-uuid, target-uuid **SHALL** be used to describe relationships. source-uuid and target-uuid represent the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. source-uuid and target-uuid **MUST** be preserved.
 
-Example use of the source-uuid, target-uuid fields in the mitre-entreprise-attack-relationship galaxy:
+Example use of the source-uuid, target-uuid fields in the mitre-enterprise-attack-relationship galaxy:
 ~~~~
 {
   "meta": {
@@ -189,7 +189,7 @@ Example use of the source-uuid, target-uuid fields in the mitre-entreprise-attac
     "target-uuid": "2f1a9fd0-3b7c-4d77-a358-78db13adbe78"
   },
   "uuid": "cfc7da70-d7c5-4508-8f50-1c3107269633",
-  "value": "menuPass uses EvilGrab"
+  "value": "menuPass (G0045) uses EvilGrab (S0152)"
 }
 ~~~~
 

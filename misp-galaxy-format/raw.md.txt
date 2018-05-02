@@ -133,9 +133,9 @@ Internet-Draft             MISP galaxy format                 April 2018
    and MUST be present.  The version is represented as a decimal and
    MUST be present.  The source is represented as a string and MUST be
    present.  Authors are represented as an array containing one or more
-   author and MUST be present.
+   authors and MUST be present.
 
-   Values are represented as an array containing one or more value and
+   Values are represented as an array containing one or more values and
    MUST be present.  Values defines all values available in the galaxy.
 
 2.2.  values
