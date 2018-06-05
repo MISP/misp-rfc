@@ -677,6 +677,7 @@ A MISP document containing an Object **MUST** contain a name, a meta-category, a
    "deleted": false,
    "ObjectReference": [],
    "Attribute": [
+     {
                  "id": "7822",
                  "type": "filename",
                  "category": "Payload delivery",
@@ -693,7 +694,8 @@ A MISP document containing an Object **MUST** contain a name, a meta-category, a
                  "object_relation": "filename",
                  "value": "StarCraft.exe",
                  "ShadowAttribute": []
-                ]
+     }
+   ]
 }
 ~~~~~
 
@@ -1213,11 +1215,169 @@ or parsing.
         }
       }
     },
+    "object": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "template_uuid": {
+          "type": "string"
+        },
+        "template_version": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "meta-category": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "distribution": {
+          "type": "string"
+        },
+        "sharing_group_id": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "ObjectReference": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/defs/objectreference"
+            }
+        },
+        "Attribute": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/attribute"
+          }
+        }
+      }
+    },
+    "sighthing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "attribute_id": {
+          "type": "string"
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "org_id": {
+          "type": "string"
+        },
+        "date_sighting": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "Organisation": {
+            "$ref": "#/defs/organisation"
+        }
+      }
+    },
+    "organisation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "objectreference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deleted": {
+          "type": "boolean"
+        },
+        "object_id": {
+          "type": "string"
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "referenced_id": {
+          "type": "string"
+        },
+        "referenced_uuid": {
+          "type": "string"
+        },
+        "referenced_type": {
+          "type": "string"
+        },
+        "relationship_type": {
+          "type": "string"
+        },
+        "object_uuid": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "Object": {
+          "$ref": "#/defs/object"
+        }
+      }
+    },
     "attribute": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "id": {
+          "type": "string"
+        },
+        "old_id": {
           "type": "string"
         },
         "type": {
@@ -1233,6 +1393,21 @@ or parsing.
           "type": "string"
         },
         "event_id": {
+          "type": "string"
+        },
+        "event_uuid": {
+          "type": "string"
+        },
+        "proposal_to_delete": {
+          "type": "boolean"
+        },
+        "validationIssue": {
+          "type": "boolean"
+        },
+        "Org": {
+          "$ref": "#/defs/organisation"
+        },
+        "org_id": {
           "type": "string"
         },
         "distribution": {
@@ -1259,6 +1434,12 @@ or parsing.
         "data": {
           "type": "string"
         },
+        "object_relation": {
+          "type": ["string", "null"]
+        },
+        "object_id": {
+          "type": "string"
+        },
         "SharingGroup": {
           "$ref": "#/defs/sharing_group"
         },
@@ -1269,9 +1450,23 @@ or parsing.
             "$ref": "#/defs/attribute"
           }
         },
-        "Tag": {
+        "Sighting": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/defs/sighthing"
+            }
+        },
+        "Galaxy": {
           "type": "array",
           "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/galaxy"
+          }
+        },
+        "Tag": {
+          "uniqueItems": true,
+          "type": "array",
           "items": {
             "$ref": "#/defs/tag"
           }
@@ -1293,6 +1488,9 @@ or parsing.
         },
         "date": {
           "type": "string"
+        },
+        "extends_uuid": {
+            "type": "string"
         },
         "threat_level_id": {
           "type": "string"
@@ -1379,6 +1577,13 @@ or parsing.
             "$ref": "#/defs/galaxy"
           }
         },
+        "Object": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "$ref": "#/defs/object"
+            }
+        },
         "Tag": {
           "type": "array",
           "uniqueItems": true,
@@ -1406,6 +1611,9 @@ or parsing.
         },
         "hide_tag": {
           "type": "boolean"
+        },
+        "user_id": {
+          "type": "string"
         }
       }
     },
@@ -1429,6 +1637,12 @@ or parsing.
           "type": "string"
         },
         "version": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "namespace": {
           "type": "string"
         },
         "GalaxyCluster": {
@@ -1463,6 +1677,9 @@ or parsing.
           "type": "string"
         },
         "galaxy_id": {
+          "type": "string"
+        },
+        "version": {
           "type": "string"
         },
         "source": {
