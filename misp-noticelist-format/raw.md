@@ -87,3 +87,23 @@ The notice array contains one or more JSON objects which represent all the possi
 field, value, tags and message.
 
 scope is represented as an array containing one or more scopes to apply the notice ans **MUST** be present. Each scope is a string and **MUST** be present. field is represented as an array containing one or more fields to apply the notice ans **MUST** be present. Each field is a string and **MUST** be present. value is represented as an array containing one or more values and **MUST** be present. Each value is a string and **MUST** be present. tags is represented as an array containing one or more values and **MUST** be present. Each tag is a string and **MUST** be present. message is represented as a JSON dictionary containing one or more messages translated in different languages and **MUST** be present. Each element in the message dictionary is a couple name/value where the name designate a language and the value contains a string representing a message to display to the user. These elements **MUST** be present.
+
+Example of an element of the notice array
+
+~~~~
+{
+   "scope": ["attribute"],
+   "field": ["category", "meta-category"],
+   "value": [
+      "Targeting data",
+      "Attribution",
+      "Financial fraud",
+      "Social network",
+      "Person"
+   ],
+   "tags": ["fpf:degrees-of-identifiability='explicitly-personal'"],
+   "message": {
+      "en": "This attribute is likely to contain personal data and the data subject is likely to be directly identifiable. Please verify that the processing of personal data is necessary and proportionate to the purposes (e.g. ensuring network and information security) and that you have a legal ground to share those personal data. Where applicable, please ensure that you have taken the necessary steps to ensure transparency towards the data subject in relation to the processing of their personal data."
+   }
+}
+~~~~
