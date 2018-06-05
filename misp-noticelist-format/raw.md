@@ -52,14 +52,16 @@
 
 .# Abstract
 
-This document describes the MISP noticelist format which describes a simple JSON format to represent list of elements
+This document describes the MISP noticelist format which describes a simple JSON format to represent list of notices used to inform MISP users of the legal, privacy, policy or even technical implications of using specific attributes, categories or objects.
 
-represent galaxies and clusters that can be attached to MISP events or attributes. A public directory of MISP galaxies is available and relies on the MISP galaxy format. MISP galaxies are used to add further informations on a MISP event. MISP galaxy is a public repository [@?MISP-G] of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing.
+MISP noticelist is a public repository of noticelist used to provide information to the user.
 
 {mainmatter}
 
 # Introduction
-Sharing threat information became a fundamental requirements on the Internet, security and intelligence community at large. Threat information can include indicators of compromise, malicious file indicators, financial fraud indicators or even detailed information about a threat actor. Therefore, there are still information that can not be shared freely to everyone, for several reasons, and it is essential for the user to have a way to know about which information he have to be cautious, as well as an easy way for administrators to give user a reminder of it.
+
+As the user navigates through the MISP interface, he can sometimes be lost about what to do or not to do on the plaform. Noticelist have been created in order to help and guide the user during his use of MISP, by showing several information to him, or giving him easy reminders.
+For instance, due to GDRP, users are expected to be more careful about the information they share, and the GDPR noticelist can be used to help them with this new regulation.
 
 MISP noticelist is a public repository of list of notices to show to the user about the information he uses or share.
 
