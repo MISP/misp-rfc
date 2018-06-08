@@ -1819,7 +1819,8 @@ standard threat information that might already include malicious intended inputs
 # Acknowledgements
 
 The authors wish to thank all the MISP community who are supporting the creation
-of open standards in threat intelligence sharing.
+of open standards in threat intelligence sharing. A special thank to Nicolas Bareil
+for the review of the JSON Schema.
 
 # Sample MISP file
 
