@@ -52,15 +52,13 @@
 
 .# Abstract
 
-This document describes the MISP noticelist format which describes a simple JSON format to represent list of notices used to inform MISP users of the legal, privacy, policy or even technical implications of using specific attributes, categories or objects.
-
-MISP noticelist is a public repository of noticelist used to provide information to the user.
+This document describes the MISP noticelist format which describes a simple JSON format to represent list of notices used to inform MISP users of the legal, privacy, policy or even technical implications of using, storing and sharing specific attributes, categories or objects. MISP noticelist can be used in threat intelligence or information sharing platform. A reference implementation and public repository is maintained within the open source MISP project.
 
 {mainmatter}
 
 # Introduction
 
-As the user navigates through the MISP interface, he can sometimes be lost about what to do or not to do on the plaform. Noticelist have been created in order to help and guide the user during his use of MISP, by showing several information to him, or giving him easy reminders.
+As the user navigates through the MISP interface, he can sometimes be lost about what to do or not to do on the platform. Noticelist have been created in order to help and guide the user during his use of MISP, by showing several information to him, or giving him easy reminders.
 For instance, due to GDRP, users are expected to be more careful about the information they share, and the GDPR noticelist can be used to help them with this new regulation.
 
 MISP noticelist is a public repository of list of notices to show to the user about the information he uses or share.
@@ -79,16 +77,18 @@ Noticelist are represented as a JSON [@!RFC4627] dictionary.
 
 The MISP noticelist format uses the JSON [@!RFC4627] format. Each noticelist is represented as a JSON object with meta information including the following fields: name, expended_name, ref, geographical_area and notice.
 
-name defines the name of the noticelist. It **MUST** match the name of the folder containing the list. The name is represented as a string and **MUST** be present. expended_name defines the full name of the noticelist. The expended_name is represented by a string and **MUST** be present. ref defines the references used to create the notice list. ref is represented as an array containing one or more references and **MUST** pe present. Each reference is a string and **MUST** be present. geographical_area defines the geographical area affected by this noticelist. geographical_area is represented as an array containing one or more descriptions of geographical area ans **SHOULD** be present. Each geographical area is a string and **SHOULD** be present.
+name defines the name of the noticelist. It **MUST** match the name of the folder containing the list. The name is represented as a string and **MUST** be present. expanded_name defines the full name of the noticelist. The expanded_name is represented by a string and **MUST** be present. ref defines the references used to create the notice list. ref is represented as an array containing one or more references and **MUST** pe present. Each reference is a string and **MUST** be present. geographical_area defines the geographical area affected by this noticelist. geographical_area is represented as an array containing one or more descriptions of geographical area ans **SHOULD** be present. Each geographical area is a string and **SHOULD** be present.
 
 notice is represented as an array containing one or more values and **MUST** be present. notice defines all values available in the noticelist.
+
+The MISP noticelist directory is publicly available [@?MISP-N] in a git repository and can be freely reused in other tools such threat intelligence or information sharing platform.
 
 ## notice
 
 The notice array contains one or more JSON objects which represent all the possible values in the noticelist. The JSON object contains five fields: scope,
 field, value, tags and message.
 
-scope is represented as an array containing one or more scopes to apply the notice ans **MUST** be present. Each scope is a string and **MUST** be present. field is represented as an array containing one or more fields to apply the notice ans **MUST** be present. Each field is a string and **MUST** be present. value is represented as an array containing one or more values and **MUST** be present. Each value is a string and **MUST** be present. tags is represented as an array containing one or more values and **MUST** be present. Each tag is a string and **MUST** be present. message is represented as a JSON dictionary containing one or more messages translated in different languages and **MUST** be present. Each element in the message dictionary is a couple name/value where the name designate a language and the value contains a string representing a message to display to the user. These elements **MUST** be present.
+scope is represented as an array containing one or more scopes to apply the notice ans **MUST** be present. Each scope is a string and **MUST** be present. field is represented as an array containing one or more fields to apply the notice ans **MUST** be present. Each field is a string and **MUST** be present. value is represented as an array containing one or more values and **MUST** be present. Each value is a string and **MUST** be present. tags is represented as an array containing one or more values and **MUST** be present. Each tag is a string and **SHALL** be present. message is represented as a JSON dictionary containing one or more messages translated in different languages and **MUST** be present. Each element in the message dictionary is a couple name/value where the name designate a language and the value contains a string representing a message to display to the user. These elements **MUST** be present.
 
 Example of an element of the notice array
 
@@ -109,3 +109,18 @@ Example of an element of the notice array
    }
 }
 ~~~~
+
+# Acknowledgements
+
+The authors wish to thank all the MISP community who are supporting the creation
+of open standards in threat intelligence sharing.
+
+<reference anchor='MISP-N' target='https://github.com/MISP/misp-noticelist'>
+  <front>
+   <title>Notice lists public repository to inform users of MISP about legal or technical implication for some attributes, categories and objects.</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+
+{backmatter}
