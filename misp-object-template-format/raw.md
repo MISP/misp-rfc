@@ -61,9 +61,9 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 MISP object templates are composed of the MISP object template (**MUST**) structure itself and a list of MISP object template elements (**SHOULD**) describing the list of possible attributes belonging to the resulting object, along with their context and settings.
 
-MISP object templates themselves consist of a name (**MUST**), a meta-category (**MUST**) and a description (**SHOULD**). They are identified by a uuid (**MUST**) and a version (**MUST**). The list of requirements when it comes to the contained MISP object template elements is defined in the requirements field (**OPTIONAL**).
+MISP object templates themselves consist of a name (**MUST**), a meta-category (**MUST**) and a description (**SHOULD**). They are identified by a uuid (**MUST**) and a version (**MUST**). For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference. The list of requirements when it comes to the contained MISP object template elements is defined in the requirements field (**OPTIONAL**).
 
-MISP object template elements consist of an object\_relation (**MUST**) a type (**MUST**) an object\_template\_id (**SHOULD**) a ui\_priority (**SHOULD**) a list of categories (**MAY**), a list of sane\_default values (**MAY**) or a values\_list (**MAY**).
+MISP object template elements consist of an object\_relation (**MUST**), a type (**MUST**), an object\_template\_id (**SHOULD**), a ui\_priority (**SHOULD**), a list of categories (**MAY**), a list of sane\_default values (**MAY**) or a values\_list (**MAY**).
 
 ## Overview
 
