@@ -30,7 +30,7 @@ Status of This Memo
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
-   Drafts is at http://datatracker.ietf.org/drafts/current/.
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
 
    Internet-Drafts are draft documents valid for a maximum of six months
    and may be updated, replaced, or obsoleted by other documents at any
@@ -46,7 +46,7 @@ Copyright Notice
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
-   (http://trustee.ietf.org/license-info) in effect on the date of
+   (https://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
@@ -93,17 +93,17 @@ Table of Contents
      2.10. Galaxy  . . . . . . . . . . . . . . . . . . . . . . . . .  30
        2.10.1.  Sample Galaxy  . . . . . . . . . . . . . . . . . . .  30
    3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  32
-   4.  Manifest  . . . . . . . . . . . . . . . . . . . . . . . . . .  41
-     4.1.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .  41
-       4.1.1.  Sample Manifest . . . . . . . . . . . . . . . . . . .  42
-   5.  Implementation  . . . . . . . . . . . . . . . . . . . . . . .  43
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  43
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  44
-   8.  Sample MISP file  . . . . . . . . . . . . . . . . . . . . . .  44
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  44
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  44
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  44
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  45
+   4.  Manifest  . . . . . . . . . . . . . . . . . . . . . . . . . .  46
+     4.1.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .  46
+       4.1.1.  Sample Manifest . . . . . . . . . . . . . . . . . . .  47
+   5.  Implementation  . . . . . . . . . . . . . . . . . . . . . . .  48
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  48
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  48
+   8.  Sample MISP file  . . . . . . . . . . . . . . . . . . . . . .  48
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  48
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  48
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  49
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  49
 
 
 
@@ -1194,6 +1194,7 @@ Internet-Draft              MISP core format                  April 2018
    "deleted": false,
    "ObjectReference": [],
    "Attribute": [
+     {
                  "id": "7822",
                  "type": "filename",
                  "category": "Payload delivery",
@@ -1210,7 +1211,8 @@ Internet-Draft              MISP core format                  April 2018
                  "object_relation": "filename",
                  "value": "StarCraft.exe",
                  "ShadowAttribute": []
-                ]
+     }
+   ]
 }
 
 2.6.2.  Object Attributes
@@ -1221,8 +1223,6 @@ Internet-Draft              MISP core format                  April 2018
    the object.  The uuid MUST be preserved for any updates or transfer
    of the same object.  UUID version 4 is RECOMMENDED when assigning it
    to a new object.
-
-
 
 
 
@@ -1934,12 +1934,202 @@ Internet-Draft              MISP core format                  April 2018
          }
        }
      },
+     "object": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "uuid": {
+           "type": "string"
+         },
+         "name": {
+           "type": "string"
+         },
+         "event_id": {
+           "type": "string"
+         },
+         "description": {
+           "type": "string"
+         },
+         "template_uuid": {
+           "type": "string"
+         },
+         "template_version": {
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 35]
+
+Internet-Draft              MISP core format                  April 2018
+
+
+           "type": "string"
+         },
+         "id": {
+           "type": "string"
+         },
+         "meta-category": {
+           "type": "string"
+         },
+         "deleted": {
+           "type": "boolean"
+         },
+         "timestamp": {
+           "type": "string"
+         },
+         "distribution": {
+           "type": "string"
+         },
+         "sharing_group_id": {
+           "type": "string"
+         },
+         "comment": {
+           "type": "string"
+         },
+         "ObjectReference": {
+             "type": "array",
+             "uniqueItems": true,
+             "items": {
+               "$ref": "#/defs/objectreference"
+             }
+         },
+         "Attribute": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/attribute"
+           }
+         }
+       }
+     },
+     "sighthing": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "attribute_id": {
+           "type": "string"
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 36]
+
+Internet-Draft              MISP core format                  April 2018
+
+
+         },
+         "event_id": {
+           "type": "string"
+         },
+         "source": {
+           "type": "string"
+         },
+         "type": {
+           "type": "string"
+         },
+         "org_id": {
+           "type": "string"
+         },
+         "date_sighting": {
+           "type": "string"
+         },
+         "uuid": {
+           "type": "string"
+         },
+         "Organisation": {
+             "$ref": "#/defs/organisation"
+         }
+       }
+     },
+     "organisation": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "id": {
+           "type": "string"
+         },
+         "uuid": {
+           "type": "string"
+         },
+         "name": {
+           "type": "string"
+         }
+       }
+     },
+     "objectreference": {
+       "type": "object",
+       "additionalProperties": false,
+       "properties": {
+         "deleted": {
+           "type": "boolean"
+         },
+         "object_id": {
+           "type": "string"
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 37]
+
+Internet-Draft              MISP core format                  April 2018
+
+
+         },
+         "event_id": {
+           "type": "string"
+         },
+         "timestamp": {
+           "type": "string"
+         },
+         "id": {
+           "type": "string"
+         },
+         "uuid": {
+           "type": "string"
+         },
+         "type": {
+           "type": "string"
+         },
+         "referenced_id": {
+           "type": "string"
+         },
+         "referenced_uuid": {
+           "type": "string"
+         },
+         "referenced_type": {
+           "type": "string"
+         },
+         "relationship_type": {
+           "type": "string"
+         },
+         "object_uuid": {
+           "type": "string"
+         },
+         "comment": {
+           "type": "string"
+         },
+         "Object": {
+           "$ref": "#/defs/object"
+         }
+       }
+     },
      "attribute": {
        "type": "object",
        "additionalProperties": false,
        "properties": {
          "id": {
            "type": "string"
+         },
+         "old_id": {
+           "type": "string"
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 38]
+
+Internet-Draft              MISP core format                  April 2018
+
+
          },
          "type": {
            "type": "string"
@@ -1954,14 +2144,21 @@ Internet-Draft              MISP core format                  April 2018
            "type": "string"
          },
          "event_id": {
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 35]
-
-Internet-Draft              MISP core format                  April 2018
-
-
+           "type": "string"
+         },
+         "event_uuid": {
+           "type": "string"
+         },
+         "proposal_to_delete": {
+           "type": "boolean"
+         },
+         "validationIssue": {
+           "type": "boolean"
+         },
+         "Org": {
+           "$ref": "#/defs/organisation"
+         },
+         "org_id": {
            "type": "string"
          },
          "distribution": {
@@ -1981,11 +2178,25 @@ Internet-Draft              MISP core format                  April 2018
          },
          "disable_correlation": {
            "type": "boolean"
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 39]
+
+Internet-Draft              MISP core format                  April 2018
+
+
          },
          "value": {
            "type": "string"
          },
          "data": {
+           "type": "string"
+         },
+         "object_relation": {
+           "type": ["string", "null"]
+         },
+         "object_id": {
            "type": "string"
          },
          "SharingGroup": {
@@ -1998,9 +2209,23 @@ Internet-Draft              MISP core format                  April 2018
              "$ref": "#/defs/attribute"
            }
          },
-         "Tag": {
+         "Sighting": {
+             "type": "array",
+             "uniqueItems": true,
+             "items": {
+               "$ref": "#/defs/sighthing"
+             }
+         },
+         "Galaxy": {
            "type": "array",
            "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/galaxy"
+           }
+         },
+         "Tag": {
+           "uniqueItems": true,
+           "type": "array",
            "items": {
              "$ref": "#/defs/tag"
            }
@@ -2009,15 +2234,15 @@ Internet-Draft              MISP core format                  April 2018
      },
      "event": {
        "type": "object",
-       "additionalProperties": false,
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 36]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 40]
 
 Internet-Draft              MISP core format                  April 2018
 
 
+       "additionalProperties": false,
        "properties": {
          "id": {
            "type": "string"
@@ -2030,6 +2255,9 @@ Internet-Draft              MISP core format                  April 2018
          },
          "date": {
            "type": "string"
+         },
+         "extends_uuid": {
+             "type": "string"
          },
          "threat_level_id": {
            "type": "string"
@@ -2062,18 +2290,18 @@ Internet-Draft              MISP core format                  April 2018
            "type": "boolean"
          },
          "publish_timestamp": {
-           "type": "string"
-         },
-         "sharing_group_id": {
-           "type": "string"
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 37]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 41]
 
 Internet-Draft              MISP core format                  April 2018
 
 
+           "type": "string"
+         },
+         "sharing_group_id": {
+           "type": "string"
          },
          "disable_correlation": {
            "type": "boolean"
@@ -2118,19 +2346,26 @@ Internet-Draft              MISP core format                  April 2018
            }
          },
          "Galaxy": {
-           "type": "array",
-           "uniqueItems": true,
-           "items": {
-             "$ref": "#/defs/galaxy"
 
 
 
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 38]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 42]
 
 Internet-Draft              MISP core format                  April 2018
 
 
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
+             "$ref": "#/defs/galaxy"
            }
+         },
+         "Object": {
+             "type": "array",
+             "uniqueItems": true,
+             "items": {
+                 "$ref": "#/defs/object"
+             }
          },
          "Tag": {
            "type": "array",
@@ -2159,11 +2394,22 @@ Internet-Draft              MISP core format                  April 2018
          },
          "hide_tag": {
            "type": "boolean"
+         },
+         "user_id": {
+           "type": "string"
          }
        }
      },
      "galaxy": {
        "type": "object",
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 43]
+
+Internet-Draft              MISP core format                  April 2018
+
+
        "additionalProperties": false,
        "properties": {
          "id": {
@@ -2178,18 +2424,16 @@ Internet-Draft              MISP core format                  April 2018
          "type": {
            "type": "string"
          },
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 39]
-
-Internet-Draft              MISP core format                  April 2018
-
-
          "description": {
            "type": "string"
          },
          "version": {
+           "type": "string"
+         },
+         "icon": {
+           "type": "string"
+         },
+         "namespace": {
            "type": "string"
          },
          "GalaxyCluster": {
@@ -2214,6 +2458,14 @@ Internet-Draft              MISP core format                  April 2018
          "type": {
            "type": "string"
          },
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 44]
+
+Internet-Draft              MISP core format                  April 2018
+
+
          "value": {
            "type": "string"
          },
@@ -2226,6 +2478,9 @@ Internet-Draft              MISP core format                  April 2018
          "galaxy_id": {
            "type": "string"
          },
+         "version": {
+           "type": "string"
+         },
          "source": {
            "type": "string"
          },
@@ -2234,14 +2489,6 @@ Internet-Draft              MISP core format                  April 2018
            "uniqueItems": true,
            "items": {
              "type": "string"
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 40]
-
-Internet-Draft              MISP core format                  April 2018
-
-
            }
          },
          "tag_id": {
@@ -2263,6 +2510,17 @@ Internet-Draft              MISP core format                  April 2018
      "Event"
    ]
  }
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 45]
+
+Internet-Draft              MISP core format                  April 2018
+
 
 4.  Manifest
 
@@ -2290,14 +2548,6 @@ Internet-Draft              MISP core format                  April 2018
 
    o  analysis (SHALL)
 
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 41]
-
-Internet-Draft              MISP core format                  April 2018
-
-
    o  timestamp (MUST)
 
    o  date (MUST)
@@ -2319,6 +2569,14 @@ Internet-Draft              MISP core format                  April 2018
    PGP signature is a MUST to ensure integrity of the manifest file.  A
    detached PGP signature for a manifest file is a manifest.json.asc
    file containing the PGP signature.
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 46]
+
+Internet-Draft              MISP core format                  April 2018
+
 
 4.1.1.  Sample Manifest
 
@@ -2346,14 +2604,6 @@ Internet-Draft              MISP core format                  April 2018
     "threat_level_id": "3"
   },
   "5720accd-dd28-45f8-80e5-4605950d210f": {
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 42]
-
-Internet-Draft              MISP core format                  April 2018
-
-
     "info": "Malspam 2016-04-27 - Locky",
     "Orgc": {
       "id": "2",
@@ -2376,6 +2626,14 @@ Internet-Draft              MISP core format                  April 2018
     ],
     "timestamp": "1461764231",
     "date": "2016-04-27",
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 47]
+
+Internet-Draft              MISP core format                  April 2018
+
+
     "threat_level_id": "3"
   }
 }
@@ -2401,19 +2659,11 @@ Internet-Draft              MISP core format                  April 2018
    inputs beside the standard threat information that might already
    include malicious intended inputs.
 
-
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 43]
-
-Internet-Draft              MISP core format                  April 2018
-
-
 7.  Acknowledgements
 
    The authors wish to thank all the MISP community who are supporting
-   the creation of open standards in threat intelligence sharing.
+   the creation of open standards in threat intelligence sharing.  A
+   special thank to Nicolas Bareil for the review of the JSON Schema.
 
 8.  Sample MISP file
 
@@ -2423,48 +2673,49 @@ Internet-Draft              MISP core format                  April 2018
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
-              editor.org/info/rfc2119>.
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
               Unique IDentifier (UUID) URN Namespace", RFC 4122,
-              DOI 10.17487/RFC4122, July 2005, <https://www.rfc-
-              editor.org/info/rfc4122>.
+              DOI 10.17487/RFC4122, July 2005,
+              <https://www.rfc-editor.org/info/rfc4122>.
+
+
+
+
+
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 48]
+
+Internet-Draft              MISP core format                  April 2018
+
 
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627,
-              DOI 10.17487/RFC4627, July 2006, <https://www.rfc-
-              editor.org/info/rfc4627>.
+              DOI 10.17487/RFC4627, July 2006,
+              <https://www.rfc-editor.org/info/rfc4627>.
 
    [RFC4880]  Callas, J., Donnerhacke, L., Finney, H., Shaw, D., and R.
               Thayer, "OpenPGP Message Format", RFC 4880,
-              DOI 10.17487/RFC4880, November 2007, <https://www.rfc-
-              editor.org/info/rfc4880>.
+              DOI 10.17487/RFC4880, November 2007,
+              <https://www.rfc-editor.org/info/rfc4880>.
 
 9.2.  Informative References
 
    [JSON-SCHEMA]
               "JSON Schema: A Media Type for Describing JSON Documents",
-              2016, <https://tools.ietf.org/html/draft-wright-json-
-              schema>.
+              2016,
+              <https://tools.ietf.org/html/draft-wright-json-schema>.
 
-   [MISP-P]   MISP, , "MISP Project - Malware Information Sharing
-              Platform and Threat Sharing", <https://github.com/MISP>.
+   [MISP-P]   MISP, "MISP Project - Malware Information Sharing Platform
+              and Threat Sharing", <https://github.com/MISP>.
 
-   [MISP-R]   MISP, , "MISP Object Relationship Types - common
-              vocabulary of relationships", <https://github.com/MISP/
-              misp-objects/tree/master/relationships>.
+   [MISP-R]   MISP, "MISP Object Relationship Types - common vocabulary
+              of relationships", <https://github.com/MISP/misp-
+              objects/tree/master/relationships>.
 
-   [MISP-T]   MISP, , "MISP Taxonomies - shared and common vocabularies
-              of tags", <https://github.com/MISP/misp-taxonomies>.
-
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 44]
-
-Internet-Draft              MISP core format                  April 2018
-
+   [MISP-T]   MISP, "MISP Taxonomies - shared and common vocabularies of
+              tags", <https://github.com/MISP/misp-taxonomies>.
 
 Authors' Addresses
 
@@ -2490,31 +2741,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires October 12, 2018               [Page 45]
+Dulaunoy & Iklody       Expires October 12, 2018               [Page 49]
