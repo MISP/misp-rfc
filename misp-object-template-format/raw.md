@@ -99,7 +99,7 @@ version is represented as a JSON string. version **MUST** be present.
 
 meta-category represents the sub-category of objects that the given object template belongs to. meta-categories are not tied to a fixed list of options but can be created on the fly.
 
-meta-category is represented as a JSON string. meta-category **MUST** be present
+meta-category is represented as a JSON string. meta-category **MUST** be present.
 
 #### name
 
