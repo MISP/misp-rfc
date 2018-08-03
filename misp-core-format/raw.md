@@ -327,7 +327,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   filename, regkey, regkey|value, comment, text, other, text
 
 **Network activity**
-:   ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, pattern-in-traffic, stix2-pattern, attachment, comment, text, x509-fingerprint-sha1, other, hex, cookie
+:   ip-src, ip-dst, hostname, domain, domain|ip, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, pattern-in-traffic, stix2-pattern, attachment, comment, text, x509-fingerprint-sha1, other, hex, cookie, hostname|port
 
 **Payload type**
 :   comment, text, other
