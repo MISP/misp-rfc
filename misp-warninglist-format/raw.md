@@ -1,5 +1,5 @@
-% Title = "MISP galaxy format"
-% abbrev = "MISP galaxy format"
+% Title = "MISP warning lists format"
+% abbrev = "MISP warning lists format"
 % category = "info"
 % docName = "draft-dulaunoy-misp-warninglists-format"
 % ipr= "trust200902"
