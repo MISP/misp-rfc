@@ -92,7 +92,7 @@ The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the 
 
 ## meta
 
-Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as 'properties, complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, derivated_from, status, date, encryption, extensions, ransomnotes' wherever applicable.
+Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as properties, complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, derivated_from, status, date, encryption, extensions, ransomnotes, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category wherever applicable.
 
 properties is used to provide clusters with additional properties. Properties are represented as an array containing one or more strings ans **MAY** be present.
 
@@ -192,6 +192,33 @@ Example use of the source-uuid, target-uuid fields in the mitre-enterprise-attac
   "value": "menuPass (G0045) uses EvilGrab (S0152)"
 }
 ~~~~
+
+cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident and cfr-target-category **MAY** be used to report information gathered from CFR's (Council on Foreign Relations) Cyber Operations Tracker.  cfr-suspected-victims is represented as an array containing one or more strings and **SHALL** be present. cfr-suspected-state-sponsor is represented as a string and **SHALL** be present. cfr-type-of-incident is represented as a string and **SHALL** be present. cfr-target-category is represented as an array containing one or more strings ans **SHALL** be present.
+
+Example use of the cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category fields in the threat-actor galaxy:
+~~~~
+{
+  "meta": {
+    "country": "CN",
+    "refs": [
+      "https://www.fireeye.com/blog/threat-research/2015/12/the_eps_awakens.html",
+      "https://www.cfr.org/interactive/cyber-operations/apt-16"
+    ],
+    "cfr-suspected-victims": [
+      "Japan",
+      "Taiwan"
+    ],
+    "cfr-suspected-state-sponsor": "China",
+    "cfr-type-of-incident": "Espionage",
+    "cfr-target-category": [
+      "Private sector"
+    ]
+  },
+  "value": "APT 16",
+  "uuid": "1f73e14f-b882-4032-a565-26dc653b0daf"
+},
+~~~~
+
 
 # Acknowledgements
 
