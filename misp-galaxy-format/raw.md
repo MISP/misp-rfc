@@ -90,6 +90,18 @@ The values array contains one or more JSON objects which represent all the possi
 The value is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. The meta or metadata is represented as a JSON list and **SHOULD** be present.
 The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. The uuid **SHOULD** can be present and **MUST** be preserved.
 
+## related
+
+Related contains a list of JSON key value pairs which describe the related values in this galaxy cluster or to other galaxy clusters. The JSON object contains three fields, dest-uuid, type and tags. The dest-uuid represents the target UUID which encompasses a relation of some type. The dest-uuid is represented as a string and **MUST** be present. The type is represented as a string and **MUST** be present. The tags is a list of string which labels the related relationship such as the level of similarities, trust in the relationship or 
+
+~~~~
+"related": [ {
+  "dest-uuid": "f873db71-3d53-41d5-b141-530675ade27a",
+  "type": "similar",
+  "tags": ["estimative-language:likelihood-probability=\"very-likely\""]
+} ]
+~~~~
+
 ## meta
 
 Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as properties, complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, derivated_from, status, date, encryption, extensions, ransomnotes, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category wherever applicable.
@@ -219,6 +231,180 @@ Example use of the cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-
 },
 ~~~~
 
+# JSON Schema
+
+The JSON Schema [@?JSON-SCHEMA] below defines the overall MISP galaxy formats. The main format is the MISP galaxy format used for the clusters.
+
+## MISP galaxy format - clusters
+
+~~~~
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Validator for misp-galaxies - Clusters",
+  "id": "https://www.github.com/MISP/misp-galaxies/schema_clusters.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "values": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "related": {
+            "type": "array",
+            "additionalProperties": false,
+            "items": {
+              "type": "object"
+            },
+            "properties": {
+              "dest-uuid": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tags": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "meta": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "type": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "complexity": {
+                "type": "string"
+              },
+              "effectiveness": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "possible_issues": {
+                "type": "string"
+              },
+              "colour": {
+                "type": "string"
+              },
+              "motive": {
+                "type": "string"
+              },
+              "impact": {
+                "type": "string"
+              },
+              "refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "synonyms": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "derivated_from": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "status": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "encryption": {
+                "type": "string"
+              },
+              "extensions": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "ransomnotes": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+    },
+    "authors": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "description",
+    "type",
+    "version",
+    "name",
+    "uuid",
+    "values",
+    "authors",
+    "source"
+  ]
+}
+~~~~
 
 # Acknowledgements
 
