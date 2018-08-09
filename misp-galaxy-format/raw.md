@@ -92,7 +92,7 @@ The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the 
 
 ## related
 
-Related contains a list of JSON key value pairs which describe the related values in this galaxy cluster or to other galaxy clusters. The JSON object contains three fields, dest-uuid, type and tags. The dest-uuid represents the target UUID which encompasses a relation of some type. The dest-uuid is represented as a string and **MUST** be present. The type is represented as a string and **MUST** be present. The tags is a list of string which labels the related relationship such as the level of similarities, trust in the relationship or 
+Related contains a list of JSON key value pairs which describe the related values in this galaxy cluster or to other galaxy clusters. The JSON object contains three fields, dest-uuid, type and tags. The dest-uuid represents the target UUID which encompasses a relation of some type. The dest-uuid is represented as a string and **MUST** be present. The type is represented as a string and **MUST** be present. The tags is a list of string which labels the related relationship such as the level of similarities, level of certainty, trust or confidence in the relationship, false-positive . A tag is represented in machine tag format which is a string an **SHOULD** be present.
 
 ~~~~
 "related": [ {
