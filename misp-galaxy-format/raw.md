@@ -54,7 +54,7 @@
 
 .# Abstract
 
-This document describes the MISP galaxy format which describes a simple JSON format to represent galaxies and clusters that can be attached to MISP events or attributes. A public directory of MISP galaxies is available and relies on the MISP galaxy format. MISP galaxies are used to add further informations on a MISP event. MISP galaxy is a public repository [@?MISP-G] of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing.
+This document describes the MISP galaxy format which describes a simple JSON format to represent galaxies and clusters that can be attached to MISP events or attributes. A public directory of MISP galaxies is available and relies on the MISP galaxy format. MISP galaxies are used to add further informations on a MISP event. MISP galaxy is a public repository [@?MISP-G] [@?MISP-G-DOC] of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing.
 
 {mainmatter}
 
@@ -429,11 +429,20 @@ of open standards in threat intelligence sharing.
 
 <reference anchor='MISP-G' target='https://github.com/MISP/misp-galaxy'>
   <front>
-   <title>MISP Galaxy -</title>
+   <title>MISP Galaxy - Public Repository</title>
    <author initials='' surname='MISP' fullname='MISP Community'></author>
    <date></date>
   </front>
 </reference>
+
+<reference anchor='MISP-G-DOC' target='https://www.misp-project.org/galaxy.html'>
+  <front>
+   <title>MISP Galaxy - Documentation of the Public Repository</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+
 
 <reference anchor='MISP-R' target='https://github.com/MISP/misp-objects/tree/master/relationships'>
   <front>
