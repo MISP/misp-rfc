@@ -104,11 +104,9 @@ Related contains a list of JSON key value pairs which describe the related value
 
 ## meta
 
-Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as properties, complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, derivated_from, status, date, encryption, extensions, ransomnotes, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category wherever applicable.
+Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as properties, complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category wherever applicable.
 
 properties is used to provide clusters with additional properties. Properties are represented as an array containing one or more strings ans **MAY** be present.
-
-derivated_from, refs, synonyms **SHALL** be used to give further informations. refs is represented as an array containing one or more strings and **SHALL** be present. synonyms is represented as an array containing one or more strings and **SHALL** be present. derivated_from is represented as an array containing one or more strings and **SHALL** be present.
 
 date, status **MAY** be used to give time information about an cluster. date is represented as a string describing a time or period and **SHALL** be present. status is represented as a string describing the current status of the clusters. It **MAY** also describe a time or period and **SHALL** be present.
 
@@ -341,13 +339,6 @@ The JSON Schema [@?JSON-SCHEMA] below defines the overall MISP galaxy formats. T
                 }
               },
               "synonyms": {
-                "type": "array",
-                "uniqueItems": true,
-                "items": {
-                  "type": "string"
-                }
-              },
-              "derivated_from": {
                 "type": "array",
                 "uniqueItems": true,
                 "items": {
