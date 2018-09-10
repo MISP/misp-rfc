@@ -19,9 +19,9 @@ Abstract
    attached to MISP events or attributes.  A public directory of MISP
    galaxies is available and relies on the MISP galaxy format.  MISP
    galaxies are used to add further informations on a MISP event.  MISP
-   galaxy is a public repository [MISP-G] of known malware, threats
-   actors and various other collections of data that can be used to
-   mark, classify or label data in threat information sharing.
+   galaxy is a public repository [MISP-G] [MISP-G-DOC] of known malware,
+   threats actors and various other collections of data that can be used
+   to mark, classify or label data in threat information sharing.
 
 Status of This Memo
 
@@ -67,15 +67,18 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Conventions and Terminology . . . . . . . . . . . . . . .   2
-   2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.2.  values  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.3.  meta  . . . . . . . . . . . . . . . . . . . . . . . . . .   3
-   3.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   7
-   4.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
-     4.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
-     4.2.  Informative References  . . . . . . . . . . . . . . . . .   8
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
+     2.3.  related . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.4.  meta  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+   3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .   7
+     3.1.  MISP galaxy format - clusters . . . . . . . . . . . . . .   7
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .  11
+     5.2.  Informative References  . . . . . . . . . . . . . . . . .  11
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
 
 1.  Introduction
 
@@ -101,10 +104,7 @@ Table of Contents
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in RFC 2119 [RFC2119].
 
-2.  Format
 
-   A cluster is composed of a value (MUST), a description (OPTIONAL) and
-   metadata (OPTIONAL).
 
 
 
@@ -113,6 +113,11 @@ Dulaunoy, et al.         Expires October 3, 2018                [Page 2]
 
 Internet-Draft             MISP galaxy format                 April 2018
 
+
+2.  Format
+
+   A cluster is composed of a value (MUST), a description (OPTIONAL) and
+   metadata (OPTIONAL).
 
    Clusters are represented as a JSON [RFC4627] dictionary.
 
@@ -150,18 +155,13 @@ Internet-Draft             MISP galaxy format                 April 2018
    Universally Unique IDentifier (UUID) [RFC4122] of the value
    reference.  The uuid SHOULD can be present and MUST be preserved.
 
-2.3.  meta
+2.3.  related
 
-   Meta contains a list of custom defined JSON key value pairs.  Users
-   SHOULD reuse commonly used keys such as properties, complexity,
-   effectiveness, country, possible_issues, colour, motive, impact,
-   refs, synonyms, derivated_from, status, date, encryption, extensions,
-   ransomnotes, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-
-   type-of-incident, cfr-target-category wherever applicable.
-
-   properties is used to provide clusters with additional properties.
-   Properties are represented as an array containing one or more strings
-   ans MAY be present.
+   Related contains a list of JSON key value pairs which describe the
+   related values in this galaxy cluster or to other galaxy clusters.
+   The JSON object contains three fields, dest-uuid, type and tags.  The
+   dest-uuid represents the target UUID which encompasses a relation of
+   some type.  The dest-uuid is represented as a string and MUST be
 
 
 
@@ -170,12 +170,32 @@ Dulaunoy, et al.         Expires October 3, 2018                [Page 3]
 Internet-Draft             MISP galaxy format                 April 2018
 
 
-   derivated_from, refs, synonyms SHALL be used to give further
-   informations. refs is represented as an array containing one or more
-   strings and SHALL be present. synonyms is represented as an array
-   containing one or more strings and SHALL be present. derivated_from
-   is represented as an array containing one or more strings and SHALL
-   be present.
+   present.  The type is represented as a string and MUST be present and
+   SHOULD be selected from the relationship types available in MISP
+   objects [MISP-R].  The tags is a list of string which labels the
+   related relationship such as the level of similarities, level of
+   certainty, trust or confidence in the relationship, false-positive.
+   A tag is represented in machine tag format which is a string an
+   SHOULD be present.
+
+"related": [ {
+  "dest-uuid": "f873db71-3d53-41d5-b141-530675ade27a",
+  "type": "similar",
+  "tags": ["estimative-language:likelihood-probability=\"very-likely\""]
+} ]
+
+2.4.  meta
+
+   Meta contains a list of custom defined JSON key value pairs.  Users
+   SHOULD reuse commonly used keys such as properties, complexity,
+   effectiveness, country, possible_issues, colour, motive, impact,
+   refs, synonyms, status, date, encryption, extensions, ransomnotes,
+   cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-
+   incident, cfr-target-category wherever applicable.
+
+   properties is used to provide clusters with additional properties.
+   Properties are represented as an array containing one or more strings
+   ans MAY be present.
 
    date, status MAY be used to give time information about an cluster.
    date is represented as a string describing a time or period and SHALL
@@ -199,6 +219,13 @@ Internet-Draft             MISP galaxy format                 April 2018
    Example use of the complexity, effectiveness, impact, possible_issues
    fields in the preventive-measure galaxy:
 
+
+
+Dulaunoy, et al.         Expires October 3, 2018                [Page 4]
+
+Internet-Draft             MISP galaxy format                 April 2018
+
+
 {
   "meta": {
     "refs": [
@@ -216,15 +243,6 @@ Internet-Draft             MISP galaxy format                 April 2018
   "description": "Disable Windows Script Host",
   "uuid": "e6df1619-f8b3-476c-b5cf-22b4c9e9dd7f"
 }
-
-
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018                [Page 4]
-
-Internet-Draft             MISP galaxy format                 April 2018
-
 
    country, motive MAY be used to give further information in threat-
    actor galaxy. country is represented as a string and SHOULD be
@@ -255,24 +273,6 @@ Internet-Draft             MISP galaxy format                 April 2018
    information in ransomware galaxy. encryption is represented as a
    string and SHALL be present. extensions is represented as an array
    containing one or more strings and SHALL be present. ransomnotes is
-   represented as an array containing one or more strings ans SHALL be
-   present.
-
-   Example use of the encryption, extensions, ransomnotes fields in the
-   ransomware galaxy:
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -281,6 +281,12 @@ Dulaunoy, et al.         Expires October 3, 2018                [Page 5]
 
 Internet-Draft             MISP galaxy format                 April 2018
 
+
+   represented as an array containing one or more strings ans SHALL be
+   present.
+
+   Example use of the encryption, extensions, ransomnotes fields in the
+   ransomware galaxy:
 
 {
   "meta": {
@@ -323,13 +329,7 @@ Internet-Draft             MISP galaxy format                 April 2018
 
    cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-
    incident and cfr-target-category MAY be used to report information
-   gathered from CFR's (Council on Foreign Relations) Cyber Operations
-   Tracker.  cfr-suspected-victims is represented as an array containing
-   one or more strings and SHALL be present. cfr-suspected-state-sponsor
-   is represented as a string and SHALL be present. cfr-type-of-incident
-   is represented as a string and SHALL be present. cfr-target-category
-   is represented as an array containing one or more strings ans SHALL
-   be present.
+   gathered from CFR's (Council on Foreign Relations) [CFR] Cyber
 
 
 
@@ -337,6 +337,13 @@ Dulaunoy, et al.         Expires October 3, 2018                [Page 6]
 
 Internet-Draft             MISP galaxy format                 April 2018
 
+
+   Operations Tracker.  cfr-suspected-victims is represented as an array
+   containing one or more strings and SHALL be present. cfr-suspected-
+   state-sponsor is represented as a string and SHALL be present. cfr-
+   type-of-incident is represented as a string and SHALL be present.
+   cfr-target-category is represented as an array containing one or more
+   strings ans SHALL be present.
 
    Example use of the cfr-suspected-victims, cfr-suspected-state-
    sponsor, cfr-type-of-incident, cfr-target-category fields in the
@@ -363,14 +370,214 @@ Internet-Draft             MISP galaxy format                 April 2018
   "uuid": "1f73e14f-b882-4032-a565-26dc653b0daf"
 },
 
-3.  Acknowledgements
+3.  JSON Schema
+
+   The JSON Schema [JSON-SCHEMA] below defines the overall MISP galaxy
+   formats.  The main format is the MISP galaxy format used for the
+   clusters.
+
+3.1.  MISP galaxy format - clusters
+
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Validator for misp-galaxies - Clusters",
+  "id": "https://www.github.com/MISP/misp-galaxies/schema_clusters.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+
+
+
+Dulaunoy, et al.         Expires October 3, 2018                [Page 7]
+
+Internet-Draft             MISP galaxy format                 April 2018
+
+
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "values": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "related": {
+            "type": "array",
+            "additionalProperties": false,
+            "items": {
+              "type": "object"
+            },
+            "properties": {
+              "dest-uuid": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tags": {
+                "type": "array",
+
+
+
+Dulaunoy, et al.         Expires October 3, 2018                [Page 8]
+
+Internet-Draft             MISP galaxy format                 April 2018
+
+
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "meta": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "type": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "complexity": {
+                "type": "string"
+              },
+              "effectiveness": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "possible_issues": {
+                "type": "string"
+              },
+              "colour": {
+                "type": "string"
+              },
+              "motive": {
+                "type": "string"
+              },
+              "impact": {
+                "type": "string"
+              },
+              "refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "synonyms": {
+                "type": "array",
+
+
+
+Dulaunoy, et al.         Expires October 3, 2018                [Page 9]
+
+Internet-Draft             MISP galaxy format                 April 2018
+
+
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "status": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "encryption": {
+                "type": "string"
+              },
+              "extensions": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "ransomnotes": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+    },
+    "authors": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "description",
+    "type",
+    "version",
+
+
+
+Dulaunoy, et al.         Expires October 3, 2018               [Page 10]
+
+Internet-Draft             MISP galaxy format                 April 2018
+
+
+    "name",
+    "uuid",
+    "values",
+    "authors",
+    "source"
+  ]
+}
+
+4.  Acknowledgements
 
    The authors wish to thank all the MISP community who are supporting
    the creation of open standards in threat intelligence sharing.
 
-4.  References
+5.  References
 
-4.1.  Normative References
+5.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -387,20 +594,40 @@ Internet-Draft             MISP galaxy format                 April 2018
               DOI 10.17487/RFC4627, July 2006,
               <https://www.rfc-editor.org/info/rfc4627>.
 
+5.2.  Informative References
+
+   [CFR]      CFR, "Cyber Operations Tracker - Council on Foreign
+              Relations", 2018,
+              <https://www.cfr.org/interactive/cyber-operations>.
+
+   [JSON-SCHEMA]
+              "JSON Schema: A Media Type for Describing JSON Documents",
+              2016,
+              <https://tools.ietf.org/html/draft-wright-json-schema>.
+
+   [MISP-G]   MISP, "MISP Galaxy - Public Repository",
+              <https://github.com/MISP/misp-galaxy>.
 
 
-Dulaunoy, et al.         Expires October 3, 2018                [Page 7]
+
+
+
+
+Dulaunoy, et al.         Expires October 3, 2018               [Page 11]
 
 Internet-Draft             MISP galaxy format                 April 2018
 
 
-4.2.  Informative References
-
-   [MISP-G]   MISP, "MISP Galaxy -",
-              <https://github.com/MISP/misp-galaxy>.
+   [MISP-G-DOC]
+              MISP, "MISP Galaxy - Documentation of the Public
+              Repository", <https://www.misp-project.org/galaxy.html>.
 
    [MISP-P]   MISP, "MISP Project - Malware Information Sharing Platform
               and Threat Sharing", <https://github.com/MISP>.
+
+   [MISP-R]   MISP, "MISP Object Relationship Types - common vocabulary
+              of relationships", <https://github.com/MISP/misp-
+              objects/tree/master/relationships>.
 
 Authors' Addresses
 
@@ -442,7 +669,4 @@ Authors' Addresses
 
 
 
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018                [Page 8]
+Dulaunoy, et al.         Expires October 3, 2018               [Page 12]
