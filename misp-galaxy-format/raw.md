@@ -5,7 +5,7 @@
 % ipr= "trust200902"
 % area = "Security"
 %
-% date = 2018-04-01T00:00:00Z
+% date = 2018-09-20T00:00:00Z
 %
 % [[author]]
 % initials="A."
@@ -54,7 +54,7 @@
 
 .# Abstract
 
-This document describes the MISP galaxy format which describes a simple JSON format to represent galaxies and clusters that can be attached to MISP events or attributes. A public directory of MISP galaxies is available and relies on the MISP galaxy format. MISP galaxies are used to add further informations on a MISP event. MISP galaxy is a public repository [@?MISP-G] of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing.
+This document describes the MISP galaxy format which describes a simple JSON format to represent galaxies and clusters that can be attached to MISP events or attributes. A public directory of MISP galaxies is available and relies on the MISP galaxy format. MISP galaxies are used to add further informations on a MISP event. MISP galaxy is a public repository [@?MISP-G] [@?MISP-G-DOC] of known malware, threats actors and various other collections of data that can be used to mark, classify or label data in threat information sharing.
 
 {mainmatter}
 
@@ -90,9 +90,21 @@ The values array contains one or more JSON objects which represent all the possi
 The value is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. The meta or metadata is represented as a JSON list and **SHOULD** be present.
 The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. The uuid **SHOULD** can be present and **MUST** be preserved.
 
+## related
+
+Related contains a list of JSON key value pairs which describe the related values in this galaxy cluster or to other galaxy clusters. The JSON object contains three fields, dest-uuid, type and tags. The dest-uuid represents the target UUID which encompasses a relation of some type. The dest-uuid is represented as a string and **MUST** be present. The type is represented as a string and **MUST** be present and **SHOULD** be selected from the relationship types available in MISP objects [@?MISP-R].  The tags is a list of string which labels the related relationship such as the level of similarities, level of certainty, trust or confidence in the relationship, false-positive. A tag is represented in machine tag format which is a string an **SHOULD** be present.
+
+~~~~
+"related": [ {
+  "dest-uuid": "f873db71-3d53-41d5-b141-530675ade27a",
+  "type": "similar",
+  "tags": ["estimative-language:likelihood-probability=\"very-likely\""]
+} ]
+~~~~
+
 ## meta
 
-Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category wherever applicable.
+Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category wherever applicable.
 
 refs, synonyms **SHALL** be used to give further informations. refs is represented as an array containing one or more strings and **SHALL** be present. synonyms is represented as an array containing one or more strings and **SHALL** be present.
 
@@ -191,7 +203,7 @@ Example use of the source-uuid, target-uuid fields in the mitre-enterprise-attac
 }
 ~~~~
 
-cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident and cfr-target-category **MAY** be used to report information gathered from CFR's (Council on Foreign Relations) Cyber Operations Tracker.  cfr-suspected-victims is represented as an array containing one or more strings and **SHALL** be present. cfr-suspected-state-sponsor is represented as a string and **SHALL** be present. cfr-type-of-incident is represented as a string and **SHALL** be present. cfr-target-category is represented as an array containing one or more strings ans **SHALL** be present.
+cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident and cfr-target-category **MAY** be used to report information gathered from CFR's (Council on Foreign Relations) [@?CFR] Cyber Operations Tracker.  cfr-suspected-victims is represented as an array containing one or more strings and **SHALL** be present. cfr-suspected-state-sponsor is represented as a string and **SHALL** be present. cfr-type-of-incident is represented as a string and **SHALL** be present. cfr-target-category is represented as an array containing one or more strings ans **SHALL** be present.
 
 Example use of the cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category fields in the threat-actor galaxy:
 ~~~~
@@ -217,6 +229,173 @@ Example use of the cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-
 },
 ~~~~
 
+# JSON Schema
+
+The JSON Schema [@?JSON-SCHEMA] below defines the overall MISP galaxy formats. The main format is the MISP galaxy format used for the clusters.
+
+## MISP galaxy format - clusters
+
+~~~~
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Validator for misp-galaxies - Clusters",
+  "id": "https://www.github.com/MISP/misp-galaxies/schema_clusters.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "values": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "related": {
+            "type": "array",
+            "additionalProperties": false,
+            "items": {
+              "type": "object"
+            },
+            "properties": {
+              "dest-uuid": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "tags": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "meta": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "type": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "complexity": {
+                "type": "string"
+              },
+              "effectiveness": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "possible_issues": {
+                "type": "string"
+              },
+              "colour": {
+                "type": "string"
+              },
+              "motive": {
+                "type": "string"
+              },
+              "impact": {
+                "type": "string"
+              },
+              "refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "synonyms": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "status": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string"
+              },
+              "encryption": {
+                "type": "string"
+              },
+              "extensions": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "ransomnotes": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+    },
+    "authors": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "description",
+    "type",
+    "version",
+    "name",
+    "uuid",
+    "values",
+    "authors",
+    "source"
+  ]
+}
+~~~~
 
 # Acknowledgements
 
@@ -241,11 +420,20 @@ of open standards in threat intelligence sharing.
 
 <reference anchor='MISP-G' target='https://github.com/MISP/misp-galaxy'>
   <front>
-   <title>MISP Galaxy -</title>
+   <title>MISP Galaxy - Public Repository</title>
    <author initials='' surname='MISP' fullname='MISP Community'></author>
    <date></date>
   </front>
 </reference>
+
+<reference anchor='MISP-G-DOC' target='https://www.misp-project.org/galaxy.html'>
+  <front>
+   <title>MISP Galaxy - Documentation of the Public Repository</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+
 
 <reference anchor='MISP-R' target='https://github.com/MISP/misp-objects/tree/master/relationships'>
   <front>
@@ -263,5 +451,12 @@ of open standards in threat intelligence sharing.
   </front>
 </reference>
 
+<reference anchor='CFR' target='https://www.cfr.org/interactive/cyber-operations'>
+  <front>
+     <title>Cyber Operations Tracker - Council on Foreign Relations</title>
+     <author initials='' surname='CFR' fullname='Council on Foreign Relations'></author>
+     <date year="2018"></date>
+  </front>
+</reference>
 
 {backmatter}
