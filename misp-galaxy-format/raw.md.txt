@@ -5,8 +5,8 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                D. Servili
-Expires: October 3, 2018                                           CIRCL
-                                                           April 1, 2018
+Expires: March 24, 2019                                            CIRCL
+                                                      September 20, 2018
 
 
                            MISP galaxy format
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 3, 2018.
+   This Internet-Draft will expire on March 24, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy, et al.         Expires October 3, 2018                [Page 1]
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 1]
 
-Internet-Draft             MISP galaxy format                 April 2018
+Internet-Draft             MISP galaxy format             September 2018
 
 
    to this document.  Code Components extracted from this document must
@@ -73,7 +73,7 @@ Table of Contents
      2.3.  related . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.4.  meta  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .   7
-     3.1.  MISP galaxy format - clusters . . . . . . . . . . . . . .   7
+     3.1.  MISP galaxy format - clusters . . . . . . . . . . . . . .   8
    4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
    5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
      5.1.  Normative References  . . . . . . . . . . . . . . . . . .  11
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Dulaunoy, et al.         Expires October 3, 2018                [Page 2]
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 2]
 
-Internet-Draft             MISP galaxy format                 April 2018
+Internet-Draft             MISP galaxy format             September 2018
 
 
 2.  Format
@@ -165,9 +165,9 @@ Internet-Draft             MISP galaxy format                 April 2018
 
 
 
-Dulaunoy, et al.         Expires October 3, 2018                [Page 3]
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 3]
 
-Internet-Draft             MISP galaxy format                 April 2018
+Internet-Draft             MISP galaxy format             September 2018
 
 
    present.  The type is represented as a string and MUST be present and
@@ -187,15 +187,17 @@ Internet-Draft             MISP galaxy format                 April 2018
 2.4.  meta
 
    Meta contains a list of custom defined JSON key value pairs.  Users
-   SHOULD reuse commonly used keys such as properties, complexity,
-   effectiveness, country, possible_issues, colour, motive, impact,
-   refs, synonyms, status, date, encryption, extensions, ransomnotes,
-   cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-
-   incident, cfr-target-category wherever applicable.
+   SHOULD reuse commonly used keys such as complexity, effectiveness,
+   country, possible_issues, colour, motive, impact, refs, synonyms,
+   status, date, encryption, extensions, ransomnotes, suspected-victims,
+   suspected-state-sponsor, type-of-incident, target-category, cfr-
+   suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident,
+   cfr-target-category wherever applicable.
 
-   properties is used to provide clusters with additional properties.
-   Properties are represented as an array containing one or more strings
-   ans MAY be present.
+   refs, synonyms SHALL be used to give further informations. refs is
+   represented as an array containing one or more strings and SHALL be
+   present. synonyms is represented as an array containing one or more
+   strings and SHALL be present.
 
    date, status MAY be used to give time information about an cluster.
    date is represented as a string describing a time or period and SHALL
@@ -216,15 +218,16 @@ Internet-Draft             MISP galaxy format                 April 2018
    enumerated value from a fixed vocabulary and SHALL be present.
    possible_issues is represented as a string and SHOULD be present.
 
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 4]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
    Example use of the complexity, effectiveness, impact, possible_issues
    fields in the preventive-measure galaxy:
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018                [Page 4]
-
-Internet-Draft             MISP galaxy format                 April 2018
-
 
 {
   "meta": {
@@ -271,17 +274,16 @@ Internet-Draft             MISP galaxy format                 April 2018
 
    encryption, extensions, ransomnotes MAY be used to give further
    information in ransomware galaxy. encryption is represented as a
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 5]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
    string and SHALL be present. extensions is represented as an array
    containing one or more strings and SHALL be present. ransomnotes is
-
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018                [Page 5]
-
-Internet-Draft             MISP galaxy format                 April 2018
-
-
    represented as an array containing one or more strings ans SHALL be
    present.
 
@@ -327,23 +329,28 @@ Internet-Draft             MISP galaxy format                 April 2018
           "value": "menuPass (G0045) uses EvilGrab (S0152)"
         }
 
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 6]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
    cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-
    incident and cfr-target-category MAY be used to report information
    gathered from CFR's (Council on Foreign Relations) [CFR] Cyber
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018                [Page 6]
-
-Internet-Draft             MISP galaxy format                 April 2018
-
-
    Operations Tracker.  cfr-suspected-victims is represented as an array
    containing one or more strings and SHALL be present. cfr-suspected-
    state-sponsor is represented as a string and SHALL be present. cfr-
-   type-of-incident is represented as a string and SHALL be present.
-   cfr-target-category is represented as an array containing one or more
-   strings ans SHALL be present.
+   type-of-incident is represented as a string or an array and SHALL be
+   present.  RECOMMENDED but not exhaustive list of possible values for
+   cfr-type-of-incident includes "Espionage", "Denial of service",
+   "Sabotage". cfr-target-category is represented as an array containing
+   one or more strings ans SHALL be present.  RECOMMENDED but not
+   exhaustive list of possible values for cfr-target-category includes
+   "Private sector", "Government", "Civil society", "Military".
 
    Example use of the cfr-suspected-victims, cfr-suspected-state-
    sponsor, cfr-type-of-incident, cfr-target-category fields in the
@@ -376,6 +383,17 @@ Internet-Draft             MISP galaxy format                 April 2018
    formats.  The main format is the MISP galaxy format used for the
    clusters.
 
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 7]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
 3.1.  MISP galaxy format - clusters
 
 {
@@ -386,14 +404,6 @@ Internet-Draft             MISP galaxy format                 April 2018
   "additionalProperties": false,
   "properties": {
     "description": {
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018                [Page 7]
-
-Internet-Draft             MISP galaxy format                 April 2018
-
-
       "type": "string"
     },
     "type": {
@@ -432,6 +442,14 @@ Internet-Draft             MISP galaxy format                 April 2018
             "additionalProperties": false,
             "items": {
               "type": "object"
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 8]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
             },
             "properties": {
               "dest-uuid": {
@@ -442,14 +460,6 @@ Internet-Draft             MISP galaxy format                 April 2018
               },
               "tags": {
                 "type": "array",
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018                [Page 8]
-
-Internet-Draft             MISP galaxy format                 April 2018
-
-
                 "uniqueItems": true,
                 "items": {
                   "type": "string"
@@ -488,6 +498,14 @@ Internet-Draft             MISP galaxy format                 April 2018
               },
               "impact": {
                 "type": "string"
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 9]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
               },
               "refs": {
                 "type": "array",
@@ -498,14 +516,6 @@ Internet-Draft             MISP galaxy format                 April 2018
               },
               "synonyms": {
                 "type": "array",
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018                [Page 9]
-
-Internet-Draft             MISP galaxy format                 April 2018
-
-
                 "uniqueItems": true,
                 "items": {
                   "type": "string"
@@ -544,6 +554,14 @@ Internet-Draft             MISP galaxy format                 April 2018
     },
     "authors": {
       "type": "array",
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 10]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
       "uniqueItems": true,
       "items": {
         "type": "string"
@@ -554,14 +572,6 @@ Internet-Draft             MISP galaxy format                 April 2018
     "description",
     "type",
     "version",
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018               [Page 10]
-
-Internet-Draft             MISP galaxy format                 April 2018
-
-
     "name",
     "uuid",
     "values",
@@ -600,6 +610,14 @@ Internet-Draft             MISP galaxy format                 April 2018
               Relations", 2018,
               <https://www.cfr.org/interactive/cyber-operations>.
 
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 11]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
    [JSON-SCHEMA]
               "JSON Schema: A Media Type for Describing JSON Documents",
               2016,
@@ -607,16 +625,6 @@ Internet-Draft             MISP galaxy format                 April 2018
 
    [MISP-G]   MISP, "MISP Galaxy - Public Repository",
               <https://github.com/MISP/misp-galaxy>.
-
-
-
-
-
-
-Dulaunoy, et al.         Expires October 3, 2018               [Page 11]
-
-Internet-Draft             MISP galaxy format                 April 2018
-
 
    [MISP-G-DOC]
               MISP, "MISP Galaxy - Documentation of the Public
@@ -651,6 +659,21 @@ Authors' Addresses
    Email: andras.iklody@circl.lu
 
 
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 12]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
    Deborah Servili
    Computer Incident Response Center Luxembourg
    16, bd d'Avranches
@@ -669,4 +692,37 @@ Authors' Addresses
 
 
 
-Dulaunoy, et al.         Expires October 3, 2018               [Page 12]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 13]
