@@ -1822,7 +1822,7 @@ The authors wish to thank all the MISP community who are supporting the creation
 of open standards in threat intelligence sharing. A special thank to Nicolas Bareil
 for the review of the JSON Schema.
 
-# Sample MISP file
+# References
 
 
 <reference anchor='MISP-P' target='https://github.com/MISP'>
