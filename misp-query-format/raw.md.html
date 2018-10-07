@@ -541,23 +541,44 @@
 <td class="center">csv</td>
 <td class="center">CSV format</td>
 </tr>
+<tr>
+<td class="center">rpz</td>
+<td class="center">Response policy zone format</td>
+</tr>
+<tr>
+<td class="center">text</td>
+<td class="center">Raw value list format</td>
+</tr>
 </tbody>
 </table>
 <h1 id="rfc.section.2.2.2">
 <a href="#rfc.section.2.2.2">2.2.2.</a> <a href="#limit" id="limit">limit</a>
 </h1>
+<p id="rfc.section.2.2.2.p.1">limit MAY be present. If present, the page parameter MUST also be supplied. limit sets the number of returned elements when paginating, depending on the scope of the request (x number of attributes or x number of events) as converted into the output format.  </p>
 <h1 id="rfc.section.2.2.3">
 <a href="#rfc.section.2.2.3">2.2.3.</a> <a href="#page" id="page">page</a>
 </h1>
+<p id="rfc.section.2.2.3.p.1">page MAY be present. If present, the page parameter MUST also be supplied. page generates the offset for the pagination and will return a result set consisting of a slice of the query results starting with offset (limit * page) + 1 and ending with (limit * (page+1)).  </p>
 <h1 id="rfc.section.2.2.4">
 <a href="#rfc.section.2.2.4">2.2.4.</a> <a href="#value" id="value">value</a>
 </h1>
+<p id="rfc.section.2.2.4.p.1">value MAY be present. If set, the returned data set will be filtered on the attribute value field. value MAY be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters.  </p>
 <h1 id="rfc.section.2.2.5">
 <a href="#rfc.section.2.2.5">2.2.5.</a> <a href="#type" id="type">type</a>
 </h1>
+<p id="rfc.section.2.2.5.p.1">type MAY be present. If set, the returned data set will be filtered on the attribute type field. type MAY be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid attribute types is described in the MISP core format <a href="#MISP-C" class="xref">[MISP-C]</a> in the attribute type section.  </p>
 <h1 id="rfc.section.2.2.6">
 <a href="#rfc.section.2.2.6">2.2.6.</a> <a href="#category" id="category">category</a>
 </h1>
+<p id="rfc.section.2.2.6.p.1">category MAY be present. If set, the returned data set will be filtered on the attribute category field. category MAY be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid categories is described in the MISP core format <a href="#MISP-C" class="xref">[MISP-C]</a> in the attribute type section.  </p>
+<p id="rfc.section.2.2.6.p.2">A sample query to lookup for the last 30 days of indicators in the <samp>Financial fraud</samp> category and output in CSV format: </p>
+<pre>
+{
+    "returnFormat": "csv",
+    "last": "30d",
+    "category": "Financial fraud"
+}
+</pre>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>

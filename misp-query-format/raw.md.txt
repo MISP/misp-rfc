@@ -76,15 +76,15 @@ Table of Contents
        2.2.1.  returnFormat  . . . . . . . . . . . . . . . . . . . .   3
        2.2.2.  limit . . . . . . . . . . . . . . . . . . . . . . . .   3
        2.2.3.  page  . . . . . . . . . . . . . . . . . . . . . . . .   3
-       2.2.4.  value . . . . . . . . . . . . . . . . . . . . . . . .   3
-       2.2.5.  type  . . . . . . . . . . . . . . . . . . . . . . . .   3
-       2.2.6.  category  . . . . . . . . . . . . . . . . . . . . . .   3
-   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
-   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
-   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     5.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
-     5.2.  Informative References  . . . . . . . . . . . . . . . . .   4
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
+       2.2.4.  value . . . . . . . . . . . . . . . . . . . . . . . .   4
+       2.2.5.  type  . . . . . . . . . . . . . . . . . . . . . . . .   4
+       2.2.6.  category  . . . . . . . . . . . . . . . . . . . . . .   4
+   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   5
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
+     5.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
 
@@ -143,24 +143,24 @@ Internet-Draft              MISP query format               October 2018
        | suricata |              Suricata NIDS format              |
        |  snort   |               Snort NIDS format                |
        |   csv    |                   CSV format                   |
+       |   rpz    |          Response policy zone format           |
+       |   text   |             Raw value list format              |
        +----------+------------------------------------------------+
 
 2.2.2.  limit
 
+   limit MAY be present.  If present, the page parameter MUST also be
+   supplied. limit sets the number of returned elements when paginating,
+   depending on the scope of the request (x number of attributes or x
+   number of events) as converted into the output format.
+
 2.2.3.  page
 
-2.2.4.  value
-
-2.2.5.  type
-
-2.2.6.  category
-
-3.  Security Considerations
-
-   MISP threat intelligence instances might contain sensitive or
-   confidential information.  Adequate access control and encryption
-   measures shall be implemented to ensure the confidentiality of the
-   threat intelligence.
+   page MAY be present.  If present, the page parameter MUST also be
+   supplied. page generates the offset for the pagination and will
+   return a result set consisting of a slice of the query results
+   starting with offset (limit * page) + 1 and ending with (limit *
+   (page+1)).
 
 
 
@@ -170,10 +170,61 @@ Dulaunoy & Iklody        Expires April 11, 2019                 [Page 3]
 Internet-Draft              MISP query format               October 2018
 
 
+2.2.4.  value
+
+   value MAY be present.  If set, the returned data set will be filtered
+   on the attribute value field. value MAY be a string or a sub-string,
+   the latter of which start with, ends with or is encapsulated in
+   wildcard (\%) characters.
+
+2.2.5.  type
+
+   type MAY be present.  If set, the returned data set will be filtered
+   on the attribute type field. type MAY be a string or a sub-string,
+   the latter of which start with, ends with or is encapsulated in
+   wildcard (\%) characters.  The list of valid attribute types is
+   described in the MISP core format [MISP-C] in the attribute type
+   section.
+
+2.2.6.  category
+
+   category MAY be present.  If set, the returned data set will be
+   filtered on the attribute category field. category MAY be a string or
+   a sub-string, the latter of which start with, ends with or is
+   encapsulated in wildcard (\%) characters.  The list of valid
+   categories is described in the MISP core format [MISP-C] in the
+   attribute type section.
+
+   A sample query to lookup for the last 30 days of indicators in the
+   "Financial fraud" category and output in CSV format:
+
+                     {
+                         "returnFormat": "csv",
+                         "last": "30d",
+                         "category": "Financial fraud"
+                     }
+
+3.  Security Considerations
+
+   MISP threat intelligence instances might contain sensitive or
+   confidential information.  Adequate access control and encryption
+   measures shall be implemented to ensure the confidentiality of the
+   threat intelligence.
+
    Adversaries might include malicious content in MISP queries.
    Implementation MUST consider the input of malicious inputs beside the
    standard threat information that might already include malicious
    intended inputs.
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 4]
+
+Internet-Draft              MISP query format               October 2018
+
 
 4.  Acknowledgements
 
@@ -221,7 +272,12 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody        Expires April 11, 2019                 [Page 4]
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 5]
 
 Internet-Draft              MISP query format               October 2018
 
@@ -277,4 +333,4 @@ Internet-Draft              MISP query format               October 2018
 
 
 
-Dulaunoy & Iklody        Expires April 11, 2019                 [Page 5]
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 6]

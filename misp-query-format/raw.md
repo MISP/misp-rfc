@@ -105,6 +105,16 @@ type **MAY** be present. If set, the returned data set will be filtered on the a
 
 category **MAY** be present. If set, the returned data set will be filtered on the attribute category field. category **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid categories is described in the MISP core format [@?MISP-C] in the attribute type section.
 
+A sample query to lookup for the last 30 days of indicators in the `Financial fraud` category and output in CSV format:
+
+~~~~
+{
+    "returnFormat": "csv",
+    "last": "30d",
+    "category": "Financial fraud"
+}
+~~~~
+
 # Security Considerations
 
 MISP threat intelligence instances might contain sensitive or confidential information. Adequate access control and encryption measures shall be implemented to ensure the confidentiality of the threat intelligence.

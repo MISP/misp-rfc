@@ -101,22 +101,44 @@ document are to be interpreted as described in RFC 2119 <xref target="RFC2119"/>
 <c>suricata</c><c>Suricata NIDS format</c>
 <c>snort</c><c>Snort NIDS format</c>
 <c>csv</c><c>CSV format</c>
+<c>rpz</c><c>Response policy zone format</c>
+<c>text</c><c>Raw value list format</c>
 </texttable>
 </section>
 
 <section anchor="limit" title="limit">
+<t>limit MAY be present. If present, the page parameter MUST also be supplied. limit sets the number of returned elements when paginating, depending on the scope of the request (x number of attributes or x number of events) as converted into the output format.
+</t>
 </section>
 
 <section anchor="page" title="page">
+<t>page MAY be present. If present, the page parameter MUST also be supplied. page generates the offset for the pagination and will return a result set consisting of a slice of the query results starting with offset (limit * page) + 1 and ending with (limit * (page+1)).
+</t>
 </section>
 
 <section anchor="value" title="value">
+<t>value MAY be present. If set, the returned data set will be filtered on the attribute value field. value MAY be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters.
+</t>
 </section>
 
 <section anchor="type" title="type">
+<t>type MAY be present. If set, the returned data set will be filtered on the attribute type field. type MAY be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid attribute types is described in the MISP core format <xref target="MISP-C"/> in the attribute type section.
+</t>
 </section>
 
 <section anchor="category" title="category">
+<t>category MAY be present. If set, the returned data set will be filtered on the attribute category field. category MAY be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid categories is described in the MISP core format <xref target="MISP-C"/> in the attribute type section.
+</t>
+<t>A sample query to lookup for the last 30 days of indicators in the <spanx style="verb">Financial fraud</spanx> category and output in CSV format:
+</t>
+
+<figure align="center"><artwork align="center">
+{
+    "returnFormat": "csv",
+    "last": "30d",
+    "category": "Financial fraud"
+}
+</artwork></figure>
 </section>
 </section>
 </section>
