@@ -99,11 +99,11 @@ value **MAY** be present. If set, the returned data set will be filtered on the 
 
 ### type
 
-type **MAY** be present. If set, the returned data set will be filtered on the attribute type field. type **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters.
+type **MAY** be present. If set, the returned data set will be filtered on the attribute type field. type **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid attribute types is described in the MISP core format [@?MISP-C] in the attribute type section.
 
 ### category
 
-category **MAY** be present. If set, the returned data set will be filtered on the attribute category field. category **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters.
+category **MAY** be present. If set, the returned data set will be filtered on the attribute category field. category **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid categories is described in the MISP core format [@?MISP-C] in the attribute type section.
 
 # Security Considerations
 
