@@ -82,17 +82,28 @@ returnFormat **MUST** be present. returnFormat sets the type of output format. M
 | suricata      | Suricata NIDS format                                                      |
 | snort         | Snort NIDS format                                                         |
 | csv           | CSV format                                                                |
+| rpz           | Response policy zone format                                               |
+| text          | Raw value list format                                                     |
 
 ### limit
 
+limit **MAY** be present. If present, the page parameter **MUST** also be supplied. limit sets the number of returned elements when paginating, depending on the scope of the request (x number of attributes or x number of events) as converted into the output format.
+
 ### page
+
+page **MAY** be present. If present, the page parameter **MUST** also be supplied. page generates the offset for the pagination and will return a result set consisting of a slice of the query results starting with offset (limit * page) + 1 and ending with (limit * (page+1)).
 
 ### value
 
+value **MAY** be present. If set, the returned data set will be filtered on the attribute value field. value **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters.
+
 ### type
+
+type **MAY** be present. If set, the returned data set will be filtered on the attribute type field. type **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters.
 
 ### category
 
+category **MAY** be present. If set, the returned data set will be filtered on the attribute category field. category **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters.
 
 # Security Considerations
 
