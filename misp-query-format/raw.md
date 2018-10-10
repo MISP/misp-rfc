@@ -115,6 +115,55 @@ A sample query to lookup for the last 30 days of indicators in the `Financial fr
 }
 ~~~~
 
+### org
+
+org **MAY** be present. If set, the returned data set will be filtered by the organisation identifier (local ID of the instance). org **MUST** be the identifier of the organisation in a string format.
+
+### tags
+
+### quickfilter
+
+### from
+
+### to
+
+### last
+
+### eventid
+
+### withAttachments
+
+### metadata
+
+### uuid
+
+### publish_timestamp
+
+### timestamp
+
+### published
+
+### enforceWarninglist
+
+### to_ids
+
+### deleted
+
+### includeEventUuid
+
+### event_timestamp
+
+### sgReferenceOnly
+
+### eventinfo
+
+### searchall
+
+### requested_attributes
+
+### includeContext
+
+
 # Security Considerations
 
 MISP threat intelligence instances might contain sensitive or confidential information. Adequate access control and encryption measures shall be implemented to ensure the confidentiality of the threat intelligence.
