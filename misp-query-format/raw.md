@@ -84,6 +84,7 @@ returnFormat **MUST** be present. returnFormat sets the type of output format. M
 | csv           | CSV format                                                                |
 | rpz           | Response policy zone format                                               |
 | text          | Raw value list format                                                     |
+| cache         | MISP cache format (hashed values of attributes)                           |
 
 ### limit
 
@@ -95,15 +96,15 @@ page **MAY** be present. If present, the page parameter **MUST** also be supplie
 
 ### value
 
-value **MAY** be present. If set, the returned data set will be filtered on the attribute value field. value **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters.
+value **MAY** be present. If set, the returned data set will be filtered on the attribute value field. value **MAY** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters.
 
 ### type
 
-type **MAY** be present. If set, the returned data set will be filtered on the attribute type field. type **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid attribute types is described in the MISP core format [@?MISP-C] in the attribute type section.
+type **MAY** be present. If set, the returned data set will be filtered on the attribute type field. type **MAY** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters. The list of valid attribute types is described in the MISP core format [@?MISP-C] in the attribute type section.
 
 ### category
 
-category **MAY** be present. If set, the returned data set will be filtered on the attribute category field. category **MAY** be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid categories is described in the MISP core format [@?MISP-C] in the attribute type section.
+category **MAY** be present. If set, the returned data set will be filtered on the attribute category field. category **MAY** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters. The list of valid categories is described in the MISP core format [@?MISP-C] in the attribute type section.
 
 A sample query to lookup for the last 30 days of indicators in the `Financial fraud` category and output in CSV format:
 
@@ -121,13 +122,40 @@ org **MAY** be present. If set, the returned data set will be filtered by the or
 
 ### tags
 
+tags **MAY** be present. If set, the returned data set will be filtered by tags. tags **MAY** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters.
+
+~~~~
+{
+    "returnFormat": "cache",
+    "limit": "100",
+    "tags": ["tlp:red", "%private%"]
+}
+~~~~
+
 ### quickfilter
 
 ### from
 
+from **MAY** be present. If set, the returned data set will be filtered from a starting date. from **MAY** be a string represented in the format year-month-date.
+
+~~~~
+{
+    "returnFormat": "json",
+    "limit": "100",
+    "tags": ["tlp:amber"],
+    "from": "2018-09-02",
+    "to": "2018-10-01"
+}
+~~~~
+
 ### to
 
+to **MAY** be present. If set, the returned data set will be filtered until the specified date. from **MAY** be a string represented in the format year-month-date.
+
 ### last
+
+last **MAY** be present. If set, the returned data set
+
 
 ### eventid
 
