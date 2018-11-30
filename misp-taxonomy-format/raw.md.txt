@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: March 8, 2018                                 September 4, 2017
+Expires: June 2, 2018                                  November 29, 2017
 
 
                           MISP taxonomy format
@@ -15,10 +15,10 @@ Abstract
 
    This document describes the MISP taxonomy format which describes a
    simple JSON format to represent machine tags (also called triple
-   tags) vocabularies.  A public directory of common vocabularies MISP
-   taxonomies is available and relies on the MISP taxonomy format.  MISP
-   taxonomies are used to classify cyber security events, threats or
-   indicators.
+   tags) vocabularies.  A public directory of common vocabularies called
+   MISP taxonomies is available and relies on the MISP taxonomy format.
+   MISP taxonomies are used to classify cyber security events, threats,
+   suspicious events, or indicators.
 
 Status of This Memo
 
@@ -28,14 +28,14 @@ Status of This Memo
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
-   Drafts is at http://datatracker.ietf.org/drafts/current/.
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
 
    Internet-Drafts are draft documents valid for a maximum of six months
    and may be updated, replaced, or obsoleted by other documents at any
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 8, 2018.
+   This Internet-Draft will expire on June 2, 2018.
 
 Copyright Notice
 
@@ -44,7 +44,7 @@ Copyright Notice
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
-   (http://trustee.ietf.org/license-info) in effect on the date of
+   (https://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 1]
+Dulaunoy & Iklody         Expires June 2, 2018                  [Page 1]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft            MISP taxonomy format             November 2017
 
 
    the Trust Legal Provisions and are provided without warranty as
@@ -78,12 +78,14 @@ Table of Contents
    4.  Sample Taxonomy in MISP taxonomy format . . . . . . . . . . .   7
      4.1.  Admiralty Scale Taxonomy  . . . . . . . . . . . . . . . .   7
      4.2.  Open Source Intelligence - Classification . . . . . . . .   9
-   5.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  11
-   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  14
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .  15
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
+     4.3.  Available taxonomies in the public directory  . . . . . .  11
+   5.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  19
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  22
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  22
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  22
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .  22
+     7.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  23
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
 
 1.  Introduction
 
@@ -103,17 +105,18 @@ Table of Contents
    information to users and machines.  Machine tags are also known as
    triple tags due to their format.
 
+
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                  [Page 2]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
    In the MISP taxonomy context, machine tags help analysts to classify
    their cybersecurity events, indicators or threats.  MISP taxonomies
    can be used for classification, filtering, triggering actions or
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 2]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
    visualisation depending on their use in threat intelligence platforms
    such as MISP [MISP-P].
 
@@ -155,20 +158,21 @@ Internet-Draft            MISP taxonomy format            September 2017
    applicable at event, user or org level.  The type is represented as
    an array containing one or more type and SHOULD be present.  If a
    type is not mentioned, by default, the taxonomy is applicable at
-   event level only.
+   event level only.  An exclusive boolean property MAY be present and
+   defines at namespace level if the predicates are mutually exclusive.
+
+
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                  [Page 3]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
 
    predicates defines all the predicates available in the namespace
    defined. predicates is represented as an array of JSON objects.
    predicates MUST be present and MUST at least content one element.
-
-
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 3]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
 
    values defines all the values for each predicate in the namespace
    defined. values SHOULD be present.
@@ -181,7 +185,8 @@ Internet-Draft            MISP taxonomy format            September 2017
    present. value is represented as a string and describes the predicate
    value.  The predicate value MUST not contain spaces or colons.
    expanded is represented as a string and describes the human-readable
-   version of the predicate value.
+   version of the predicate value.  An exclusive property MAY be present
+   and defines at namespace level if the values are mutually exclusive.
 
 2.3.  values
 
@@ -216,14 +221,9 @@ Internet-Draft            MISP taxonomy format            September 2017
 
 
 
-
-
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 4]
+Dulaunoy & Iklody         Expires June 2, 2018                  [Page 4]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft            MISP taxonomy format             November 2017
 
 
     "predicates": [
@@ -259,6 +259,10 @@ Internet-Draft            MISP taxonomy format            September 2017
    SHOULD use the decimal value provided to support scoring or
    filtering.
 
+   The decimal range for numerical_value SHOULD use a range from 0 up to
+   100.  The range is recommended to support common mathematical
+   properties among taxonomies.
+
    Example use of the numerical_value in the MISP confidence level:
 
 
@@ -273,13 +277,9 @@ Internet-Draft            MISP taxonomy format            September 2017
 
 
 
-
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 5]
+Dulaunoy & Iklody         Expires June 2, 2018                  [Page 5]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft            MISP taxonomy format             November 2017
 
 
               {
@@ -333,9 +333,9 @@ Internet-Draft            MISP taxonomy format            September 2017
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 6]
+Dulaunoy & Iklody         Expires June 2, 2018                  [Page 6]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft            MISP taxonomy format             November 2017
 
 
 3.1.  Sample Manifest
@@ -389,9 +389,9 @@ Internet-Draft            MISP taxonomy format            September 2017
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 7]
+Dulaunoy & Iklody         Expires June 2, 2018                  [Page 7]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft            MISP taxonomy format             November 2017
 
 
               "value": "a",
@@ -445,9 +445,9 @@ Internet-Draft            MISP taxonomy format            September 2017
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 8]
+Dulaunoy & Iklody         Expires June 2, 2018                  [Page 8]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft            MISP taxonomy format             November 2017
 
 
             {
@@ -501,9 +501,9 @@ Internet-Draft            MISP taxonomy format            September 2017
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                 [Page 9]
+Dulaunoy & Iklody         Expires June 2, 2018                  [Page 9]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft            MISP taxonomy format             November 2017
 
 
        "predicate": "source-type"
@@ -557,9 +557,9 @@ Internet-Draft            MISP taxonomy format            September 2017
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 10]
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 10]
 
-Internet-Draft            MISP taxonomy format            September 2017
+Internet-Draft            MISP taxonomy format             November 2017
 
 
            "description": "30% Probably not"
@@ -601,6 +601,423 @@ Internet-Draft            MISP taxonomy format            September 2017
  }
 
 
+4.3.  Available taxonomies in the public directory
+
+   The public directory of MISP taxonomies [MISP-T] contains a variety
+   of taxonomy in various fields such as:
+
+   CERT-XLM:
+      CERT-XLM Security Incident Classification.
+
+   DML:
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 11]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
+      The Detection Maturity Level (DML) model is a capability maturity
+      model for referencing ones maturity in detecting cyber attacks.
+      It's designed for organizations who perform intel-driven detection
+      and response and who put an emphasis on having a mature detection
+      program.
+
+   PAP:
+      The Permissible Actions Protocol - or short: PAP - was designed to
+      indicate how the received information can be used.
+
+   access-method:
+      The access method used to remotely access a system.
+
+   accessnow:
+      Access Now classification to classify an issue (such as security,
+      human rights, youth rights).
+
+   action-taken:
+      Action taken in the case of a security incident (CSIRT
+      perspective).
+
+   admiralty-scale:
+      The Admiralty Scale (also called the NATO System) is used to rank
+      the reliability of a source and the credibility of an information.
+
+   adversary:
+      An overview and description of the adversary infrastructure.
+
+   ais-marking:
+      AIS Marking Schema implementation is maintained by the National
+      Cybersecurity and Communication Integration Center (NCCIC) of the
+      U.S.  Department of Homeland Security (DHS)
+
+   analyst-assessment:
+      A series of assessment predicates describing the analyst
+      capabilities to perform analysis.  These assessment can be
+      assigned by the analyst him/herself or by another party evaluating
+      the analyst.
+
+   approved-category-of-action:
+      A pre-approved category of action for indicators being shared with
+      partners (MIMIC).
+
+   binary-class:
+      Custom taxonomy for types of binary file.
+
+   cccs:
+      Internal taxonomy for CCCS.
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 12]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
+   circl:
+      CIRCL Taxonomy is a simple scheme for incident classification and
+      area topic where the incident took place.
+
+   collaborative-intelligence:
+      Collaborative intelligence support language is a common language
+      to support analysts to perform their analysis to get crowdsourced
+      support when using threat intelligence sharing platform like MISP.
+
+   copine-scale:
+      The COPINE Scale is a rating system created in Ireland and used in
+      the United Kingdom to categorise the severity of images of child
+      sex abuse.
+
+   csirt_case_classification:
+      FIRST CSIRT Case Classification.
+
+   cssa:
+      The CSSA agreed sharing taxonomy.
+
+   cyber-threat-framework:
+      Cyber Threat Framework was developed by the US Government to
+      enable consistent characterization and categorization of cyber
+      threat events, and to identify trends or changes in the activities
+      of cyber adversaries. <https://www.dni.gov/index.php/cyber-threat-
+      framework>
+
+   ddos:
+      Distributed Denial of Service - or short: DDoS - taxonomy supports
+      the description of Denial of Service attacks and especially the
+      types they belong too.
+
+   de-vs:
+      Taxonomy for the handling of protectively marked information in
+      MISP with German (DE) Government classification markings (VS)
+
+   dhs-ciip-sectors:
+      DHS critical sectors as described in <https://www.dhs.gov/
+      critical-infrastructure-sectors>.
+
+   diamond-model:
+      The Diamond Model for Intrusion Analysis, a phase-based model
+      developed by Lockheed Martin, aims to help categorise and identify
+      the stage of an attack.
+
+   dni-ism:
+      ISM (Information Security Marking Metadata) V13 as described by
+      DNI.gov (Director of National Intelligence - US).
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 13]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
+   domain-abuse:
+      Taxonomy to tag domain names used for cybercrime.
+
+   economical-impact:
+      Economical impact is a taxonomy to describe the financial impact
+      as positive or negative gain to the tagged information.
+
+   ecsirt:
+      eCSIRT incident classification Appendix C of the eCSIRT EU project
+      including IntelMQ updates.
+
+   enisa:
+      ENISA Threat Taxonomy - A tool for structuring threat information
+      as published in <https://www.enisa.europa.eu/topics/threat-risk-
+      management/threats-and-trends/enisa-threat-landscape/etl2015/
+      enisa-threat-taxonomy-a-tool-for-structuring-threat-information>
+
+   estimative-language:
+      Estimative language - including likelihood or probability of event
+      based on the Intelligence Community Directive 203 (ICD 203)
+      (6.2.(a)) and JP 2-0, Joint Intelligence.
+
+   eu-marketop-and-publicadmin:
+      Market operators and public administrations that must comply to
+      some notifications requirements under EU NIS directive.
+
+   eu-nis-sector-and-subsectors:
+      Sectors and sub sectors as identified by the NIS Directive.
+
+   euci:
+      EU classified information (EUCI) means any information or material
+      designated by a EU security classification, the unauthorised
+      disclosure of which could cause varying degrees of prejudice to
+      the interests of the European Union or of one or more of the
+      Member States as described in CELEX 32013D0488
+
+   europol-event:
+      EUROPOL type of events taxonomy.
+
+   europol-incident:
+      EUROPOL class of incident taxonomy.
+
+   event-assessment:
+      A series of assessment predicates describing the event assessment
+      performed to make judgement(s) under a certain level of
+      uncertainty.
+
+   event-classification:
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 14]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
+      Event Classification.
+
+   exercise:
+      Exercise is a taxonomy to describe if the information is part of
+      one or more cyber or crisis exercise
+
+   false-positive:
+      This taxonomy aims to ballpark the expected amount of false
+      positives.
+
+   file-type:
+      List of known file types.
+
+   fpf:
+      The Future of Privacy Forum (FPF) visual guide to practical de-
+      identification [1] taxonomy is used to evaluate the degree of
+      identifiability of personal data and the types of pseudonymous
+      data, de-identified data and anonymous data.  The work of FPF is
+      licensed under a creative commons attribution 4.0 international
+      license.
+
+   fr-classif:
+      French gov information classification system.
+
+   gdpr:
+      Taxonomy related to the REGULATION (EU) 2016/679 OF THE EUROPEAN
+      PARLIAMENT AND OF THE COUNCIL on the protection of natural persons
+      with regard to the processing of personal data and on the free
+      movement of such data, and repealing Directive 95/46/EC (General
+      Data Protection Regulation)
+
+   gsma-attack-category:
+      Taxonomy used by GSMA for their information sharing program with
+      telco describing the attack categories
+
+   gsma-fraud:
+      Taxonomy used by GSMA for their information sharing program with
+      telco describing the various aspects of fraud
+
+   gsma-network-technology:
+      Taxonomy used by GSMA for their information sharing program with
+      telco describing the types of infrastructure.  WiP
+
+   honeypot-basic:
+      Christian Seifert, Ian Welch, Peter Komisarczuk, 'Taxonomy of
+      Honeypots', Technical Report CS-TR-06/12, VICTORIA UNIVERSITY OF
+      WELLINGTON, School of Mathematical and Computing Sciences, June
+
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 15]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
+      2006, <http://www.mcs.vuw.ac.nz/comp/Publications/archive/CS-TR-
+      06/CS-TR-06-12.pdf>
+
+   iep:
+      Forum of Incident Response and Security Teams (FIRST) Information
+      Exchange Policy (IEP) framework.
+
+   ifx-vetting:
+      The IFX taxonomy is used to categorise information (MISP events
+      and attributes) to aid in the intelligence vetting process
+
+   incident-disposition:
+      How an incident is classified in its process to be resolved.  The
+      taxonomy is inspired from NASA Incident Response and Management
+      Handbook.
+
+   infoleak:
+      A taxonomy describing information leaks and especially information
+      classified as being potentially leaked.
+
+   information-security-indicators:
+      Information security indicators have been standardized by the ETSI
+      Industrial Specification Group (ISG) ISI.  These indicators
+      provide the basis to switch from a qualitative to a quantitative
+      culture in IT Security Scope of measurements: External and
+      internal threats (attempt and success), user's deviant behaviours,
+      nonconformities and/or vulnerabilities (software, configuration,
+      behavioural, general security framework).  ETSI GS ISI 001-1
+      (V1.1.2): ISI Indicators
+
+   interception-method:
+      The interception method used to intercept traffic.
+
+   kill-chain:
+      Cyber Kill Chain from Lockheed Martin as described in
+      Intelligence-Driven Computer Network Defense Informed by Analysis
+      of Adversary Campaigns and Intrusion Kill Chains.
+
+   maec-delivery-vectors:
+      Vectors used to deliver malware based on MAEC 5.0
+
+   maec-malware-behavior:
+      Malware behaviours based on MAEC 5.0
+
+   maec-malware-capabilities:
+      Malware Capabilities based on MAEC 5.0
+
+   maec-malware-obfuscation-methods:
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 16]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
+      Obfuscation methods used by malware based on MAEC 5.0
+
+   malware_classification:
+      Malware classification based on a SANS whitepaper about malware.
+
+   misp:
+      Internal MISP taxonomy.
+
+   monarc-threat:
+      MONARC threat taxonomy.
+
+   ms-caro-malware:
+      Malware Type and Platform classification based on Microsoft's
+      implementation of the Computer Antivirus Research Organization
+      (CARO) Naming Scheme and Malware Terminology.
+
+   ms-caro-malware-full:
+      Malware Type and Platform classification based on Microsoft's
+      implementation of the Computer Antivirus Research Organization
+      (CARO) Naming Scheme and Malware Terminology.
+
+   nato:
+      Marking of Classified and Unclassified materials as described by
+      the North Atlantic Treaty Organization, NATO.
+
+   nis:
+      NIS Cybersecurity Incident Taxonomy.
+
+   open_threat:
+      Open Threat Taxonomy v1.1 base on James Tarala of SANS ref. -
+      <http://www.auditscripts.com/resources/
+      open_threat_taxonomy_v1.1a.pdf>
+
+   osint:
+      Open Source Intelligence - Classification (MISP taxonomies).
+
+   passivetotal:
+      Tags for RiskIQ's passivetotal service
+
+   pentest:
+      Penetration test (pentest) classification.
+
+   priority-level:
+      After an incident is scored, it is assigned a priority level.  The
+      six levels listed below are aligned with NCCIC, DHS, and the CISS
+      to help provide a common lexicon when discussing incidents.  This
+      priority assignment drives NCCIC urgency, pre-approved incident
+      response offerings, reporting requirements, and recommendations
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 17]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
+      for leadership escalation.  Generally, incident priority
+      distribution should follow a similar pattern to the graph below.
+      Based on <https://www.us-cert.gov/NCCIC-Cyber-Incident-Scoring-
+      System>.
+
+   rsit:
+      Reference Security Incident Classification Taxonomy.
+
+   rt_event_status:
+      Status of events used in Request Tracker.
+
+   runtime-packer:
+      Runtime or software packer used to combine compressed data with
+      the decompression code.  The decompression code can add additional
+      obfuscations mechanisms including polymorphic-packer or other
+      obfuscation techniques.  This taxonomy lists all the known or
+      official packer used for legitimate use or for packing malicious
+      binaries.
+
+   smart-airports-threats:
+      Threat taxonomy in the scope of securing smart airports by ENISA.
+
+   stealth_malware:
+      Classification based on malware stealth techniques.
+
+   stix-ttp:
+      Representation of the behavior or modus operandi of cyber
+      adversaries (a.k.a TTP) as normalized in STIX
+
+   targeted-threat-index:
+      The Targeted Threat Index is a metric for assigning an overall
+      threat ranking score to email messages that deliver malware to a
+      victim's computer.  The TTI metric was first introduced at SecTor
+      2013 by Seth Hardy as part of the talk "RATastrophe: Monitoring a
+      Malware Menagerie" along with Katie Kleemola and Greg Wiseman.
+
+   tlp:
+      The Traffic Light Protocol - or short: TLP - was designed with the
+      objective to create a favorable classification scheme for sharing
+      sensitive information while keeping the control over its
+      distribution at the same time.  Extended with TLP:EX:CHR.
+
+   tor:
+      Taxonomy to describe Tor network infrastructure
+
+   veris:
+      Vocabulary for Event Recording and Incident Sharing (VERIS).
+
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 18]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
+   vocabulaire-des-probabilites-estimatives:
+      Vocabulaire des probabilites estimatives
+
+   workflow:
+      Workflow support language is a common language to support
+      intelligence analysts to perform their analysis on data and
+      information.
+
 5.  JSON Schema
 
    The JSON Schema [JSON-SCHEMA] below defines the structure of the MISP
@@ -610,14 +1027,6 @@ Internet-Draft            MISP taxonomy format            September 2017
 
     {
       "$schema": "http://json-schema.org/schema#",
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 11]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
       "title": "Validator for misp-taxonomies",
       "id": "https://www.github.com/MISP/misp-taxonomies/schema.json",
       "defs": {
@@ -649,6 +1058,14 @@ Internet-Draft            MISP taxonomy format            September 2017
             }
           }
         },
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 19]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
         "values": {
           "type": "array",
           "uniqueItems": true,
@@ -666,14 +1083,6 @@ Internet-Draft            MISP taxonomy format            September 2017
             "required": [
               "predicate"
             ]
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 12]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
           }
         },
         "predicates": {
@@ -698,10 +1107,21 @@ Internet-Draft            MISP taxonomy format            September 2017
               "value": {
                 "type": "string"
               },
+              "exclusive": {
+                "type": "boolean"
+              },
               "required": [
                 "value"
               ]
             }
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 20]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
           }
         }
       },
@@ -720,16 +1140,11 @@ Internet-Draft            MISP taxonomy format            September 2017
         "namespace": {
           "type": "string"
         },
+        "exclusive": {
+          "type": "boolean"
+        },
         "type": {
           "type": "array",
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 13]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
-
           "uniqueItems": true,
           "items": {
             "type": "string",
@@ -755,6 +1170,14 @@ Internet-Draft            MISP taxonomy format            September 2017
           "$ref": "#/defs/values"
         }
       },
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 21]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
       "required": [
         "namespace",
         "description",
@@ -774,40 +1197,47 @@ Internet-Draft            MISP taxonomy format            September 2017
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
-              editor.org/info/rfc2119>.
-
-
-
-
-
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 14]
-
-Internet-Draft            MISP taxonomy format            September 2017
-
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627,
-              DOI 10.17487/RFC4627, July 2006, <https://www.rfc-
-              editor.org/info/rfc4627>.
+              DOI 10.17487/RFC4627, July 2006,
+              <https://www.rfc-editor.org/info/rfc4627>.
 
 7.2.  Informative References
 
    [JSON-SCHEMA]
               "JSON Schema: A Media Type for Describing JSON Documents",
-              2016, <https://tools.ietf.org/html/draft-wright-json-
-              schema>.
+              2016,
+              <https://tools.ietf.org/html/draft-wright-json-schema>.
 
    [machine-tags]
               "Machine tags", 2007,
               <https://www.flickr.com/groups/51035612836@N01/
               discuss/72157594497877875/>.
 
-   [MISP-P]   MISP, , "MISP Project - Malware Information Sharing
-              Platform and Threat Sharing", <https://github.com/MISP>.
+   [MISP-P]   MISP, "MISP Project - Malware Information Sharing Platform
+              and Threat Sharing", <https://github.com/MISP>.
 
-   [MISP-T]   MISP, , "MISP Taxonomies - shared and common vocabularies
-              of tags", <https://github.com/MISP/misp-taxonomies>.
+   [MISP-T]   MISP, "MISP Taxonomies - shared and common vocabularies of
+              tags", <https://github.com/MISP/misp-taxonomies>.
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 22]
+
+Internet-Draft            MISP taxonomy format             November 2017
+
+
+7.3.  URIs
+
+   [1] https://fpf.org/2016/04/25/a-visual-guide-to-practical-data-de-
+       identification/
 
 Authors' Addresses
 
@@ -837,4 +1267,22 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody         Expires March 8, 2018                [Page 15]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody         Expires June 2, 2018                 [Page 23]
