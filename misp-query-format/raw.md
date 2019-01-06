@@ -96,15 +96,15 @@ page **MAY** be present. If present, the page parameter **MUST** also be supplie
 
 ### value
 
-value **MAY** be present. If set, the returned data set will be filtered on the attribute value field. value **MAY** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters.
+value **MAY** be present. If set, the returned data set will be filtered on the attribute value field. value **MUST** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters.
 
 ### type
 
-type **MAY** be present. If set, the returned data set will be filtered on the attribute type field. type **MAY** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters. The list of valid attribute types is described in the MISP core format [@?MISP-C] in the attribute type section.
+type **MAY** be present. If set, the returned data set will be filtered on the attribute type field. type **MUST** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters. The list of valid attribute types is described in the MISP core format [@?MISP-C] in the attribute type section.
 
 ### category
 
-category **MAY** be present. If set, the returned data set will be filtered on the attribute category field. category **MAY** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters. The list of valid categories is described in the MISP core format [@?MISP-C] in the attribute type section.
+category **MAY** be present. If set, the returned data set will be filtered on the attribute category field. category **MUST** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters. The list of valid categories is described in the MISP core format [@?MISP-C] in the attribute type section.
 
 A sample query to lookup for the last 30 days of indicators in the `Financial fraud` category and output in CSV format:
 
@@ -122,7 +122,7 @@ org **MAY** be present. If set, the returned data set will be filtered by the or
 
 ### tags
 
-tags **MAY** be present. If set, the returned data set will be filtered by tags. tags **MAY** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters.
+tags **MAY** be present. If set, the returned data set will be filtered by tags. tags **MUST** be a string or a sub-string, the latter of which starts with, ends with or is encapsulated in wildcard (\%) characters.
 
 ~~~~
 {
@@ -136,7 +136,7 @@ tags **MAY** be present. If set, the returned data set will be filtered by tags.
 
 ### from
 
-from **MAY** be present. If set, the returned data set will be filtered from a starting date. from **MAY** be a string represented in the format year-month-date.
+from **MAY** be present. If set, the returned data set will be filtered from a starting date. from **MUST** be a string represented in the format year-month-date.
 
 ~~~~
 {
@@ -150,18 +150,26 @@ from **MAY** be present. If set, the returned data set will be filtered from a s
 
 ### to
 
-to **MAY** be present. If set, the returned data set will be filtered until the specified date. from **MAY** be a string represented in the format year-month-date.
+to **MAY** be present. If set, the returned data set will be filtered until the specified date. from **MUST** be a string represented in the format year-month-date.
 
 ### last
 
-last **MAY** be present. If set, the returned data set
-
+last **MAY** be present. If set, the returned data set will be filtered in the number of days, hours or minutes defined (such as 5d, 12h or 30m). last **MUST** be a string represented in the format expressing days, hours or minutes.
 
 ### eventid
 
+eventid **MAY** be present. If set, the returned data set will be filtered to a specific event. eventid **MUST** be a string representing the event id as an integer.
+
+~~~~
+{
+    "returnFormat": "json",
+    "eventid": 1
+}
+~~~~
+
 ### withAttachments
 
-### metadata
+withAttachments **MAY** be present. If set to True (1), the returned data set will include the attachment(s) matching the query. withAttachments **MUST** be an integer set as 1 (True) to include the attachment(s). If not, the attachment(s) won't be included in the results.
 
 ### uuid
 
