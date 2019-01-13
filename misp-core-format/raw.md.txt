@@ -537,7 +537,7 @@ Internet-Draft              MISP core format                 August 2018
       traffic, pattern-in-memory, vulnerability, attachment, malware-
       sample, link, comment, text, x509-fingerprint-sha1, x509-
       fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5,
-      github-repository, other, cortex
+      hassh-md5, hasshserver-md5, github-repository, other, cortex
 
    Financial fraud
       btc, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-number,
@@ -552,8 +552,8 @@ Internet-Draft              MISP core format                 August 2018
       agent, http-method, AS, snort, pattern-in-file, stix2-pattern,
       pattern-in-traffic, attachment, comment, text, x509-fingerprint-
       md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-
-      fingerprint-md5, other, hex, cookie, hostname|port, bro
-
+      fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie,
+      hostname|port, bro
 
 
 
@@ -580,10 +580,11 @@ Internet-Draft              MISP core format                 August 2018
       stix2-pattern, yara, sigma, mime-type, attachment, malware-sample,
       link, malware-type, comment, text, hex, vulnerability, x509-
       fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256,
-      ja3-fingerprint-md5, other, hostname|port, email-dst-display-name,
-      email-src-display-name, email-header, email-reply-to, email-
-      x-mailer, email-mime-boundary, email-thread-index, email-message-
-      id, mobile-application-id, whois-registrant-email
+      ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other,
+      hostname|port, email-dst-display-name, email-src-display-name,
+      email-header, email-reply-to, email-x-mailer, email-mime-boundary,
+      email-thread-index, email-message-id, mobile-application-id,
+      whois-registrant-email
 
    Payload installation
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
@@ -609,7 +610,6 @@ Internet-Draft              MISP core format                 August 2018
       gender, passport-number, passport-country, passport-expiration,
       redress-number, nationality, visa-number, issue-date-of-the-visa,
       primary-residence, country-of-residence, special-service-request,
-      frequent-flyer-number, travel-details, payment-details, place-
 
 
 
@@ -618,6 +618,7 @@ Dulaunoy & Iklody       Expires February 9, 2019               [Page 11]
 Internet-Draft              MISP core format                 August 2018
 
 
+      frequent-flyer-number, travel-details, payment-details, place-
       port-of-original-embarkation, place-port-of-clearance, place-port-
       of-onward-foreign-destination, passenger-name-record-locator-
       number, comment, text, other, phone-number, identity-card-number
@@ -665,7 +666,6 @@ Internet-Draft              MISP core format                 August 2018
 
    The event_id SHOULD be updated when the event is imported to reflect
    the newly created event's id on the instance.
-
 
 
 
@@ -909,7 +909,7 @@ Internet-Draft              MISP core format                 August 2018
       traffic, pattern-in-memory, vulnerability, attachment, malware-
       sample, link, comment, text, x509-fingerprint-sha1, x509-
       fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5,
-      github-repository, other, cortex
+      hassh-md5, hasshserver-md5, github-repository, other, cortex
 
    Financial fraud
       btc, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-number,
@@ -924,7 +924,8 @@ Internet-Draft              MISP core format                 August 2018
       agent, http-method, AS, snort, pattern-in-file, stix2-pattern,
       pattern-in-traffic, attachment, comment, text, x509-fingerprint-
       md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-
-      fingerprint-md5, other, hex, cookie, hostname|port, bro
+      fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie,
+      hostname|port, bro
 
    Other
       comment, text, other, size-in-bytes, counter, datetime, cpe, port,
@@ -944,8 +945,7 @@ Internet-Draft              MISP core format                 August 2018
       stix2-pattern, yara, sigma, mime-type, attachment, malware-sample,
       link, malware-type, comment, text, hex, vulnerability, x509-
       fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256,
-      ja3-fingerprint-md5, other, hostname|port, email-dst-display-name,
-      email-src-display-name, email-header, email-reply-to, email-
+      ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other,
 
 
 
@@ -954,8 +954,10 @@ Dulaunoy & Iklody       Expires February 9, 2019               [Page 17]
 Internet-Draft              MISP core format                 August 2018
 
 
-      x-mailer, email-mime-boundary, email-thread-index, email-message-
-      id, mobile-application-id, whois-registrant-email
+      hostname|port, email-dst-display-name, email-src-display-name,
+      email-header, email-reply-to, email-x-mailer, email-mime-boundary,
+      email-thread-index, email-message-id, mobile-application-id,
+      whois-registrant-email
 
    Payload installation
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
@@ -998,9 +1000,7 @@ Internet-Draft              MISP core format                 August 2018
       target-user, target-email, target-machine, target-org, target-
       location, target-external, comment
 
-   Attributes are based on the usage within their different communities.
-   Attributes can be extended on a regular basis and this reference
-   document is updated accordingly.
+
 
 
 
@@ -1009,6 +1009,10 @@ Dulaunoy & Iklody       Expires February 9, 2019               [Page 18]
 
 Internet-Draft              MISP core format                 August 2018
 
+
+   Attributes are based on the usage within their different communities.
+   Attributes can be extended on a regular basis and this reference
+   document is updated accordingly.
 
 2.5.2.4.  category
 
@@ -1054,10 +1058,6 @@ Internet-Draft              MISP core format                 August 2018
    the ShadowAttribute proposes the creation of a new Attribute, it
    should be set to 0.
 
-   old_id is represented as a JSON string. old_id MUST be present.
-
-
-
 
 
 
@@ -1065,6 +1065,8 @@ Dulaunoy & Iklody       Expires February 9, 2019               [Page 19]
 
 Internet-Draft              MISP core format                 August 2018
 
+
+   old_id is represented as a JSON string. old_id MUST be present.
 
 2.5.2.8.  timestamp
 
@@ -1111,8 +1113,6 @@ Internet-Draft              MISP core format                 August 2018
    instances that the shadow attribute is no longer active.
 
    deleted is represented by a JSON boolean. deleted SHOULD be present.
-
-
 
 
 
