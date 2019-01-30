@@ -315,7 +315,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   threat-actor, campaign-name, campaign-id, whois-registrant-phone, whois-registrant-email, whois-registrant-name, whois-registrant-org, whois-registrar, whois-creation-date, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, other, dns-soa-email
 
 **External analysis**
-:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, github-repository, other, cortex
+:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, github-repository, other, cortex
 
 **Financial fraud**
 :   btc, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, phone-number, comment, text, other, hex
@@ -324,7 +324,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   text, link, comment, other, hex
 
 **Network activity**
-:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro
+:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek
 
 **Other**
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean
@@ -511,7 +511,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   threat-actor, campaign-name, campaign-id, whois-registrant-phone, whois-registrant-email, whois-registrant-name, whois-registrant-org, whois-registrar, whois-creation-date, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, other, dns-soa-email
 
 **External analysis**
-:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, github-repository, other, cortex
+:   md5, sha1, sha256, filename, filename|md5, filename|sha1, filename|sha256, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, github-repository, other, cortex
 
 **Financial fraud**
 :   btc, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, phone-number, comment, text, other, hex
@@ -520,7 +520,7 @@ type is represented as a JSON string. type **MUST** be present and it **MUST** b
 :   text, link, comment, other, hex
 
 **Network activity**
-:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro
+:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek
 
 **Other**
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean
