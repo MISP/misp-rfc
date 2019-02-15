@@ -239,6 +239,51 @@ Example use of the cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-
 
 The JSON Schema [@?JSON-SCHEMA] below defines the overall MISP galaxy formats. The main format is the MISP galaxy format used for the clusters.
 
+## MISP galaxy format - galaxy
+
+~~~~
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Validator for misp-galaxies - Galaxies",
+  "id": "https://www.github.com/MISP/misp-galaxies/schema_galaxies.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "kill_chain_order": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "description",
+    "type",
+    "version",
+    "name",
+    "uuid"
+  ]
+}
+~~~~
+
 ## MISP galaxy format - clusters
 
 ~~~~
