@@ -1,4 +1,4 @@
-MMARK:=/home/adulau/git/mmark/mmark/mmark -xml2 -page
+MMARK:=mmark -xml2 -page
 
 docs = $(wildcard *.md)
 
