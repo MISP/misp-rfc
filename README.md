@@ -45,10 +45,6 @@ for directory in $(find . -type d -iname "misp*"); do;
 done;
 ```
 
-cd misp-core-format
-make
-```
-
 # Contribution
 
 If you want to contribute to the MISP specifications, feel free to [open an issue](https://github.com/MISP/misp-rfc/issues).
