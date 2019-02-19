@@ -30,7 +30,21 @@ If you want to see how a threat intelligence can be easily expressed in MISP sta
 
 [Installing MISP](https://www.misp-project.org/download/) is also another option to see the MISP standards in action. The MISP standards are actively used in the MISP threat intelligence platform to support the complete chain from intelligence creation, sharing, distribution and synchronisation.
 
+## Building the RFCs
+
+These RFCs use [mmark](https://mmark.nl/) to generate - get a release [from the Github Repo](https://github.com/miekg/mmark/releases) and make sure it's in your PATH.
+
+You'll also need `xml2rfc` - install using `sudo pip3 isntall xml2rfc`
+
+```bash
+for directory in $(find . -type d -iname "misp*"); do;
+    echo "Building $directory...";
+    cd $directory;
+    make;
+    cd ..;
+done;
+```
+
 # Contribution
 
 If you want to contribute to the MISP specifications, feel free to [open an issue](https://github.com/MISP/misp-rfc/issues).
-
