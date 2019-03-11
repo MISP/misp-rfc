@@ -226,7 +226,16 @@ Example use of the cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-
 },
 ~~~~
 
-attribution-confidence **MAY** be used to indicte the confidence about an attribution given by country or cfr-suspected-state-sponsor. attribution-confidence is represented on a scale from 0 to 100, where 50 means "no information", the values under 50 mean "not certain", the values above 50 means "pretty certain" and **SHALL** be present if country or cfr-suspected-state-sponsor are present.
+attribution-confidence **MAY** be used to indicate the confidence about an attribution given by country or cfr-suspected-state-sponsor. attribution-confidence is represented on a scale from 0 to 100, where 50 means "no information", the values under 50 mean "probably not, almost certainly not to impossibility", the values above 50 means "from probable, almost certain to certainty" and **SHALL** be present if country or cfr-suspected-state-sponsor are present.
+
+~~~~
+Impossibility        no information          Certainty
+                           +
+                           |
+       +-------------------+------------------>
+
+       0                  50                100
+~~~~
 
 # JSON Schema
 
