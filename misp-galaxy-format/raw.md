@@ -104,7 +104,7 @@ Related contains a list of JSON key value pairs which describe the related value
 
 ## meta
 
-Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category wherever applicable.
+Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, attribution-confidence wherever applicable.
 
 refs, synonyms **SHALL** be used to give further informations. refs is represented as an array containing one or more strings and **SHALL** be present. synonyms is represented as an array containing one or more strings and **SHALL** be present.
 
@@ -161,31 +161,27 @@ Example use of the country, motive fields in the threat-actor galaxy:
 }
 ~~~~
 
-encryption, extensions, ransomnotes **MAY** be used to give further information in ransomware galaxy. encryption is represented as a string and **SHALL** be present. extensions is represented as an array containing one or more strings and **SHALL** be present. ransomnotes is represented as an array containing one or more strings ans **SHALL** be present.
+encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs **MAY** be used to give further information in ransomware galaxy. encryption is represented as a string and **SHALL** be present. extensions is represented as an array containing one or more strings and **SHALL** be present. ransomnotes is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-filenames is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-refs is represented as an array containing one or more strings ans **SHALL** be present.
 
 Example use of the encryption, extensions, ransomnotes fields in the ransomware galaxy:
 
 ~~~~
 {
+  "description": "Similar to Samas and BitPaymer, Ryuk is specifically used to target enterprise environments. Code comparison between versions of Ryuk and Hermes ransomware indicates that Ryuk was derived from the Hermes source code and has been under steady development since its release. Hermes is commodity ransomware that has been observed for sale on forums and used by multiple threat actors. However, Ryuk is only used by GRIM SPIDER and, unlike Hermes, Ryuk has only been used to target enterprise environments. Since Ryuk’s appearance in August, the threat actors operating it have netted over 705.80 BTC across 52 transactions for a total current value of $3,701,893.98 USD.",
   "meta": {
+    "ransomnotes-filenames": [
+      "RyukReadMe.txt"
+    ],
+    "ransomnotes-refs": [
+      "https://www.crowdstrike.com/blog/wp-content/uploads/2019/01/RansomeNote-fig3.png",
+      "https://www.crowdstrike.com/blog/wp-content/uploads/2019/01/RansomeNote-fig4.png"
+    ],
     "refs": [
-      "https://www.bleepingcomputer.com/news/security/revenge-ransomware-a-cryptomix-variant-being-distributed-by-rig-exploit-kit/",
-      "https://id-ransomware.blogspot.co.il/2017/03/revenge-ransomware.html"
-    ],
-    "ransomnotes": [
-      "https://2.bp.blogspot.com/-KkPVDxjy8tk/WM7LtYHmuAI/AAAAAAAAEUw/kDJghaq-j1AZuqjzqk2Fkxpp4yr9Yeb5wCLcB/s1600/revenge-note-2.jpg",
-      "===ENGLISH=== All of your files were encrypted using REVENGE Ransomware. The action required to restore the files. Your files are not lost, they can be returned to their normal state by decoding them. The only way to do this is to get the software and your personal decryption key. Using any other software that claims to be able to recover your files will result in corrupted or destroyed files. You can purchase the software and the decryption key by sending us an email with your ID. And we send instructions for payment. After payment, you receive the software to return all files. For proof, we can decrypt one file for free. Attach it to an e-mail.",
-      "# !!!HELP_FILE!!! #.txt"
-    ],
-    "encryption": "AES-256 + RSA-1024",
-    "extensions": [
-      ".REVENGE"
-    ],
-    "date": "March 2017"
+      "https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/"
+    ]
   },
-  "description": "This is most likely to affect English speaking users, since the note is written in English. English is understood worldwide, thus anyone can be harmed. The hacker spread the virus using email spam, fake updates, and harmful attachments. All your files are compromised including music, MS Office, Open Office, pictures, videos, shared online files etc.. CryptoMix / CryptFile2 Variant",
-  "value": "Revenge Ransomware",
-  "uuid": "987d36d5-6ba8-484d-9e0b-7324cc886b0e"
+  "uuid": "f9464c80-b776-4f37-8682-ffde0cf8f718",
+  "value": "Ryuk ransomware"
 }
 ~~~~
 
@@ -206,11 +202,6 @@ Example use of the source-uuid, target-uuid fields in the mitre-enterprise-attac
 cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident and cfr-target-category **MAY** be used to report information gathered from CFR's (Council on Foreign Relations) [@?CFR] Cyber Operations Tracker.  cfr-suspected-victims is represented as an array containing one or more strings and **SHALL** be present. cfr-suspected-state-sponsor is represented as a string and **SHALL** be present. cfr-type-of-incident is represented as a string or an array and **SHALL** be present. **RECOMMENDED** but not exhaustive list of possible values for cfr-type-of-incident includes "Espionage", "Denial of service", "Sabotage". cfr-target-category is represented as an array containing one or more strings ans **SHALL** be present. **RECOMMENDED** but not exhaustive list of possible values for cfr-target-category includes "Private sector", "Government", "Civil society", "Military".
 
 Example use of the cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category fields in the threat-actor galaxy:
-
-
-
-
-
 
 ~~~~
 {
@@ -234,6 +225,8 @@ Example use of the cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-
   "uuid": "1f73e14f-b882-4032-a565-26dc653b0daf"
 },
 ~~~~
+
+attribution-confidence **MAY** be used to indicte the confidence about an attribution given by country or cfr-suspected-state-sponsor. attribution-confidence is represented on a scale from 0 to 100, where 50 means "no information", the values under 50 mean "not certain", the values above 50 means "pretty certain" and **SHALL** be present if country or cfr-suspected-state-sponsor are present.
 
 # JSON Schema
 
