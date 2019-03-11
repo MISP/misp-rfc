@@ -73,7 +73,7 @@ Table of Contents
      2.3.  related . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.4.  meta  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .   8
-     3.1.  MISP galaxy format - galaxy . . . . . . . . . . . . . . .   8
+     3.1.  MISP galaxy format - galaxy . . . . . . . . . . . . . . .   9
      3.2.  MISP galaxy format - clusters . . . . . . . . . . . . . .   9
    4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  13
    5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
@@ -256,6 +256,32 @@ Internet-Draft             MISP galaxy format             September 2018
 
    Example use of the country, motive fields in the threat-actor galaxy:
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 5]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
         {
           "meta": {
             "country": "CN",
@@ -268,19 +294,13 @@ Internet-Draft             MISP galaxy format             September 2018
             "refs": [
               "http://www.crowdstrike.com/blog/whois-anchor-panda/"
             ],
-            "motive": "Espionage"
+            "motive": "Espionage",
+            "attribution-confidence": 50
           },
           "value": "Anchor Panda",
           "description": "PLA Navy",
           "uuid": "c82c904f-b3b4-40a2-bf0d-008912953104"
         }
-
-
-
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 5]
-
-Internet-Draft             MISP galaxy format             September 2018
-
 
    encryption, extensions, ransomnotes, ransomnotes-filenames,
    ransomnotes-refs MAY be used to give further information in
@@ -294,6 +314,29 @@ Internet-Draft             MISP galaxy format             September 2018
 
    Example use of the encryption, extensions, ransomnotes fields in the
    ransomware galaxy:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 6]
+
+Internet-Draft             MISP galaxy format             September 2018
+
 
 {
   "description": "Similar to Samas and BitPaymer, Ryuk is specifically used to target enterprise environments. Code comparison between versions of Ryuk and Hermes ransomware indicates that Ryuk was derived from the Hermes source code and has been under steady development since its release. Hermes is commodity ransomware that has been observed for sale on forums and used by multiple threat actors. However, Ryuk is only used by GRIM SPIDER and, unlike Hermes, Ryuk has only been used to target enterprise environments. Since Ryuk's appearance in August, the threat actors operating it have netted over 705.80 BTC across 52 transactions for a total current value of $3,701,893.98 USD.",
@@ -330,14 +373,6 @@ Internet-Draft             MISP galaxy format             September 2018
           "value": "menuPass (G0045) uses EvilGrab (S0152)"
         }
 
-
-
-
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 6]
-
-Internet-Draft             MISP galaxy format             September 2018
-
-
    cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-
    incident and cfr-target-category MAY be used to report information
    gathered from CFR's (Council on Foreign Relations) [CFR] Cyber
@@ -351,6 +386,13 @@ Internet-Draft             MISP galaxy format             September 2018
    one or more strings ans SHALL be present.  RECOMMENDED but not
    exhaustive list of possible values for cfr-target-category includes
    "Private sector", "Government", "Civil society", "Military".
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 7]
+
+Internet-Draft             MISP galaxy format             September 2018
+
 
    Example use of the cfr-suspected-victims, cfr-suspected-state-
    sponsor, cfr-type-of-incident, cfr-target-category fields in the
@@ -371,7 +413,8 @@ Internet-Draft             MISP galaxy format             September 2018
     "cfr-type-of-incident": "Espionage",
     "cfr-target-category": [
       "Private sector"
-    ]
+    ],
+    "attribution-confidence": 50
   },
   "value": "APT 16",
   "uuid": "1f73e14f-b882-4032-a565-26dc653b0daf"
@@ -384,15 +427,6 @@ Internet-Draft             MISP galaxy format             September 2018
    almost certainly not to impossibility", the values above 50 means
    "from probable, almost certain to certainty" and SHALL be present if
    country or cfr-suspected-state-sponsor are present.
-
-
-
-
-
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 7]
-
-Internet-Draft             MISP galaxy format             September 2018
-
 
           Impossibility        no information          Certainty
                                      +
@@ -407,40 +441,6 @@ Internet-Draft             MISP galaxy format             September 2018
    formats.  The main format is the MISP galaxy format used for the
    clusters.
 
-3.1.  MISP galaxy format - galaxy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -449,6 +449,8 @@ Dulaunoy, et al.         Expires March 24, 2019                 [Page 8]
 
 Internet-Draft             MISP galaxy format             September 2018
 
+
+3.1.  MISP galaxy format - galaxy
 
 {
   "$schema": "http://json-schema.org/schema#",
@@ -496,8 +498,6 @@ Internet-Draft             MISP galaxy format             September 2018
 {
   "$schema": "http://json-schema.org/schema#",
   "title": "Validator for misp-galaxies - Clusters",
-  "id": "https://www.github.com/MISP/misp-galaxies/schema_clusters.json",
-  "type": "object",
 
 
 
@@ -506,6 +506,8 @@ Dulaunoy, et al.         Expires March 24, 2019                 [Page 9]
 Internet-Draft             MISP galaxy format             September 2018
 
 
+  "id": "https://www.github.com/MISP/misp-galaxies/schema_clusters.json",
+  "type": "object",
   "additionalProperties": false,
   "properties": {
     "description": {
@@ -552,8 +554,6 @@ Internet-Draft             MISP galaxy format             September 2018
               "type": "object"
             },
             "properties": {
-              "dest-uuid": {
-                "type": "string"
 
 
 
@@ -562,6 +562,8 @@ Dulaunoy, et al.         Expires March 24, 2019                [Page 10]
 Internet-Draft             MISP galaxy format             September 2018
 
 
+              "dest-uuid": {
+                "type": "string"
               },
               "type": {
                 "type": "string"
@@ -608,8 +610,6 @@ Internet-Draft             MISP galaxy format             September 2018
                 "type": "string"
               },
               "refs": {
-                "type": "array",
-                "uniqueItems": true,
 
 
 
@@ -618,6 +618,8 @@ Dulaunoy, et al.         Expires March 24, 2019                [Page 11]
 Internet-Draft             MISP galaxy format             September 2018
 
 
+                "type": "array",
+                "uniqueItems": true,
                 "items": {
                   "type": "string"
                 }
@@ -664,8 +666,6 @@ Internet-Draft             MISP galaxy format             September 2018
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "type": "string"
-      }
 
 
 
@@ -674,6 +674,8 @@ Dulaunoy, et al.         Expires March 24, 2019                [Page 12]
 Internet-Draft             MISP galaxy format             September 2018
 
 
+        "type": "string"
+      }
     }
   },
   "required": [
@@ -718,8 +720,6 @@ Internet-Draft             MISP galaxy format             September 2018
    [CFR]      CFR, "Cyber Operations Tracker - Council on Foreign
               Relations", 2018,
               <https://www.cfr.org/interactive/cyber-operations>.
-
-
 
 
 

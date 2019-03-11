@@ -153,7 +153,8 @@ Example use of the country, motive fields in the threat-actor galaxy:
     "refs": [
       "http://www.crowdstrike.com/blog/whois-anchor-panda/"
     ],
-    "motive": "Espionage"
+    "motive": "Espionage",
+    "attribution-confidence": 50
   },
   "value": "Anchor Panda",
   "description": "PLA Navy",
@@ -219,7 +220,8 @@ Example use of the cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-
     "cfr-type-of-incident": "Espionage",
     "cfr-target-category": [
       "Private sector"
-    ]
+    ],
+    "attribution-confidence": 50
   },
   "value": "APT 16",
   "uuid": "1f73e14f-b882-4032-a565-26dc653b0daf"
