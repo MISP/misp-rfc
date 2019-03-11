@@ -72,13 +72,14 @@ Table of Contents
      2.2.  values  . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.3.  related . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.4.  meta  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-   3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .   7
-     3.1.  MISP galaxy format - clusters . . . . . . . . . . . . . .   8
-   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
-   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
-     5.1.  Normative References  . . . . . . . . . . . . . . . . . .  11
-     5.2.  Informative References  . . . . . . . . . . . . . . . . .  11
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
+   3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .   8
+     3.1.  MISP galaxy format - galaxy . . . . . . . . . . . . . . .   8
+     3.2.  MISP galaxy format - clusters . . . . . . . . . . . . . .   9
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  12
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .  12
+     5.2.  Informative References  . . . . . . . . . . . . . . . . .  13
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
 
 1.  Introduction
 
@@ -108,7 +109,6 @@ Table of Contents
 
 
 
-
 Dulaunoy, et al.         Expires March 24, 2019                 [Page 2]
 
 Internet-Draft             MISP galaxy format             September 2018
@@ -126,7 +126,7 @@ Internet-Draft             MISP galaxy format             September 2018
    The MISP galaxy format uses the JSON [RFC4627] format.  Each galaxy
    is represented as a JSON object with meta information including the
    following fields: name, uuid, description, version, type, authors,
-   source, values.
+   source, values, category.
 
    name defines the name of the galaxy.  The name is represented as a
    string and MUST be present.  The uuid represents the Universally
@@ -139,7 +139,9 @@ Internet-Draft             MISP galaxy format             September 2018
    MUST be present.  The type is represented as a string and MUST be
    present and MUST match the name of the galaxy file.  The source is
    represented as a string and MUST be present.  Authors are represented
-   as an array containing one or more authors and MUST be present.
+   as an array containing one or more authors and MUST be present.  The
+   category is represented as a string and MUST be present and describes
+   the overall category of the galaxy such as tool or actor.
 
    Values are represented as an array containing one or more values and
    MUST be present.  Values defines all values available in the galaxy.
@@ -160,8 +162,6 @@ Internet-Draft             MISP galaxy format             September 2018
    Related contains a list of JSON key value pairs which describe the
    related values in this galaxy cluster or to other galaxy clusters.
    The JSON object contains three fields, dest-uuid, type and tags.  The
-   dest-uuid represents the target UUID which encompasses a relation of
-   some type.  The dest-uuid is represented as a string and MUST be
 
 
 
@@ -170,6 +170,8 @@ Dulaunoy, et al.         Expires March 24, 2019                 [Page 3]
 Internet-Draft             MISP galaxy format             September 2018
 
 
+   dest-uuid represents the target UUID which encompasses a relation of
+   some type.  The dest-uuid is represented as a string and MUST be
    present.  The type is represented as a string and MUST be present and
    SHOULD be selected from the relationship types available in MISP
    objects [MISP-R].  The tags is a list of string which labels the
@@ -189,10 +191,11 @@ Internet-Draft             MISP galaxy format             September 2018
    Meta contains a list of custom defined JSON key value pairs.  Users
    SHOULD reuse commonly used keys such as complexity, effectiveness,
    country, possible_issues, colour, motive, impact, refs, synonyms,
-   status, date, encryption, extensions, ransomnotes, suspected-victims,
-   suspected-state-sponsor, type-of-incident, target-category, cfr-
-   suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident,
-   cfr-target-category wherever applicable.
+   status, date, encryption, extensions, ransomnotes, ransomnotes-
+   filenames, ransomnotes-refs, suspected-victims, suspected-state-
+   sponsor, type-of-incident, target-category, cfr-suspected-victims,
+   cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-
+   category, attribution-confidence wherever applicable.
 
    refs, synonyms SHALL be used to give further informations. refs is
    represented as an array containing one or more strings and SHALL be
@@ -215,9 +218,6 @@ Internet-Draft             MISP galaxy format             September 2018
    represented by an enumerated value from a fixed vocabulary and SHALL
    be present. effectiveness is represented by an enumerated value from
    a fixed vocabulary and SHALL be present. impact is represented by an
-   enumerated value from a fixed vocabulary and SHALL be present.
-   possible_issues is represented as a string and SHOULD be present.
-
 
 
 
@@ -225,6 +225,9 @@ Dulaunoy, et al.         Expires March 24, 2019                 [Page 4]
 
 Internet-Draft             MISP galaxy format             September 2018
 
+
+   enumerated value from a fixed vocabulary and SHALL be present.
+   possible_issues is represented as a string and SHOULD be present.
 
    Example use of the complexity, effectiveness, impact, possible_issues
    fields in the preventive-measure galaxy:
@@ -272,9 +275,6 @@ Internet-Draft             MISP galaxy format             September 2018
           "uuid": "c82c904f-b3b4-40a2-bf0d-008912953104"
         }
 
-   encryption, extensions, ransomnotes MAY be used to give further
-   information in ransomware galaxy. encryption is represented as a
-
 
 
 Dulaunoy, et al.         Expires March 24, 2019                 [Page 5]
@@ -282,34 +282,35 @@ Dulaunoy, et al.         Expires March 24, 2019                 [Page 5]
 Internet-Draft             MISP galaxy format             September 2018
 
 
-   string and SHALL be present. extensions is represented as an array
-   containing one or more strings and SHALL be present. ransomnotes is
-   represented as an array containing one or more strings ans SHALL be
-   present.
+   encryption, extensions, ransomnotes, ransomnotes-filenames,
+   ransomnotes-refs MAY be used to give further information in
+   ransomware galaxy. encryption is represented as a string and SHALL be
+   present. extensions is represented as an array containing one or more
+   strings and SHALL be present. ransomnotes is represented as an array
+   containing one or more strings ans SHALL be present. ransomnotes-
+   filenames is represented as an array containing one or more strings
+   ans SHALL be present. ransomnotes-refs is represented as an array
+   containing one or more strings ans SHALL be present.
 
    Example use of the encryption, extensions, ransomnotes fields in the
    ransomware galaxy:
 
 {
+  "description": "Similar to Samas and BitPaymer, Ryuk is specifically used to target enterprise environments. Code comparison between versions of Ryuk and Hermes ransomware indicates that Ryuk was derived from the Hermes source code and has been under steady development since its release. Hermes is commodity ransomware that has been observed for sale on forums and used by multiple threat actors. However, Ryuk is only used by GRIM SPIDER and, unlike Hermes, Ryuk has only been used to target enterprise environments. Since Ryuk's appearance in August, the threat actors operating it have netted over 705.80 BTC across 52 transactions for a total current value of $3,701,893.98 USD.",
   "meta": {
+    "ransomnotes-filenames": [
+      "RyukReadMe.txt"
+    ],
+    "ransomnotes-refs": [
+      "https://www.crowdstrike.com/blog/wp-content/uploads/2019/01/RansomeNote-fig3.png",
+      "https://www.crowdstrike.com/blog/wp-content/uploads/2019/01/RansomeNote-fig4.png"
+    ],
     "refs": [
-      "https://www.bleepingcomputer.com/news/security/revenge-ransomware-a-cryptomix-variant-being-distributed-by-rig-exploit-kit/",
-      "https://id-ransomware.blogspot.co.il/2017/03/revenge-ransomware.html"
-    ],
-    "ransomnotes": [
-      "https://2.bp.blogspot.com/-KkPVDxjy8tk/WM7LtYHmuAI/AAAAAAAAEUw/kDJghaq-j1AZuqjzqk2Fkxpp4yr9Yeb5wCLcB/s1600/revenge-note-2.jpg",
-      "===ENGLISH=== All of your files were encrypted using REVENGE Ransomware. The action required to restore the files. Your files are not lost, they can be returned to their normal state by decoding them. The only way to do this is to get the software and your personal decryption key. Using any other software that claims to be able to recover your files will result in corrupted or destroyed files. You can purchase the software and the decryption key by sending us an email with your ID. And we send instructions for payment. After payment, you receive the software to return all files. For proof, we can decrypt one file for free. Attach it to an e-mail.",
-      "# !!!HELP_FILE!!! #.txt"
-    ],
-    "encryption": "AES-256 + RSA-1024",
-    "extensions": [
-      ".REVENGE"
-    ],
-    "date": "March 2017"
+      "https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/"
+    ]
   },
-  "description": "This is most likely to affect English speaking users, since the note is written in English. English is understood worldwide, thus anyone can be harmed. The hacker spread the virus using email spam, fake updates, and harmful attachments. All your files are compromised including music, MS Office, Open Office, pictures, videos, shared online files etc.. CryptoMix / CryptFile2 Variant",
-  "value": "Revenge Ransomware",
-  "uuid": "987d36d5-6ba8-484d-9e0b-7324cc886b0e"
+  "uuid": "f9464c80-b776-4f37-8682-ffde0cf8f718",
+  "value": "Ryuk ransomware"
 }
 
    source-uuid, target-uuid SHALL be used to describe relationships.
@@ -328,7 +329,6 @@ Internet-Draft             MISP galaxy format             September 2018
           "uuid": "cfc7da70-d7c5-4508-8f50-1c3107269633",
           "value": "menuPass (G0045) uses EvilGrab (S0152)"
         }
-
 
 
 
@@ -377,12 +377,12 @@ Internet-Draft             MISP galaxy format             September 2018
   "uuid": "1f73e14f-b882-4032-a565-26dc653b0daf"
 },
 
-3.  JSON Schema
-
-   The JSON Schema [JSON-SCHEMA] below defines the overall MISP galaxy
-   formats.  The main format is the MISP galaxy format used for the
-   clusters.
-
+   attribution-confidence MAY be used to indicte the confidence about an
+   attribution given by country or cfr-suspected-state-sponsor.
+   attribution-confidence is represented on a scale from 0 to 100, where
+   50 means "no information", the values under 50 mean "not certain",
+   the values above 50 means "pretty certain" and SHALL be present if
+   country or cfr-suspected-state-sponsor are present.
 
 
 
@@ -394,7 +394,63 @@ Dulaunoy, et al.         Expires March 24, 2019                 [Page 7]
 Internet-Draft             MISP galaxy format             September 2018
 
 
-3.1.  MISP galaxy format - clusters
+3.  JSON Schema
+
+   The JSON Schema [JSON-SCHEMA] below defines the overall MISP galaxy
+   formats.  The main format is the MISP galaxy format used for the
+   clusters.
+
+3.1.  MISP galaxy format - galaxy
+
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Validator for misp-galaxies - Galaxies",
+  "id": "https://www.github.com/MISP/misp-galaxies/schema_galaxies.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "kill_chain_order": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "description",
+    "type",
+    "version",
+    "name",
+    "uuid"
+  ]
+}
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 8]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
+3.2.  MISP galaxy format - clusters
 
 {
   "$schema": "http://json-schema.org/schema#",
@@ -421,6 +477,9 @@ Internet-Draft             MISP galaxy format             September 2018
     "source": {
       "type": "string"
     },
+    "category": {
+      "type": "string
+    },
     "values": {
       "type": "array",
       "uniqueItems": true,
@@ -439,17 +498,17 @@ Internet-Draft             MISP galaxy format             September 2018
           },
           "related": {
             "type": "array",
-            "additionalProperties": false,
-            "items": {
-              "type": "object"
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 8]
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 9]
 
 Internet-Draft             MISP galaxy format             September 2018
 
 
+            "additionalProperties": false,
+            "items": {
+              "type": "object"
             },
             "properties": {
               "dest-uuid": {
@@ -495,17 +554,17 @@ Internet-Draft             MISP galaxy format             September 2018
               },
               "motive": {
                 "type": "string"
-              },
-              "impact": {
-                "type": "string"
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 9]
+Dulaunoy, et al.         Expires March 24, 2019                [Page 10]
 
 Internet-Draft             MISP galaxy format             September 2018
 
 
+              },
+              "impact": {
+                "type": "string"
               },
               "refs": {
                 "type": "array",
@@ -551,17 +610,17 @@ Internet-Draft             MISP galaxy format             September 2018
           "value"
         ]
       }
-    },
-    "authors": {
-      "type": "array",
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 10]
+Dulaunoy, et al.         Expires March 24, 2019                [Page 11]
 
 Internet-Draft             MISP galaxy format             September 2018
 
 
+    },
+    "authors": {
+      "type": "array",
       "uniqueItems": true,
       "items": {
         "type": "string"
@@ -576,7 +635,8 @@ Internet-Draft             MISP galaxy format             September 2018
     "uuid",
     "values",
     "authors",
-    "source"
+    "source",
+    "category
   ]
 }
 
@@ -604,19 +664,21 @@ Internet-Draft             MISP galaxy format             September 2018
               DOI 10.17487/RFC4627, July 2006,
               <https://www.rfc-editor.org/info/rfc4627>.
 
+
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 12]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
 5.2.  Informative References
 
    [CFR]      CFR, "Cyber Operations Tracker - Council on Foreign
               Relations", 2018,
               <https://www.cfr.org/interactive/cyber-operations>.
-
-
-
-
-Dulaunoy, et al.         Expires March 24, 2019                [Page 11]
-
-Internet-Draft             MISP galaxy format             September 2018
-
 
    [JSON-SCHEMA]
               "JSON Schema: A Media Type for Describing JSON Documents",
@@ -663,13 +725,7 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-Dulaunoy, et al.         Expires March 24, 2019                [Page 12]
+Dulaunoy, et al.         Expires March 24, 2019                [Page 13]
 
 Internet-Draft             MISP galaxy format             September 2018
 
@@ -725,4 +781,4 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 13]
+Dulaunoy, et al.         Expires March 24, 2019                [Page 14]
