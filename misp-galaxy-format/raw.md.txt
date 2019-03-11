@@ -75,11 +75,11 @@ Table of Contents
    3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .   8
      3.1.  MISP galaxy format - galaxy . . . . . . . . . . . . . . .   8
      3.2.  MISP galaxy format - clusters . . . . . . . . . . . . . .   9
-   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  12
-   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
-     5.1.  Normative References  . . . . . . . . . . . . . . . . . .  12
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  13
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .  13
      5.2.  Informative References  . . . . . . . . . . . . . . . . .  13
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  14
 
 1.  Introduction
 
@@ -377,13 +377,13 @@ Internet-Draft             MISP galaxy format             September 2018
   "uuid": "1f73e14f-b882-4032-a565-26dc653b0daf"
 },
 
-   attribution-confidence MAY be used to indicte the confidence about an
-   attribution given by country or cfr-suspected-state-sponsor.
+   attribution-confidence MAY be used to indicate the confidence about
+   an attribution given by country or cfr-suspected-state-sponsor.
    attribution-confidence is represented on a scale from 0 to 100, where
-   50 means "no information", the values under 50 mean "not certain",
-   the values above 50 means "pretty certain" and SHALL be present if
+   50 means "no information", the values under 50 mean "probably not,
+   almost certainly not to impossibility", the values above 50 means
+   "from probable, almost certain to certainty" and SHALL be present if
    country or cfr-suspected-state-sponsor are present.
-
 
 
 
@@ -394,6 +394,13 @@ Dulaunoy, et al.         Expires March 24, 2019                 [Page 7]
 Internet-Draft             MISP galaxy format             September 2018
 
 
+          Impossibility        no information          Certainty
+                                     +
+                                     |
+                 +-------------------+------------------>
+
+                 0                  50                100
+
 3.  JSON Schema
 
    The JSON Schema [JSON-SCHEMA] below defines the overall MISP galaxy
@@ -401,6 +408,47 @@ Internet-Draft             MISP galaxy format             September 2018
    clusters.
 
 3.1.  MISP galaxy format - galaxy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 8]
+
+Internet-Draft             MISP galaxy format             September 2018
+
 
 {
   "$schema": "http://json-schema.org/schema#",
@@ -443,13 +491,6 @@ Internet-Draft             MISP galaxy format             September 2018
   ]
 }
 
-
-
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 8]
-
-Internet-Draft             MISP galaxy format             September 2018
-
-
 3.2.  MISP galaxy format - clusters
 
 {
@@ -457,6 +498,14 @@ Internet-Draft             MISP galaxy format             September 2018
   "title": "Validator for misp-galaxies - Clusters",
   "id": "https://www.github.com/MISP/misp-galaxies/schema_clusters.json",
   "type": "object",
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                 [Page 9]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
   "additionalProperties": false,
   "properties": {
     "description": {
@@ -498,14 +547,6 @@ Internet-Draft             MISP galaxy format             September 2018
           },
           "related": {
             "type": "array",
-
-
-
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 9]
-
-Internet-Draft             MISP galaxy format             September 2018
-
-
             "additionalProperties": false,
             "items": {
               "type": "object"
@@ -513,6 +554,14 @@ Internet-Draft             MISP galaxy format             September 2018
             "properties": {
               "dest-uuid": {
                 "type": "string"
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 10]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
               },
               "type": {
                 "type": "string"
@@ -554,14 +603,6 @@ Internet-Draft             MISP galaxy format             September 2018
               },
               "motive": {
                 "type": "string"
-
-
-
-Dulaunoy, et al.         Expires March 24, 2019                [Page 10]
-
-Internet-Draft             MISP galaxy format             September 2018
-
-
               },
               "impact": {
                 "type": "string"
@@ -569,6 +610,14 @@ Internet-Draft             MISP galaxy format             September 2018
               "refs": {
                 "type": "array",
                 "uniqueItems": true,
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 11]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
                 "items": {
                   "type": "string"
                 }
@@ -610,14 +659,6 @@ Internet-Draft             MISP galaxy format             September 2018
           "value"
         ]
       }
-
-
-
-Dulaunoy, et al.         Expires March 24, 2019                [Page 11]
-
-Internet-Draft             MISP galaxy format             September 2018
-
-
     },
     "authors": {
       "type": "array",
@@ -625,6 +666,14 @@ Internet-Draft             MISP galaxy format             September 2018
       "items": {
         "type": "string"
       }
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 12]
+
+Internet-Draft             MISP galaxy format             September 2018
+
+
     }
   },
   "required": [
@@ -664,21 +713,22 @@ Internet-Draft             MISP galaxy format             September 2018
               DOI 10.17487/RFC4627, July 2006,
               <https://www.rfc-editor.org/info/rfc4627>.
 
-
-
-
-
-
-Dulaunoy, et al.         Expires March 24, 2019                [Page 12]
-
-Internet-Draft             MISP galaxy format             September 2018
-
-
 5.2.  Informative References
 
    [CFR]      CFR, "Cyber Operations Tracker - Council on Foreign
               Relations", 2018,
               <https://www.cfr.org/interactive/cyber-operations>.
+
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 13]
+
+Internet-Draft             MISP galaxy format             September 2018
+
 
    [JSON-SCHEMA]
               "JSON Schema: A Media Type for Describing JSON Documents",
@@ -725,7 +775,13 @@ Authors' Addresses
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 13]
+
+
+
+
+
+
+Dulaunoy, et al.         Expires March 24, 2019                [Page 14]
 
 Internet-Draft             MISP galaxy format             September 2018
 
@@ -781,4 +837,4 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 14]
+Dulaunoy, et al.         Expires March 24, 2019                [Page 15]
