@@ -40,8 +40,8 @@
 
 This document describes the MISP taxonomy format which describes a simple JSON format to
 represent machine tags (also called triple tags) vocabularies. A public directory of common vocabularies
-MISP taxonomies is available and relies on the MISP taxonomy format. MISP taxonomies are used to classify
-cyber security events, threats or indicators.
+called MISP taxonomies is available and relies on the MISP taxonomy format. MISP taxonomies are used to classify
+cyber security events, threats, suspicious events, or indicators.
 
 {mainmatter}
 
@@ -421,6 +421,254 @@ A taxonomies array describes the taxonomy available with the description, name a
 }
 
 ~~~~
+
+## Available taxonomies in the public directory
+
+The public directory of MISP taxonomies [@?MISP-T] contains a variety of taxonomy in various fields such as:
+
+
+CERT-XLM:
+:   CERT-XLM Security Incident Classification.
+
+DML:
+:   The Detection Maturity Level (DML) model is a capability maturity model for referencing ones maturity in detecting cyber attacks.  It's designed for organizations who perform intel-driven detection and response and who put an emphasis on having a mature detection program.
+
+PAP:
+:   The Permissible Actions Protocol - or short: PAP - was designed to indicate how the received information can be used.
+
+access-method:
+:   The access method used to remotely access a system.
+
+accessnow:
+:   Access Now classification to classify an issue (such as security, human rights, youth rights).
+
+action-taken:
+:   Action taken in the case of a security incident (CSIRT perspective).
+
+admiralty-scale:
+:   The Admiralty Scale (also called the NATO System) is used to rank the reliability of a source and the credibility of an information.
+
+adversary:
+:   An overview and description of the adversary infrastructure.
+
+ais-marking:
+:   AIS Marking Schema implementation is maintained by the National Cybersecurity and Communication Integration Center (NCCIC) of the U.S. Department of Homeland Security (DHS)
+
+analyst-assessment:
+:   A series of assessment predicates describing the analyst capabilities to perform analysis. These assessment can be assigned by the analyst him/herself or by another party evaluating the analyst.
+
+approved-category-of-action:
+:   A pre-approved category of action for indicators being shared with partners (MIMIC).
+
+binary-class:
+:   Custom taxonomy for types of binary file.
+
+cccs:
+:   Internal taxonomy for CCCS.
+
+circl:
+:   CIRCL Taxonomy is a simple scheme for incident classification and area topic where the incident took place.
+
+collaborative-intelligence:
+:   Collaborative intelligence support language is a common language to support analysts to perform their analysis to get crowdsourced support when using threat intelligence sharing platform like MISP.
+
+copine-scale:
+:   The COPINE Scale is a rating system created in Ireland and used in the United Kingdom to categorise the severity of images of child sex abuse.
+
+csirt_case_classification:
+:   FIRST CSIRT Case Classification.
+
+cssa:
+:   The CSSA agreed sharing taxonomy.
+
+cyber-threat-framework:
+:   Cyber Threat Framework was developed by the US Government to enable consistent characterization and categorization of cyber threat events, and to identify trends or changes in the activities of cyber adversaries. https://www.dni.gov/index.php/cyber-threat-framework
+
+ddos:
+:   Distributed Denial of Service - or short: DDoS - taxonomy supports the description of Denial of Service attacks and especially the types they belong too.
+
+de-vs:
+:   Taxonomy for the handling of protectively marked information in MISP with German (DE) Government classification markings (VS)
+
+dhs-ciip-sectors:
+:   DHS critical sectors as described in https://www.dhs.gov/critical-infrastructure-sectors.
+
+diamond-model:
+:   The Diamond Model for Intrusion Analysis, a phase-based model developed by Lockheed Martin, aims to help categorise and identify the stage of an attack.
+
+dni-ism:
+:   ISM (Information Security Marking Metadata) V13 as described by DNI.gov (Director of National Intelligence - US).
+
+domain-abuse:
+:   Taxonomy to tag domain names used for cybercrime.
+
+economical-impact:
+:   Economical impact is a taxonomy to describe the financial impact as positive or negative gain to the tagged information.
+
+ecsirt:
+:   eCSIRT incident classification Appendix C of the eCSIRT EU project including IntelMQ updates.
+
+enisa:
+:   ENISA Threat Taxonomy - A tool for structuring threat information as published in https://www.enisa.europa.eu/topics/threat-risk-management/threats-and-trends/enisa-threat-landscape/etl2015/enisa-threat-taxonomy-a-tool-for-structuring-threat-information
+
+estimative-language:
+:   Estimative language - including likelihood or probability of event based on the Intelligence Community Directive 203 (ICD 203) (6.2.(a)) and JP 2-0, Joint Intelligence.
+
+eu-marketop-and-publicadmin:
+:   Market operators and public administrations that must comply to some notifications requirements under EU NIS directive.
+
+eu-nis-sector-and-subsectors:
+:   Sectors and sub sectors as identified by the NIS Directive.
+
+euci:
+:   EU classified information (EUCI) means any information or material designated by a EU security classification, the unauthorised disclosure of which could cause varying degrees of prejudice to the interests of the European Union or of one or more of the Member States as described in CELEX 32013D0488
+
+europol-event:
+:   EUROPOL type of events taxonomy.
+
+europol-incident:
+:   EUROPOL class of incident taxonomy.
+
+event-assessment:
+:   A series of assessment predicates describing the event assessment performed to make judgement(s) under a certain level of uncertainty.
+
+event-classification:
+:   Event Classification.
+
+exercise:
+:   Exercise is a taxonomy to describe if the information is part of one or more cyber or crisis exercise
+
+false-positive:
+:   This taxonomy aims to ballpark the expected amount of false positives.
+
+file-type:
+:   List of known file types.
+
+fpf:
+:   The Future of Privacy Forum (FPF) [visual guide to practical de-identification](https://fpf.org/2016/04/25/a-visual-guide-to-practical-data-de-identification/) taxonomy is used to evaluate the degree of identifiability of personal data and the types of pseudonymous data, de-identified data and anonymous data. The work of FPF is licensed under a creative commons attribution 4.0 international license.
+
+fr-classif:
+:   French gov information classification system.
+
+gdpr:
+:   Taxonomy related to the REGULATION (EU) 2016/679 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)
+
+gsma-attack-category:
+:   Taxonomy used by GSMA for their information sharing program with telco describing the attack categories
+
+gsma-fraud:
+:   Taxonomy used by GSMA for their information sharing program with telco describing the various aspects of fraud
+
+gsma-network-technology:
+:   Taxonomy used by GSMA for their information sharing program with telco describing the types of infrastructure. WiP
+
+honeypot-basic:
+:   Christian Seifert, Ian Welch, Peter Komisarczuk, ‘Taxonomy of Honeypots’, Technical Report CS-TR-06/12, VICTORIA UNIVERSITY OF WELLINGTON, School of Mathematical and Computing Sciences, June 2006, http://www.mcs.vuw.ac.nz/comp/Publications/archive/CS-TR-06/CS-TR-06-12.pdf
+
+iep:
+:   Forum of Incident Response and Security Teams (FIRST) Information Exchange Policy (IEP) framework.
+
+ifx-vetting:
+:   The IFX taxonomy is used to categorise information (MISP events and attributes) to aid in the intelligence vetting process
+
+incident-disposition:
+:   How an incident is classified in its process to be resolved. The taxonomy is inspired from NASA Incident Response and Management Handbook.
+
+infoleak:
+:   A taxonomy describing information leaks and especially information classified as being potentially leaked.
+
+information-security-indicators:
+:   Information security indicators have been standardized by the ETSI Industrial Specification Group (ISG) ISI. These indicators provide the basis to switch from a qualitative to a quantitative culture in IT Security Scope of measurements: External and internal threats (attempt and success), user's deviant behaviours, nonconformities and/or vulnerabilities (software, configuration, behavioural, general security framework). ETSI GS ISI 001-1 (V1.1.2): ISI Indicators
+
+interception-method:
+:   The interception method used to intercept traffic.
+
+kill-chain:
+:   Cyber Kill Chain from Lockheed Martin as described in Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains.
+
+maec-delivery-vectors:
+:   Vectors used to deliver malware based on MAEC 5.0
+
+maec-malware-behavior:
+:   Malware behaviours based on MAEC 5.0
+
+maec-malware-capabilities:
+:   Malware Capabilities based on MAEC 5.0
+
+maec-malware-obfuscation-methods:
+:   Obfuscation methods used by malware based on MAEC 5.0
+
+malware_classification:
+:   Malware classification based on a SANS whitepaper about malware.
+
+misp:
+:   Internal MISP taxonomy.
+
+monarc-threat:
+:   MONARC threat taxonomy.
+
+ms-caro-malware:
+:   Malware Type and Platform classification based on Microsoft's implementation of the Computer Antivirus Research Organization (CARO) Naming Scheme and Malware Terminology.
+
+ms-caro-malware-full:
+:   Malware Type and Platform classification based on Microsoft's implementation of the Computer Antivirus Research Organization (CARO) Naming Scheme and Malware Terminology.
+
+nato:
+:   Marking of Classified and Unclassified materials as described by the North Atlantic Treaty Organization, NATO.
+
+nis:
+:   NIS Cybersecurity Incident Taxonomy.
+
+open_threat:
+:   Open Threat Taxonomy v1.1 base on James Tarala of SANS ref. - http://www.auditscripts.com/resources/open_threat_taxonomy_v1.1a.pdf
+
+osint:
+:   Open Source Intelligence - Classification (MISP taxonomies).
+
+passivetotal:
+:   Tags for RiskIQ's passivetotal service
+
+pentest:
+:   Penetration test (pentest) classification.
+
+priority-level:
+:   After an incident is scored, it is assigned a priority level. The six levels listed below are aligned with NCCIC, DHS, and the CISS to help provide a common lexicon when discussing incidents. This priority assignment drives NCCIC urgency, pre-approved incident response offerings, reporting requirements, and recommendations for leadership escalation. Generally, incident priority distribution should follow a similar pattern to the graph below. Based on https://www.us-cert.gov/NCCIC-Cyber-Incident-Scoring-System.
+
+rsit:
+:   Reference Security Incident Classification Taxonomy.
+
+rt_event_status:
+:   Status of events used in Request Tracker.
+
+runtime-packer:
+:   Runtime or software packer used to combine compressed data with the decompression code. The decompression code can add additional obfuscations mechanisms including polymorphic-packer or other obfuscation techniques. This taxonomy lists all the known or official packer used for legitimate use or for packing malicious binaries.
+
+smart-airports-threats:
+:   Threat taxonomy in the scope of securing smart airports by ENISA.
+
+stealth_malware:
+:   Classification based on malware stealth techniques.
+
+stix-ttp:
+:   Representation of the behavior or modus operandi of cyber adversaries (a.k.a TTP) as normalized in STIX
+
+targeted-threat-index:
+:   The Targeted Threat Index is a metric for assigning an overall threat ranking score to email messages that deliver malware to a victim’s computer. The TTI metric was first introduced at SecTor 2013 by Seth Hardy as part of the talk “RATastrophe: Monitoring a Malware Menagerie” along with Katie Kleemola and Greg Wiseman.
+
+tlp:
+:   The Traffic Light Protocol - or short: TLP - was designed with the objective to create a favorable classification scheme for sharing sensitive information while keeping the control over its distribution at the same time. Extended with TLP:EX:CHR.
+
+tor:
+:   Taxonomy to describe Tor network infrastructure
+
+veris:
+:   Vocabulary for Event Recording and Incident Sharing (VERIS).
+
+vocabulaire-des-probabilites-estimatives:
+:   Vocabulaire des probabilités estimatives
+
+workflow:
+:   Workflow support language is a common language to support intelligence analysts to perform their analysis on data and information.
 
 # JSON Schema
 

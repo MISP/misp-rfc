@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rfc SYSTEM 'rfc2629.dtd' []>
+<rfc ipr="trust200902" category="info" docName="draft-dulaunoy-misp-core-format">
+<?rfc toc="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<?rfc private=""?>
+<?rfc topblock="yes"?>
+<?rfc comments="no"?>
+<front>
+<title abbrev="MISP query format">MISP query format</title>
+
+<author initials="A." surname="Dulaunoy" fullname="Alexandre Dulaunoy">
+<organization abbrev="CIRCL">Computer Incident Response Center Luxembourg</organization>
+<address>
+<postal>
+<street>16, bd d'Avranches</street>
+<city>Luxembourg</city>
+<code>L-1160</code>
+<country>Luxembourg</country>
+<region></region>
+</postal>
+<phone>+352 247 88444</phone>
+<email>alexandre.dulaunoy@circl.lu</email>
+<uri></uri>
+</address>
+</author>
+<author initials="A." surname="Iklody" fullname="Andras Iklody">
+<organization abbrev="CIRCL">Computer Incident Response Center Luxembourg</organization>
+<address>
+<postal>
+<street>16, bd d'Avranches</street>
+<city>Luxembourg</city>
+<code>L-1160</code>
+<country>Luxembourg</country>
+<region></region>
+</postal>
+<phone>+352 247 88444</phone>
+<email>andras.iklody@circl.lu</email>
+<uri></uri>
+</address>
+</author>
+<date year="2018" month="October" day="8"/>
+
+<area>Security</area>
+<workgroup></workgroup>
+
+
+<abstract>
+<t>This document describes the MISP query format used to search MISP (Malware Information and threat Sharing Platform) <xref target="MISP-P"/> threat intelligence instances.
+MISP query format is a simple format used to query MISP instances over a REST (Representational State Transfer ) interface.
+The query format includes the JSON format to describe the query and the minimal API access to perform the query.  The JSON format includes the overall structure along with the semantic associated for each respective key. The goal of the format is to query MISP threat intelligence instances can feed and integrate with network security devices (such as firewall, network intrusion detection system, routers, SIEMs), endpoint security devices or monitoring devices.
+</t>
+</abstract>
+
+
+</front>
+
+<middle>
+
+<section anchor="introduction" title="Introduction">
+<t>Sharing threat information became a fundamental requirements in the Internet, security and intelligence community at large. Threat
+information can include indicators of compromise, malicious file indicators, financial fraud indicators
+or even detailed information about a threat actor. MISP <xref target="MISP-P"/> started as an open source project in late 2011 and
+the MISP format started to be widely used as an exchange format within the community in the past years. The core format
+is described in an Internet-Draft as misp-core-format <xref target="MISP-C"/> and contain the standard MISP JSON format used for threat
+intelligence.
+</t>
+<t>The aim of this document is to describe the specification of the MISP query format and how the query can be perform against a REST interface.
+</t>
+
+<section anchor="conventions-and-terminology" title="Conventions and Terminology">
+<t>The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
+&quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this
+document are to be interpreted as described in RFC 2119 <xref target="RFC2119"/>.
+</t>
+</section>
+</section>
+
+<section anchor="format" title="Format">
+
+<section anchor="overview" title="Overview">
+<t>The MISP query format is in the JSON <xref target="RFC4627"/> format.
+</t>
+</section>
+
+<section anchor="query-format-criteria" title="query format criteria">
+
+<section anchor="returnformat" title="returnFormat">
+<t>returnFormat MUST be present. returnFormat sets the type of output format. MISP allows multiple format (depending of the configuration):
+</t>
+<texttable>
+<ttcol align="center">value</ttcol>
+<ttcol align="center">Description</ttcol>
+
+<c>json</c><c>MISP JSON core format as described in <xref target="MISP-C"/></c>
+<c>xml</c><c>MISP XML format</c>
+<c>openioc</c><c>OpenIOC format</c>
+<c>suricata</c><c>Suricata NIDS format</c>
+<c>snort</c><c>Snort NIDS format</c>
+<c>csv</c><c>CSV format</c>
+<c>rpz</c><c>Response policy zone format</c>
+<c>text</c><c>Raw value list format</c>
+</texttable>
+</section>
+
+<section anchor="limit" title="limit">
+<t>limit MAY be present. If present, the page parameter MUST also be supplied. limit sets the number of returned elements when paginating, depending on the scope of the request (x number of attributes or x number of events) as converted into the output format.
+</t>
+</section>
+
+<section anchor="page" title="page">
+<t>page MAY be present. If present, the page parameter MUST also be supplied. page generates the offset for the pagination and will return a result set consisting of a slice of the query results starting with offset (limit * page) + 1 and ending with (limit * (page+1)).
+</t>
+</section>
+
+<section anchor="value" title="value">
+<t>value MAY be present. If set, the returned data set will be filtered on the attribute value field. value MAY be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters.
+</t>
+</section>
+
+<section anchor="type" title="type">
+<t>type MAY be present. If set, the returned data set will be filtered on the attribute type field. type MAY be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid attribute types is described in the MISP core format <xref target="MISP-C"/> in the attribute type section.
+</t>
+</section>
+
+<section anchor="category" title="category">
+<t>category MAY be present. If set, the returned data set will be filtered on the attribute category field. category MAY be a string or a sub-string, the latter of which start with, ends with or is encapsulated in wildcard (\%) characters. The list of valid categories is described in the MISP core format <xref target="MISP-C"/> in the attribute type section.
+</t>
+<t>A sample query to lookup for the last 30 days of indicators in the <spanx style="verb">Financial fraud</spanx> category and output in CSV format:
+</t>
+
+<figure align="center"><artwork align="center">
+{
+    "returnFormat": "csv",
+    "last": "30d",
+    "category": "Financial fraud"
+}
+</artwork></figure>
+</section>
+</section>
+</section>
+
+<section anchor="security-considerations" title="Security Considerations">
+<t>MISP threat intelligence instances might contain sensitive or confidential information. Adequate access control and encryption measures shall be implemented to ensure the confidentiality of the threat intelligence.
+</t>
+<t>Adversaries might include malicious content in MISP queries.  Implementation MUST consider the input of malicious inputs beside the
+standard threat information that might already include malicious intended inputs.
+</t>
+</section>
+
+<section anchor="acknowledgements" title="Acknowledgements">
+<t>The authors wish to thank all the MISP community who are supporting the creation
+of open standards in threat intelligence sharing. A special thank to all the committees which
+triggered us to come with better and flexible format.
+</t>
+</section>
+
+</middle>
+<back>
+<references title="Normative References">
+<?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
+<?rfc include="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4627.xml"?>
+</references>
+<references title="Informative References">
+<reference anchor='MISP-C' target='https://tools.ietf.org/html/draft-dulaunoy-misp-core-format'>
+  <front>
+   <title>MISP core format</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+<reference anchor='MISP-P' target='https://github.com/MISP'>
+  <front>
+   <title>MISP Project - Malware Information Sharing Platform and Threat Sharing</title>
+   <author initials='' surname='MISP' fullname='MISP Community'></author>
+   <date></date>
+  </front>
+</reference>
+</references>
+
+</back>
+</rfc>

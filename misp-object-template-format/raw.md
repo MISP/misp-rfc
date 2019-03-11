@@ -313,7 +313,7 @@ format is represented by a JSON list containing a list of formats that the relat
 
 The MISP object template directory is publicly available [@?MISP-O] in a git repository. The repository contains an objects directory, which contains a directory per object type, containing a file named definition.json which contains the definition of the object template in the above described format.
 
-A relationships directory is also included, containing a definition.json file which contains a list of MISP object relation definitions
+A relationships directory is also included, containing a definition.json file which contains a list of MISP object relation definitions. There are more than 90 existing templates object documented in [@?MISP-O-DOC].
 
 # Acknowledgements
 
@@ -342,6 +342,14 @@ of open standards in threat intelligence sharing.
     <author initials='' surname='' fullname='Austin Wright'></author>
     <date year="2016"></date>
   </front>
+</reference>
+
+<reference anchor='MISP-O-DOC' target='https://www.misp-project.org/objects.html'>
+   <front>
+     <title>MISP objects directory</title>
+     <author initials='' surname='' fullname='MISP community'></author>
+     <date year="2018"></date>
+   </front>
 </reference>
 
 

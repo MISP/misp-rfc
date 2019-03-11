@@ -1,0 +1,336 @@
+
+
+
+
+Network Working Group                                        A. Dulaunoy
+Internet-Draft                                                 A. Iklody
+Intended status: Informational                                     CIRCL
+Expires: April 11, 2019                                  October 8, 2018
+
+
+                           MISP query format
+                    draft-dulaunoy-misp-core-format
+
+Abstract
+
+   This document describes the MISP query format used to search MISP
+   (Malware Information and threat Sharing Platform) [MISP-P] threat
+   intelligence instances.  MISP query format is a simple format used to
+   query MISP instances over a REST (Representational State Transfer )
+   interface.  The query format includes the JSON format to describe the
+   query and the minimal API access to perform the query.  The JSON
+   format includes the overall structure along with the semantic
+   associated for each respective key.  The goal of the format is to
+   query MISP threat intelligence instances can feed and integrate with
+   network security devices (such as firewall, network intrusion
+   detection system, routers, SIEMs), endpoint security devices or
+   monitoring devices.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on April 11, 2019.
+
+Copyright Notice
+
+   Copyright (c) 2018 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 1]
+
+Internet-Draft              MISP query format               October 2018
+
+
+   (https://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Conventions and Terminology . . . . . . . . . . . . . . .   3
+   2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.2.  query format criteria . . . . . . . . . . . . . . . . . .   3
+       2.2.1.  returnFormat  . . . . . . . . . . . . . . . . . . . .   3
+       2.2.2.  limit . . . . . . . . . . . . . . . . . . . . . . . .   3
+       2.2.3.  page  . . . . . . . . . . . . . . . . . . . . . . . .   3
+       2.2.4.  value . . . . . . . . . . . . . . . . . . . . . . . .   4
+       2.2.5.  type  . . . . . . . . . . . . . . . . . . . . . . . .   4
+       2.2.6.  category  . . . . . . . . . . . . . . . . . . . . . .   4
+   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   5
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
+     5.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
+
+1.  Introduction
+
+   Sharing threat information became a fundamental requirements in the
+   Internet, security and intelligence community at large.  Threat
+   information can include indicators of compromise, malicious file
+   indicators, financial fraud indicators or even detailed information
+   about a threat actor.  MISP [MISP-P] started as an open source
+   project in late 2011 and the MISP format started to be widely used as
+   an exchange format within the community in the past years.  The core
+   format is described in an Internet-Draft as misp-core-format [MISP-C]
+   and contain the standard MISP JSON format used for threat
+   intelligence.
+
+   The aim of this document is to describe the specification of the MISP
+   query format and how the query can be perform against a REST
+   interface.
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 2]
+
+Internet-Draft              MISP query format               October 2018
+
+
+1.1.  Conventions and Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in RFC 2119 [RFC2119].
+
+2.  Format
+
+2.1.  Overview
+
+   The MISP query format is in the JSON [RFC4627] format.
+
+2.2.  query format criteria
+
+2.2.1.  returnFormat
+
+   returnFormat MUST be present. returnFormat sets the type of output
+   format.  MISP allows multiple format (depending of the
+   configuration):
+
+       +----------+------------------------------------------------+
+       |  value   |                  Description                   |
+       +----------+------------------------------------------------+
+       |   json   | MISP JSON core format as described in [MISP-C] |
+       |   xml    |                MISP XML format                 |
+       | openioc  |                 OpenIOC format                 |
+       | suricata |              Suricata NIDS format              |
+       |  snort   |               Snort NIDS format                |
+       |   csv    |                   CSV format                   |
+       |   rpz    |          Response policy zone format           |
+       |   text   |             Raw value list format              |
+       +----------+------------------------------------------------+
+
+2.2.2.  limit
+
+   limit MAY be present.  If present, the page parameter MUST also be
+   supplied. limit sets the number of returned elements when paginating,
+   depending on the scope of the request (x number of attributes or x
+   number of events) as converted into the output format.
+
+2.2.3.  page
+
+   page MAY be present.  If present, the page parameter MUST also be
+   supplied. page generates the offset for the pagination and will
+   return a result set consisting of a slice of the query results
+   starting with offset (limit * page) + 1 and ending with (limit *
+   (page+1)).
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 3]
+
+Internet-Draft              MISP query format               October 2018
+
+
+2.2.4.  value
+
+   value MAY be present.  If set, the returned data set will be filtered
+   on the attribute value field. value MAY be a string or a sub-string,
+   the latter of which start with, ends with or is encapsulated in
+   wildcard (\%) characters.
+
+2.2.5.  type
+
+   type MAY be present.  If set, the returned data set will be filtered
+   on the attribute type field. type MAY be a string or a sub-string,
+   the latter of which start with, ends with or is encapsulated in
+   wildcard (\%) characters.  The list of valid attribute types is
+   described in the MISP core format [MISP-C] in the attribute type
+   section.
+
+2.2.6.  category
+
+   category MAY be present.  If set, the returned data set will be
+   filtered on the attribute category field. category MAY be a string or
+   a sub-string, the latter of which start with, ends with or is
+   encapsulated in wildcard (\%) characters.  The list of valid
+   categories is described in the MISP core format [MISP-C] in the
+   attribute type section.
+
+   A sample query to lookup for the last 30 days of indicators in the
+   "Financial fraud" category and output in CSV format:
+
+                     {
+                         "returnFormat": "csv",
+                         "last": "30d",
+                         "category": "Financial fraud"
+                     }
+
+3.  Security Considerations
+
+   MISP threat intelligence instances might contain sensitive or
+   confidential information.  Adequate access control and encryption
+   measures shall be implemented to ensure the confidentiality of the
+   threat intelligence.
+
+   Adversaries might include malicious content in MISP queries.
+   Implementation MUST consider the input of malicious inputs beside the
+   standard threat information that might already include malicious
+   intended inputs.
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 4]
+
+Internet-Draft              MISP query format               October 2018
+
+
+4.  Acknowledgements
+
+   The authors wish to thank all the MISP community who are supporting
+   the creation of open standards in threat intelligence sharing.  A
+   special thank to all the committees which triggered us to come with
+   better and flexible format.
+
+5.  References
+
+5.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC4627]  Crockford, D., "The application/json Media Type for
+              JavaScript Object Notation (JSON)", RFC 4627,
+              DOI 10.17487/RFC4627, July 2006,
+              <https://www.rfc-editor.org/info/rfc4627>.
+
+5.2.  Informative References
+
+   [MISP-C]   MISP, "MISP core format", <https://tools.ietf.org/html/
+              draft-dulaunoy-misp-core-format>.
+
+   [MISP-P]   MISP, "MISP Project - Malware Information Sharing Platform
+              and Threat Sharing", <https://github.com/MISP>.
+
+Authors' Addresses
+
+   Alexandre Dulaunoy
+   Computer Incident Response Center Luxembourg
+   16, bd d'Avranches
+   Luxembourg  L-1160
+   Luxembourg
+
+   Phone: +352 247 88444
+   Email: alexandre.dulaunoy@circl.lu
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 5]
+
+Internet-Draft              MISP query format               October 2018
+
+
+   Andras Iklody
+   Computer Incident Response Center Luxembourg
+   16, bd d'Avranches
+   Luxembourg  L-1160
+   Luxembourg
+
+   Phone: +352 247 88444
+   Email: andras.iklody@circl.lu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 6]

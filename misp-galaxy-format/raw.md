@@ -78,9 +78,9 @@ Clusters are represented as a JSON [@!RFC4627] dictionary.
 
 ## Overview
 
-The MISP galaxy format uses the JSON [@!RFC4627] format. Each galaxy is represented as a JSON object with meta information including the following fields: name, uuid, description, version, type, authors, source, values.
+The MISP galaxy format uses the JSON [@!RFC4627] format. Each galaxy is represented as a JSON object with meta information including the following fields: name, uuid, description, version, type, authors, source, values, category.
 
-name defines the name of the galaxy. The name is represented as a string and **MUST** be present. The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved. For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference and **MUST** be present. The description is represented as a string and **MUST** be present. The uuid is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. The type is represented as a string and **MUST** be present and **MUST** match the name of the galaxy file. The source is represented as a string and **MUST** be present. Authors are represented as an array containing one or more authors and **MUST** be present.
+name defines the name of the galaxy. The name is represented as a string and **MUST** be present. The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved. For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference and **MUST** be present. The description is represented as a string and **MUST** be present. The uuid is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. The type is represented as a string and **MUST** be present and **MUST** match the name of the galaxy file. The source is represented as a string and **MUST** be present. Authors are represented as an array containing one or more authors and **MUST** be present. The category is represented as a string and **MUST** be present and describes the overall category of the galaxy such as tool or actor.
 
 Values are represented as an array containing one or more values and **MUST** be present. Values defines all values available in the galaxy.
 
@@ -232,6 +232,51 @@ attribution-confidence **MAY** be used to indicte the confidence about an attrib
 
 The JSON Schema [@?JSON-SCHEMA] below defines the overall MISP galaxy formats. The main format is the MISP galaxy format used for the clusters.
 
+## MISP galaxy format - galaxy
+
+~~~~
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Validator for misp-galaxies - Galaxies",
+  "id": "https://www.github.com/MISP/misp-galaxies/schema_galaxies.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "kill_chain_order": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "description",
+    "type",
+    "version",
+    "name",
+    "uuid"
+  ]
+}
+~~~~
+
 ## MISP galaxy format - clusters
 
 ~~~~
@@ -259,6 +304,9 @@ The JSON Schema [@?JSON-SCHEMA] below defines the overall MISP galaxy formats. T
     },
     "source": {
       "type": "string"
+    },
+    "category": {
+      "type": "string
     },
     "values": {
       "type": "array",
@@ -391,7 +439,8 @@ The JSON Schema [@?JSON-SCHEMA] below defines the overall MISP galaxy formats. T
     "uuid",
     "values",
     "authors",
-    "source"
+    "source",
+    "category
   ]
 }
 ~~~~
