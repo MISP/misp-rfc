@@ -535,7 +535,7 @@ eu-nis-sector-and-subsectors:
 :   Sectors and sub sectors as identified by the NIS Directive.
 
 euci:
-:   EU classified information (EUCI) means any information or material designated by a EU security classification, the unauthorised disclosure of which could cause varying degrees of prejudice to the interests of the European Union or of one or more of the Member States as described in http://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32013D0488&from=EN
+:   EU classified information (EUCI) means any information or material designated by a EU security classification, the unauthorised disclosure of which could cause varying degrees of prejudice to the interests of the European Union or of one or more of the Member States as described in COUNCIL DECISION of 23 September 2013 on the security rules for protecting EU classified information
 
 europol-event:
 :   EUROPOL type of events taxonomy.
