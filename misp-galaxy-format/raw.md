@@ -162,7 +162,7 @@ Example use of the country, motive fields in the threat-actor galaxy:
 }
 ~~~~
 
-encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs **MAY** be used to give further information in ransomware galaxy. encryption is represented as a string and **SHALL** be present. extensions is represented as an array containing one or more strings and **SHALL** be present. ransomnotes is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-filenames is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-refs is represented as an array containing one or more strings ans **SHALL** be present.
+encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, payment-method and price **MAY** be used to give further information in ransomware galaxy. encryption is represented as a string and **SHALL** be present. extensions is represented as an array containing one or more strings and **SHALL** be present. ransomnotes is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-filenames is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-refs is represented as an array containing one or more strings ans **SHALL** be present. payment-method is represented as a string and **SHALL** be present. price is represented as a string and **SHALL** be present. 
 
 Example use of the encryption, extensions, ransomnotes fields in the ransomware galaxy:
 
