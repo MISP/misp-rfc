@@ -162,7 +162,7 @@ Example use of the country, motive fields in the threat-actor galaxy:
 }
 ~~~~
 
-encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, payment-method, price **MAY** be used to give further information in ransomware galaxy. encryption is represented as a string and **SHALL** be present. extensions is represented as an array containing one or more strings and **SHALL** be present. ransomnotes is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-filenames is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-refs is represented as an array containing one or more strings ans **SHALL** be present.
+encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, payment-method, price **MAY** be used to give further information in ransomware galaxy. encryption is represented as a string and **SHALL** be present. extensions is represented as an array containing one or more strings and **SHALL** be present. ransomnotes is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-filenames is represented as an array containing one or more strings ans **SHALL** be present. ransomnotes-refs is represented as an array containing one or more strings ans **SHALL** be present. payment-method is represented as a string and **SHALL** be present. price is represented as a string and **SHALL** be present.
 
 Example use of the encryption, extensions, ransomnotes fields in the ransomware galaxy:
 
@@ -185,6 +185,31 @@ Example use of the encryption, extensions, ransomnotes fields in the ransomware 
   "value": "Ryuk ransomware"
 }
 ~~~~
+
+Example use of the payment-method, price fields in the ransomware galaxy:
+~~~~
+{
+  "description": "This is most likely to affect English speaking users, since the note is written in English. English is understood worldwide, thus anyone can be harmed. The hacker spread the virus using email spam, fake updates, and harmful attachments. All your files are compromised including music, MS Office, Open Office, pictures, videos, shared online files etc..",
+  "meta": {
+    "date": "March 2017",
+    "encryption": "AES-128",
+    "extensions": [
+      ".enc"
+    ],
+    "payment-method": "Bitcoin",
+    "price": "0.1",
+    "ransomnotes": [
+      "Blocked Your computer has been blocked All your files are encrypted. To access your PC, you need to send to Bitcoin at the address below loading Step 1: Go to xxxxs : //wvw.coinbase.com/ siqnup Step 2: Create an account and follow the instructions Step 3: Go to the \"Buy Bitcoins\" section and then buy Bitcoin Step 4: Go to the \"Send\" section, enter the address above and the amount (0.1 Bitcoin) Step 5: Click on the button below to verify the payment, your files will be decrypted and the virus will disappear 'Check' If you try to bypass the lock, all files will be published on the Internet, as well as your login for all sites."
+    ],
+    "refs": [
+      "https://id-ransomware.blogspot.co.il/2017/03/cryptomeister-ransomware.html"
+    ]
+  },
+  "uuid": "4c76c845-c5eb-472c-93a1-4178f86c319b",
+  "value": "CryptoMeister Ransomware"
+}
+~~~~
+
 
 source-uuid, target-uuid **SHALL** be used to describe relationships. source-uuid and target-uuid represent the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. source-uuid and target-uuid **MUST** be preserved.
 
