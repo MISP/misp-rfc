@@ -64,7 +64,7 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 ## Overview
 
-The MISP core format is in the JSON [@!RFC4627] format. In MISP, an event is composed of a single JSON object.
+The MISP core format is in the JSON [@!RFC8259] format. In MISP, an event is composed of a single JSON object.
 
 A capitalized key (like Event, Org) represent a data model and a non-capitalised key is just an attribute. This nomenclature
 can support an implementation to represent the MISP format in another data structure.
