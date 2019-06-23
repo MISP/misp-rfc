@@ -68,23 +68,53 @@ Internet-Draft              MISP query format               October 2018
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
      1.1.  Conventions and Terminology . . . . . . . . . . . . . . .   3
    2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.2.  query format criteria . . . . . . . . . . . . . . . . . .   3
        2.2.1.  returnFormat  . . . . . . . . . . . . . . . . . . . .   3
-       2.2.2.  limit . . . . . . . . . . . . . . . . . . . . . . . .   3
-       2.2.3.  page  . . . . . . . . . . . . . . . . . . . . . . . .   3
+       2.2.2.  limit . . . . . . . . . . . . . . . . . . . . . . . .   4
+       2.2.3.  page  . . . . . . . . . . . . . . . . . . . . . . . .   4
        2.2.4.  value . . . . . . . . . . . . . . . . . . . . . . . .   4
        2.2.5.  type  . . . . . . . . . . . . . . . . . . . . . . . .   4
-       2.2.6.  category  . . . . . . . . . . . . . . . . . . . . . .   4
-   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
-   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   5
-   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
-     5.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
-     5.2.  Informative References  . . . . . . . . . . . . . . . . .   5
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
+       2.2.6.  category  . . . . . . . . . . . . . . . . . . . . . .   5
+       2.2.7.  org . . . . . . . . . . . . . . . . . . . . . . . . .   5
+       2.2.8.  tags  . . . . . . . . . . . . . . . . . . . . . . . .   5
+       2.2.9.  quickfilter . . . . . . . . . . . . . . . . . . . . .   5
+       2.2.10. from  . . . . . . . . . . . . . . . . . . . . . . . .   5
+       2.2.11. to  . . . . . . . . . . . . . . . . . . . . . . . . .   6
+       2.2.12. last  . . . . . . . . . . . . . . . . . . . . . . . .   6
+       2.2.13. eventid . . . . . . . . . . . . . . . . . . . . . . .   6
+       2.2.14. withAttachments . . . . . . . . . . . . . . . . . . .   6
+       2.2.15. uuid  . . . . . . . . . . . . . . . . . . . . . . . .   6
+       2.2.16. publish_timestamp . . . . . . . . . . . . . . . . . .   6
+       2.2.17. timestamp . . . . . . . . . . . . . . . . . . . . . .   7
+       2.2.18. published . . . . . . . . . . . . . . . . . . . . . .   7
+       2.2.19. enforceWarninglist  . . . . . . . . . . . . . . . . .   7
+       2.2.20. to_ids  . . . . . . . . . . . . . . . . . . . . . . .   7
+       2.2.21. deleted . . . . . . . . . . . . . . . . . . . . . . .   7
+       2.2.22. includeEventUuid  . . . . . . . . . . . . . . . . . .   7
+       2.2.23. event_timestamp . . . . . . . . . . . . . . . . . . .   7
+       2.2.24. sgReferenceOnly . . . . . . . . . . . . . . . . . . .   7
+       2.2.25. eventinfo . . . . . . . . . . . . . . . . . . . . . .   7
+       2.2.26. searchall . . . . . . . . . . . . . . . . . . . . . .   7
+       2.2.27. requested_attributes  . . . . . . . . . . . . . . . .   7
+       2.2.28. includeContext  . . . . . . . . . . . . . . . . . . .   7
+   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   7
+   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
+     5.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
+     5.2.  Informative References  . . . . . . . . . . . . . . . . .   8
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 2]
+
+Internet-Draft              MISP query format               October 2018
+
+
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   8
 
 1.  Introduction
 
@@ -103,17 +133,6 @@ Table of Contents
    query format and how the query can be perform against a REST
    interface.
 
-
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 11, 2019                 [Page 2]
-
-Internet-Draft              MISP query format               October 2018
-
-
 1.1.  Conventions and Terminology
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -124,7 +143,7 @@ Internet-Draft              MISP query format               October 2018
 
 2.1.  Overview
 
-   The MISP query format is in the JSON [RFC4627] format.
+   The MISP query format is in the JSON [RFC8259] format.
 
 2.2.  query format criteria
 
@@ -134,18 +153,36 @@ Internet-Draft              MISP query format               October 2018
    format.  MISP allows multiple format (depending of the
    configuration):
 
-       +----------+------------------------------------------------+
-       |  value   |                  Description                   |
-       +----------+------------------------------------------------+
-       |   json   | MISP JSON core format as described in [MISP-C] |
-       |   xml    |                MISP XML format                 |
-       | openioc  |                 OpenIOC format                 |
-       | suricata |              Suricata NIDS format              |
-       |  snort   |               Snort NIDS format                |
-       |   csv    |                   CSV format                   |
-       |   rpz    |          Response policy zone format           |
-       |   text   |             Raw value list format              |
-       +----------+------------------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 3]
+
+Internet-Draft              MISP query format               October 2018
+
+
+      +----------+-------------------------------------------------+
+      |  value   |                   Description                   |
+      +----------+-------------------------------------------------+
+      |   json   |  MISP JSON core format as described in [MISP-C] |
+      |   xml    |                 MISP XML format                 |
+      | openioc  |                  OpenIOC format                 |
+      | suricata |               Suricata NIDS format              |
+      |  snort   |                Snort NIDS format                |
+      |   csv    |                    CSV format                   |
+      |   rpz    |           Response policy zone format           |
+      |   text   |              Raw value list format              |
+      |  cache   | MISP cache format (hashed values of attributes) |
+      +----------+-------------------------------------------------+
 
 2.2.2.  limit
 
@@ -162,35 +199,38 @@ Internet-Draft              MISP query format               October 2018
    starting with offset (limit * page) + 1 and ending with (limit *
    (page+1)).
 
-
-
-
-Dulaunoy & Iklody        Expires April 11, 2019                 [Page 3]
-
-Internet-Draft              MISP query format               October 2018
-
-
 2.2.4.  value
 
    value MAY be present.  If set, the returned data set will be filtered
-   on the attribute value field. value MAY be a string or a sub-string,
-   the latter of which start with, ends with or is encapsulated in
+   on the attribute value field. value MUST be a string or a sub-string,
+   the latter of which starts with, ends with or is encapsulated in
    wildcard (\%) characters.
 
 2.2.5.  type
 
    type MAY be present.  If set, the returned data set will be filtered
-   on the attribute type field. type MAY be a string or a sub-string,
-   the latter of which start with, ends with or is encapsulated in
+   on the attribute type field. type MUST be a string or a sub-string,
+   the latter of which starts with, ends with or is encapsulated in
    wildcard (\%) characters.  The list of valid attribute types is
    described in the MISP core format [MISP-C] in the attribute type
    section.
 
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 4]
+
+Internet-Draft              MISP query format               October 2018
+
+
 2.2.6.  category
 
    category MAY be present.  If set, the returned data set will be
-   filtered on the attribute category field. category MAY be a string or
-   a sub-string, the latter of which start with, ends with or is
+   filtered on the attribute category field. category MUST be a string
+   or a sub-string, the latter of which starts with, ends with or is
    encapsulated in wildcard (\%) characters.  The list of valid
    categories is described in the MISP core format [MISP-C] in the
    attribute type section.
@@ -204,6 +244,124 @@ Internet-Draft              MISP query format               October 2018
                          "category": "Financial fraud"
                      }
 
+2.2.7.  org
+
+   org MAY be present.  If set, the returned data set will be filtered
+   by the organisation identifier (local ID of the instance). org MUST
+   be the identifier of the organisation in a string format.
+
+2.2.8.  tags
+
+   tags MAY be present.  If set, the returned data set will be filtered
+   by tags. tags MUST be a string or a sub-string, the latter of which
+   starts with, ends with or is encapsulated in wildcard (\%)
+   characters.
+
+                   {
+                       "returnFormat": "cache",
+                       "limit": "100",
+                       "tags": ["tlp:red", "%private%"]
+                   }
+
+2.2.9.  quickfilter
+
+2.2.10.  from
+
+   from MAY be present.  If set, the returned data set will be filtered
+   from a starting date. from MUST be a string represented in the format
+   year-month-date.
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 5]
+
+Internet-Draft              MISP query format               October 2018
+
+
+                        {
+                            "returnFormat": "json",
+                            "limit": "100",
+                            "tags": ["tlp:amber"],
+                            "from": "2018-09-02",
+                            "to": "2018-10-01"
+                        }
+
+2.2.11.  to
+
+   to MAY be present.  If set, the returned data set will be filtered
+   until the specified date. from MUST be a string represented in the
+   format year-month-date.
+
+2.2.12.  last
+
+   last MAY be present.  If set, the returned data set will be filtered
+   in the number of days, hours or minutes defined (such as 5d, 12h or
+   30m). last MUST be a string represented in the format expressing
+   days, hours or minutes.
+
+2.2.13.  eventid
+
+   eventid MAY be present.  If set, the returned data set will be
+   filtered to a specific event. eventid MUST be a string representing
+   the event id as an integer.
+
+                        {
+                            "returnFormat": "json",
+                            "eventid": 1
+                        }
+
+2.2.14.  withAttachments
+
+   withAttachments MAY be present.  If set to True (1), the returned
+   data set will include the attachment(s) matching the query.
+   withAttachments MUST be an integer set as 1 (True) to include the
+   attachment(s).  If not, the attachment(s) won't be included in the
+   results.
+
+2.2.15.  uuid
+
+2.2.16.  publish_timestamp
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 6]
+
+Internet-Draft              MISP query format               October 2018
+
+
+2.2.17.  timestamp
+
+2.2.18.  published
+
+2.2.19.  enforceWarninglist
+
+2.2.20.  to_ids
+
+2.2.21.  deleted
+
+2.2.22.  includeEventUuid
+
+2.2.23.  event_timestamp
+
+2.2.24.  sgReferenceOnly
+
+2.2.25.  eventinfo
+
+2.2.26.  searchall
+
+2.2.27.  requested_attributes
+
+2.2.28.  includeContext
+
 3.  Security Considerations
 
    MISP threat intelligence instances might contain sensitive or
@@ -216,16 +374,6 @@ Internet-Draft              MISP query format               October 2018
    standard threat information that might already include malicious
    intended inputs.
 
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 11, 2019                 [Page 4]
-
-Internet-Draft              MISP query format               October 2018
-
-
 4.  Acknowledgements
 
    The authors wish to thank all the MISP community who are supporting
@@ -235,6 +383,17 @@ Internet-Draft              MISP query format               October 2018
 
 5.  References
 
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 7]
+
+Internet-Draft              MISP query format               October 2018
+
+
 5.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -242,10 +401,10 @@ Internet-Draft              MISP query format               October 2018
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC4627]  Crockford, D., "The application/json Media Type for
-              JavaScript Object Notation (JSON)", RFC 4627,
-              DOI 10.17487/RFC4627, July 2006,
-              <https://www.rfc-editor.org/info/rfc4627>.
+   [RFC8259]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
+              Interchange Format", STD 90, RFC 8259,
+              DOI 10.17487/RFC8259, December 2017,
+              <https://www.rfc-editor.org/info/rfc8259>.
 
 5.2.  Informative References
 
@@ -267,21 +426,6 @@ Authors' Addresses
    Email: alexandre.dulaunoy@circl.lu
 
 
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 11, 2019                 [Page 5]
-
-Internet-Draft              MISP query format               October 2018
-
-
    Andras Iklody
    Computer Incident Response Center Luxembourg
    16, bd d'Avranches
@@ -301,36 +445,4 @@ Internet-Draft              MISP query format               October 2018
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody        Expires April 11, 2019                 [Page 6]
+Dulaunoy & Iklody        Expires April 11, 2019                 [Page 8]
