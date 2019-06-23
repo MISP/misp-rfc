@@ -82,7 +82,7 @@ to describe machine tag (aka triple tag) vocabularies.
 
 ## Overview
 
-The MISP taxonomy format uses the JSON [@!RFC4627] format. Each namespace is represented as a JSON object with meta information including the following fields: namespace, description, version, type.
+The MISP taxonomy format uses the JSON [@!RFC8259] format. Each namespace is represented as a JSON object with meta information including the following fields: namespace, description, version, type.
 
 namespace defines the overall namespace of the machine tag. The namespace is represented as a string and **MUST** be present. The description is represented as a string and **MUST** be present. A version is represented as a unsigned integer **MUST** be present. A type defines where a specific taxonomy is applicable and a type can be applicable at event, user or org level. The type is represented as an array containing one or more type and **SHOULD** be present. If a type is not mentioned, by default, the taxonomy is applicable at event level only. An exclusive boolean property **MAY** be present and defines at namespace level if the predicates are mutually exclusive.
 
