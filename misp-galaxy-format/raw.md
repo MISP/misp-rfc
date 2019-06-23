@@ -74,11 +74,11 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 A cluster is composed of a value (**MUST**), a description (**OPTIONAL**) and metadata (**OPTIONAL**).
 
-Clusters are represented as a JSON [@!RFC4627] dictionary.
+Clusters are represented as a JSON [@!RFC8259] dictionary.
 
 ## Overview
 
-The MISP galaxy format uses the JSON [@!RFC4627] format. Each galaxy is represented as a JSON object with meta information including the following fields: name, uuid, description, version, type, authors, source, values, category.
+The MISP galaxy format uses the JSON [@!RFC8259] format. Each galaxy is represented as a JSON object with meta information including the following fields: name, uuid, description, version, type, authors, source, values, category.
 
 name defines the name of the galaxy. The name is represented as a string and **MUST** be present. The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved. For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference and **MUST** be present. The description is represented as a string and **MUST** be present. The uuid is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. The type is represented as a string and **MUST** be present and **MUST** match the name of the galaxy file. The source is represented as a string and **MUST** be present. Authors are represented as an array containing one or more authors and **MUST** be present. The category is represented as a string and **MUST** be present and describes the overall category of the galaxy such as tool or actor.
 
