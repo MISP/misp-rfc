@@ -67,7 +67,7 @@ MISP object template elements consist of an object\_relation (**MUST**), a type 
 
 ## Overview
 
-The MISP object template format uses the JSON [@!RFC4627] format. Each template is represented as a JSON object with meta information including the following fields: uuid, requiredOneOf, description, version, meta-category, name.
+The MISP object template format uses the JSON [@!RFC8259] format. Each template is represented as a JSON object with meta information including the following fields: uuid, requiredOneOf, description, version, meta-category, name.
 
 ### Object Template
 

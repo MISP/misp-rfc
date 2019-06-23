@@ -136,7 +136,7 @@ Internet-Draft         MISP object template format            April 2018
 
 2.1.  Overview
 
-   The MISP object template format uses the JSON [RFC4627] format.  Each
+   The MISP object template format uses the JSON [RFC8259] format.  Each
    template is represented as a JSON object with meta information
    including the following fields: uuid, requiredOneOf, description,
    version, meta-category, name.
@@ -989,10 +989,10 @@ Internet-Draft         MISP object template format            April 2018
               DOI 10.17487/RFC4122, July 2005,
               <https://www.rfc-editor.org/info/rfc4122>.
 
-   [RFC4627]  Crockford, D., "The application/json Media Type for
-              JavaScript Object Notation (JSON)", RFC 4627,
-              DOI 10.17487/RFC4627, July 2006,
-              <https://www.rfc-editor.org/info/rfc4627>.
+   [RFC8259]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
+              Interchange Format", STD 90, RFC 8259,
+              DOI 10.17487/RFC8259, December 2017,
+              <https://www.rfc-editor.org/info/rfc8259>.
 
 5.2.  Informative References
 
