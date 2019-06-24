@@ -836,13 +836,13 @@ Each attribute in an object **MUST** contain the parent event's ID in the event_
 
 #### first_seen
 
-first_seen represents a reference time when the object was first seen. first_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
+first_seen represents a reference time when the object was first seen. first_seen as an ISO 8601 datetime up to the micro-second with time zone support.
 
 first_seen is represented as a JSON string. first_seen **MAY** be present.
 
 #### last_seen
 
-last_seen represents a reference time when the object was last seen. last_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
+last_seen represents a reference time when the object was last seen. last_seen as an ISO 8601 datetime up to the micro-second with time zone support.
 
 last_seen is represented as a JSON string. last_seen **MAY** be present.
 
