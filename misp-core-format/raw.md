@@ -454,15 +454,15 @@ value is represented by a JSON string. value **MUST** be present.
 
 #### first_seen
 
-first_seen represents a reference time when the attribute was first seen. first_seen is expressed as an ISO 8601 datetime up to the micro-second and supporting time zone.
+first_seen represents a reference time when the attribute was first seen. first_seen is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
 
-first_seen is represented as a JSON string. first_seen **SHALL** be present.
+first_seen is represented as a JSON string. first_seen **MAY** be present.
 
 #### last_seen
 
-last_seen represents a reference time when the attribute was last seen. last_seen is expressed as an ISO 8601 datetime up to the micro-second and supporting time zone.
+last_seen represents a reference time when the attribute was last seen. last_seen is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
 
-last_seen is represented as a JSON string. last_seen **SHALL** be present.
+last_seen is represented as a JSON string. last_seen **MAY** be present.
 
 ## ShadowAttribute
 
@@ -638,15 +638,15 @@ data is represented by a JSON string in base64 encoding. data **MUST** be set fo
 
 #### first_seen
 
-first_seen represents a reference time when the attribute was first seen. first_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
+first_seen represents a reference time when the attribute was first seen. first_seen as an ISO 8601 datetime up to the micro-second with time zone support.
 
-first_seen is represented as a JSON string. first_seen **SHALL** be present.
+first_seen is represented as a JSON string. first_seen **MAY** be present.
 
 #### last_seen
 
-last_seen represents a reference time when the attribute was last seen. last_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
+last_seen represents a reference time when the attribute was last seen. last_seen as an ISO 8601 datetime up to the micro-second with time zone support.
 
-last_seen is represented as a JSON string. last_seen **SHALL** be present.
+last_seen is represented as a JSON string. last_seen **MAY** be present.
 
 ### Org
 
@@ -838,13 +838,13 @@ Each attribute in an object **MUST** contain the parent event's ID in the event_
 
 first_seen represents a reference time when the object was first seen. first_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
 
-first_seen is represented as a JSON string. first_seen **SHALL** be present.
+first_seen is represented as a JSON string. first_seen **MAY** be present.
 
 #### last_seen
 
 last_seen represents a reference time when the object was last seen. last_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
 
-last_seen is represented as a JSON string. last_seen **SHALL** be present.
+last_seen is represented as a JSON string. last_seen **MAY** be present.
 
 ## Object References
 
