@@ -280,7 +280,7 @@ A MISP document **MUST** at least includes category-type-value triplet described
               "SharingGroup": [],
               "ShadowAttribute": [],
               "RelatedAttribute": [],
-              "first_seen": null,
+              "first_seen": "2019-06-02T22:14:28.711954+00:00",
               "last_seen": null
              }
 ~~~~
@@ -454,13 +454,13 @@ value is represented by a JSON string. value **MUST** be present.
 
 #### first_seen
 
-first_seen represents a reference time when the attribute was first seen. first_seen is expressed in micro-seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+first_seen represents a reference time when the attribute was first seen. first_seen is expressed as an ISO 8601 datetime up to the micro-second and supporting time zone.
 
 first_seen is represented as a JSON string. first_seen **SHALL** be present.
 
 #### last_seen
 
-last_seen represents a reference time when the attribute was last seen. last_seen is expressed in micro-seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+last_seen represents a reference time when the attribute was last seen. last_seen is expressed as an ISO 8601 datetime up to the micro-second and supporting time zone.
 
 last_seen is represented as a JSON string. last_seen **SHALL** be present.
 
@@ -492,7 +492,7 @@ They are similar in structure to Attributes but additionally carry a reference t
                            "name": "MISP",
                            "uuid": "568cce5a-0c80-412b-8fdf-1ffac0a83869"
                        },
-                       "first_seen": null,
+                       "first_seen": "2019-06-02T22:14:28.711954+00:00",
                        "last_seen": null
                    }
 ~~~~
@@ -638,13 +638,13 @@ data is represented by a JSON string in base64 encoding. data **MUST** be set fo
 
 #### first_seen
 
-first_seen represents a reference time when the attribute was first seen. first_seen is expressed in micro-seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+first_seen represents a reference time when the attribute was first seen. first_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
 
 first_seen is represented as a JSON string. first_seen **SHALL** be present.
 
 #### last_seen
 
-last_seen represents a reference time when the attribute was last seen. last_seen is expressed in micro-seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+last_seen represents a reference time when the attribute was last seen. last_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
 
 last_seen is represented as a JSON string. last_seen **SHALL** be present.
 
@@ -725,7 +725,7 @@ A MISP document containing an Object **MUST** contain a name, a meta-category, a
                  "first_seen": null,
                  "last_seen": null
      },
-     "first_seen": null,
+     "first_seen": "2019-06-02T22:14:28.711954+00:00",
      "last_seen": null
    ]
 }
@@ -836,13 +836,13 @@ Each attribute in an object **MUST** contain the parent event's ID in the event_
 
 #### first_seen
 
-first_seen represents a reference time when the object was first seen. first_seen is expressed in micro-seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+first_seen represents a reference time when the object was first seen. first_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
 
 first_seen is represented as a JSON string. first_seen **SHALL** be present.
 
 #### last_seen
 
-last_seen represents a reference time when the object was last seen. last_seen is expressed in micro-seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+last_seen represents a reference time when the object was last seen. last_seen as an ISO 8601 datetime up to the micro-second and supporting time zone.
 
 last_seen is represented as a JSON string. last_seen **SHALL** be present.
 
