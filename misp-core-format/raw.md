@@ -279,7 +279,9 @@ A MISP document **MUST** at least includes category-type-value triplet described
               "value": "Hello world",
               "SharingGroup": [],
               "ShadowAttribute": [],
-              "RelatedAttribute": []
+              "RelatedAttribute": [],
+              "first_seen": "2019-06-02T22:14:28.711954+00:00",
+              "last_seen": null
              }
 ~~~~
 
@@ -450,6 +452,18 @@ value represents the payload of an attribute. The format of the value is depende
 
 value is represented by a JSON string. value **MUST** be present.
 
+#### first_seen
+
+first_seen represents a reference time when the attribute was first seen. first_seen is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
+
+first_seen is represented as a JSON string. first_seen **MAY** be present.
+
+#### last_seen
+
+last_seen represents a reference time when the attribute was last seen. last_seen is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
+
+last_seen is represented as a JSON string. last_seen **MAY** be present.
+
 ## ShadowAttribute
 
 ShadowAttributes are 3rd party created attributes that either propose to add new information to an event or modify existing information. They are not meant to be actionable until the event creator accepts them - at which point they will be converted into attributes or modify an existing attribute.
@@ -477,7 +491,9 @@ They are similar in structure to Attributes but additionally carry a reference t
                            "id": "1",
                            "name": "MISP",
                            "uuid": "568cce5a-0c80-412b-8fdf-1ffac0a83869"
-                       }
+                       },
+                       "first_seen": "2019-06-02T22:14:28.711954+00:00",
+                       "last_seen": null
                    }
 ~~~~
 
@@ -620,6 +636,18 @@ the sample **MUST** be encrypted using a password protected zip archive, with th
 
 data is represented by a JSON string in base64 encoding. data **MUST** be set for shadow attributes of type malware-sample and attachment.
 
+#### first_seen
+
+first_seen represents a reference time when the attribute was first seen. first_seen as an ISO 8601 datetime up to the micro-second with time zone support.
+
+first_seen is represented as a JSON string. first_seen **MAY** be present.
+
+#### last_seen
+
+last_seen represents a reference time when the attribute was last seen. last_seen as an ISO 8601 datetime up to the micro-second with time zone support.
+
+last_seen is represented as a JSON string. last_seen **MAY** be present.
+
 ### Org
 
 An Org object is composed of an uuid, name and id.
@@ -693,8 +721,12 @@ A MISP document containing an Object **MUST** contain a name, a meta-category, a
                  "object_id": "588",
                  "object_relation": "filename",
                  "value": "StarCraft.exe",
-                 "ShadowAttribute": []
-     }
+                 "ShadowAttribute": [],
+                 "first_seen": null,
+                 "last_seen": null
+     },
+     "first_seen": "2019-06-02T22:14:28.711954+00:00",
+     "last_seen": null
    ]
 }
 ~~~~~
@@ -801,6 +833,18 @@ deleted is represented by a JSON boolean. deleted **MUST** be present.
 Attribute is an array of attributes that describe the object with data.
 
 Each attribute in an object **MUST** contain the parent event's ID in the event_id field and the parent object's ID in the object_id field.
+
+#### first_seen
+
+first_seen represents a reference time when the object was first seen. first_seen as an ISO 8601 datetime up to the micro-second with time zone support.
+
+first_seen is represented as a JSON string. first_seen **MAY** be present.
+
+#### last_seen
+
+last_seen represents a reference time when the object was last seen. last_seen as an ISO 8601 datetime up to the micro-second with time zone support.
+
+last_seen is represented as a JSON string. last_seen **MAY** be present.
 
 ## Object References
 
