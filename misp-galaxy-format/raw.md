@@ -1,55 +1,56 @@
-% Title = "MISP galaxy format"
-% abbrev = "MISP galaxy format"
-% category = "info"
-% docName = "draft-dulaunoy-misp-galaxy-format"
-% ipr= "trust200902"
-% area = "Security"
-%
-% date = 2018-09-20T00:00:00Z
-%
-% [[author]]
-% initials="A."
-% surname="Dulaunoy"
-% fullname="Alexandre Dulaunoy"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "alexandre.dulaunoy@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = "16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
-% [[author]]
-% initials="A."
-% surname="Iklody"
-% fullname="Andras Iklody"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "andras.iklody@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = " 16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
-% [[author]]
-% initials="D."
-% surname="Servili"
-% fullname="Deborah Servili"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "deborah.servili@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = " 16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
+%%%
+Title = "MISP galaxy format"
+abbrev = "MISP galaxy format"
+category = "info"
+docName = "draft-dulaunoy-misp-galaxy-format"
+ipr= "trust200902"
+area = "Security"
 
+date = 2018-09-20T00:00:00Z
+
+[[author]]
+initials="A."
+surname="Dulaunoy"
+fullname="Alexandre Dulaunoy"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "alexandre.dulaunoy@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+  street = "16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+[[author]]
+initials="A."
+surname="Iklody"
+fullname="Andras Iklody"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "andras.iklody@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+  street = " 16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+[[author]]
+initials="D."
+surname="Servili"
+fullname="Deborah Servili"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "deborah.servili@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+ street = " 16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+%%%
 
 
 .# Abstract
