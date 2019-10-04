@@ -6,7 +6,7 @@ docName = "draft-dulaunoy-misp-galaxy-format"
 ipr= "trust200902"
 area = "Security"
 
-date = 2018-09-20T00:00:00Z
+date = 2019-10-04T00:00:00Z
 
 [[author]]
 initials="A."
@@ -105,7 +105,7 @@ Related contains a list of JSON key value pairs which describe the related value
 
 ## meta
 
-Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, attribution-confidence, payment-method, price wherever applicable.
+Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, attribution-confidence, payment-method, price wherever applicable. Additional meta field **MAY** be added without the need to be referenced or registered in advance.
 
 refs, synonyms **SHALL** be used to give further informations. refs is represented as an array containing one or more strings and **SHALL** be present. synonyms is represented as an array containing one or more strings and **SHALL** be present.
 
