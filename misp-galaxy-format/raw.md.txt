@@ -5,8 +5,8 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                D. Servili
-Expires: March 24, 2019                                            CIRCL
-                                                      September 20, 2018
+Expires: April 6, 2020                                             CIRCL
+                                                         October 4, 2019
 
 
                            MISP galaxy format
@@ -38,11 +38,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 24, 2019.
+   This Internet-Draft will expire on April 6, 2020.
 
 Copyright Notice
 
-   Copyright (c) 2018 IETF Trust and the persons identified as the
+   Copyright (c) 2019 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 1]
+Dulaunoy, et al.          Expires April 6, 2020                 [Page 1]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
    to this document.  Code Components extracted from this document must
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 2]
+Dulaunoy, et al.          Expires April 6, 2020                 [Page 2]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
 2.  Format
@@ -165,9 +165,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 3]
+Dulaunoy, et al.          Expires April 6, 2020                 [Page 3]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
    dest-uuid represents the target UUID which encompasses a relation of
@@ -196,7 +196,8 @@ Internet-Draft             MISP galaxy format             September 2018
    sponsor, type-of-incident, target-category, cfr-suspected-victims,
    cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-
    category, attribution-confidence, payment-method, price wherever
-   applicable.
+   applicable.  Additional meta field MAY be added without the need to
+   be referenced or registered in advance.
 
    refs, synonyms SHALL be used to give further informations. refs is
    represented as an array containing one or more strings and SHALL be
@@ -217,15 +218,15 @@ Internet-Draft             MISP galaxy format             September 2018
    complexity, effectiveness, impact, possible_issues MAY be used to
    give further information in preventive-measure galaxy. complexity is
    represented by an enumerated value from a fixed vocabulary and SHALL
-   be present. effectiveness is represented by an enumerated value from
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 4]
+Dulaunoy, et al.          Expires April 6, 2020                 [Page 4]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
+   be present. effectiveness is represented by an enumerated value from
    a fixed vocabulary and SHALL be present. impact is represented by an
    enumerated value from a fixed vocabulary and SHALL be present.
    possible_issues is represented as a string and SHOULD be present.
@@ -276,10 +277,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 5]
+Dulaunoy, et al.          Expires April 6, 2020                 [Page 5]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
         {
@@ -333,9 +333,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 6]
+Dulaunoy, et al.          Expires April 6, 2020                 [Page 6]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
 {
@@ -389,9 +389,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 7]
+Dulaunoy, et al.          Expires April 6, 2020                 [Page 7]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
    Example use of the source-uuid, target-uuid fields in the mitre-
@@ -445,9 +445,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 8]
+Dulaunoy, et al.          Expires April 6, 2020                 [Page 8]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
 {
@@ -501,9 +501,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                 [Page 9]
+Dulaunoy, et al.          Expires April 6, 2020                 [Page 9]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
 {
@@ -557,9 +557,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 10]
+Dulaunoy, et al.          Expires April 6, 2020                [Page 10]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
   "additionalProperties": false,
@@ -613,9 +613,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 11]
+Dulaunoy, et al.          Expires April 6, 2020                [Page 11]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
               },
@@ -669,9 +669,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 12]
+Dulaunoy, et al.          Expires April 6, 2020                [Page 12]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
                 "items": {
@@ -725,9 +725,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 13]
+Dulaunoy, et al.          Expires April 6, 2020                [Page 13]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
     }
@@ -781,9 +781,9 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 14]
+Dulaunoy, et al.          Expires April 6, 2020                [Page 14]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
    [JSON-SCHEMA]
@@ -837,9 +837,9 @@ Authors' Addresses
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 15]
+Dulaunoy, et al.          Expires April 6, 2020                [Page 15]
 
-Internet-Draft             MISP galaxy format             September 2018
+Internet-Draft             MISP galaxy format               October 2019
 
 
    Deborah Servili
@@ -893,4 +893,4 @@ Internet-Draft             MISP galaxy format             September 2018
 
 
 
-Dulaunoy, et al.         Expires March 24, 2019                [Page 16]
+Dulaunoy, et al.          Expires April 6, 2020                [Page 16]
