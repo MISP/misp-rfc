@@ -6,7 +6,7 @@ docName = "draft-tricaud-sightingdb-format"
 ipr= "trust200902"
 area = "Security"
 
-date = 2019-03-03T00:00:00Z
+date = 2019-11-03T00:00:00Z
 
 [[author]]
 initials="S."
@@ -49,7 +49,84 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 ## Overview
 
-The SightingDB format is in the JSON [@!RFC8259] format. In SightingDB, a Sighting Object is composed of a single JSON object.
+The SightingDB format is in the JSON [@!RFC8259] format. In SightingDB, a Sighting Object is composed of a single JSON object. This object contains the following fields: value, first_seen, last_seen, count, tags, ttl, frequency and manifold.
+
+### Attribute Storage
+
+The fields described previously describe an Attribute and all the required characteristics. However they are stored in a Namespace. A Namespace is similar to a path in a filesystem where the same file can be stored in multiple places.
+
+### Namespace
+
+A Namespace with multiple levels MUST be separated with the slash '/' character. There is no specification on how they are structured, since it depends on the use cases.
+
+A Namespace starting with the underscore '_' character means it is private and internal to SightingDB. There are all reserved for the engine and MUST NOT be used.
+
+Reserved namespaces are:
+_expired/<namespace>: Which contains all the attributes that expired, preserving the origin namespace
+_shadow/<namespace>: When a value is searched and does not exists, it is stored there
+_stats: Statistics
+_config: Configuration
+_all: All the Attributes in one place, used to retrieve the 'manifold' property.
+
+The Attribute Key MUST always be the last part of the Namespace.
+
+#### Sample Namespaces
+
+/Organization1/service/ipv4: Store values for ipv4 keys in /Organization1/service
+/everything/domain: Store domains in /everything
+
+### Attribute fields
+
+#### value
+
+The attribute value, used to store and retrieve information about an attribute. Note that value is not returned back in the JSON object, since it is queried, it is known.
+
+#### first_seen
+
+Time in UTC of the first time this value was captured
+
+#### last_seen
+
+Time in UTC of the last time this value was captured
+
+#### count
+
+How many time this value was written
+
+#### tags
+
+Tags follow how they are defined in MISP using the MISP Taxonomy. Each Tag is separated with the ';' character.
+
+#### ttl
+
+Time To Live, represents the expiration in seconds since the time the Attribute was created. Once it has expired, it moves in the private Namespace _expired.
+
+When an Attribute has this field set to 0, it means it is not set to expired. This is the default behavior.
+
+When an Attribute has this field set to a number greater than 0, the expiration status is computed only at retrieval time.
+
+#### frequency
+
+Frequency is the number of time an Attribute is seen in average per day. As this field can introduced latence, its implementation is OPTIONAL.
+
+#### manifold
+
+When a given Attribute Value is stored in different namespaces, the manifold field keeps track of them so it returns in how many different places this attributes exists. This is a simple counter.
+
+## SightingDB Format - One Attribute
+
+~~~~
+{
+  "value":"127.0.0.1",
+  "first_seen":1530394819,
+  "last_seen":1572933618,
+  "count":578391,
+  "tags":"",
+  "ttl":0,
+  "frequency":1185,
+  "manifold": 17
+}
+~~~~
 
 # Acknowledgements
 
