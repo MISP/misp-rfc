@@ -1,6 +1,6 @@
 %%%
-Title = "SightingDB format"
-abbrev = "SightingDB format"
+Title = "SightingDB query format"
+abbrev = "SightingDB query format"
 category = "info"
 docName = "draft-tricaud-sightingdb-format"
 ipr= "trust200902"
@@ -27,8 +27,8 @@ organization = "Devo Inc."
 .# Abstract
 
 This document describes the format used by SightingDB to give automated context to a given Attribute
-by counting occurences and tracking times of observability.
-SightingDB was designed to provide to MISP a Scalable and Fast way to store and retrive Attributes.
+by counting occurrences and tracking times of observability.
+SightingDB was designed to provide to MISP a Scalable and Fast way to store and retrieve Attributes.
 
 {mainmatter}
 
@@ -36,7 +36,7 @@ SightingDB was designed to provide to MISP a Scalable and Fast way to store and 
 
 Adding context to any Attribute is the key that makes it useful. While there exist numerous ways of doing it,
 SightingDB does it by just counting.
-Whenever somebody retrieves an Attribute, this counting is provided, allowing anyone to understand wether something
+Whenever somebody retrieves an Attribute, this counting is provided, allowing anyone to understand whenever something
 was observed few or many times.
 
 ##  Conventions and Terminology
@@ -49,11 +49,11 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 ## Overview
 
-The SightingDB format is in the JSON [@!RFC8259] format. In SightingDB, a Sighting Object is composed of a single JSON object. This object contains the following fields: value, first_seen, last_seen, count, tags, ttl, frequency and manifold.
+The SightingDB format is in JSON [@!RFC8259] format and used to query a SightingDB compatible connector. In SightingDB, a Sighting Object is composed of a single JSON object. This object contains the following fields: value, first_seen, last_seen, count, tags, ttl, frequency and manifold.
 
 ### Attribute Storage
 
-The fields described previously describe an Attribute and all the required characteristics. However they are stored in a Namespace. A Namespace is similar to a path in a filesystem where the same file can be stored in multiple places.
+The fields described previously describe an Attribute and all the required characteristics. However they are stored in a Namespace. A Namespace is similar to a path in a file-system where the same file can be stored in multiple places.
 
 ### Namespace
 
