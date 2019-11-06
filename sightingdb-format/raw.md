@@ -57,9 +57,9 @@ The fields described previously describe an Attribute and all the required chara
 
 ### Namespace
 
-A Namespace with multiple levels MUST be separated with the slash '/' character. There is no specification on how they are structured, since it depends on the use cases.
+A Namespace with multiple levels **MUST** be separated with the slash '/' character. There is no specification on how they are structured, since it depends on the use cases.
 
-A Namespace starting with the underscore '_' character means it is private and internal to SightingDB. There are all reserved for the engine and MUST NOT be used.
+A Namespace starting with the underscore '_' character means it is private and internal to SightingDB. There are all reserved for the engine and **MUST** NOT be used.
 
 Reserved namespaces are:
 _expired/<namespace>: Which contains all the attributes that expired, preserving the origin namespace
@@ -79,7 +79,9 @@ The Attribute Key MUST always be the last part of the Namespace.
 
 #### value
 
-The attribute value, used to store and retrieve information about an attribute. Note that value is not returned back in the JSON object, since it is queried, it is known.
+The attribute value, used to store and retrieve information about an attribute. Note that value is not returned back in the JSON object, since it is queried, it is known. The Value is described in a section below, as it is very specific and can be either "as is", a hash, encoded in base64 or any other convenient mechanism.
+
+The value implementation **MUST** offer at least: 1) Raw value 2) Base64 URL Encoded 3) SHA256 Hash
 
 #### first_seen
 
@@ -107,7 +109,7 @@ When an Attribute has this field set to a number greater than 0, the expiration 
 
 #### frequency
 
-Frequency is the number of time an Attribute is seen in average per day. As this field can introduced latence, its implementation is OPTIONAL.
+Frequency is the number of time an Attribute is seen in average per day. As this field can introduced latence, its implementation is **OPTIONAL**.
 
 #### manifold
 
@@ -127,6 +129,37 @@ When a given Attribute Value is stored in different namespaces, the manifold fie
   "manifold": 17
 }
 ~~~~
+
+# Value
+
+The value submitted can be in multiple format according to the use-case. Any implementation **MUST** offer three alternatives:
+
+1) Raw value: where nothing is encoded and the value is stored AS IS, such as show in the example above with the One Attribute in JSON.
+2) SHA256: which prevents from seeing content (see Security Considerations), has a fixed size and is convenient for most requirements
+3) Base64 URL: Where the specification of Base64 is followed, except the characters conflicting with an URL argument are replaced
+
+The value is configured as part of the Namespace. The private "_config" Namespace prefix stores this value storage mechanism.
+
+## Configuring the value format for a Namespace
+
+If one has the Namespace "/Organization1/BU1/ip" and want to store those IP addresses in SHA256, it will be configured like this:
+The Namespace is kept but prefixed by "_config" and has a json object about value format set.
+"/_config/Organization1/BU1/ip"
+
+~~~~
+{
+  "value_format":"SHA256"
+}
+~~~~
+
+Where "value_format" is either: "SHA256", "RAW" or "BASE64URL".
+
+# Security Considerations
+
+While this document solely focuses on the format, the reference implementation is SightingDB. The authentication, the data access is not handled by SightingDB.
+It is possible a value can leak if the access is too permissive.
+
+Even a Hashed value can be discovered, as re-hashing known values would match.
 
 # Acknowledgements
 
