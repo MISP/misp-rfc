@@ -68,11 +68,13 @@ Table of Contents
        2.1.2.  Namespace . . . . . . . . . . . . . . . . . . . . . .   3
        2.1.3.  Attribute fields  . . . . . . . . . . . . . . . . . .   3
      2.2.  SightingDB Format - One Attribute . . . . . . . . . . . .   4
-   3.  Value . . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-     3.1.  Configuring the value format for a Namespace  . . . . . .   5
-   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
-   5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   5
-   6.  Normative References  . . . . . . . . . . . . . . . . . . . .   6
+     2.3.  Value . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+       2.3.1.  Configuring the value format for a Namespace  . . . .   5
+     2.4.  Bulk  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+       2.4.1.  Response  . . . . . . . . . . . . . . . . . . . . . .   6
+   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
+   4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   6
+   5.  Normative References  . . . . . . . . . . . . . . . . . . . .   6
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   6
 
 1.  Introduction
@@ -96,8 +98,7 @@ Table of Contents
    The SightingDB format is in JSON [RFC8259] format and used to query a
    SightingDB compatible connector.  In SightingDB, a Sighting Object is
    composed of a single JSON object.  This object contains the following
-   fields: value, first_seen, last_seen, count, tags, ttl, frequency and
-   manifold.
+   fields: value, first_seen, last_seen, count, tags, ttl and manifold.
 
 2.1.1.  Attribute Storage
 
@@ -105,7 +106,6 @@ Table of Contents
    required characteristics.  However they are stored in a Namespace.  A
    Namespace is similar to a path in a file-system where the same file
    can be stored in multiple places.
-
 
 
 
@@ -124,19 +124,29 @@ Internet-Draft           SightingDB query format           November 2019
    private and internal to SightingDB.  There are all reserved for the
    engine and MUST NOT be used.
 
-   Reserved namespaces are: _expired/: Which contains all the attributes
-   that expired, preserving the origin namespace _shadow/: When a value
-   is searched and does not exists, it is stored there _stats:
-   Statistics _config: Configuration _all: All the Attributes in one
-   place, used to retrieve the 'manifold' property.
+   Reserved namespaces are:
+
+   _expired/: Which contains all the attributes that expired, preserving
+   the origin namespace
+
+   _shadow/: When a value is searched and does not exists, it is stored
+   there
+
+   _stats: Statistics
+
+   _config: Configuration
+
+   _all: All the Attributes in one place, used to retrieve the
+   'manifold' property.
 
    The Attribute Key MUST always be the last part of the Namespace.
 
 2.1.2.1.  Sample Namespaces
 
    /Organization1/service/ipv4: Store values for ipv4 keys in
-   /Organization1/service /everything/domain: Store domains in
-   /everything
+   /Organization1/service
+
+   /everything/domain: Store domains in /everything
 
 2.1.3.  Attribute fields
 
@@ -151,16 +161,6 @@ Internet-Draft           SightingDB query format           November 2019
    The value implementation MUST offer at least: 1) Raw value 2) Base64
    URL Encoded 3) SHA256 Hash
 
-2.1.3.2.  first_seen
-
-   Time in UTC of the first time this value was captured
-
-2.1.3.3.  last_seen
-
-   Time in UTC of the last time this value was captured
-
-
-
 
 
 
@@ -169,6 +169,14 @@ Tricaud                    Expires May 6, 2020                  [Page 3]
 
 Internet-Draft           SightingDB query format           November 2019
 
+
+2.1.3.2.  first_seen
+
+   Time in UTC of the first time this value was captured
+
+2.1.3.3.  last_seen
+
+   Time in UTC of the last time this value was captured
 
 2.1.3.4.  count
 
@@ -191,13 +199,7 @@ Internet-Draft           SightingDB query format           November 2019
    When an Attribute has this field set to a number greater than 0, the
    expiration status is computed only at retrieval time.
 
-2.1.3.7.  frequency
-
-   Frequency is the number of time an Attribute is seen in average per
-   day.  As this field can introduced latence, its implementation is
-   OPTIONAL.
-
-2.1.3.8.  manifold
+2.1.3.7.  manifold
 
    When a given Attribute Value is stored in different namespaces, the
    manifold field keeps track of them so it returns in how many
@@ -212,10 +214,8 @@ Internet-Draft           SightingDB query format           November 2019
                           "count":578391,
                           "tags":"",
                           "ttl":0,
-                          "frequency":1185,
                           "manifold": 17
                         }
-
 
 
 
@@ -226,7 +226,7 @@ Tricaud                    Expires May 6, 2020                  [Page 4]
 Internet-Draft           SightingDB query format           November 2019
 
 
-3.  Value
+2.3.  Value
 
    The value submitted can be in multiple format according to the use-
    case.  Any implementation MUST offer three alternatives:
@@ -245,7 +245,7 @@ Internet-Draft           SightingDB query format           November 2019
    The value is configured as part of the Namespace.  The private
    "_config" Namespace prefix stores this value storage mechanism.
 
-3.1.  Configuring the value format for a Namespace
+2.3.1.  Configuring the value format for a Namespace
 
    If one has the Namespace "/Organization1/BU1/ip" and want to store
    those IP addresses in SHA256, it will be configured like this: The
@@ -258,7 +258,43 @@ Internet-Draft           SightingDB query format           November 2019
 
    Where "value_format" is either: "SHA256", "RAW" or "BASE64URL".
 
-4.  Security Considerations
+2.4.  Bulk
+
+   When data must be sent and received in large amounts, it is
+   preferable to embed in JSON all the objects at once.  As such, for
+   reading and writing, the format is the following:
+
+{
+  "items": [
+    { "/your/namespace": "127.0.0.1" },
+    { "/your/other/namespace": "110812f67fa1e1f0117f6f3d70241c1a42a7b07711a93c2477cc516d9042f9db" }
+  ]
+}
+
+   Which will either store or retrieve the wanted data.
+
+
+
+
+
+Tricaud                    Expires May 6, 2020                  [Page 5]
+
+Internet-Draft           SightingDB query format           November 2019
+
+
+2.4.1.  Response
+
+   The response when retrieving sightings also has the list of items, in
+   order, one per line of the results:
+
+{
+  "items": [
+    { "first_seen":1530337182, "last_seen":1573110615, "count":93021, "tags":"", "ttl":0, "manifold": 1 },
+    { "first_seen":1562930418, "last_seen":1573110404, "count":1020492, "tags":"", "ttl":8912, "manifold": 3 }
+  ]
+}
+
+3.  Security Considerations
 
    While this document solely focuses on the format, the reference
    implementation is SightingDB.  The authentication, the data access is
@@ -268,21 +304,14 @@ Internet-Draft           SightingDB query format           November 2019
    Even a Hashed value can be discovered, as re-hashing known values
    would match.
 
-5.  Acknowledgements
+4.  Acknowledgements
 
    The author wish to thank all the MISP community who are supporting
    the creation of open standards in threat intelligence sharing.  As
    well as amazing feedback gathered during the MISP Summit 2019 in
    Luxembourg, in particular with Alexandre Dulaunoy and Andras Iklody.
 
-
-
-Tricaud                    Expires May 6, 2020                  [Page 5]
-
-Internet-Draft           SightingDB query format           November 2019
-
-
-6.  Normative References
+5.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -295,6 +324,19 @@ Internet-Draft           SightingDB query format           November 2019
               <https://www.rfc-editor.org/info/rfc8259>.
 
 Author's Address
+
+
+
+
+
+
+
+
+
+Tricaud                    Expires May 6, 2020                  [Page 6]
+
+Internet-Draft           SightingDB query format           November 2019
+
 
    Sebastien Tricaud
    Devo Inc.
@@ -333,4 +375,18 @@ Author's Address
 
 
 
-Tricaud                    Expires May 6, 2020                  [Page 6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tricaud                    Expires May 6, 2020                  [Page 7]
