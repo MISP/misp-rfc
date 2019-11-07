@@ -131,17 +131,19 @@ When a given Attribute Value is stored in different namespaces, the manifold fie
 }
 ~~~~
 
-# Value
+## Value
 
 The value submitted can be in multiple format according to the use-case. Any implementation **MUST** offer three alternatives:
 
 1) Raw value: where nothing is encoded and the value is stored AS IS, such as show in the example above with the One Attribute in JSON.
+
 2) SHA256: which prevents from seeing content (see Security Considerations), has a fixed size and is convenient for most requirements
+
 3) Base64 URL: Where the specification of Base64 is followed, except the characters conflicting with an URL argument are replaced
 
 The value is configured as part of the Namespace. The private "_config" Namespace prefix stores this value storage mechanism.
 
-## Configuring the value format for a Namespace
+### Configuring the value format for a Namespace
 
 If one has the Namespace "/Organization1/BU1/ip" and want to store those IP addresses in SHA256, it will be configured like this:
 The Namespace is kept but prefixed by "_config" and has a json object about value format set.
@@ -154,6 +156,34 @@ The Namespace is kept but prefixed by "_config" and has a json object about valu
 ~~~~
 
 Where "value_format" is either: "SHA256", "RAW" or "BASE64URL".
+
+## Bulk
+
+When data must be sent and received in large amounts, it is preferable to embed in JSON all the objects at once. As such, for reading
+and writing, the format is the following:
+
+~~~~
+{
+  "items": [
+    { "/your/namespace": "127.0.0.1" },
+    { "/your/other/namespace": "110812f67fa1e1f0117f6f3d70241c1a42a7b07711a93c2477cc516d9042f9db" }
+  ]
+}
+~~~~
+
+Which will either store or retrieve the wanted data.
+
+### Response 
+
+The response when retrieving sightings also has the list of items, in order, one per line of the results:
+~~~~
+{
+  "items": [
+    { "first_seen":1530337182, "last_seen":1573110615, "count":93021, "tags":"", "ttl":0, "manifold": 1 },
+    { "first_seen":1562930418, "last_seen":1573110404, "count":1020492, "tags":"", "ttl":8912, "manifold": 3 }
+  ]
+}
+~~~~
 
 # Security Considerations
 
