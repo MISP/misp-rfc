@@ -49,7 +49,7 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 ## Overview
 
-The SightingDB format is in JSON [@!RFC8259] format and used to query a SightingDB compatible connector. In SightingDB, a Sighting Object is composed of a single JSON object. This object contains the following fields: value, first_seen, last_seen, count, tags, ttl, frequency and manifold.
+The SightingDB format is in JSON [@!RFC8259] format and used to query a SightingDB compatible connector. In SightingDB, a Sighting Object is composed of a single JSON object. This object contains the following fields: value, first_seen, last_seen, count, tags, ttl and manifold.
 
 ### Attribute Storage
 
@@ -62,10 +62,15 @@ A Namespace with multiple levels **MUST** be separated with the slash '/' charac
 A Namespace starting with the underscore '_' character means it is private and internal to SightingDB. There are all reserved for the engine and **MUST** NOT be used.
 
 Reserved namespaces are:
+
 _expired/<namespace>: Which contains all the attributes that expired, preserving the origin namespace
+
 _shadow/<namespace>: When a value is searched and does not exists, it is stored there
+
 _stats: Statistics
+
 _config: Configuration
+
 _all: All the Attributes in one place, used to retrieve the 'manifold' property.
 
 The Attribute Key MUST always be the last part of the Namespace.
@@ -73,6 +78,7 @@ The Attribute Key MUST always be the last part of the Namespace.
 #### Sample Namespaces
 
 /Organization1/service/ipv4: Store values for ipv4 keys in /Organization1/service
+
 /everything/domain: Store domains in /everything
 
 ### Attribute fields
@@ -107,10 +113,6 @@ When an Attribute has this field set to 0, it means it is not set to expired. Th
 
 When an Attribute has this field set to a number greater than 0, the expiration status is computed only at retrieval time.
 
-#### frequency
-
-Frequency is the number of time an Attribute is seen in average per day. As this field can introduced latence, its implementation is **OPTIONAL**.
-
 #### manifold
 
 When a given Attribute Value is stored in different namespaces, the manifold field keeps track of them so it returns in how many different places this attributes exists. This is a simple counter.
@@ -125,7 +127,6 @@ When a given Attribute Value is stored in different namespaces, the manifold fie
   "count":578391,
   "tags":"",
   "ttl":0,
-  "frequency":1185,
   "manifold": 17
 }
 ~~~~
