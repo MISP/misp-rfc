@@ -84,7 +84,7 @@ to describe machine tag (aka triple tag) vocabularies.
 
 The MISP taxonomy format uses the JSON [@!RFC4627] format. Each namespace is represented as a JSON object with meta information including the following fields: namespace, description, version, type.
 
-namespace defines the overall namespace of the machine tag. The namespace is represented as a string and **MUST** be present. The description is represented as a string and **MUST** be present. A version is represented as a decimal and **MUST** be present. A type defines where a specific taxonomy is applicable and a type can be applicable at event, user or org level. The type is represented as an array containing one or more type and **SHOULD** be present. If a type is not mentioned, by default, the taxonomy is applicable at event level only. An exclusive boolean property **MAY** be present and defines at namespace level if the predicates are mutually exclusive.
+namespace defines the overall namespace of the machine tag. The namespace is represented as a string and **MUST** be present. The description is represented as a string and **MUST** be present. A version is represented as a unsigned integer **MUST** be present. A type defines where a specific taxonomy is applicable and a type can be applicable at event, user or org level. The type is represented as an array containing one or more type and **SHOULD** be present. If a type is not mentioned, by default, the taxonomy is applicable at event level only. An exclusive boolean property **MAY** be present and defines at namespace level if the predicates are mutually exclusive.
 
 predicates defines all the predicates available in the namespace defined. predicates is represented as an array of JSON objects. predicates **MUST** be present and **MUST** at least content one element.
 
@@ -426,7 +426,6 @@ A taxonomies array describes the taxonomy available with the description, name a
 
 The public directory of MISP taxonomies [@?MISP-T] contains a variety of taxonomy in various fields such as:
 
-
 CERT-XLM:
 :   CERT-XLM Security Incident Classification.
 
@@ -472,8 +471,14 @@ circl:
 collaborative-intelligence:
 :   Collaborative intelligence support language is a common language to support analysts to perform their analysis to get crowdsourced support when using threat intelligence sharing platform like MISP.
 
+common-taxonomy:
+:   The Common Taxonomy for Law Enforcement and The National Network of CSIRTs bridges the gap between the CSIRTs and international Law Enforcement communities by adding a legislative framework to facilitate the harmonisation of incident reporting to competent authorities, the development of useful statistics and sharing information within the entire cybercrime ecosystem.
+
 copine-scale:
 :   The COPINE Scale is a rating system created in Ireland and used in the United Kingdom to categorise the severity of images of child sex abuse.
+
+cryptocurrency-threat:
+:   Threats targetting cryptocurrency, based on CipherTrace report.
 
 csirt_case_classification:
 :   FIRST CSIRT Case Classification.
@@ -483,6 +488,12 @@ cssa:
 
 cyber-threat-framework:
 :   Cyber Threat Framework was developed by the US Government to enable consistent characterization and categorization of cyber threat events, and to identify trends or changes in the activities of cyber adversaries. https://www.dni.gov/index.php/cyber-threat-framework
+
+data-classification:
+:   Data classification for data potentially at risk of exfiltration based on table 2.1 of Solving Cyber Risk book.
+
+dcso-sharing:
+:   DCSO Sharing Taxonomy to classify certain types of MISP events using the DCSO Event Guide
 
 ddos:
 :   Distributed Denial of Service - or short: DDoS - taxonomy supports the description of Denial of Service attacks and especially the types they belong too.
@@ -501,6 +512,9 @@ dni-ism:
 
 domain-abuse:
 :   Taxonomy to tag domain names used for cybercrime.
+
+drugs:
+:   A taxonomy based on the superclass and class of drugs, based on https://www.drugbank.ca/releases/latest
 
 economical-impact:
 :   Economical impact is a taxonomy to describe the financial impact as positive or negative gain to the tagged information.
@@ -521,7 +535,7 @@ eu-nis-sector-and-subsectors:
 :   Sectors and sub sectors as identified by the NIS Directive.
 
 euci:
-:   EU classified information (EUCI) means any information or material designated by a EU security classification, the unauthorised disclosure of which could cause varying degrees of prejudice to the interests of the European Union or of one or more of the Member States as described in CELEX 32013D0488
+:   EU classified information (EUCI) means any information or material designated by a EU security classification, the unauthorised disclosure of which could cause varying degrees of prejudice to the interests of the European Union or of one or more of the Member States as described in COUNCIL DECISION of 23 September 2013 on the security rules for protecting EU classified information
 
 europol-event:
 :   EUROPOL type of events taxonomy.
@@ -536,13 +550,16 @@ event-classification:
 :   Event Classification.
 
 exercise:
-:   Exercise is a taxonomy to describe if the information is part of one or more cyber or crisis exercise
+:   Exercise is a taxonomy to describe if the information is part of one or more cyber or crisis exercise.
 
 false-positive:
 :   This taxonomy aims to ballpark the expected amount of false positives.
 
 file-type:
 :   List of known file types.
+
+flesch-reading-ease:
+:   Flesch Reading Ease is a revised system for determining the comprehension difficulty of written material. The scoring of the flesh score can have a maximum of 121.22 and there is no limit on how low a score can be (negative score are valid).
 
 fpf:
 :   The Future of Privacy Forum (FPF) [visual guide to practical de-identification](https://fpf.org/2016/04/25/a-visual-guide-to-practical-data-de-identification/) taxonomy is used to evaluate the degree of identifiability of personal data and the types of pseudonymous data, de-identified data and anonymous data. The work of FPF is licensed under a creative commons attribution 4.0 international license.
@@ -576,6 +593,9 @@ incident-disposition:
 
 infoleak:
 :   A taxonomy describing information leaks and especially information classified as being potentially leaked.
+
+information-security-data-source:
+:   Taxonomy to classify the information security data sources
 
 information-security-indicators:
 :   Information security indicators have been standardized by the ETSI Industrial Specification Group (ISG) ISI. These indicators provide the basis to switch from a qualitative to a quantitative culture in IT Security Scope of measurements: External and internal threats (attempt and success), user's deviant behaviours, nonconformities and/or vulnerabilities (software, configuration, behavioural, general security framework). ETSI GS ISI 001-1 (V1.1.2): ISI Indicators
@@ -661,6 +681,12 @@ tlp:
 tor:
 :   Taxonomy to describe Tor network infrastructure
 
+type:
+:   Taxonomy to describe different types of intelligence gathering discipline which can be described the origin of intelligence.
+
+use-case-applicability:
+:   The Use Case Applicability categories reflect standard resolution categories, to clearly display alerting rule configuration problems.
+
 veris:
 :   Vocabulary for Event Recording and Incident Sharing (VERIS).
 
@@ -669,6 +695,7 @@ vocabulaire-des-probabilites-estimatives:
 
 workflow:
 :   Workflow support language is a common language to support intelligence analysts to perform their analysis on data and information.
+
 
 # JSON Schema
 
