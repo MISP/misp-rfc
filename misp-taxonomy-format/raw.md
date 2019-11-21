@@ -1,40 +1,42 @@
-% Title = "MISP taxonomy format"
-% abbrev = "MISP taxonomy format"
-% category = "info"
-% docName = "draft-dulaunoy-misp-taxonomy-format"
-% ipr= "trust200902"
-% area = "Security"
-%
-% date = 2017-11-29T00:00:00Z
-%
-% [[author]]
-% initials="A."
-% surname="Dulaunoy"
-% fullname="Alexandre Dulaunoy"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "alexandre.dulaunoy@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = "16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
-% [[author]]
-% initials="A."
-% surname="Iklody"
-% fullname="Andras Iklody"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "andras.iklody@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = " 16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
+%%%
+Title = "MISP taxonomy format"
+abbrev = "MISP taxonomy format"
+category = "info"
+docName = "draft-dulaunoy-misp-taxonomy-format"
+ipr= "trust200902"
+area = "Security"
+
+date = 2017-11-29T00:00:00Z
+
+[[author]]
+initials="A."
+surname="Dulaunoy"
+fullname="Alexandre Dulaunoy"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "alexandre.dulaunoy@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+  street = "16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+[[author]]
+initials="A."
+surname="Iklody"
+fullname="Andras Iklody"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "andras.iklody@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+  street = " 16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+%%%
 
 .# Abstract
 
@@ -82,7 +84,7 @@ to describe machine tag (aka triple tag) vocabularies.
 
 ## Overview
 
-The MISP taxonomy format uses the JSON [@!RFC4627] format. Each namespace is represented as a JSON object with meta information including the following fields: namespace, description, version, type.
+The MISP taxonomy format uses the JSON [@!RFC8259] format. Each namespace is represented as a JSON object with meta information including the following fields: namespace, description, version, type.
 
 namespace defines the overall namespace of the machine tag. The namespace is represented as a string and **MUST** be present. The description is represented as a string and **MUST** be present. A version is represented as a unsigned integer **MUST** be present. A type defines where a specific taxonomy is applicable and a type can be applicable at event, user or org level. The type is represented as an array containing one or more type and **SHOULD** be present. If a type is not mentioned, by default, the taxonomy is applicable at event level only. An exclusive boolean property **MAY** be present and defines at namespace level if the predicates are mutually exclusive.
 

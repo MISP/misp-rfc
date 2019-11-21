@@ -65,7 +65,7 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 ## Overview
 
-The MISP query format is in the JSON [@!RFC4627] format.
+The MISP query format is in the JSON [@!RFC8259] format.
 
 
 ## query format criteria

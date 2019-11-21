@@ -1,55 +1,56 @@
-% Title = "MISP galaxy format"
-% abbrev = "MISP galaxy format"
-% category = "info"
-% docName = "draft-dulaunoy-misp-galaxy-format"
-% ipr= "trust200902"
-% area = "Security"
-%
-% date = 2018-09-20T00:00:00Z
-%
-% [[author]]
-% initials="A."
-% surname="Dulaunoy"
-% fullname="Alexandre Dulaunoy"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "alexandre.dulaunoy@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = "16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
-% [[author]]
-% initials="A."
-% surname="Iklody"
-% fullname="Andras Iklody"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "andras.iklody@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = " 16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
-% [[author]]
-% initials="D."
-% surname="Servili"
-% fullname="Deborah Servili"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "deborah.servili@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = " 16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
+%%%
+Title = "MISP galaxy format"
+abbrev = "MISP galaxy format"
+category = "info"
+docName = "draft-dulaunoy-misp-galaxy-format"
+ipr= "trust200902"
+area = "Security"
 
+date = 2019-10-04T00:00:00Z
+
+[[author]]
+initials="A."
+surname="Dulaunoy"
+fullname="Alexandre Dulaunoy"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "alexandre.dulaunoy@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+  street = "16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+[[author]]
+initials="A."
+surname="Iklody"
+fullname="Andras Iklody"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "andras.iklody@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+  street = " 16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+[[author]]
+initials="D."
+surname="Servili"
+fullname="Deborah Servili"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "deborah.servili@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+ street = " 16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+%%%
 
 
 .# Abstract
@@ -74,11 +75,11 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 A cluster is composed of a value (**MUST**), a description (**OPTIONAL**) and metadata (**OPTIONAL**).
 
-Clusters are represented as a JSON [@!RFC4627] dictionary.
+Clusters are represented as a JSON [@!RFC8259] dictionary.
 
 ## Overview
 
-The MISP galaxy format uses the JSON [@!RFC4627] format. Each galaxy is represented as a JSON object with meta information including the following fields: name, uuid, description, version, type, authors, source, values, category.
+The MISP galaxy format uses the JSON [@!RFC8259] format. Each galaxy is represented as a JSON object with meta information including the following fields: name, uuid, description, version, type, authors, source, values, category.
 
 name defines the name of the galaxy. The name is represented as a string and **MUST** be present. The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object reference. The uuid **MUST** be preserved. For any updates or transfer of the same object reference. UUID version 4 is **RECOMMENDED** when assigning it to a new object reference and **MUST** be present. The description is represented as a string and **MUST** be present. The uuid is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. The type is represented as a string and **MUST** be present and **MUST** match the name of the galaxy file. The source is represented as a string and **MUST** be present. Authors are represented as an array containing one or more authors and **MUST** be present. The category is represented as a string and **MUST** be present and describes the overall category of the galaxy such as tool or actor.
 
@@ -104,7 +105,7 @@ Related contains a list of JSON key value pairs which describe the related value
 
 ## meta
 
-Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, attribution-confidence, payment-method, price, spoken-language wherever applicable.
+Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, attribution-confidence, payment-method, price, spoken-language wherever applicable. Additional meta field **MAY** be added without the need to be referenced or registered in advance.
 
 refs, synonyms **SHALL** be used to give further informations. refs is represented as an array containing one or more strings and **SHALL** be present. synonyms is represented as an array containing one or more strings and **SHALL** be present.
 

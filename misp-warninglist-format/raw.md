@@ -72,11 +72,11 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 # Format
 
-Warninglists are represented as a JSON [@!RFC4627] dictionary.
+Warninglists are represented as a JSON [@!RFC8259] dictionary.
 
 ## Overview
 
-The MISP warninglist format uses the JSON [@!RFC4627] format. Each warninglist is represented as a JSON object with meta information including the following fields: name, description, version, type, matching_attributes, list.
+The MISP warninglist format uses the JSON [@!RFC8259] format. Each warninglist is represented as a JSON object with meta information including the following fields: name, description, version, type, matching_attributes, list.
 
 name defines the name of the warninglist. The name is represented as a string and **MUST** be present. The description is represented as a string and **MUST** be present. The version is represented as a decimal and **MUST** be present. matching_attributes is represented as an array containing one or more values and is **RECOMMENDED**. type is represented as a string from an non exaustive list and **MUST** be present.
 

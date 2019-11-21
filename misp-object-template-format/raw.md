@@ -1,40 +1,42 @@
-% Title = "MISP object template format"
-% abbrev = "MISP object template format"
-% category = "info"
-% docName = "draft-dulaunoy-misp-object-template-format"
-% ipr= "trust200902"
-% area = "Security"
-%
-% date = 2018-04-10T00:00:00Z
-%
-% [[author]]
-% initials="A."
-% surname="Dulaunoy"
-% fullname="Alexandre Dulaunoy"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "alexandre.dulaunoy@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = "16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
-% [[author]]
-% initials="A."
-% surname="Iklody"
-% fullname="Andras Iklody"
-% abbrev="CIRCL"
-% organization = "Computer Incident Response Center Luxembourg"
-%  [author.address]
-%  email = "andras.iklody@circl.lu"
-%  phone = "+352 247 88444"
-%   [author.address.postal]
-%   street = " 16, bd d'Avranches"
-%   city = "Luxembourg"
-%   code = "L-1611"
-%   country = "Luxembourg"
+%%%
+Title = "MISP object template format"
+abbrev = "MISP object template format"
+category = "info"
+docName = "draft-dulaunoy-misp-object-template-format"
+ipr= "trust200902"
+area = "Security"
+
+date = 2018-04-10T00:00:00Z
+
+[[author]]
+initials="A."
+surname="Dulaunoy"
+fullname="Alexandre Dulaunoy"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "alexandre.dulaunoy@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+  street = "16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+[[author]]
+initials="A."
+surname="Iklody"
+fullname="Andras Iklody"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "andras.iklody@circl.lu"
+ phone = "+352 247 88444"
+  [author.address.postal]
+  street = " 16, bd d'Avranches"
+  city = "Luxembourg"
+  code = "L-1611"
+  country = "Luxembourg"
+%%%
 
 .# Abstract
 
@@ -67,7 +69,7 @@ MISP object template elements consist of an object\_relation (**MUST**), a type 
 
 ## Overview
 
-The MISP object template format uses the JSON [@!RFC4627] format. Each template is represented as a JSON object with meta information including the following fields: uuid, requiredOneOf, description, version, meta-category, name.
+The MISP object template format uses the JSON [@!RFC8259] format. Each template is represented as a JSON object with meta information including the following fields: uuid, requiredOneOf, description, version, meta-category, name.
 
 ### Object Template
 
@@ -313,7 +315,137 @@ format is represented by a JSON list containing a list of formats that the relat
 
 The MISP object template directory is publicly available [@?MISP-O] in a git repository. The repository contains an objects directory, which contains a directory per object type, containing a file named definition.json which contains the definition of the object template in the above described format.
 
-A relationships directory is also included, containing a definition.json file which contains a list of MISP object relation definitions. There are more than 90 existing templates object documented in [@?MISP-O-DOC].
+A relationships directory is also included, containing a definition.json file which contains a list of MISP object relation definitions. There are more than 125 existing templates object documented in [@?MISP-O-DOC].
+
+## Existing and public MISP object templates
+
+- tsk-chats - An Object Template to gather information from evidential or interesting exchange of messages identified during a digital forensic investigation.
+- tsk-web-bookmark - An Object Template to add evidential bookmarks identified during a digital forensic investigation.
+- tsk-web-cookie - An TSK-Autopsy Object Template to represent cookies identified during a forensic investigation.
+- tsk-web-downloads - An Object Template to add web-downloads.
+- tsk-web-history - An Object Template to share web history information.
+- tsk-web-search-query - An Object Template to share web search query information.
+- ail-leak - An information leak as defined by the AIL Analysis Information Leak framework.
+- ais-info - Automated Indicator Sharing (AIS) Information Source Markings.
+- android-permission - A set of android permissions - one or more permission(s) which can be linked to other objects (e.g. malware, app).
+- annotation - An annotation object allowing analysts to add annotations, comments, executive summary to a MISP event, objects or attributes.
+- anonymisation - Anonymisation object describing an anonymisation technique used to encode MISP attribute values. Reference: https://www.caida.org/tools/taxonomy/anonymization.xml.
+- asn - Autonomous system object describing an autonomous system which can include one or more network operators management an entity (e.g. ISP) along with their routing policy, routing prefixes or alike.
+- authenticode-signerinfo - Authenticode Signer Info.
+- av-signature - Antivirus detection signature.
+- bank-account - An object describing bank account information based on account description from goAML 4.0.
+- bgp-hijack - Object encapsulating BGP Hijack description as specified, for example, by bgpstream.com.
+- cap-alert - Common Alerting Protocol Version (CAP) alert object.
+- cap-info - Common Alerting Protocol Version (CAP) info object.
+- cap-resource - Common Alerting Protocol Version (CAP) resource object.
+- coin-address - An address used in a cryptocurrency.
+- cookie - An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser. The browser may store it and send it back with the next request to the same server. Typically, it's used to tell if two requests came from the same browser — keeping a user logged-in, for example. It remembers stateful information for the stateless HTTP protocol. (as defined by the Mozilla foundation.
+- cortex - Cortex object describing a complete cortex analysis. Observables would be attribute with a relationship from this object.
+- cortex-taxonomy - Cortex object describing an Cortex Taxonomy (or mini report).
+- course-of-action - An object describing a specific measure taken to prevent or respond to an attack.
+- cowrie - Cowrie honeypot object template.
+- credential - Credential describes one or more credential(s) including password(s), api key(s) or decryption key(s).
+- credit-card - A payment card like credit card, debit card or any similar cards which can be used for financial transactions.
+- ddos - DDoS object describes a current DDoS activity from a specific or/and to a specific target. Type of DDoS can be attached to the object as a taxonomy.
+- device - An object to define a device.
+- diameter-attack - Attack as seen on diameter authentication against a GSM, UMTS or LTE network.
+- domain-ip - A domain and IP address seen as a tuple in a specific time frame.
+- elf - Object describing a Executable and Linkable Format.
+- elf-section - Object describing a section of an Executable and Linkable Format.
+- email - Email object describing an email with meta-information.
+- exploit-poc - Exploit-poc object describing a proof of concept or exploit of a vulnerability. This object has often a relationship with a vulnerability object.
+- facial-composite - An object which describes a facial composite.
+- fail2ban - Fail2ban event.
+- file - File object describing a file with meta-information.
+- forensic-case - An object template to describe a digital forensic case.
+- forensic-evidence - An object template to describe a digital forensic evidence.
+- geolocation - An object to describe a geographic location.
+- gtp-attack - GTP attack object as seen on a GSM, UMTS or LTE network.
+- http-request - A single HTTP request header.
+- ilr-impact - Institut Luxembourgeois de Regulation - Impact.
+- ilr-notification-incident - Institut Luxembourgeois de Regulation - Notification d'incident.
+- internal-reference - Internal reference.
+- interpol-notice - An object which describes a Interpol notice.
+- ip-api-address - IP Address information. Useful if you are pulling your ip information from ip-api.com.
+- ip-port - An IP address (or domain or hostname) and a port seen as a tuple (or as a triple) in a specific time frame.
+- irc - An IRC object to describe an IRC server and the associated channels.
+- ja3 - JA3 is a new technique for creating SSL client fingerprints that are easy to produce and can be easily shared for threat intelligence. Fingerprints are composed of Client Hello packet; SSL Version, Accepted Ciphers, List of Extensions, Elliptic Curves, and Elliptic Curve Formats. https://github.com/salesforce/ja3.
+- legal-entity - An object to describe a legal entity.
+- lnk - LNK object describing a Windows LNK binary file (aka Windows shortcut).
+- macho - Object describing a file in Mach-O format.
+- macho-section - Object describing a section of a file in Mach-O format.
+- mactime-timeline-analysis - Mactime template, used in forensic investigations to describe the timeline of a file activity.
+- malware-config - Malware configuration recovered or extracted from a malicious binary.
+- microblog - Microblog post like a Twitter tweet or a post on a Facebook wall.
+- mutex - Object to describe mutual exclusion locks (mutex) as seen in memory or computer program.
+- netflow - Netflow object describes an network object based on the Netflowv5/v9 minimal definition.
+- network-connection - A local or remote network connection.
+- network-socket - Network socket object describes a local or remote network connections based on the socket data structure.
+- misc - An object which describes an organization.
+- original-imported-file - Object describing the original file used to import data in MISP.
+- passive-dns - Passive DNS records as expressed in draft-dulaunoy-dnsop-passive-dns-cof-01.
+- paste - Paste or similar post from a website allowing to share privately or publicly posts.
+- pcap-metadata - Network packet capture metadata.
+- pe - Object describing a Portable Executable.
+- pe-section - Object describing a section of a Portable Executable.
+- person - An object which describes a person or an identity.
+- phishing - Phishing template to describe a phishing website and its analysis.
+- phishing-kit - Object to describe a phishing-kit.
+- phone - A phone or mobile phone object which describe a phone.
+- process - Object describing a system process.
+- python-etvx-event-log - Event log object template to share information of the activities conducted on a system. .
+- r2graphity - Indicators extracted from files using radare2 and graphml.
+- regexp - An object describing a regular expression (regex or regexp). The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a regular expression.
+- registry-key - Registry key object describing a Windows registry key with value and last-modified timestamp.
+- regripper-NTUser - Regripper Object template designed to present user specific configuration details extracted from the NTUSER.dat hive.
+- regripper-sam-hive-single-user - Regripper Object template designed to present user profile details extracted from the SAM hive.
+- regripper-sam-hive-user-group - Regripper Object template designed to present group profile details extracted from the SAM hive.
+- regripper-software-hive-BHO - Regripper Object template designed to gather information of the browser helper objects installed on the system.
+- regripper-software-hive-appInit-DLLS - Regripper Object template designed to gather information of the DLL files installed on the system.
+- regripper-software-hive-application-paths - Regripper Object template designed to gather information of the application paths.
+- regripper-software-hive-applications-installed - Regripper Object template designed to gather information of the applications installed on the system.
+- regripper-software-hive-command-shell - Regripper Object template designed to gather information of the shell commands executed on the system.
+- regripper-software-hive-windows-general-info - Regripper Object template designed to gather general windows information extracted from the software-hive.
+- regripper-software-hive-software-run - Regripper Object template designed to gather information of the applications set to run on the system.
+- regripper-software-hive-userprofile-winlogon - Regripper Object template designed to gather user profile information when the user logs onto the system, gathered from the software hive.
+- regripper-system-hive-firewall-configuration - Regripper Object template designed to present firewall configuration information extracted from the system-hive.
+- regripper-system-hive-general-configuration - Regripper Object template designed to present general system properties extracted from the system-hive.
+- regripper-system-hive-network-information. - Regripper object template designed to gather network information from the system-hive.
+- regripper-system-hive-services-drivers - Regripper Object template designed to gather information regarding the services/drivers from the system-hive.
+- report - Metadata used to generate an executive level report.
+- research-scanner - Information related to known scanning activity (e.g. from research projects).
+- rogue-dns - Rogue DNS as defined by CERT.br.
+- rtir - RTIR - Request Tracker for Incident Response.
+- sandbox-report - Sandbox report.
+- sb-signature - Sandbox detection signature.
+- script - Object describing a computer program written to be run in a special run-time environment. The script or shell script can be used for malicious activities but also as support tools for threat analysts.
+- shell-commands - Object describing a series of shell commands executed. This object can be linked with malicious files in order to describe a specific execution of shell commands.
+- short-message-service - Short Message Service (SMS) object template describing one or more SMS message. Restriction of the initial format 3GPP 23.038 GSM character set doesn't apply.
+- shortened-link - Shortened link and its redirect target.
+- splunk - Splunk / Splunk ES object.
+- ss7-attack - SS7 object of an attack seen on a GSM, UMTS or LTE network via SS7 logging.
+- ssh-authorized-keys - An object to store ssh authorized keys file.
+- stix2-pattern - An object describing a STIX pattern. The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a STIX pattern.
+- suricata - An object describing one or more Suricata rule(s) along with version and contextual information.
+- target-system - Description about an targeted system, this could potentially be a compromissed internal system.
+- threatgrid-report - ThreatGrid report.
+- timecode - Timecode object to describe a start of video sequence (e.g. CCTV evidence) and the end of the video sequence.
+- timesketch-timeline - A timesketch timeline object based on mandatory field in timesketch to describe a log entry.
+- timesketch_message - A timesketch message entry.
+- timestamp - A generic timestamp object to represent time including first time and last time seen. Relationship will then define the kind of time relationship.
+- tor-hiddenservice - Tor hidden service (onion service) object.
+- tor-node - Tor node (which protects your privacy on the internet by hiding the connection between users Internet address and the services used by the users) description which are part of the Tor network at a time.
+- tracking-id - Analytics and tracking ID such as used in Google Analytics or other analytic platform.
+- transaction - An object to describe a financial transaction.
+- url - url object describes an url along with its normalized field (like extracted using faup parsing library) and its metadata.
+- vehicle - Vehicle object template to describe a vehicle information and registration.
+- victim - Victim object describes the target of an attack or abuse.
+- virustotal-report - VirusTotal report.
+- vulnerability - Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.
+- whois - Whois records information for a domain name or an IP address.
+- x509 - x509 object describing a X.509 certificate.
+- yabin - yabin.py generates Yara rules from function prologs, for matching and hunting binaries. ref: https://github.com/AlienVault-OTX/yabin.
+- yara - An object describing a YARA rule along with its version.
 
 # Acknowledgements
 
