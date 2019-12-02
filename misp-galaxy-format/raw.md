@@ -105,9 +105,9 @@ Related contains a list of JSON key value pairs which describe the related value
 
 ## meta
 
-Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, attribution-confidence, payment-method, price, spoken-language wherever applicable. Additional meta field **MAY** be added without the need to be referenced or registered in advance.
+Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, attribution-confidence, payment-method, price, spoken-language, official-refs wherever applicable. Additional meta field **MAY** be added without the need to be referenced or registered in advance.
 
-refs, synonyms **SHALL** be used to give further informations. refs is represented as an array containing one or more strings and **SHALL** be present. synonyms is represented as an array containing one or more strings and **SHALL** be present.
+refs, synonyms, official-refs **SHALL** be used to give further informations. refs is represented as an array containing one or more strings and **SHALL** be present. synonyms is represented as an array containing one or more strings and **SHALL** be present. official-refs is represented as an array containing one or more strings and **SHALL** be present.
 
 date, status **MAY** be used to give time information about an cluster. date is represented as a string describing a time or period and **SHALL** be present. status is represented as a string describing the current status of the clusters. It **MAY** also describe a time or period and **SHALL** be present.
 
