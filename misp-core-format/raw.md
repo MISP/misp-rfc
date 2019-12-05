@@ -328,7 +328,7 @@ Internal reference
 :   text, link, comment, other, hex, anonymised
 
 Network activity
-:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject
+:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject
 
 Other
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised
@@ -349,7 +349,7 @@ Person
 :   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number, identity-card-number, anonymised
 
 Social network
-:   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, comment, text, other, whois-registrant-email, anonymised
+:   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, eppn, comment, text, other, whois-registrant-email, anonymised
 
 Support Tool
 :   link, text, attachment, comment, other, hex, anonymised
@@ -538,7 +538,7 @@ Internal reference
 :   text, link, comment, other, hex, anonymised
 
 Network activity
-:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject
+:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject
 
 Other
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised
@@ -559,7 +559,7 @@ Person
 :   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number, identity-card-number, anonymised
 
 Social network
-:   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, comment, text, other, whois-registrant-email, anonymised
+:   github-username, github-repository, github-organisation, jabber-id, twitter-id, email-src, email-dst, eppn, comment, text, other, whois-registrant-email, anonymised
 
 Support Tool
 :   link, text, attachment, comment, other, hex, anonymised
