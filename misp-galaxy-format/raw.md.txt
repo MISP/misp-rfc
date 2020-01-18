@@ -195,14 +195,17 @@ Internet-Draft             MISP galaxy format               October 2019
    filenames, ransomnotes-refs, suspected-victims, suspected-state-
    sponsor, type-of-incident, target-category, cfr-suspected-victims,
    cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-
-   category, attribution-confidence, payment-method, price wherever
-   applicable.  Additional meta field MAY be added without the need to
-   be referenced or registered in advance.
+   category, suspected-victims, suspected-state-sponsor, attribution-
+   confidence, payment-method, price, spoken-language, official-refs
+   wherever applicable.  Additional meta field MAY be added without the
+   need to be referenced or registered in advance.
 
-   refs, synonyms SHALL be used to give further informations. refs is
+   refs, synonyms, official-refs SHALL be used to give further
+   informations. refs is represented as an array containing one or more
+   strings and SHALL be present. synonyms is represented as an array
+   containing one or more strings and SHALL be present. official-refs is
    represented as an array containing one or more strings and SHALL be
-   present. synonyms is represented as an array containing one or more
-   strings and SHALL be present.
+   present.
 
    date, status MAY be used to give time information about an cluster.
    date is represented as a string describing a time or period and SHALL
@@ -215,9 +218,6 @@ Internet-Draft             MISP galaxy format               October 2019
    field is described as an RGB colour fill in hexadecimal
    representation.
 
-   complexity, effectiveness, impact, possible_issues MAY be used to
-   give further information in preventive-measure galaxy. complexity is
-   represented by an enumerated value from a fixed vocabulary and SHALL
 
 
 
@@ -226,6 +226,9 @@ Dulaunoy, et al.          Expires April 6, 2020                 [Page 4]
 Internet-Draft             MISP galaxy format               October 2019
 
 
+   complexity, effectiveness, impact, possible_issues MAY be used to
+   give further information in preventive-measure galaxy. complexity is
+   represented by an enumerated value from a fixed vocabulary and SHALL
    be present. effectiveness is represented by an enumerated value from
    a fixed vocabulary and SHALL be present. impact is represented by an
    enumerated value from a fixed vocabulary and SHALL be present.
@@ -252,17 +255,14 @@ Internet-Draft             MISP galaxy format               October 2019
   "uuid": "e6df1619-f8b3-476c-b5cf-22b4c9e9dd7f"
 }
 
-   country, motive MAY be used to give further information in threat-
-   actor galaxy. country is represented as a string and SHOULD be
-   present. motive is represented as a string and SHOULD be present.
+   country, motive, spoken-language MAY be used to give further
+   information in threat-actor galaxy. country is represented as a
+   string and SHOULD be present. motive is represented as a string and
+   SHOULD be present. spoken-language is represented as an array
+   containing one or more strings describing a language using ISO 639-2
+   code and SHALL be present.
 
    Example use of the country, motive fields in the threat-actor galaxy:
-
-
-
-
-
-
 
 
 
