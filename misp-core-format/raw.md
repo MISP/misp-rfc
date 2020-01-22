@@ -1296,6 +1296,12 @@ or parsing.
         "timestamp": {
           "type": "string"
         },
+        "first_seen": {
+          "type": "string"
+        },
+        "last_seen": {
+          "type": "string"
+        },
         "distribution": {
           "type": "string"
         },
@@ -1461,6 +1467,12 @@ or parsing.
           "type": "string"
         },
         "timestamp": {
+          "type": "string"
+        },
+        "first_seen": {
+          "type": "string"
+        },
+        "last_seen": {
           "type": "string"
         },
         "comment": {
