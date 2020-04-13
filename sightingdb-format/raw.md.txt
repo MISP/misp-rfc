@@ -4,8 +4,8 @@
 
 Network Working Group                                         S. Tricaud
 Internet-Draft                                                 Devo Inc.
-Intended status: Informational                          November 3, 2019
-Expires: May 6, 2020
+Intended status: Informational                            April 12, 2020
+Expires: October 12, 2020
 
 
                         SightingDB query format
