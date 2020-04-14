@@ -6,7 +6,7 @@ docName = "draft-tricaud-sightingdb-format"
 ipr= "trust200902"
 area = "Security"
 
-date = 2019-11-03T00:00:00Z
+date = 2020-13-04T00:00:00Z
 
 [[author]]
 initials="S."
