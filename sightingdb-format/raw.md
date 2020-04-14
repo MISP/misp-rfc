@@ -49,7 +49,7 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 ## Overview
 
-The SightingDB format is in JSON [@!RFC8259] format and used to query a SightingDB compatible connector. In SightingDB, a Sighting Object is composed of a single JSON object. This object contains the following fields: value, first_seen, last_seen, count, tags, ttl and manifold.
+The SightingDB format is in JSON [@!RFC8259] format and used to query a SightingDB compatible connector. In SightingDB, a Sighting Object is composed of a single JSON object. This object contains the following fields: value, first_seen, last_seen, count, tags, ttl and consensus.
 
 ### Attribute Storage
 
@@ -71,7 +71,7 @@ _stats: Statistics
 
 _config: Configuration
 
-_all: All the Attributes in one place, used to retrieve the 'manifold' property.
+_all: All the Attributes in one place, used to retrieve the 'consensus' property.
 
 The Attribute Key MUST always be the last part of the Namespace.
 
@@ -113,9 +113,9 @@ When an Attribute has this field set to 0, it means it is not set to expired. Th
 
 When an Attribute has this field set to a number greater than 0, the expiration status is computed only at retrieval time.
 
-#### manifold
+#### consensus
 
-When a given Attribute Value is stored in different namespaces, the manifold field keeps track of them so it returns in how many different places this attributes exists. This is a simple counter.
+When a given Attribute Value is stored in different namespaces, the consensus field keeps track of them so it returns in how many different places this attributes exists. This is a simple counter.
 
 ## SightingDB Format - One Attribute
 
@@ -127,7 +127,7 @@ When a given Attribute Value is stored in different namespaces, the manifold fie
   "count":578391,
   "tags":"",
   "ttl":0,
-  "manifold": 17
+  "consensus": 17
 }
 ~~~~
 
@@ -159,14 +159,36 @@ Where "value_format" is either: "SHA256", "RAW" or "BASE64URL".
 
 ## Bulk
 
-When data must be sent and received in large amounts, it is preferable to embed in JSON all the objects at once. As such, for reading
-and writing, the format is the following:
+When data must be sent and received in large amounts, it is preferable to embed in JSON all the objects at once. As such, for reading and writing, the format is the following:
+
+~~~~
+{
+  "items": [
+    { "<namespace>": "<value>" },
+    { "<namespace>": "<value>", "timestamp": <epoch> }
+  ]
+}
+~~~~
+
+Where:
+
+namespace: is the wanted namespace where to store the value
+
+value: the value one want to track
+
+timestamp: **OPTIONAL** epoch timestamp to set the value at.
+
+The timestamp is how one can use SightingDB and use old datasets where the first seen and last seen is not relative to "right now". 
+
+### Request
+
+A Proper request with two items is made like this:
 
 ~~~~
 {
   "items": [
     { "/your/namespace": "127.0.0.1" },
-    { "/your/other/namespace": "110812f67fa1e1f0117f6f3d70241c1a42a7b07711a93c2477cc516d9042f9db" }
+    { "/your/other/namespace": "110812f67fa1e1f0117f6f3d70241c1a42a7b07711a93c2477cc516d9042f9db", "timestamp": 1586825229 }
   ]
 }
 ~~~~
@@ -179,8 +201,8 @@ The response when retrieving sightings also has the list of items, in order, one
 ~~~~
 {
   "items": [
-    { "first_seen":1530337182, "last_seen":1573110615, "count":93021, "tags":"", "ttl":0, "manifold": 1 },
-    { "first_seen":1562930418, "last_seen":1573110404, "count":1020492, "tags":"", "ttl":8912, "manifold": 3 }
+    {"value": "Octave_Hergebel", "first_seen":1530337182, "last_seen":1573110615, "count":93021, "tags":"", "ttl":0, "consensus": 1},
+    {"value": "127.0.0.1", "first_seen":1562930418, "last_seen":1573110404, "count":1020492, "tags":"", "ttl":8912, "consensus": 3}
   ]
 }
 ~~~~
