@@ -6,7 +6,7 @@ docName = "draft-tricaud-sightingdb-format"
 ipr= "trust200902"
 area = "Security"
 
-date = 2020-13-04T00:00:00Z
+date = 2020-04-13T00:00:00Z
 
 [[author]]
 initials="S."
@@ -66,8 +66,6 @@ Reserved namespaces are:
 _expired/<namespace>: Which contains all the attributes that expired, preserving the origin namespace
 
 _shadow/<namespace>: When a value is searched and does not exists, it is stored there
-
-_stats: Statistics
 
 _config: Configuration
 
