@@ -4,8 +4,8 @@
 
 Network Working Group                                         S. Tricaud
 Internet-Draft                                                 Devo Inc.
-Intended status: Informational                          November 3, 2019
-Expires: May 6, 2020
+Intended status: Informational                            April 13, 2020
+Expires: October 15, 2020
 
 
                         SightingDB query format
@@ -33,11 +33,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 6, 2020.
+   This Internet-Draft will expire on October 15, 2020.
 
 Copyright Notice
 
-   Copyright (c) 2019 IETF Trust and the persons identified as the
+   Copyright (c) 2020 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Tricaud                    Expires May 6, 2020                  [Page 1]
+Tricaud                 Expires October 15, 2020                [Page 1]
 
-Internet-Draft           SightingDB query format           November 2019
+Internet-Draft           SightingDB query format              April 2020
 
 
 Table of Contents
@@ -71,11 +71,12 @@ Table of Contents
      2.3.  Value . . . . . . . . . . . . . . . . . . . . . . . . . .   5
        2.3.1.  Configuring the value format for a Namespace  . . . .   5
      2.4.  Bulk  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-       2.4.1.  Response  . . . . . . . . . . . . . . . . . . . . . .   6
+       2.4.1.  Request . . . . . . . . . . . . . . . . . . . . . . .   6
+       2.4.2.  Response  . . . . . . . . . . . . . . . . . . . . . .   6
    3.  Security Considerations . . . . . . . . . . . . . . . . . . .   6
    4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   6
-   5.  Normative References  . . . . . . . . . . . . . . . . . . . .   6
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   6
+   5.  Normative References  . . . . . . . . . . . . . . . . . . . .   7
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   7
 
 1.  Introduction
 
@@ -98,21 +99,23 @@ Table of Contents
    The SightingDB format is in JSON [RFC8259] format and used to query a
    SightingDB compatible connector.  In SightingDB, a Sighting Object is
    composed of a single JSON object.  This object contains the following
-   fields: value, first_seen, last_seen, count, tags, ttl and manifold.
+   fields: value, first_seen, last_seen, count, tags, ttl and consensus.
 
 2.1.1.  Attribute Storage
 
    The fields described previously describe an Attribute and all the
    required characteristics.  However they are stored in a Namespace.  A
+
+
+
+
+Tricaud                 Expires October 15, 2020                [Page 2]
+
+Internet-Draft           SightingDB query format              April 2020
+
+
    Namespace is similar to a path in a file-system where the same file
    can be stored in multiple places.
-
-
-
-Tricaud                    Expires May 6, 2020                  [Page 2]
-
-Internet-Draft           SightingDB query format           November 2019
-
 
 2.1.2.  Namespace
 
@@ -132,12 +135,10 @@ Internet-Draft           SightingDB query format           November 2019
    _shadow/: When a value is searched and does not exists, it is stored
    there
 
-   _stats: Statistics
-
    _config: Configuration
 
    _all: All the Attributes in one place, used to retrieve the
-   'manifold' property.
+   'consensus' property.
 
    The Attribute Key MUST always be the last part of the Namespace.
 
@@ -164,10 +165,9 @@ Internet-Draft           SightingDB query format           November 2019
 
 
 
-
-Tricaud                    Expires May 6, 2020                  [Page 3]
+Tricaud                 Expires October 15, 2020                [Page 3]
 
-Internet-Draft           SightingDB query format           November 2019
+Internet-Draft           SightingDB query format              April 2020
 
 
 2.1.3.2.  first_seen
@@ -199,10 +199,10 @@ Internet-Draft           SightingDB query format           November 2019
    When an Attribute has this field set to a number greater than 0, the
    expiration status is computed only at retrieval time.
 
-2.1.3.7.  manifold
+2.1.3.7.  consensus
 
    When a given Attribute Value is stored in different namespaces, the
-   manifold field keeps track of them so it returns in how many
+   consensus field keeps track of them so it returns in how many
    different places this attributes exists.  This is a simple counter.
 
 2.2.  SightingDB Format - One Attribute
@@ -214,16 +214,16 @@ Internet-Draft           SightingDB query format           November 2019
                           "count":578391,
                           "tags":"",
                           "ttl":0,
-                          "manifold": 17
+                          "consensus": 17
                         }
 
 
 
 
 
-Tricaud                    Expires May 6, 2020                  [Page 4]
+Tricaud                 Expires October 15, 2020                [Page 4]
 
-Internet-Draft           SightingDB query format           November 2019
+Internet-Draft           SightingDB query format              April 2020
 
 
 2.3.  Value
@@ -264,33 +264,53 @@ Internet-Draft           SightingDB query format           November 2019
    preferable to embed in JSON all the objects at once.  As such, for
    reading and writing, the format is the following:
 
+          {
+            "items": [
+              { "<namespace>": "<value>" },
+              { "<namespace>": "<value>", "timestamp": <epoch> }
+            ]
+          }
+
+   Where:
+
+   namespace: is the wanted namespace where to store the value
+
+
+
+Tricaud                 Expires October 15, 2020                [Page 5]
+
+Internet-Draft           SightingDB query format              April 2020
+
+
+   value: the value one want to track
+
+   timestamp: OPTIONAL epoch timestamp to set the value at.
+
+   The timestamp is how one can use SightingDB and use old datasets
+   where the first seen and last seen is not relative to "right now".
+
+2.4.1.  Request
+
+   A Proper request with two items is made like this:
+
 {
   "items": [
     { "/your/namespace": "127.0.0.1" },
-    { "/your/other/namespace": "110812f67fa1e1f0117f6f3d70241c1a42a7b07711a93c2477cc516d9042f9db" }
+    { "/your/other/namespace": "110812f67fa1e1f0117f6f3d70241c1a42a7b07711a93c2477cc516d9042f9db", "timestamp": 1586825229 }
   ]
 }
 
    Which will either store or retrieve the wanted data.
 
-
-
-
-
-Tricaud                    Expires May 6, 2020                  [Page 5]
-
-Internet-Draft           SightingDB query format           November 2019
-
-
-2.4.1.  Response
+2.4.2.  Response
 
    The response when retrieving sightings also has the list of items, in
    order, one per line of the results:
 
 {
   "items": [
-    { "first_seen":1530337182, "last_seen":1573110615, "count":93021, "tags":"", "ttl":0, "manifold": 1 },
-    { "first_seen":1562930418, "last_seen":1573110404, "count":1020492, "tags":"", "ttl":8912, "manifold": 3 }
+    {"value": "Octave_Hergebel", "first_seen":1530337182, "last_seen":1573110615, "count":93021, "tags":"", "ttl":0, "consensus": 1},
+    {"value": "127.0.0.1", "first_seen":1562930418, "last_seen":1573110404, "count":1020492, "tags":"", "ttl":8912, "consensus": 3}
   ]
 }
 
@@ -311,6 +331,13 @@ Internet-Draft           SightingDB query format           November 2019
    well as amazing feedback gathered during the MISP Summit 2019 in
    Luxembourg, in particular with Alexandre Dulaunoy and Andras Iklody.
 
+
+
+Tricaud                 Expires October 15, 2020                [Page 6]
+
+Internet-Draft           SightingDB query format              April 2020
+
+
 5.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -324,19 +351,6 @@ Internet-Draft           SightingDB query format           November 2019
               <https://www.rfc-editor.org/info/rfc8259>.
 
 Author's Address
-
-
-
-
-
-
-
-
-
-Tricaud                    Expires May 6, 2020                  [Page 6]
-
-Internet-Draft           SightingDB query format           November 2019
-
 
    Sebastien Tricaud
    Devo Inc.
@@ -375,18 +389,4 @@ Internet-Draft           SightingDB query format           November 2019
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Tricaud                    Expires May 6, 2020                  [Page 7]
+Tricaud                 Expires October 15, 2020                [Page 7]
