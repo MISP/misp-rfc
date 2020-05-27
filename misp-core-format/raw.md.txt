@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: February 9, 2019                                 August 8, 2018
+Expires: November 27, 2020                                  May 26, 2020
 
 
                             MISP core format
@@ -14,13 +14,13 @@ Expires: February 9, 2019                                 August 8, 2018
 Abstract
 
    This document describes the MISP core format used to exchange
-   indicators and threat information between MISP (Malware Information
-   and threat Sharing Platform) instances.  The JSON format includes the
-   overall structure along with the semantic associated for each
-   respective key.  The format is described to support other
-   implementations which reuse the format and ensuring an
-   interoperability with existing MISP [MISP-P] software and other
-   Threat Intelligence Platforms.
+   indicators and threat information between MISP (Open Source Threat
+   Intelligence Sharing Platform formerly known as Malware Information
+   Sharing Platform) instances.  The JSON format includes the overall
+   structure along with the semantic associated for each respective key.
+   The format is described to support other implementations which reuse
+   the format and ensuring an interoperability with existing MISP
+   [MISP-P] software and other Threat Intelligence Platforms.
 
 Status of This Memo
 
@@ -37,11 +37,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on February 9, 2019.
+   This Internet-Draft will expire on November 27, 2020.
 
 Copyright Notice
 
-   Copyright (c) 2018 IETF Trust and the persons identified as the
+   Copyright (c) 2020 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019                [Page 1]
+Dulaunoy & Iklody       Expires November 27, 2020               [Page 1]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    include Simplified BSD License text as described in Section 4.e of
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019                [Page 2]
+Dulaunoy & Iklody       Expires November 27, 2020               [Page 2]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019                [Page 3]
+Dulaunoy & Iklody       Expires November 27, 2020               [Page 3]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.2.1.2.  id
@@ -221,9 +221,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019                [Page 4]
+Dulaunoy & Iklody       Expires November 27, 2020               [Page 4]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.2.1.6.  analysis
@@ -277,9 +277,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019                [Page 5]
+Dulaunoy & Iklody       Expires November 27, 2020               [Page 5]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.2.1.10.  org_id
@@ -333,9 +333,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019                [Page 6]
+Dulaunoy & Iklody       Expires November 27, 2020               [Page 6]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
       All Communities
@@ -389,9 +389,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019                [Page 7]
+Dulaunoy & Iklody       Expires November 27, 2020               [Page 7]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
           "Org": {
@@ -445,9 +445,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019                [Page 8]
+Dulaunoy & Iklody       Expires November 27, 2020               [Page 8]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
       "Attribute": {
@@ -501,9 +501,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019                [Page 9]
+Dulaunoy & Iklody       Expires November 27, 2020               [Page 9]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    Antivirus detection
@@ -546,7 +546,7 @@ Internet-Draft              MISP core format                 August 2018
       number, prtn, phone-number, comment, text, other, hex, anonymised
 
    Internal reference
-      text, link, comment, other, hex, anonymised
+      text, link, comment, other, hex, anonymised, git-commit-id
 
    Network activity
       ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain,
@@ -557,9 +557,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 10]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 10]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
       sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other,
@@ -613,9 +613,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 11]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 11]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    Person
@@ -669,9 +669,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 12]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 12]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.4.2.6.  event_id
@@ -725,9 +725,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 13]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 13]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.4.2.9.  comment
@@ -781,9 +781,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 14]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 14]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.4.2.14.  ShadowAttribute
@@ -837,9 +837,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 15]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 15]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.5.1.  Sample Attribute Object
@@ -893,9 +893,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 16]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 16]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    type is represented as a JSON string. type MUST be present and it
@@ -942,16 +942,16 @@ Internet-Draft              MISP core format                 August 2018
       number, prtn, phone-number, comment, text, other, hex, anonymised
 
    Internal reference
-      text, link, comment, other, hex, anonymised
+      text, link, comment, other, hex, anonymised, git-commit-id
 
    Network activity
 
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 17]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 17]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
       ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain,
@@ -1005,9 +1005,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 18]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 18]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
       comment, text, other, anonymised
@@ -1061,9 +1061,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 19]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 19]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    pattern for detection in Local or Network Intrusion Detection System,
@@ -1117,9 +1117,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 20]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 20]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.5.2.10.  org_id
@@ -1173,9 +1173,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 21]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 21]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    first_seen is represented as a JSON string. first_seen MAY be
@@ -1229,9 +1229,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 22]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 22]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    template used for its creation within.  Objects belong to a meta-
@@ -1285,9 +1285,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 23]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 23]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 "Object": {
@@ -1341,9 +1341,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 24]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 24]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.6.2.1.  uuid
@@ -1397,9 +1397,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 25]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 25]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.6.2.7.  template_version
@@ -1453,9 +1453,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 26]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 26]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
       Sharing Group
@@ -1509,9 +1509,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 27]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 27]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.6.2.16.  last_seen
@@ -1565,9 +1565,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 28]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 28]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.7.2.2.  id
@@ -1621,9 +1621,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 29]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 29]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 2.7.2.8.  relationship_type
@@ -1677,9 +1677,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 30]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 30]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    exportable represents a setting if the tag is kept local or
@@ -1733,9 +1733,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 31]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 31]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    can be a given piece of software (e.g.  SIEM), device or a specific
@@ -1789,9 +1789,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 32]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 32]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 "Sighting": [
@@ -1845,9 +1845,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 33]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 33]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 "Galaxy": [ {
@@ -1901,9 +1901,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 34]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 34]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 3.  JSON Schema
@@ -1957,9 +1957,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 35]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 35]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
        "type": "object",
@@ -2013,9 +2013,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 36]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 36]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
            "items": {
@@ -2069,9 +2069,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 37]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 37]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
            "type": "string"
@@ -2125,9 +2125,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 38]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 38]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
            "type": "string"
@@ -2181,9 +2181,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 39]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 39]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
        "properties": {
@@ -2237,9 +2237,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 40]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 40]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
        "properties": {
@@ -2293,9 +2293,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 41]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 41]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
        "properties": {
@@ -2349,9 +2349,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 42]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 42]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
          },
@@ -2405,9 +2405,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 43]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 43]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
          },
@@ -2461,9 +2461,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 44]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 44]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
            "type": "string"
@@ -2517,9 +2517,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 45]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 45]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
            "uniqueItems": true,
@@ -2573,9 +2573,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 46]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 46]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
            "type": "boolean"
@@ -2629,9 +2629,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 47]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 47]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
        "type": "object",
@@ -2685,9 +2685,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 48]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 48]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
      "Event": {
@@ -2741,9 +2741,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 49]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 49]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    o  integrity:pgp represents a detached PGP signature [RFC4880] of the
@@ -2797,9 +2797,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 50]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 50]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
         "name": "circl:incident-classification=\"malware\""
@@ -2853,9 +2853,9 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 51]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 51]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
 9.1.  Normative References
@@ -2887,8 +2887,9 @@ Internet-Draft              MISP core format                 August 2018
               2016,
               <https://tools.ietf.org/html/draft-wright-json-schema>.
 
-   [MISP-P]   MISP, "MISP Project - Malware Information Sharing Platform
-              and Threat Sharing", <https://github.com/MISP>.
+   [MISP-P]   MISP, "MISP Project - Open Source Threat Intelligence
+              Platform and Open Standards For Threat Information
+              Sharing", <https://github.com/MISP>.
 
    [MISP-R]   MISP, "MISP Object Relationship Types - common vocabulary
               of relationships", <https://github.com/MISP/misp-
@@ -2908,10 +2909,9 @@ Authors' Addresses
 
 
 
-
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 52]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 52]
 
-Internet-Draft              MISP core format                 August 2018
+Internet-Draft              MISP core format                    May 2020
 
 
    Alexandre Dulaunoy
@@ -2965,4 +2965,4 @@ Internet-Draft              MISP core format                 August 2018
 
 
 
-Dulaunoy & Iklody       Expires February 9, 2019               [Page 53]
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 53]

@@ -41,7 +41,7 @@ organization = "Computer Incident Response Center Luxembourg"
 .# Abstract
 
 This document describes the MISP core format used to exchange indicators and threat information between
-MISP (Malware Information and threat Sharing Platform) instances.
+MISP (Open Source Threat Intelligence Sharing Platform formerly known as Malware Information Sharing Platform) instances.
 The JSON format includes the overall structure along with the semantic associated for each
 respective key. The format is described to support other implementations which reuse the
 format and ensuring an interoperability with existing MISP [@?MISP-P] software and other Threat Intelligence Platforms.
@@ -1886,7 +1886,7 @@ for the review of the JSON Schema.
 
 <reference anchor='MISP-P' target='https://github.com/MISP'>
   <front>
-   <title>MISP Project - Malware Information Sharing Platform and Threat Sharing</title>
+   <title>MISP Project - Open Source Threat Intelligence Platform and Open Standards For Threat Information Sharing</title>
    <author initials='' surname='MISP' fullname='MISP Community'></author>
    <date></date>
   </front>
