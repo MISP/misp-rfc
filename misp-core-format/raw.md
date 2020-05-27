@@ -6,7 +6,7 @@ docName = "draft-dulaunoy-misp-core-format"
 ipr= "trust200902"
 area = "Security"
 
-date = 2018-08-08T00:00:00Z
+date = 2020-01-22T00:00:00Z
 
 [[author]]
 initials="A."
@@ -325,7 +325,7 @@ Financial fraud
 :   btc, dash, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, phone-number, comment, text, other, hex, anonymised
 
 Internal reference
-:   text, link, comment, other, hex, anonymised
+:   text, link, comment, other, hex, anonymised, git-commit-id
 
 Network activity
 :   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject
@@ -535,7 +535,7 @@ Financial fraud
 :   btc, dash, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, phone-number, comment, text, other, hex, anonymised
 
 Internal reference
-:   text, link, comment, other, hex, anonymised
+:   text, link, comment, other, hex, anonymised, git-commit-id
 
 Network activity
 :   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject
