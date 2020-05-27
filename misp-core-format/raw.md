@@ -6,7 +6,7 @@ docName = "draft-dulaunoy-misp-core-format"
 ipr= "trust200902"
 area = "Security"
 
-date = 2020-01-22T00:00:00Z
+date = 2020-05-26T00:00:00Z
 
 [[author]]
 initials="A."
