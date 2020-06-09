@@ -1,0 +1,168 @@
+
+
+
+
+Network Working Group                                        A. Dulaunoy
+Internet-Draft                                               P. Bourmeau
+Expires: December 11, 2020                                         CIRCL
+                                                            June 9, 2020
+
+
+                Recommendations on naming threat actors
+
+Abstract
+
+   This document provides advice on the naming of threat actors (also
+   known as malicious actors).  The objective is to provide practical
+   advices for organisations such as security vendors or organisations
+   attributing incidents to a group of threat actor.  It also discusses
+   the implication of naming a threat actor towards intelligence
+   analysts and threat intelligence platforms such as MISP [MISP-P]].
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on December 11, 2020.
+
+Copyright Notice
+
+   Copyright (c) 2020 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (https://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+
+
+Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 1]
+
+Internet-Draft   Recommendations on naming threat actors       June 2020
+
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Conventions and Terminology . . . . . . . . . . . . . . .   2
+   2.  Reusing threat actor naming . . . . . . . . . . . . . . . . .   2
+   3.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   2
+   4.  Encoding  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
+   5.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   2
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   3
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .   3
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   3
+
+1.  Introduction
+
+1.1.  Conventions and Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in RFC 2119 [RFC2119].
+
+2.  Reusing threat actor naming
+
+   Before creating a new threat actor name, you MUST consider a review
+   of existing threat actor names from databases such as the threat
+   actor MISP galaxy [MISP-G].  Proliferation of threat actor names is a
+   significant challenge for the day-to-day analyst work.  If your
+   threat actor defined an existing threat actor, you MUST reuse an
+   existing threat actor name.  If there is no specific threat actor
+   name, you SHALL create a new threat actor following the best
+   practices defined in this document.
+
+3.  Format
+
+4.  Encoding
+
+5.  Examples
+
+6.  Security Considerations
+
+   Naming a threat actor could include specific sensitive reference to a
+   case or an incident.  Before releasing the naming, the creator MUST
+   review the name to ensure no sensitive information is included in the
+   threat actor name.
+
+
+
+
+Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 2]
+
+Internet-Draft   Recommendations on naming threat actors       June 2020
+
+
+7.  Acknowledgements
+
+   The authors wish to thank all contributors who provided feedback via
+   Twitter.
+
+8.  References
+
+9.  References
+
+9.1.  Normative References
+
+   [MISP-G]   Community, M., "MISP Galaxy - Public repository",
+              <https://github.com/MISP/misp-galaxy>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+9.2.  Informative References
+
+   [MISP-P]   Community, M., "MISP Project - Open Source Threat
+              Intelligence Platform and Open Standards For Threat
+              Information Sharing", <https://github.com/MISP>.
+
+Authors' Addresses
+
+   Alexandre Dulaunoy
+   Computer Incident Response Center Luxembourg
+   16, bd d'Avranches
+   Luxembourg  L-1160
+   Luxembourg
+
+   Phone: +352 247 88444
+   Email: alexandre.dulaunoy@circl.lu
+
+
+   Pauline Bourmeau
+   Corexalys
+   26 Rue de la Bienfaisance
+   Paris  75008
+   France
+
+   Email: info@corexalys.com
+
+
+
+
+
+
+
+Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 3]
