@@ -38,6 +38,8 @@ document are to be interpreted as described in RFC 2119 <xref target="RFC2119"><
 </section>
 </section>
 
+<section anchor="recommendations" title="Recommendations">
+
 <section anchor="reusing-threat-actor-naming" title="Reusing threat actor naming">
 <t>Before creating a new threat actor name, you MUST consider a review of existing threat actor names from databases such as the threat actor
 MISP galaxy <xref target="MISP-G"></xref>. Proliferation of threat actor names is a significant challenge for the day-to-day analyst work. If your threat actor defined an existing threat actor, you MUST
@@ -45,10 +47,17 @@ reuse an existing threat actor name. If there is no specific threat actor name, 
 practices defined in this document.</t>
 </section>
 
+<section anchor="don-t-confuse-actor-naming-with-malware-naming" title="Don't confuse actor naming with malware naming">
+</section>
+
 <section anchor="format" title="Format">
 </section>
 
 <section anchor="encoding" title="Encoding">
+</section>
+
+<section anchor="directory" title="Directory">
+</section>
 </section>
 
 <section anchor="examples" title="Examples">

@@ -376,16 +376,19 @@
   <link href="#rfc.toc" rel="Contents">
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
 <link href="#rfc.section.1.1" rel="Chapter" title="1.1 Conventions and Terminology">
-<link href="#rfc.section.2" rel="Chapter" title="2 Reusing threat actor naming">
-<link href="#rfc.section.3" rel="Chapter" title="3 Format">
-<link href="#rfc.section.4" rel="Chapter" title="4 Encoding">
-<link href="#rfc.section.5" rel="Chapter" title="5 Examples">
-<link href="#rfc.section.6" rel="Chapter" title="6 Security Considerations">
-<link href="#rfc.section.7" rel="Chapter" title="7 Acknowledgements">
-<link href="#rfc.section.8" rel="Chapter" title="8 References">
-<link href="#rfc.references" rel="Chapter" title="9 References">
-<link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References">
-<link href="#rfc.references.2" rel="Chapter" title="9.2 Informative References">
+<link href="#rfc.section.2" rel="Chapter" title="2 Recommendations">
+<link href="#rfc.section.2.1" rel="Chapter" title="2.1 Reusing threat actor naming">
+<link href="#rfc.section.2.2" rel="Chapter" title="2.2 Don't confuse actor naming with malware naming">
+<link href="#rfc.section.2.3" rel="Chapter" title="2.3 Format">
+<link href="#rfc.section.2.4" rel="Chapter" title="2.4 Encoding">
+<link href="#rfc.section.2.5" rel="Chapter" title="2.5 Directory">
+<link href="#rfc.section.3" rel="Chapter" title="3 Examples">
+<link href="#rfc.section.4" rel="Chapter" title="4 Security Considerations">
+<link href="#rfc.section.5" rel="Chapter" title="5 Acknowledgements">
+<link href="#rfc.section.6" rel="Chapter" title="6 References">
+<link href="#rfc.references" rel="Chapter" title="7 References">
+<link href="#rfc.references.1" rel="Chapter" title="7.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="7.2 Informative References">
 <link href="#rfc.authors" rel="Chapter">
 
 
@@ -449,25 +452,31 @@
 </li>
 <ul><li>1.1.   <a href="#rfc.section.1.1">Conventions and Terminology</a>
 </li>
-</ul><li>2.   <a href="#rfc.section.2">Reusing threat actor naming</a>
+</ul><li>2.   <a href="#rfc.section.2">Recommendations</a>
 </li>
-<li>3.   <a href="#rfc.section.3">Format</a>
+<ul><li>2.1.   <a href="#rfc.section.2.1">Reusing threat actor naming</a>
 </li>
-<li>4.   <a href="#rfc.section.4">Encoding</a>
+<li>2.2.   <a href="#rfc.section.2.2">Don't confuse actor naming with malware naming</a>
 </li>
-<li>5.   <a href="#rfc.section.5">Examples</a>
+<li>2.3.   <a href="#rfc.section.2.3">Format</a>
 </li>
-<li>6.   <a href="#rfc.section.6">Security Considerations</a>
+<li>2.4.   <a href="#rfc.section.2.4">Encoding</a>
 </li>
-<li>7.   <a href="#rfc.section.7">Acknowledgements</a>
+<li>2.5.   <a href="#rfc.section.2.5">Directory</a>
 </li>
-<li>8.   <a href="#rfc.section.8">References</a>
+</ul><li>3.   <a href="#rfc.section.3">Examples</a>
 </li>
-<li>9.   <a href="#rfc.references">References</a>
+<li>4.   <a href="#rfc.section.4">Security Considerations</a>
 </li>
-<ul><li>9.1.   <a href="#rfc.references.1">Normative References</a>
+<li>5.   <a href="#rfc.section.5">Acknowledgements</a>
 </li>
-<li>9.2.   <a href="#rfc.references.2">Informative References</a>
+<li>6.   <a href="#rfc.section.6">References</a>
+</li>
+<li>7.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>7.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>7.2.   <a href="#rfc.references.2">Informative References</a>
 </li>
 </ul><li><a href="#rfc.authors">Authors' Addresses</a>
 </li>
@@ -483,33 +492,42 @@
 </h1>
 <p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 <a href="#RFC2119" class="xref">[RFC2119]</a>.</p>
 <h1 id="rfc.section.2">
-<a href="#rfc.section.2">2.</a> <a href="#reusing-threat-actor-naming" id="reusing-threat-actor-naming">Reusing threat actor naming</a>
+<a href="#rfc.section.2">2.</a> <a href="#recommendations" id="recommendations">Recommendations</a>
 </h1>
-<p id="rfc.section.2.p.1">Before creating a new threat actor name, you MUST consider a review of existing threat actor names from databases such as the threat actor MISP galaxy <a href="#MISP-G" class="xref">[MISP-G]</a>. Proliferation of threat actor names is a significant challenge for the day-to-day analyst work. If your threat actor defined an existing threat actor, you MUST reuse an existing threat actor name. If there is no specific threat actor name, you SHALL create a new threat actor following the best practices defined in this document.</p>
+<h1 id="rfc.section.2.1">
+<a href="#rfc.section.2.1">2.1.</a> <a href="#reusing-threat-actor-naming" id="reusing-threat-actor-naming">Reusing threat actor naming</a>
+</h1>
+<p id="rfc.section.2.1.p.1">Before creating a new threat actor name, you MUST consider a review of existing threat actor names from databases such as the threat actor MISP galaxy <a href="#MISP-G" class="xref">[MISP-G]</a>. Proliferation of threat actor names is a significant challenge for the day-to-day analyst work. If your threat actor defined an existing threat actor, you MUST reuse an existing threat actor name. If there is no specific threat actor name, you SHALL create a new threat actor following the best practices defined in this document.</p>
+<h1 id="rfc.section.2.2">
+<a href="#rfc.section.2.2">2.2.</a> <a href="#don-t-confuse-actor-naming-with-malware-naming" id="don-t-confuse-actor-naming-with-malware-naming">Don't confuse actor naming with malware naming</a>
+</h1>
+<h1 id="rfc.section.2.3">
+<a href="#rfc.section.2.3">2.3.</a> <a href="#format" id="format">Format</a>
+</h1>
+<h1 id="rfc.section.2.4">
+<a href="#rfc.section.2.4">2.4.</a> <a href="#encoding" id="encoding">Encoding</a>
+</h1>
+<h1 id="rfc.section.2.5">
+<a href="#rfc.section.2.5">2.5.</a> <a href="#directory" id="directory">Directory</a>
+</h1>
 <h1 id="rfc.section.3">
-<a href="#rfc.section.3">3.</a> <a href="#format" id="format">Format</a>
+<a href="#rfc.section.3">3.</a> <a href="#examples" id="examples">Examples</a>
 </h1>
 <h1 id="rfc.section.4">
-<a href="#rfc.section.4">4.</a> <a href="#encoding" id="encoding">Encoding</a>
+<a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
+<p id="rfc.section.4.p.1">Naming a threat actor could include specific sensitive reference to a case or an incident. Before releasing the naming, the creator MUST review the name to ensure no sensitive information is included in the threat actor name.</p>
 <h1 id="rfc.section.5">
-<a href="#rfc.section.5">5.</a> <a href="#examples" id="examples">Examples</a>
+<a href="#rfc.section.5">5.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
 </h1>
+<p id="rfc.section.5.p.1">The authors wish to thank all contributors who provided feedback via Twitter.</p>
 <h1 id="rfc.section.6">
-<a href="#rfc.section.6">6.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
-</h1>
-<p id="rfc.section.6.p.1">Naming a threat actor could include specific sensitive reference to a case or an incident. Before releasing the naming, the creator MUST review the name to ensure no sensitive information is included in the threat actor name.</p>
-<h1 id="rfc.section.7">
-<a href="#rfc.section.7">7.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
-</h1>
-<p id="rfc.section.7.p.1">The authors wish to thank all contributors who provided feedback via Twitter.</p>
-<h1 id="rfc.section.8">
-<a href="#rfc.section.8">8.</a> <a href="#references" id="references">References</a>
+<a href="#rfc.section.6">6.</a> <a href="#references" id="references">References</a>
 </h1>
 <h1 id="rfc.references">
-<a href="#rfc.references">9.</a> References</h1>
+<a href="#rfc.references">7.</a> References</h1>
 <h1 id="rfc.references.1">
-<a href="#rfc.references.1">9.1.</a> Normative References</h1>
+<a href="#rfc.references.1">7.1.</a> Normative References</h1>
 <table><tbody>
 <tr>
 <td class="reference"><b id="MISP-G">[MISP-G]</b></td>
@@ -523,7 +541,7 @@
 </tr>
 </tbody></table>
 <h1 id="rfc.references.2">
-<a href="#rfc.references.2">9.2.</a> Informative References</h1>
+<a href="#rfc.references.2">7.2.</a> Informative References</h1>
 <table><tbody><tr>
 <td class="reference"><b id="MISP-P">[MISP-P]</b></td>
 <td class="top">

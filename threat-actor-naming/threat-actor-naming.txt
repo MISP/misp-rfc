@@ -62,16 +62,19 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Conventions and Terminology . . . . . . . . . . . . . . .   2
-   2.  Reusing threat actor naming . . . . . . . . . . . . . . . . .   2
-   3.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   4.  Encoding  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   5.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   2
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   3
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .   3
+   2.  Recommendations . . . . . . . . . . . . . . . . . . . . . . .   2
+     2.1.  Reusing threat actor naming . . . . . . . . . . . . . . .   2
+     2.2.  Don't confuse actor naming with malware naming  . . . . .   2
+     2.3.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .   2
+     2.4.  Encoding  . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.5.  Directory . . . . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
+   5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   3
+   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .   3
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   3
 
 1.  Introduction
@@ -82,7 +85,9 @@ Table of Contents
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in RFC 2119 [RFC2119].
 
-2.  Reusing threat actor naming
+2.  Recommendations
+
+2.1.  Reusing threat actor naming
 
    Before creating a new threat actor name, you MUST consider a review
    of existing threat actor names from databases such as the threat
@@ -93,18 +98,13 @@ Table of Contents
    name, you SHALL create a new threat actor following the best
    practices defined in this document.
 
-3.  Format
+2.2.  Don't confuse actor naming with malware naming
 
-4.  Encoding
+2.3.  Format
 
-5.  Examples
 
-6.  Security Considerations
 
-   Naming a threat actor could include specific sensitive reference to a
-   case or an incident.  Before releasing the naming, the creator MUST
-   review the name to ensure no sensitive information is included in the
-   threat actor name.
+
 
 
 
@@ -114,16 +114,29 @@ Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 2]
 Internet-Draft   Recommendations on naming threat actors       June 2020
 
 
-7.  Acknowledgements
+2.4.  Encoding
+
+2.5.  Directory
+
+3.  Examples
+
+4.  Security Considerations
+
+   Naming a threat actor could include specific sensitive reference to a
+   case or an incident.  Before releasing the naming, the creator MUST
+   review the name to ensure no sensitive information is included in the
+   threat actor name.
+
+5.  Acknowledgements
 
    The authors wish to thank all contributors who provided feedback via
    Twitter.
 
-8.  References
+6.  References
 
-9.  References
+7.  References
 
-9.1.  Normative References
+7.1.  Normative References
 
    [MISP-G]   Community, M., "MISP Galaxy - Public repository",
               <https://github.com/MISP/misp-galaxy>.
@@ -133,7 +146,7 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-9.2.  Informative References
+7.2.  Informative References
 
    [MISP-P]   Community, M., "MISP Project - Open Source Threat
               Intelligence Platform and Open Standards For Threat
@@ -151,6 +164,12 @@ Authors' Addresses
    Email: alexandre.dulaunoy@circl.lu
 
 
+
+Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 3]
+
+Internet-Draft   Recommendations on naming threat actors       June 2020
+
+
    Pauline Bourmeau
    Corexalys
    26 Rue de la Bienfaisance
@@ -165,4 +184,41 @@ Authors' Addresses
 
 
 
-Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 3]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 4]

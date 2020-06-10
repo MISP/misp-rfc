@@ -55,17 +55,23 @@ The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL 
 "**SHOULD**", "**SHOULD NOT**", "**RECOMMENDED**", "**MAY**", and "**OPTIONAL**" in this
 document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
-# Reusing threat actor naming
+# Recommendations
+
+## Reusing threat actor naming
 
 Before creating a new threat actor name, you **MUST** consider a review of existing threat actor names from databases such as the threat actor
 MISP galaxy [@!MISP-G]. Proliferation of threat actor names is a significant challenge for the day-to-day analyst work. If your threat actor defined an existing threat actor, you **MUST**
 reuse an existing threat actor name. If there is no specific threat actor name, you **SHALL** create a new threat actor following the best
 practices defined in this document.
 
-# Format
+## Don't confuse actor naming with malware naming
 
-# Encoding
+## Format
 
+## Encoding
+
+## Directory
+ 
 # Examples
 
 # Security Considerations
