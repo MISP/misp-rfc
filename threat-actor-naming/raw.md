@@ -80,9 +80,11 @@ practices defined in this document.
 
 ## Uniqueness
 
-When choosing a threat actor name, uniqueness is a critical property. The threat actor name **MUST** be unique and not existing in different contexts.
+When choosing a threat actor name, uniqueness is a critical property. The threat actor name **MUST** be unique and not existing in different contexts. The name **MUST** not be a word from a dictionary which can be used in other contexts.
 
 ## Format
+
+The name of the threat actor **SHALL** be composed of a single word. If there is multiple part like a decimal value such as a counter, the values **MUST** be separated with a dash. Single words are preferred to ease search of keywords by analysts in public sources.
 
 ## Encoding
 
@@ -90,16 +92,23 @@ The name of the threat actor **MUST** be expressed in ASCII 7-bit. Assigning a l
 
 ## Don't confuse actor naming with malware naming
 
-The name of the threat actor **MUST NOT** be assigned based on the tools or techniques used by the threat actor. A notorious example in the threat intelligence community is Turla which can name a threat actor but also a malware used by this group or other groups.
+The name of the threat actor **MUST NOT** be assigned based on the tools, techniques or patterns used by the threat actor. A notorious example in the threat intelligence community is Turla which can name a threat actor but also a malware used by this group or other groups.
 
 ## Directory
 
 # Examples
 
-Some known examples are included below and serve as reference for good practices in naming threat actors. The below threat actor names can be considered good example :
+Some known examples are included below and serve as reference for good practices in naming threat actors. The below threat actor names can be considered good example:
 
 - APT-1
 - TA-505
+
+The below threat actor names can be considered as example to not follow:
+
+- GIF89a (Word also used for the GIF header)
+- ShadyRAT (Confusion between the name and the tool)
+- Group 3 (Common name used for other use-cases)
+- ZooPark (Name is used to describe something else)
 
 # Security Considerations
 

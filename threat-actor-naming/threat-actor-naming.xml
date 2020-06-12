@@ -61,10 +61,11 @@ practices defined in this document.</t>
 </section>
 
 <section anchor="uniqueness" title="Uniqueness">
-<t>When choosing a threat actor name, uniqueness is a critical property. The threat actor name MUST be unique and not existing in different contexts.</t>
+<t>When choosing a threat actor name, uniqueness is a critical property. The threat actor name MUST be unique and not existing in different contexts. The name MUST not be a word from a dictionary which can be used in other contexts.</t>
 </section>
 
 <section anchor="format" title="Format">
+<t>The name of the threat actor SHALL be composed of a single word. If there is multiple part like a decimal value such as a counter, the values MUST be separated with a dash. Single words are preferred to ease search of keywords by analysts in public sources.</t>
 </section>
 
 <section anchor="encoding" title="Encoding">
@@ -72,7 +73,7 @@ practices defined in this document.</t>
 </section>
 
 <section anchor="don-t-confuse-actor-naming-with-malware-naming" title="Don't confuse actor naming with malware naming">
-<t>The name of the threat actor MUST NOT be assigned based on the tools or techniques used by the threat actor. A notorious example in the threat intelligence community is Turla which can name a threat actor but also a malware used by this group or other groups.</t>
+<t>The name of the threat actor MUST NOT be assigned based on the tools, techniques or patterns used by the threat actor. A notorious example in the threat intelligence community is Turla which can name a threat actor but also a malware used by this group or other groups.</t>
 </section>
 
 <section anchor="directory" title="Directory">
@@ -80,11 +81,20 @@ practices defined in this document.</t>
 </section>
 
 <section anchor="examples" title="Examples">
-<t>Some known examples are included below and serve as reference for good practices in naming threat actors. The below threat actor names can be considered good example :</t>
+<t>Some known examples are included below and serve as reference for good practices in naming threat actors. The below threat actor names can be considered good example:</t>
 <t>
 <list style="symbols">
 <t>APT-1</t>
 <t>TA-505</t>
+</list>
+</t>
+<t>The below threat actor names can be considered as example to not follow:</t>
+<t>
+<list style="symbols">
+<t>GIF89a (Word also used for the GIF header)</t>
+<t>ShadyRAT (Confusion between the name and the tool)</t>
+<t>Group 3 (Common name used for other use-cases)</t>
+<t>ZooPark (Name is used to describe something else)</t>
 </list>
 </t>
 </section>
@@ -105,6 +115,7 @@ MUST review the name to ensure no sensitive information is included in the threa
 
 <back>
 <references title="Normative References">
+<?rfc include="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
 <reference anchor="MISP-G" target="https://github.com/MISP/misp-galaxy">
   <front>
     <title>MISP Galaxy - Public repository </title>
@@ -112,7 +123,6 @@ MUST review the name to ensure no sensitive information is included in the threa
     <date></date>
   </front>
 </reference>
-<?rfc include="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
 </references>
 <references title="Informative References">
 <reference anchor="MISP-P" target="https://github.com/MISP">

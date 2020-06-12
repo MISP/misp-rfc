@@ -518,10 +518,11 @@
 <h1 id="rfc.section.2.2">
 <a href="#rfc.section.2.2">2.2.</a> <a href="#uniqueness" id="uniqueness">Uniqueness</a>
 </h1>
-<p id="rfc.section.2.2.p.1">When choosing a threat actor name, uniqueness is a critical property. The threat actor name MUST be unique and not existing in different contexts.</p>
+<p id="rfc.section.2.2.p.1">When choosing a threat actor name, uniqueness is a critical property. The threat actor name MUST be unique and not existing in different contexts. The name MUST not be a word from a dictionary which can be used in other contexts.</p>
 <h1 id="rfc.section.2.3">
 <a href="#rfc.section.2.3">2.3.</a> <a href="#format" id="format">Format</a>
 </h1>
+<p id="rfc.section.2.3.p.1">The name of the threat actor SHALL be composed of a single word. If there is multiple part like a decimal value such as a counter, the values MUST be separated with a dash. Single words are preferred to ease search of keywords by analysts in public sources.</p>
 <h1 id="rfc.section.2.4">
 <a href="#rfc.section.2.4">2.4.</a> <a href="#encoding" id="encoding">Encoding</a>
 </h1>
@@ -529,19 +530,30 @@
 <h1 id="rfc.section.2.5">
 <a href="#rfc.section.2.5">2.5.</a> <a href="#don-t-confuse-actor-naming-with-malware-naming" id="don-t-confuse-actor-naming-with-malware-naming">Don't confuse actor naming with malware naming</a>
 </h1>
-<p id="rfc.section.2.5.p.1">The name of the threat actor MUST NOT be assigned based on the tools or techniques used by the threat actor. A notorious example in the threat intelligence community is Turla which can name a threat actor but also a malware used by this group or other groups.</p>
+<p id="rfc.section.2.5.p.1">The name of the threat actor MUST NOT be assigned based on the tools, techniques or patterns used by the threat actor. A notorious example in the threat intelligence community is Turla which can name a threat actor but also a malware used by this group or other groups.</p>
 <h1 id="rfc.section.2.6">
 <a href="#rfc.section.2.6">2.6.</a> <a href="#directory" id="directory">Directory</a>
 </h1>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#examples" id="examples">Examples</a>
 </h1>
-<p id="rfc.section.3.p.1">Some known examples are included below and serve as reference for good practices in naming threat actors. The below threat actor names can be considered good example :</p>
+<p id="rfc.section.3.p.1">Some known examples are included below and serve as reference for good practices in naming threat actors. The below threat actor names can be considered good example:</p>
 <p></p>
 
 <ul>
 <li>APT-1</li>
 <li>TA-505</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.3.p.3">The below threat actor names can be considered as example to not follow:</p>
+<p></p>
+
+<ul>
+<li>GIF89a (Word also used for the GIF header)</li>
+<li>ShadyRAT (Confusion between the name and the tool)</li>
+<li>Group 3 (Common name used for other use-cases)</li>
+<li>ZooPark (Name is used to describe something else)</li>
 </ul>
 
 <p> </p>

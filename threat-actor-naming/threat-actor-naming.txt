@@ -68,15 +68,15 @@ Table of Contents
      2.3.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.4.  Encoding  . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.5.  Don't confuse actor naming with malware naming  . . . . .   3
-     2.6.  Directory . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.6.  Directory . . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
    4.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
    5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .   4
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
 
@@ -140,9 +140,15 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
 
    When choosing a threat actor name, uniqueness is a critical property.
    The threat actor name MUST be unique and not existing in different
-   contexts.
+   contexts.  The name MUST not be a word from a dictionary which can be
+   used in other contexts.
 
 2.3.  Format
+
+   The name of the threat actor SHALL be composed of a single word.  If
+   there is multiple part like a decimal value such as a counter, the
+   values MUST be separated with a dash.  Single words are preferred to
+   ease search of keywords by analysts in public sources.
 
 2.4.  Encoding
 
@@ -152,16 +158,10 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
 
 2.5.  Don't confuse actor naming with malware naming
 
-   The name of the threat actor MUST NOT be assigned based on the tools
-   or techniques used by the threat actor.  A notorious example in the
-   threat intelligence community is Turla which can name a threat actor
-   but also a malware used by this group or other groups.
-
-2.6.  Directory
-
-
-
-
+   The name of the threat actor MUST NOT be assigned based on the tools,
+   techniques or patterns used by the threat actor.  A notorious example
+   in the threat intelligence community is Turla which can name a threat
+   actor but also a malware used by this group or other groups.
 
 
 
@@ -170,15 +170,28 @@ Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 3]
 Internet-Draft   Recommendations on naming threat actors       June 2020
 
 
+2.6.  Directory
+
 3.  Examples
 
    Some known examples are included below and serve as reference for
    good practices in naming threat actors.  The below threat actor names
-   can be considered good example :
+   can be considered good example:
 
    o  APT-1
 
    o  TA-505
+
+   The below threat actor names can be considered as example to not
+   follow:
+
+   o  GIF89a (Word also used for the GIF header)
+
+   o  ShadyRAT (Confusion between the name and the tool)
+
+   o  Group 3 (Common name used for other use-cases)
+
+   o  ZooPark (Name is used to describe something else)
 
 4.  Security Considerations
 
@@ -206,6 +219,13 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+
+
+Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 4]
+
+Internet-Draft   Recommendations on naming threat actors       June 2020
+
+
 7.2.  Informative References
 
    [MISP-P]   Community, M., "MISP Project - Open Source Threat
@@ -213,18 +233,6 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
               Information Sharing", <https://github.com/MISP>.
 
 Authors' Addresses
-
-
-
-
-
-
-
-
-Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 4]
-
-Internet-Draft   Recommendations on naming threat actors       June 2020
-
 
    Alexandre Dulaunoy
    Computer Incident Response Center Luxembourg
@@ -243,14 +251,6 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
    France
 
    Email: info@corexalys.com
-
-
-
-
-
-
-
-
 
 
 
