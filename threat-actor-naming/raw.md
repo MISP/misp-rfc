@@ -49,6 +49,18 @@ and threat intelligence platforms such as MISP [@?MISP-P]].
 
 # Introduction
 
+In threat intelligence, a name can be assigned to a threat actor without specific guidelines. This leads to issues such
+as a:
+
+- A proliferation of threat actor names generating overlaps or different names for similar threat actors (e.g. some threat actors have more than 10 synonyms)
+- Ambiguity in the words used to name the threat actor in different contexts (e.g. using common words)
+- No clearly defined text format to describe the same threat actor (e.g. Is the threat actor name case sensitive? Is there a dash or a space between the two words?)
+- Confusion between techniques/tools used by a threat actor versus its name (e.g. naming a threat actor after a specific malware used)
+- Lack of source and list from vendors to describe their threat actor names and the reasoning behind the naming (e.g. did they name the threat actor after a specific set of campaigns? or specific set of targets?)
+
+This document proposes a set of guidelines to name threat actors. The goal is to reduce the above mentioned issues.
+
+
 ##  Conventions and Terminology
 
 The key words "**MUST**", "**MUST NOT**", "**REQUIRED**", "**SHALL**", "**SHALL NOT**",
@@ -57,6 +69,8 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 # Recommendations
 
+The recommendations listed below provide a minimal set of guidelines while assigning a new name to a threat actor.
+
 ## Reusing threat actor naming
 
 Before creating a new threat actor name, you **MUST** consider a review of existing threat actor names from databases such as the threat actor
@@ -64,15 +78,28 @@ MISP galaxy [@!MISP-G]. Proliferation of threat actor names is a significant cha
 reuse an existing threat actor name. If there is no specific threat actor name, you **SHALL** create a new threat actor following the best
 practices defined in this document.
 
-## Don't confuse actor naming with malware naming
+## Uniqueness
+
+When choosing a threat actor name, uniqueness is a critical property. The threat actor name **MUST** be unique and not existing in different contexts.
 
 ## Format
 
 ## Encoding
 
+The name of the threat actor **MUST** be expressed in ASCII 7-bit. Assigning a localized name to a threat actor **MAY** create a set of ambiguity about different localized version of the same threat actor.
+
+## Don't confuse actor naming with malware naming
+
+The name of the threat actor **MUST NOT** be assigned based on the tools or techniques used by the threat actor. A notorious example in the threat intelligence community is Turla which can name a threat actor but also a malware used by this group or other groups.
+
 ## Directory
- 
+
 # Examples
+
+Some known examples are included below and serve as reference for good practices in naming threat actors. The below threat actor names can be considered good example :
+
+- APT-1
+- TA-505
 
 # Security Considerations
 

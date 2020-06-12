@@ -30,6 +30,18 @@ and threat intelligence platforms such as MISP <xref target="MISP-P"></xref>].</
 <middle>
 
 <section anchor="introduction" title="Introduction">
+<t>In threat intelligence, a name can be assigned to a threat actor without specific guidelines. This leads to issues such
+as a:</t>
+<t>
+<list style="symbols">
+<t>A proliferation of threat actor names generating overlaps or different names for similar threat actors (e.g. some threat actors have more than 10 synonyms)</t>
+<t>Ambiguity in the words used to name the threat actor in different contexts (e.g. using common words)</t>
+<t>No clearly defined text format to describe the same threat actor (e.g. Is the threat actor name case sensitive? Is there a dash or a space between the two words?)</t>
+<t>Confusion between techniques/tools used by a threat actor versus its name (e.g. naming a threat actor after a specific malware used)</t>
+<t>Lack of source and list from vendors to describe their threat actor names and the reasoning behind the naming (e.g. did they name the threat actor after a specific set of campaigns? or specific set of targets?)</t>
+</list>
+</t>
+<t>This document proposes a set of guidelines to name threat actors. The goal is to reduce the above mentioned issues.</t>
 
 <section anchor="conventions-and-terminology" title="Conventions and Terminology">
 <t>The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
@@ -39,6 +51,7 @@ document are to be interpreted as described in RFC 2119 <xref target="RFC2119"><
 </section>
 
 <section anchor="recommendations" title="Recommendations">
+<t>The recommendations listed below provide a minimal set of guidelines while assigning a new name to a threat actor.</t>
 
 <section anchor="reusing-threat-actor-naming" title="Reusing threat actor naming">
 <t>Before creating a new threat actor name, you MUST consider a review of existing threat actor names from databases such as the threat actor
@@ -47,13 +60,19 @@ reuse an existing threat actor name. If there is no specific threat actor name, 
 practices defined in this document.</t>
 </section>
 
-<section anchor="don-t-confuse-actor-naming-with-malware-naming" title="Don't confuse actor naming with malware naming">
+<section anchor="uniqueness" title="Uniqueness">
+<t>When choosing a threat actor name, uniqueness is a critical property. The threat actor name MUST be unique and not existing in different contexts.</t>
 </section>
 
 <section anchor="format" title="Format">
 </section>
 
 <section anchor="encoding" title="Encoding">
+<t>The name of the threat actor MUST be expressed in ASCII 7-bit. Assigning a localized name to a threat actor MAY create a set of ambiguity about different localized version of the same threat actor.</t>
+</section>
+
+<section anchor="don-t-confuse-actor-naming-with-malware-naming" title="Don't confuse actor naming with malware naming">
+<t>The name of the threat actor MUST NOT be assigned based on the tools or techniques used by the threat actor. A notorious example in the threat intelligence community is Turla which can name a threat actor but also a malware used by this group or other groups.</t>
 </section>
 
 <section anchor="directory" title="Directory">
@@ -61,6 +80,13 @@ practices defined in this document.</t>
 </section>
 
 <section anchor="examples" title="Examples">
+<t>Some known examples are included below and serve as reference for good practices in naming threat actors. The below threat actor names can be considered good example :</t>
+<t>
+<list style="symbols">
+<t>APT-1</t>
+<t>TA-505</t>
+</list>
+</t>
 </section>
 
 <section anchor="security-considerations" title="Security Considerations">
@@ -79,7 +105,6 @@ MUST review the name to ensure no sensitive information is included in the threa
 
 <back>
 <references title="Normative References">
-<?rfc include="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
 <reference anchor="MISP-G" target="https://github.com/MISP/misp-galaxy">
   <front>
     <title>MISP Galaxy - Public repository </title>
@@ -87,6 +112,7 @@ MUST review the name to ensure no sensitive information is included in the threa
     <date></date>
   </front>
 </reference>
+<?rfc include="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
 </references>
 <references title="Informative References">
 <reference anchor="MISP-P" target="https://github.com/MISP">

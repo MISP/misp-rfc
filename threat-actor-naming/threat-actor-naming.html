@@ -378,10 +378,11 @@
 <link href="#rfc.section.1.1" rel="Chapter" title="1.1 Conventions and Terminology">
 <link href="#rfc.section.2" rel="Chapter" title="2 Recommendations">
 <link href="#rfc.section.2.1" rel="Chapter" title="2.1 Reusing threat actor naming">
-<link href="#rfc.section.2.2" rel="Chapter" title="2.2 Don't confuse actor naming with malware naming">
+<link href="#rfc.section.2.2" rel="Chapter" title="2.2 Uniqueness">
 <link href="#rfc.section.2.3" rel="Chapter" title="2.3 Format">
 <link href="#rfc.section.2.4" rel="Chapter" title="2.4 Encoding">
-<link href="#rfc.section.2.5" rel="Chapter" title="2.5 Directory">
+<link href="#rfc.section.2.5" rel="Chapter" title="2.5 Don't confuse actor naming with malware naming">
+<link href="#rfc.section.2.6" rel="Chapter" title="2.6 Directory">
 <link href="#rfc.section.3" rel="Chapter" title="3 Examples">
 <link href="#rfc.section.4" rel="Chapter" title="4 Security Considerations">
 <link href="#rfc.section.5" rel="Chapter" title="5 Acknowledgements">
@@ -456,13 +457,15 @@
 </li>
 <ul><li>2.1.   <a href="#rfc.section.2.1">Reusing threat actor naming</a>
 </li>
-<li>2.2.   <a href="#rfc.section.2.2">Don't confuse actor naming with malware naming</a>
+<li>2.2.   <a href="#rfc.section.2.2">Uniqueness</a>
 </li>
 <li>2.3.   <a href="#rfc.section.2.3">Format</a>
 </li>
 <li>2.4.   <a href="#rfc.section.2.4">Encoding</a>
 </li>
-<li>2.5.   <a href="#rfc.section.2.5">Directory</a>
+<li>2.5.   <a href="#rfc.section.2.5">Don't confuse actor naming with malware naming</a>
+</li>
+<li>2.6.   <a href="#rfc.section.2.6">Directory</a>
 </li>
 </ul><li>3.   <a href="#rfc.section.3">Examples</a>
 </li>
@@ -487,6 +490,19 @@
   <h1 id="rfc.section.1">
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
+<p id="rfc.section.1.p.1">In threat intelligence, a name can be assigned to a threat actor without specific guidelines. This leads to issues such as a:</p>
+<p></p>
+
+<ul>
+<li>A proliferation of threat actor names generating overlaps or different names for similar threat actors (e.g. some threat actors have more than 10 synonyms)</li>
+<li>Ambiguity in the words used to name the threat actor in different contexts (e.g. using common words)</li>
+<li>No clearly defined text format to describe the same threat actor (e.g. Is the threat actor name case sensitive? Is there a dash or a space between the two words?)</li>
+<li>Confusion between techniques/tools used by a threat actor versus its name (e.g. naming a threat actor after a specific malware used)</li>
+<li>Lack of source and list from vendors to describe their threat actor names and the reasoning behind the naming (e.g. did they name the threat actor after a specific set of campaigns? or specific set of targets?)</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.1.p.3">This document proposes a set of guidelines to name threat actors. The goal is to reduce the above mentioned issues.</p>
 <h1 id="rfc.section.1.1">
 <a href="#rfc.section.1.1">1.1.</a> <a href="#conventions-and-terminology" id="conventions-and-terminology">Conventions and Terminology</a>
 </h1>
@@ -494,25 +510,41 @@
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#recommendations" id="recommendations">Recommendations</a>
 </h1>
+<p id="rfc.section.2.p.1">The recommendations listed below provide a minimal set of guidelines while assigning a new name to a threat actor.</p>
 <h1 id="rfc.section.2.1">
 <a href="#rfc.section.2.1">2.1.</a> <a href="#reusing-threat-actor-naming" id="reusing-threat-actor-naming">Reusing threat actor naming</a>
 </h1>
 <p id="rfc.section.2.1.p.1">Before creating a new threat actor name, you MUST consider a review of existing threat actor names from databases such as the threat actor MISP galaxy <a href="#MISP-G" class="xref">[MISP-G]</a>. Proliferation of threat actor names is a significant challenge for the day-to-day analyst work. If your threat actor defined an existing threat actor, you MUST reuse an existing threat actor name. If there is no specific threat actor name, you SHALL create a new threat actor following the best practices defined in this document.</p>
 <h1 id="rfc.section.2.2">
-<a href="#rfc.section.2.2">2.2.</a> <a href="#don-t-confuse-actor-naming-with-malware-naming" id="don-t-confuse-actor-naming-with-malware-naming">Don't confuse actor naming with malware naming</a>
+<a href="#rfc.section.2.2">2.2.</a> <a href="#uniqueness" id="uniqueness">Uniqueness</a>
 </h1>
+<p id="rfc.section.2.2.p.1">When choosing a threat actor name, uniqueness is a critical property. The threat actor name MUST be unique and not existing in different contexts.</p>
 <h1 id="rfc.section.2.3">
 <a href="#rfc.section.2.3">2.3.</a> <a href="#format" id="format">Format</a>
 </h1>
 <h1 id="rfc.section.2.4">
 <a href="#rfc.section.2.4">2.4.</a> <a href="#encoding" id="encoding">Encoding</a>
 </h1>
+<p id="rfc.section.2.4.p.1">The name of the threat actor MUST be expressed in ASCII 7-bit. Assigning a localized name to a threat actor MAY create a set of ambiguity about different localized version of the same threat actor.</p>
 <h1 id="rfc.section.2.5">
-<a href="#rfc.section.2.5">2.5.</a> <a href="#directory" id="directory">Directory</a>
+<a href="#rfc.section.2.5">2.5.</a> <a href="#don-t-confuse-actor-naming-with-malware-naming" id="don-t-confuse-actor-naming-with-malware-naming">Don't confuse actor naming with malware naming</a>
+</h1>
+<p id="rfc.section.2.5.p.1">The name of the threat actor MUST NOT be assigned based on the tools or techniques used by the threat actor. A notorious example in the threat intelligence community is Turla which can name a threat actor but also a malware used by this group or other groups.</p>
+<h1 id="rfc.section.2.6">
+<a href="#rfc.section.2.6">2.6.</a> <a href="#directory" id="directory">Directory</a>
 </h1>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#examples" id="examples">Examples</a>
 </h1>
+<p id="rfc.section.3.p.1">Some known examples are included below and serve as reference for good practices in naming threat actors. The below threat actor names can be considered good example :</p>
+<p></p>
+
+<ul>
+<li>APT-1</li>
+<li>TA-505</li>
+</ul>
+
+<p> </p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
