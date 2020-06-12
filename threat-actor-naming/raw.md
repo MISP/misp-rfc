@@ -57,6 +57,8 @@ as a:
 - No clearly defined text format to describe the same threat actor (e.g. Is the threat actor name case sensitive? Is there a dash or a space between the two words?)
 - Confusion between techniques/tools used by a threat actor versus its name (e.g. naming a threat actor after a specific malware used)
 - Lack of source and list from vendors to describe their threat actor names and the reasoning behind the naming (e.g. did they name the threat actor after a specific set of campaigns? or specific set of targets?)
+- Lack of time-based information about the threat actor name, such as date of naming
+- Lack of open "registry" of reference, accessible to all, where to register a new threat actor name, or to access all already named threat actors. The "registry" can contain the time-based information mentionned above.
 
 This document proposes a set of guidelines to name threat actors. The goal is to reduce the above mentioned issues.
 
@@ -75,8 +77,7 @@ The recommendations listed below provide a minimal set of guidelines while assig
 
 Before creating a new threat actor name, you **MUST** consider a review of existing threat actor names from databases such as the threat actor
 MISP galaxy [@!MISP-G]. Proliferation of threat actor names is a significant challenge for the day-to-day analyst work. If your threat actor defined an existing threat actor, you **MUST**
-reuse an existing threat actor name. If there is no specific threat actor name, you **SHALL** create a new threat actor following the best
-practices defined in this document.
+reuse an existing threat actor name. If there is no specific threat actor name, you **SHALL** create a new threat actor following the best practices defined in this document.
 
 ## Uniqueness
 
@@ -84,7 +85,7 @@ When choosing a threat actor name, uniqueness is a critical property. The threat
 
 ## Format
 
-The name of the threat actor **SHALL** be composed of a single word. If there is multiple part like a decimal value such as a counter, the values **MUST** be separated with a dash. Single words are preferred to ease search of keywords by analysts in public sources.
+The name of the threat actor **SHALL** be composed of a single word. If there is multiple part like a decimal value such as a counter, the values **MUST** be separated with a dash. Single words are preferred to ease the search of keywords by analysts in public sources.
 
 ## Encoding
 
