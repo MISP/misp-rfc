@@ -57,8 +57,8 @@ as a:
 - No clearly defined text format to describe the same threat actor (e.g. Is the threat actor name case sensitive? Is there a dash or a space between the two words?)
 - Confusion between techniques/tools used by a threat actor versus its name (e.g. naming a threat actor after a specific malware used)
 - Lack of source and list from vendors to describe their threat actor names and the reasoning behind the naming (e.g. did they name the threat actor after a specific set of campaigns? or specific set of targets?)
-- Lack of time-based information about the threat actor name, such as date of naming
-- Lack of open "registry" of reference, accessible to all, where to register a new threat actor name, or to access all already named threat actors. The "registry" can contain the time-based information mentionned above.
+- Lack of time-based information about the threat actor name, such as date of naming or and UUID.
+- Lack of open mirrored "registry" of reference, accessible to all, where to register a new threat actor name, or to access all already named threat actors. The "registry" can contain the time-based information mentionned above, it is a tool.
 
 This document proposes a set of guidelines to name threat actors. The goal is to reduce the above mentioned issues.
 
