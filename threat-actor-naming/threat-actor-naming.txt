@@ -66,15 +66,15 @@ Table of Contents
      2.1.  Reusing threat actor naming . . . . . . . . . . . . . . .   3
      2.2.  Uniqueness  . . . . . . . . . . . . . . . . . . . . . . .   3
      2.3.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.4.  Encoding  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.5.  Don't confuse actor naming with malware naming  . . . . .   3
+     2.4.  Encoding  . . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.5.  Don't confuse actor naming with malware naming  . . . . .   4
      2.6.  Directory . . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
    4.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
    5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
-   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
+   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
      7.2.  Informative References  . . . . . . . . . . . . . . . . .   5
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
 
@@ -103,8 +103,8 @@ Table of Contents
       name the threat actor after a specific set of campaigns? or
       specific set of targets?)
 
-   This document proposes a set of guidelines to name threat actors.
-   The goal is to reduce the above mentioned issues.
+   o  Lack of time-based information about the threat actor name, such
+      as date of naming
 
 
 
@@ -113,6 +113,14 @@ Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 2]
 
 Internet-Draft   Recommendations on naming threat actors       June 2020
 
+
+   o  Lack of open "registry" of reference, accessible to all, where to
+      register a new threat actor name, or to access all already named
+      threat actors.  The "registry" can contain the time-based
+      information mentionned above.
+
+   This document proposes a set of guidelines to name threat actors.
+   The goal is to reduce the above mentioned issues.
 
 1.1.  Conventions and Terminology
 
@@ -148,7 +156,19 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
    The name of the threat actor SHALL be composed of a single word.  If
    there is multiple part like a decimal value such as a counter, the
    values MUST be separated with a dash.  Single words are preferred to
-   ease search of keywords by analysts in public sources.
+   ease the search of keywords by analysts in public sources.
+
+
+
+
+
+
+
+
+Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 3]
+
+Internet-Draft   Recommendations on naming threat actors       June 2020
+
 
 2.4.  Encoding
 
@@ -162,13 +182,6 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
    techniques or patterns used by the threat actor.  A notorious example
    in the threat intelligence community is Turla which can name a threat
    actor but also a malware used by this group or other groups.
-
-
-
-Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 3]
-
-Internet-Draft   Recommendations on naming threat actors       June 2020
-
 
 2.6.  Directory
 
@@ -205,6 +218,14 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
    The authors wish to thank all contributors who provided feedback via
    Twitter.
 
+
+
+
+Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 4]
+
+Internet-Draft   Recommendations on naming threat actors       June 2020
+
+
 6.  References
 
 7.  References
@@ -218,13 +239,6 @@ Internet-Draft   Recommendations on naming threat actors       June 2020
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
-
-
-
-Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 4]
-
-Internet-Draft   Recommendations on naming threat actors       June 2020
-
 
 7.2.  Informative References
 
@@ -251,20 +265,6 @@ Authors' Addresses
    France
 
    Email: info@corexalys.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

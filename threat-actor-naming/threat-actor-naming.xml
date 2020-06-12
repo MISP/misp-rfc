@@ -39,6 +39,8 @@ as a:</t>
 <t>No clearly defined text format to describe the same threat actor (e.g. Is the threat actor name case sensitive? Is there a dash or a space between the two words?)</t>
 <t>Confusion between techniques/tools used by a threat actor versus its name (e.g. naming a threat actor after a specific malware used)</t>
 <t>Lack of source and list from vendors to describe their threat actor names and the reasoning behind the naming (e.g. did they name the threat actor after a specific set of campaigns? or specific set of targets?)</t>
+<t>Lack of time-based information about the threat actor name, such as date of naming</t>
+<t>Lack of open &quot;registry&quot; of reference, accessible to all, where to register a new threat actor name, or to access all already named threat actors. The &quot;registry&quot; can contain the time-based information mentionned above.</t>
 </list>
 </t>
 <t>This document proposes a set of guidelines to name threat actors. The goal is to reduce the above mentioned issues.</t>
@@ -56,8 +58,7 @@ document are to be interpreted as described in RFC 2119 <xref target="RFC2119"><
 <section anchor="reusing-threat-actor-naming" title="Reusing threat actor naming">
 <t>Before creating a new threat actor name, you MUST consider a review of existing threat actor names from databases such as the threat actor
 MISP galaxy <xref target="MISP-G"></xref>. Proliferation of threat actor names is a significant challenge for the day-to-day analyst work. If your threat actor defined an existing threat actor, you MUST
-reuse an existing threat actor name. If there is no specific threat actor name, you SHALL create a new threat actor following the best
-practices defined in this document.</t>
+reuse an existing threat actor name. If there is no specific threat actor name, you SHALL create a new threat actor following the best practices defined in this document.</t>
 </section>
 
 <section anchor="uniqueness" title="Uniqueness">
@@ -65,7 +66,7 @@ practices defined in this document.</t>
 </section>
 
 <section anchor="format" title="Format">
-<t>The name of the threat actor SHALL be composed of a single word. If there is multiple part like a decimal value such as a counter, the values MUST be separated with a dash. Single words are preferred to ease search of keywords by analysts in public sources.</t>
+<t>The name of the threat actor SHALL be composed of a single word. If there is multiple part like a decimal value such as a counter, the values MUST be separated with a dash. Single words are preferred to ease the search of keywords by analysts in public sources.</t>
 </section>
 
 <section anchor="encoding" title="Encoding">
