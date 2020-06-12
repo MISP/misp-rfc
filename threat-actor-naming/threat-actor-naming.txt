@@ -104,7 +104,7 @@ Table of Contents
       specific set of targets?)
 
    o  Lack of time-based information about the threat actor name, such
-      as date of naming
+      as date of naming or and UUID.
 
 
 
@@ -114,10 +114,10 @@ Dulaunoy & Bourmeau     Expires December 11, 2020               [Page 2]
 Internet-Draft   Recommendations on naming threat actors       June 2020
 
 
-   o  Lack of open "registry" of reference, accessible to all, where to
-      register a new threat actor name, or to access all already named
-      threat actors.  The "registry" can contain the time-based
-      information mentionned above.
+   o  Lack of open mirrored "registry" of reference, accessible to all,
+      where to register a new threat actor name, or to access all
+      already named threat actors.  The "registry" can contain the time-
+      based information mentionned above, it is a tool.
 
    This document proposes a set of guidelines to name threat actors.
    The goal is to reduce the above mentioned issues.
