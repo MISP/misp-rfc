@@ -80,7 +80,7 @@ Table of Contents
        2.5.1.  Sample Attribute Object . . . . . . . . . . . . . . .  16
        2.5.2.  ShadowAttribute Attributes  . . . . . . . . . . . . .  16
        2.5.3.  Org . . . . . . . . . . . . . . . . . . . . . . . . .  22
-     2.6.  Object  . . . . . . . . . . . . . . . . . . . . . . . . .  22
+     2.6.  Object  . . . . . . . . . . . . . . . . . . . . . . . . .  23
        2.6.1.  Sample Object . . . . . . . . . . . . . . . . . . . .  23
        2.6.2.  Object Attributes . . . . . . . . . . . . . . . . . .  24
      2.7.  Object References . . . . . . . . . . . . . . . . . . . .  28
@@ -511,17 +511,20 @@ Internet-Draft              MISP core format                    May 2020
 
    Artifacts dropped
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, impfuzzy, authentihash, cdhash, filename,
-      filename|md5, filename|sha1, filename|sha224, filename|sha256,
-      filename|sha384, filename|sha512, filename|sha512/224,
-      filename|sha512/256, filename|authentihash, filename|ssdeep,
-      filename|tlsh, filename|imphash, filename|impfuzzy,
-      filename|pehash, regkey, regkey|value, pattern-in-file, pattern-
-      in-memory, pdb, stix2-pattern, yara, sigma, attachment, malware-
-      sample, named pipe, mutex, windows-scheduled-task, windows-
-      service-name, windows-service-displayname, comment, text, hex,
-      x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-
-      sha256, other, cookie, gene, kusto-query, mime-type, anonymised
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
+      authentihash, vhash, cdhash, filename, filename|md5,
+      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
+      filename|sha512, filename|sha512/224, filename|sha512/256,
+      filename|sha3-224, filename|sha3-256, filename|sha3-384,
+      filename|sha3-512, filename|authentihash, filename|vhash,
+      filename|ssdeep, filename|tlsh, filename|imphash,
+      filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-
+      in-file, pattern-in-memory, pdb, stix2-pattern, yara, sigma,
+      attachment, malware-sample, named pipe, mutex, windows-scheduled-
+      task, windows-service-name, windows-service-displayname, comment,
+      text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-
+      fingerprint-sha256, other, cookie, gene, kusto-query, mime-type,
+      anonymised
 
    Attribution
       threat-actor, campaign-name, campaign-id, whois-registrant-phone,
@@ -531,8 +534,10 @@ Internet-Draft              MISP core format                    May 2020
       other, dns-soa-email, anonymised
 
    External analysis
-      md5, sha1, sha256, filename, filename|md5, filename|sha1,
-      filename|sha256, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-
+      md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512,
+      filename, filename|md5, filename|sha1, filename|sha256,
+      filename|sha3-224, filename|sha3-256, filename|sha3-384,
+      filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-
       address, mac-eui-64, hostname, domain, domain|ip, url, user-agent,
       regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file,
       pattern-in-traffic, pattern-in-memory, vulnerability, weakness,
@@ -549,11 +554,6 @@ Internet-Draft              MISP core format                    May 2020
       text, link, comment, other, hex, anonymised, git-commit-id
 
    Network activity
-      ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain,
-      domain|ip, mac-address, mac-eui-64, email-dst, email-src, eppn,
-      url, uri, user-agent, http-method, AS, snort, pattern-in-file,
-      stix2-pattern, pattern-in-traffic, attachment, comment, text,
-      x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-
 
 
 
@@ -562,6 +562,11 @@ Dulaunoy & Iklody       Expires November 27, 2020              [Page 10]
 Internet-Draft              MISP core format                    May 2020
 
 
+      ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain,
+      domain|ip, mac-address, mac-eui-64, email-dst, email-src, eppn,
+      url, uri, user-agent, http-method, AS, snort, pattern-in-file,
+      stix2-pattern, pattern-in-traffic, attachment, comment, text,
+      x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-
       sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other,
       hex, cookie, hostname|port, bro, zeek, anonymised, community-id,
       email-subject
@@ -572,10 +577,12 @@ Internet-Draft              MISP core format                    May 2020
 
    Payload delivery
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, impfuzzy, authentihash, pehash, tlsh, cdhash,
-      filename, filename|md5, filename|sha1, filename|sha224,
-      filename|sha256, filename|sha384, filename|sha512,
-      filename|sha512/224, filename|sha512/256, filename|authentihash,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
+      authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5,
+      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
+      filename|sha512, filename|sha512/224, filename|sha512/256,
+      filename|sha3-224, filename|sha3-256, filename|sha3-384,
+      filename|sha3-512, filename|authentihash, filename|vhash,
       filename|ssdeep, filename|tlsh, filename|imphash,
       filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-
       src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email-
@@ -592,15 +599,25 @@ Internet-Draft              MISP core format                    May 2020
 
    Payload installation
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, impfuzzy, authentihash, pehash, tlsh, cdhash,
-      filename, filename|md5, filename|sha1, filename|sha224,
-      filename|sha256, filename|sha384, filename|sha512,
-      filename|sha512/224, filename|sha512/256, filename|authentihash,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
+      authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5,
+      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
+      filename|sha512, filename|sha512/224, filename|sha512/256,
+      filename|sha3-224, filename|sha3-256, filename|sha3-384,
+      filename|sha3-512, filename|authentihash, filename|vhash,
       filename|ssdeep, filename|tlsh, filename|imphash,
       filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-
       traffic, pattern-in-memory, stix2-pattern, yara, sigma,
       vulnerability, weakness, attachment, malware-sample, malware-type,
       comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5,
+
+
+
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 11]
+
+Internet-Draft              MISP core format                    May 2020
+
+
       x509-fingerprint-sha256, mobile-application-id, chrome-extension-
       id, other, mime-type, anonymised
 
@@ -610,13 +627,6 @@ Internet-Draft              MISP core format                    May 2020
    Persistence mechanism
       filename, regkey, regkey|value, comment, text, other, hex,
       anonymised
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 11]
-
-Internet-Draft              MISP core format                    May 2020
-
 
    Person
       first-name, middle-name, last-name, date-of-birth, place-of-birth,
@@ -655,16 +665,6 @@ Internet-Draft              MISP core format                    May 2020
    and it MUST be a valid selection for the chosen type.  The list of
    valid category-type combinations is mentioned above.
 
-2.4.2.5.  to_ids
-
-   to_ids represents whether the attribute is meant to be actionable.
-   Actionable defined attributes that can be used in automated processes
-   as a pattern for detection in Local or Network Intrusion Detection
-   System, log analysis tools or even filtering mechanisms.
-
-   to_ids is represented as a JSON boolean. to_ids MUST be present.
-
-
 
 
 
@@ -673,6 +673,15 @@ Dulaunoy & Iklody       Expires November 27, 2020              [Page 12]
 
 Internet-Draft              MISP core format                    May 2020
 
+
+2.4.2.5.  to_ids
+
+   to_ids represents whether the attribute is meant to be actionable.
+   Actionable defined attributes that can be used in automated processes
+   as a pattern for detection in Local or Network Intrusion Detection
+   System, log analysis tools or even filtering mechanisms.
+
+   to_ids is represented as a JSON boolean. to_ids MUST be present.
 
 2.4.2.6.  event_id
 
@@ -712,15 +721,6 @@ Internet-Draft              MISP core format                    May 2020
    5
       Inherit Event
 
-2.4.2.8.  timestamp
-
-   timestamp represents a reference time when the attribute was created
-   or last modified. timestamp is expressed in seconds (decimal) since
-   1st of January 1970 (Unix timestamp).  The time zone MUST be UTC.
-
-   timestamp is represented as a JSON string. timestamp MUST be present.
-
-
 
 
 
@@ -729,6 +729,14 @@ Dulaunoy & Iklody       Expires November 27, 2020              [Page 13]
 
 Internet-Draft              MISP core format                    May 2020
 
+
+2.4.2.8.  timestamp
+
+   timestamp represents a reference time when the attribute was created
+   or last modified. timestamp is expressed in seconds (decimal) since
+   1st of January 1970 (Unix timestamp).  The time zone MUST be UTC.
+
+   timestamp is represented as a JSON string. timestamp MUST be present.
 
 2.4.2.9.  comment
 
@@ -770,14 +778,6 @@ Internet-Draft              MISP core format                    May 2020
    RelatedAttribute is an array of attributes correlating with the
    current attribute.  Each element in the array represents an JSON
    object which contains an Attribute dictionnary with the external
-   attributes who correlate.  Each Attribute MUST include the id,
-   org_id, info and a value.  Only the correlations found on the local
-   instance are shown in RelatedAttribute.
-
-   RelatedAttribute MAY be present.
-
-
-
 
 
 
@@ -785,6 +785,12 @@ Dulaunoy & Iklody       Expires November 27, 2020              [Page 14]
 
 Internet-Draft              MISP core format                    May 2020
 
+
+   attributes who correlate.  Each Attribute MUST include the id,
+   org_id, info and a value.  Only the correlations found on the local
+   instance are shown in RelatedAttribute.
+
+   RelatedAttribute MAY be present.
 
 2.4.2.14.  ShadowAttribute
 
@@ -828,12 +834,6 @@ Internet-Draft              MISP core format                    May 2020
    ShadowAttributes are 3rd party created attributes that either propose
    to add new information to an event or modify existing information.
    They are not meant to be actionable until the event creator accepts
-   them - at which point they will be converted into attributes or
-   modify an existing attribute.
-
-   They are similar in structure to Attributes but additionally carry a
-   reference to the creator of the ShadowAttribute as well as a
-   revocation flag.
 
 
 
@@ -841,6 +841,13 @@ Dulaunoy & Iklody       Expires November 27, 2020              [Page 15]
 
 Internet-Draft              MISP core format                    May 2020
 
+
+   them - at which point they will be converted into attributes or
+   modify an existing attribute.
+
+   They are similar in structure to Attributes but additionally carry a
+   reference to the creator of the ShadowAttribute as well as a
+   revocation flag.
 
 2.5.1.  Sample Attribute Object
 
@@ -882,6 +889,15 @@ Internet-Draft              MISP core format                    May 2020
 
    id represents the human-readable identifier associated to the event
    for a specific MISP instance. human-readable identifier MUST be
+
+
+
+
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 16]
+
+Internet-Draft              MISP core format                    May 2020
+
+
    represented as an unsigned integer.  id is represented as a JSON
    string. id SHALL be present.
 
@@ -890,13 +906,6 @@ Internet-Draft              MISP core format                    May 2020
    type represents the means through which an attribute tries to
    describe the intent of the attribute creator, using a list of pre-
    defined attribute types.
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 16]
-
-Internet-Draft              MISP core format                    May 2020
-
 
    type is represented as a JSON string. type MUST be present and it
    MUST be a valid selection for the chosen category.  The list of valid
@@ -907,17 +916,20 @@ Internet-Draft              MISP core format                    May 2020
 
    Artifacts dropped
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, impfuzzy, authentihash, cdhash, filename,
-      filename|md5, filename|sha1, filename|sha224, filename|sha256,
-      filename|sha384, filename|sha512, filename|sha512/224,
-      filename|sha512/256, filename|authentihash, filename|ssdeep,
-      filename|tlsh, filename|imphash, filename|impfuzzy,
-      filename|pehash, regkey, regkey|value, pattern-in-file, pattern-
-      in-memory, pdb, stix2-pattern, yara, sigma, attachment, malware-
-      sample, named pipe, mutex, windows-scheduled-task, windows-
-      service-name, windows-service-displayname, comment, text, hex,
-      x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-
-      sha256, other, cookie, gene, kusto-query, mime-type, anonymised
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
+      authentihash, vhash, cdhash, filename, filename|md5,
+      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
+      filename|sha512, filename|sha512/224, filename|sha512/256,
+      filename|sha3-224, filename|sha3-256, filename|sha3-384,
+      filename|sha3-512, filename|authentihash, filename|vhash,
+      filename|ssdeep, filename|tlsh, filename|imphash,
+      filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-
+      in-file, pattern-in-memory, pdb, stix2-pattern, yara, sigma,
+      attachment, malware-sample, named pipe, mutex, windows-scheduled-
+      task, windows-service-name, windows-service-displayname, comment,
+      text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-
+      fingerprint-sha256, other, cookie, gene, kusto-query, mime-type,
+      anonymised
 
    Attribution
       threat-actor, campaign-name, campaign-id, whois-registrant-phone,
@@ -927,11 +939,21 @@ Internet-Draft              MISP core format                    May 2020
       other, dns-soa-email, anonymised
 
    External analysis
-      md5, sha1, sha256, filename, filename|md5, filename|sha1,
-      filename|sha256, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-
+      md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512,
+      filename, filename|md5, filename|sha1, filename|sha256,
+      filename|sha3-224, filename|sha3-256, filename|sha3-384,
+      filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-
       address, mac-eui-64, hostname, domain, domain|ip, url, user-agent,
       regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file,
       pattern-in-traffic, pattern-in-memory, vulnerability, weakness,
+
+
+
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 17]
+
+Internet-Draft              MISP core format                    May 2020
+
+
       attachment, malware-sample, link, comment, text, x509-fingerprint-
       sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-
       fingerprint-md5, hassh-md5, hasshserver-md5, github-repository,
@@ -945,15 +967,6 @@ Internet-Draft              MISP core format                    May 2020
       text, link, comment, other, hex, anonymised, git-commit-id
 
    Network activity
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 17]
-
-Internet-Draft              MISP core format                    May 2020
-
-
       ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain,
       domain|ip, mac-address, mac-eui-64, email-dst, email-src, eppn,
       url, uri, user-agent, http-method, AS, snort, pattern-in-file,
@@ -969,10 +982,12 @@ Internet-Draft              MISP core format                    May 2020
 
    Payload delivery
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, impfuzzy, authentihash, pehash, tlsh, cdhash,
-      filename, filename|md5, filename|sha1, filename|sha224,
-      filename|sha256, filename|sha384, filename|sha512,
-      filename|sha512/224, filename|sha512/256, filename|authentihash,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
+      authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5,
+      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
+      filename|sha512, filename|sha512/224, filename|sha512/256,
+      filename|sha3-224, filename|sha3-256, filename|sha3-384,
+      filename|sha3-512, filename|authentihash, filename|vhash,
       filename|ssdeep, filename|tlsh, filename|imphash,
       filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-
       src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email-
@@ -987,12 +1002,22 @@ Internet-Draft              MISP core format                    May 2020
       email-thread-index, email-message-id, mobile-application-id,
       chrome-extension-id, whois-registrant-email, anonymised
 
+
+
+
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 18]
+
+Internet-Draft              MISP core format                    May 2020
+
+
    Payload installation
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      ssdeep, imphash, impfuzzy, authentihash, pehash, tlsh, cdhash,
-      filename, filename|md5, filename|sha1, filename|sha224,
-      filename|sha256, filename|sha384, filename|sha512,
-      filename|sha512/224, filename|sha512/256, filename|authentihash,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
+      authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5,
+      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
+      filename|sha512, filename|sha512/224, filename|sha512/256,
+      filename|sha3-224, filename|sha3-256, filename|sha3-384,
+      filename|sha3-512, filename|authentihash, filename|vhash,
       filename|ssdeep, filename|tlsh, filename|imphash,
       filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-
       traffic, pattern-in-memory, stix2-pattern, yara, sigma,
@@ -1002,14 +1027,6 @@ Internet-Draft              MISP core format                    May 2020
       id, other, mime-type, anonymised
 
    Payload type
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 18]
-
-Internet-Draft              MISP core format                    May 2020
-
-
       comment, text, other, anonymised
 
    Persistence mechanism
@@ -1039,6 +1056,16 @@ Internet-Draft              MISP core format                    May 2020
       target-user, target-email, target-machine, target-org, target-
       location, target-external, comment, anonymised
 
+
+
+
+
+
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 19]
+
+Internet-Draft              MISP core format                    May 2020
+
+
    Attributes are based on the usage within their different communities.
    Attributes can be extended on a regular basis and this reference
    document is updated accordingly.
@@ -1058,14 +1085,6 @@ Internet-Draft              MISP core format                    May 2020
    to_ids represents whether the Attribute to be created if the
    ShadowAttribute is accepted is meant to be actionable.  Actionable
    defined attributes that can be used in automated processes as a
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 19]
-
-Internet-Draft              MISP core format                    May 2020
-
-
    pattern for detection in Local or Network Intrusion Detection System,
    log analysis tools or even filtering mechanisms.
 
@@ -1095,6 +1114,14 @@ Internet-Draft              MISP core format                    May 2020
    the ShadowAttribute proposes the creation of a new Attribute, it
    should be set to 0.
 
+
+
+
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 20]
+
+Internet-Draft              MISP core format                    May 2020
+
+
    old_id is represented as a JSON string. old_id MUST be present.
 
 2.5.2.8.  timestamp
@@ -1110,17 +1137,6 @@ Internet-Draft              MISP core format                    May 2020
    comment is a contextual comment field.
 
    comment is represented by a JSON string. comment MAY be present.
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 20]
-
-Internet-Draft              MISP core format                    May 2020
-
 
 2.5.2.10.  org_id
 
@@ -1154,6 +1170,14 @@ Internet-Draft              MISP core format                    May 2020
 
    deleted is represented by a JSON boolean. deleted SHOULD be present.
 
+
+
+
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 21]
+
+Internet-Draft              MISP core format                    May 2020
+
+
 2.5.2.13.  data
 
    data contains the base64 encoded contents of an attachment or a
@@ -1169,14 +1193,6 @@ Internet-Draft              MISP core format                    May 2020
    first_seen represents a reference time when the attribute was first
    seen. first_seen as an ISO 8601 datetime up to the micro-second with
    time zone support.
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 21]
-
-Internet-Draft              MISP core format                    May 2020
-
 
    first_seen is represented as a JSON string. first_seen MAY be
    present.
@@ -1207,6 +1223,17 @@ Internet-Draft              MISP core format                    May 2020
 
 2.5.3.1.  Sample Org Object
 
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires November 27, 2020              [Page 22]
+
+Internet-Draft              MISP core format                    May 2020
+
+
           "Org": {
                   "id": "2",
                   "name": "CIRCL",
@@ -1226,14 +1253,6 @@ Internet-Draft              MISP core format                    May 2020
    within an event.  Their main purpose is to describe more complex
    structures than can be described by a single attribute Each object is
    created using an Object Template and carries the meta-data of the
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 22]
-
-Internet-Draft              MISP core format                    May 2020
-
-
    template used for its creation within.  Objects belong to a meta-
    category and are defined by a name.
 
@@ -1245,25 +1264,6 @@ Internet-Draft              MISP core format                    May 2020
    described in the "Object Attributes" section.
 
 2.6.1.  Sample Object
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
