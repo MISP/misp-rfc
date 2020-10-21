@@ -6,7 +6,7 @@ docName = "draft-dulaunoy-misp-core-format"
 ipr= "trust200902"
 area = "Security"
 
-date = 2020-05-26T00:00:00Z
+date = 2020-10-21T00:00:00Z
 
 [[author]]
 initials="A."
@@ -948,6 +948,89 @@ to preserve the object reference's association with the object.
 
 referenced\_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the object or attribute that is being referenced by the object reference. The referenced\_uuid **MUST** be preserved
 to preserve the object reference's association with the object or attribute.
+
+## EventReport
+
+EventReport are used to complement an event with one or more report in Markdown format. The EventReport contains unstructured information which can be linked to Attributes, Objects, Tags or Galaxy with
+an extension to the Markdown marking language.
+
+### id
+
+id represents the human-readable identifier associated to the EventReport for a specific MISP instance. A human-readable identifier **MUST** be
+represented as an unsigned integer.
+
+id is represented as a JSON string. id **SHALL** be present.
+
+### UUID
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the EventReport. The uuid **MUST** be preserved for any updates or transfer of the same EventReport. UUID version 4 is **RECOMMENDED** when assigning it to a new EventReport.
+
+uuid is represented as a JSON string. uuid **MUST** be present.
+
+### event\_id
+
+event\_id represents the human-readable identifier associating the EventReport to an event on a specific MISP instance. A human-readable identifier **MUST** be
+represented as an unsigned integer.
+
+event\_id is represented as a JSON string. event\_id  **MUST** be present.
+
+### name
+
+name represents the information field of the EventReport. name is a free-text value to provide a human-readable summary
+of the report. name **SHOULD** NOT be bigger than 256 characters and **SHOULD** NOT include new-lines.
+
+name is represented as a JSON string. name **MUST** be present.
+
+### content
+
+content includes the raw EventReport in Markdown format with or without the specific MISP Markdown markup extension.
+
+The markdown extension for MISP is composed with an at symbol as prefix then between square bracket the scope (attribute, object, tag/galaxy or galaxymatrix) followed by the UUID in parenthesis.
+
+content is represented as a JSON string. content **MUST** be present.
+
+### distribution
+
+distribution represents the basic distribution rules of the EventReport. The system must adhere to the distribution setting for access control and for dissemination of the EventReport.
+
+distribution is represented by a JSON string. distribution **MUST** be present and be one of the following options:
+
+0
+:   Your Organisation Only
+
+1
+:   This Community Only
+
+2
+:   Connected Communities
+
+3
+:   All Communities
+
+4
+:   Sharing Group
+
+5
+:   Inherit Event
+
+### sharing\_group\_id
+
+sharing\_group\_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.
+
+sharing\_group\_id is represented by a JSON string. sharing\_group\_id **MUST** be present and set to "0" if not used.
+
+
+### timestamp
+
+timestamp represents a reference time when the EventReport was created or last modified. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
+
+timestamp is represented as a JSON string. timestamp **MUST** be present.
+
+### deleted
+
+deleted represents a setting that allows EventReport to be revoked. Revoked EventReport are not actionable and exist merely to inform other instances of a revocation.
+
+deleted is represented by a JSON boolean. deleted **MUST** be present.
 
 ## Tag
 
