@@ -985,7 +985,7 @@ name is represented as a JSON string. name **MUST** be present.
 
 content includes the raw EventReport in Markdown format with or without the specific MISP Markdown markup extension.
 
-The markdown extension for MISP is composed with an at symbol as prefix then between square bracket the scope (attribute, object, tag/galaxy or galaxymatrix) followed by the UUID in parenthesis.
+The markdown extension for MISP is composed with a symbol as prefix then between square bracket the scope (attribute, object, tag or galaxymatrix) followed by the UUID in parenthesis.
 
 content is represented as a JSON string. content **MUST** be present.
 
