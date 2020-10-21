@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: November 27, 2020                                  May 26, 2020
+Expires: April 24, 2021                                 October 21, 2020
 
 
                             MISP core format
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 27, 2020.
+   This Internet-Draft will expire on April 24, 2021.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020               [Page 1]
+Dulaunoy & Iklody        Expires April 24, 2021                 [Page 1]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
    include Simplified BSD License text as described in Section 4.e of
@@ -69,14 +69,14 @@ Table of Contents
    2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.2.  Event . . . . . . . . . . . . . . . . . . . . . . . . . .   3
-       2.2.1.  Event Attributes  . . . . . . . . . . . . . . . . . .   3
+       2.2.1.  Event Attributes  . . . . . . . . . . . . . . . . . .   4
      2.3.  Objects . . . . . . . . . . . . . . . . . . . . . . . . .   7
        2.3.1.  Org . . . . . . . . . . . . . . . . . . . . . . . . .   7
        2.3.2.  Orgc  . . . . . . . . . . . . . . . . . . . . . . . .   8
      2.4.  Attribute . . . . . . . . . . . . . . . . . . . . . . . .   8
-       2.4.1.  Sample Attribute Object . . . . . . . . . . . . . . .   8
+       2.4.1.  Sample Attribute Object . . . . . . . . . . . . . . .   9
        2.4.2.  Attribute Attributes  . . . . . . . . . . . . . . . .   9
-     2.5.  ShadowAttribute . . . . . . . . . . . . . . . . . . . . .  15
+     2.5.  ShadowAttribute . . . . . . . . . . . . . . . . . . . . .  16
        2.5.1.  Sample Attribute Object . . . . . . . . . . . . . . .  16
        2.5.2.  ShadowAttribute Attributes  . . . . . . . . . . . . .  16
        2.5.3.  Org . . . . . . . . . . . . . . . . . . . . . . . . .  22
@@ -86,33 +86,42 @@ Table of Contents
      2.7.  Object References . . . . . . . . . . . . . . . . . . . .  28
        2.7.1.  Sample ObjectReference object . . . . . . . . . . . .  28
        2.7.2.  ObjectReference Attributes  . . . . . . . . . . . . .  28
-     2.8.  Tag . . . . . . . . . . . . . . . . . . . . . . . . . . .  30
-       2.8.1.  Sample Tag  . . . . . . . . . . . . . . . . . . . . .  31
-     2.9.  Sighting  . . . . . . . . . . . . . . . . . . . . . . . .  31
-       2.9.1.  Sample Sighting . . . . . . . . . . . . . . . . . . .  32
-     2.10. Galaxy  . . . . . . . . . . . . . . . . . . . . . . . . .  33
-       2.10.1.  Sample Galaxy  . . . . . . . . . . . . . . . . . . .  33
-   3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  35
-   4.  Manifest  . . . . . . . . . . . . . . . . . . . . . . . . . .  49
-     4.1.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .  49
-       4.1.1.  Sample Manifest . . . . . . . . . . . . . . . . . . .  50
-   5.  Implementation  . . . . . . . . . . . . . . . . . . . . . . .  51
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  51
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  51
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  51
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  51
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  52
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  52
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  52
+     2.8.  EventReport . . . . . . . . . . . . . . . . . . . . . . .  30
+       2.8.1.  id  . . . . . . . . . . . . . . . . . . . . . . . . .  31
+       2.8.2.  UUID  . . . . . . . . . . . . . . . . . . . . . . . .  31
+       2.8.3.  event_id  . . . . . . . . . . . . . . . . . . . . . .  31
+       2.8.4.  name  . . . . . . . . . . . . . . . . . . . . . . . .  31
+       2.8.5.  content . . . . . . . . . . . . . . . . . . . . . . .  31
+       2.8.6.  distribution  . . . . . . . . . . . . . . . . . . . .  32
+       2.8.7.  sharing_group_id  . . . . . . . . . . . . . . . . . .  32
+       2.8.8.  timestamp . . . . . . . . . . . . . . . . . . . . . .  32
+       2.8.9.  deleted . . . . . . . . . . . . . . . . . . . . . . .  33
+     2.9.  Tag . . . . . . . . . . . . . . . . . . . . . . . . . . .  33
+       2.9.1.  Sample Tag  . . . . . . . . . . . . . . . . . . . . .  33
+     2.10. Sighting  . . . . . . . . . . . . . . . . . . . . . . . .  33
+       2.10.1.  Sample Sighting  . . . . . . . . . . . . . . . . . .  34
+     2.11. Galaxy  . . . . . . . . . . . . . . . . . . . . . . . . .  35
+       2.11.1.  Sample Galaxy  . . . . . . . . . . . . . . . . . . .  35
+   3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  37
+   4.  Manifest  . . . . . . . . . . . . . . . . . . . . . . . . . .  51
+     4.1.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .  51
+       4.1.1.  Sample Manifest . . . . . . . . . . . . . . . . . . .  52
 
 
 
-
-
-Dulaunoy & Iklody       Expires November 27, 2020               [Page 2]
+Dulaunoy & Iklody        Expires April 24, 2021                 [Page 2]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
+
+   5.  Implementation  . . . . . . . . . . . . . . . . . . . . . . .  53
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  53
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  53
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  53
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  53
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  54
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  54
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  54
 
 1.  Introduction
 
@@ -152,6 +161,15 @@ Internet-Draft              MISP core format                    May 2020
    specific threat actor analysis.  The meaning of an event only depends
    of the information embedded in the event.
 
+
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                 [Page 3]
+
+Internet-Draft              MISP core format                October 2020
+
+
 2.2.1.  Event Attributes
 
 2.2.1.1.  uuid
@@ -162,13 +180,6 @@ Internet-Draft              MISP core format                    May 2020
    new event.
 
    uuid is represented as a JSON string. uuid MUST be present.
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020               [Page 3]
-
-Internet-Draft              MISP core format                    May 2020
-
 
 2.2.1.2.  id
 
@@ -207,6 +218,14 @@ Internet-Draft              MISP core format                    May 2020
       Low
 
    2:
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                 [Page 4]
+
+Internet-Draft              MISP core format                October 2020
+
+
       Medium
 
    1:
@@ -217,14 +236,6 @@ Internet-Draft              MISP core format                    May 2020
 
    threat_level_id is represented as a JSON string. threat_level_id
    SHALL be present.
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020               [Page 4]
-
-Internet-Draft              MISP core format                    May 2020
-
 
 2.2.1.6.  analysis
 
@@ -261,6 +272,16 @@ Internet-Draft              MISP core format                    May 2020
 
    timestamp is represented as a JSON string. timestamp MUST be present.
 
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                 [Page 5]
+
+Internet-Draft              MISP core format                October 2020
+
+
 2.2.1.9.  publish_timestamp
 
    publish_timestamp represents a reference time when the event was
@@ -274,13 +295,6 @@ Internet-Draft              MISP core format                    May 2020
 
    publish_timestamp is represented as a JSON string. publish_timestamp
    MUST be present.
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020               [Page 5]
-
-Internet-Draft              MISP core format                    May 2020
-
 
 2.2.1.10.  org_id
 
@@ -317,6 +331,13 @@ Internet-Draft              MISP core format                    May 2020
    The system must adhere to the distribution setting for access control
    and for dissemination of the event.
 
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                 [Page 6]
+
+Internet-Draft              MISP core format                October 2020
+
+
    distribution is represented by a JSON string. distribution MUST be
    present and be one of the following options:
 
@@ -330,14 +351,6 @@ Internet-Draft              MISP core format                    May 2020
       Connected Communities
 
    3
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020               [Page 6]
-
-Internet-Draft              MISP core format                    May 2020
-
-
       All Communities
 
    4
@@ -373,6 +386,14 @@ Internet-Draft              MISP core format                    May 2020
    [RFC4122] of the organisation.  The organisation UUID is globally
    assigned to an organisation and SHALL be kept overtime.
 
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                 [Page 7]
+
+Internet-Draft              MISP core format                October 2020
+
+
    The name is a readable description of the organisation and SHOULD be
    present.  The id is a human-readable identifier generated by the
    instance and used as reference in the event.  A human-readable
@@ -382,17 +403,6 @@ Internet-Draft              MISP core format                    May 2020
    MUST be present.
 
 2.3.1.1.  Sample Org Object
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020               [Page 7]
-
-Internet-Draft              MISP core format                    May 2020
-
 
           "Org": {
                   "id": "2",
@@ -428,7 +438,6 @@ Internet-Draft              MISP core format                    May 2020
    A MISP document MUST at least includes category-type-value triplet
    described in section "Attribute Attributes".
 
-2.4.1.  Sample Attribute Object
 
 
 
@@ -436,19 +445,12 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020               [Page 8]
+Dulaunoy & Iklody        Expires April 24, 2021                 [Page 8]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
+
+2.4.1.  Sample Attribute Object
 
       "Attribute": {
                     "id": "346056",
@@ -495,36 +497,39 @@ Internet-Draft              MISP core format                    May 2020
    describe the intent of the attribute creator, using a list of pre-
    defined attribute types.
 
+
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                 [Page 9]
+
+Internet-Draft              MISP core format                October 2020
+
+
    type is represented as a JSON string. type MUST be present and it
    MUST be a valid selection for the chosen category.  The list of valid
    category-type combinations is as follows:
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020               [Page 9]
-
-Internet-Draft              MISP core format                    May 2020
-
 
    Antivirus detection
       link, comment, text, hex, attachment, other, anonymised
 
    Artifacts dropped
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
-      authentihash, vhash, cdhash, filename, filename|md5,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash,
+      impfuzzy, authentihash, vhash, cdhash, filename, filename|md5,
       filename|sha1, filename|sha224, filename|sha256, filename|sha384,
       filename|sha512, filename|sha512/224, filename|sha512/256,
       filename|sha3-224, filename|sha3-256, filename|sha3-384,
       filename|sha3-512, filename|authentihash, filename|vhash,
       filename|ssdeep, filename|tlsh, filename|imphash,
       filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-
-      in-file, pattern-in-memory, pdb, stix2-pattern, yara, sigma,
-      attachment, malware-sample, named pipe, mutex, windows-scheduled-
-      task, windows-service-name, windows-service-displayname, comment,
-      text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-
-      fingerprint-sha256, other, cookie, gene, kusto-query, mime-type,
-      anonymised, pgp-public-key, pgp-private-key
+      in-file, pattern-in-memory, filename-pattern, pdb, stix2-pattern,
+      yara, sigma, attachment, malware-sample, named pipe, mutex,
+      windows-scheduled-task, windows-service-name, windows-service-
+      displayname, comment, text, hex, x509-fingerprint-sha1, x509-
+      fingerprint-md5, x509-fingerprint-sha256, other, cookie, gene,
+      kusto-query, mime-type, anonymised, pgp-public-key, pgp-private-
+      key
 
    Attribution
       threat-actor, campaign-name, campaign-id, whois-registrant-phone,
@@ -540,36 +545,35 @@ Internet-Draft              MISP core format                    May 2020
       filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-
       address, mac-eui-64, hostname, domain, domain|ip, url, user-agent,
       regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file,
-      pattern-in-traffic, pattern-in-memory, vulnerability, weakness,
-      attachment, malware-sample, link, comment, text, x509-fingerprint-
-      sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-
-      fingerprint-md5, hassh-md5, hasshserver-md5, github-repository,
-      other, cortex, anonymised, community-id
+      pattern-in-traffic, pattern-in-memory, filename-pattern,
+      vulnerability, cpe, weakness, attachment, malware-sample, link,
+      comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-
+      fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-
+      md5, github-repository, other, cortex, anonymised, community-id
 
    Financial fraud
       btc, dash, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-
       number, prtn, phone-number, comment, text, other, hex, anonymised
 
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 10]
+
+Internet-Draft              MISP core format                October 2020
+
+
    Internal reference
       text, link, comment, other, hex, anonymised, git-commit-id
 
    Network activity
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 10]
-
-Internet-Draft              MISP core format                    May 2020
-
-
       ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain,
       domain|ip, mac-address, mac-eui-64, email, email-dst, email-src,
       eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-
-      file, stix2-pattern, pattern-in-traffic, attachment, comment,
-      text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-
-      fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-
-      md5, other, hex, cookie, hostname|port, bro, zeek, anonymised,
-      community-id, email-subject
+      file, filename-pattern, stix2-pattern, pattern-in-traffic,
+      attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-
+      sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5,
+      hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek,
+      anonymised, community-id, email-subject
 
    Other
       comment, text, other, size-in-bytes, counter, datetime, cpe, port,
@@ -578,49 +582,50 @@ Internet-Draft              MISP core format                    May 2020
 
    Payload delivery
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
-      authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5,
-      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
-      filename|sha512, filename|sha512/224, filename|sha512/256,
-      filename|sha3-224, filename|sha3-256, filename|sha3-384,
-      filename|sha3-512, filename|authentihash, filename|vhash,
-      filename|ssdeep, filename|tlsh, filename|imphash,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash,
+      impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename,
+      filename|md5, filename|sha1, filename|sha224, filename|sha256,
+      filename|sha384, filename|sha512, filename|sha512/224,
+      filename|sha512/256, filename|sha3-224, filename|sha3-256,
+      filename|sha3-384, filename|sha3-512, filename|authentihash,
+      filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash,
       filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-
       src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email,
       email-src, email-dst, email-subject, email-attachment, email-body,
       url, user-agent, AS, pattern-in-file, pattern-in-traffic,
-      stix2-pattern, yara, sigma, mime-type, attachment, malware-sample,
-      link, malware-type, comment, text, hex, vulnerability, weakness,
-      x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-
-      sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other,
-      hostname|port, email-dst-display-name, email-src-display-name,
-      email-header, email-reply-to, email-x-mailer, email-mime-boundary,
-      email-thread-index, email-message-id, mobile-application-id,
-      chrome-extension-id, whois-registrant-email, anonymised
+      filename-pattern, stix2-pattern, yara, sigma, mime-type,
+      attachment, malware-sample, link, malware-type, comment, text,
+      hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-
+      fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5,
+      hassh-md5, hasshserver-md5, other, hostname|port, email-dst-
+      display-name, email-src-display-name, email-header, email-reply-
+      to, email-x-mailer, email-mime-boundary, email-thread-index,
+      email-message-id, mobile-application-id, chrome-extension-id,
+      whois-registrant-email, anonymised
 
    Payload installation
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
-      authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5,
-      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
-      filename|sha512, filename|sha512/224, filename|sha512/256,
-      filename|sha3-224, filename|sha3-256, filename|sha3-384,
-      filename|sha3-512, filename|authentihash, filename|vhash,
-      filename|ssdeep, filename|tlsh, filename|imphash,
-      filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-
-      traffic, pattern-in-memory, stix2-pattern, yara, sigma,
-      vulnerability, weakness, attachment, malware-sample, malware-type,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash,
+      impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename,
+      filename|md5, filename|sha1, filename|sha224, filename|sha256,
+      filename|sha384, filename|sha512, filename|sha512/224,
+      filename|sha512/256, filename|sha3-224, filename|sha3-256,
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 11]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 11]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
-      comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5,
-      x509-fingerprint-sha256, mobile-application-id, chrome-extension-
-      id, other, mime-type, anonymised
+      filename|sha3-384, filename|sha3-512, filename|authentihash,
+      filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash,
+      filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-
+      traffic, pattern-in-memory, filename-pattern, stix2-pattern, yara,
+      sigma, vulnerability, cpe, weakness, attachment, malware-sample,
+      malware-type, comment, text, hex, x509-fingerprint-sha1, x509-
+      fingerprint-md5, x509-fingerprint-sha256, mobile-application-id,
+      chrome-extension-id, other, mime-type, anonymised
 
    Payload type
       comment, text, other, anonymised
@@ -657,6 +662,18 @@ Internet-Draft              MISP core format                    May 2020
    Attributes can be extended on a regular basis and this reference
    document is updated accordingly.
 
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 12]
+
+Internet-Draft              MISP core format                October 2020
+
+
 2.4.2.4.  category
 
    category represents the intent of what the attribute is describing as
@@ -666,13 +683,6 @@ Internet-Draft              MISP core format                    May 2020
    category is represented as a JSON string. category MUST be present
    and it MUST be a valid selection for the chosen type.  The list of
    valid category-type combinations is mentioned above.
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 12]
-
-Internet-Draft              MISP core format                    May 2020
-
 
 2.4.2.5.  to_ids
 
@@ -712,6 +722,14 @@ Internet-Draft              MISP core format                    May 2020
    2
       Connected Communities
 
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 13]
+
+Internet-Draft              MISP core format                October 2020
+
+
    3
       All Communities
 
@@ -720,15 +738,6 @@ Internet-Draft              MISP core format                    May 2020
 
    5
       Inherit Event
-
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 13]
-
-Internet-Draft              MISP core format                    May 2020
-
 
 2.4.2.8.  timestamp
 
@@ -770,6 +779,13 @@ Internet-Draft              MISP core format                    May 2020
    using a password protected zip archive, with the password being
    "infected".
 
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 14]
+
+Internet-Draft              MISP core format                October 2020
+
+
    data is represented by a JSON string in base64 encoding. data MUST be
    set for attributes of type malware-sample and attachment.
 
@@ -778,14 +794,6 @@ Internet-Draft              MISP core format                    May 2020
    RelatedAttribute is an array of attributes correlating with the
    current attribute.  Each element in the array represents an JSON
    object which contains an Attribute dictionnary with the external
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 14]
-
-Internet-Draft              MISP core format                    May 2020
-
-
    attributes who correlate.  Each Attribute MUST include the id,
    org_id, info and a value.  Only the correlations found on the local
    instance are shown in RelatedAttribute.
@@ -827,6 +835,13 @@ Internet-Draft              MISP core format                    May 2020
    seen. last_seen is expressed as an ISO 8601 datetime up to the micro-
    second with time zone support.
 
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 15]
+
+Internet-Draft              MISP core format                October 2020
+
+
    last_seen is represented as a JSON string. last_seen MAY be present.
 
 2.5.  ShadowAttribute
@@ -834,14 +849,6 @@ Internet-Draft              MISP core format                    May 2020
    ShadowAttributes are 3rd party created attributes that either propose
    to add new information to an event or modify existing information.
    They are not meant to be actionable until the event creator accepts
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 15]
-
-Internet-Draft              MISP core format                    May 2020
-
-
    them - at which point they will be converted into attributes or
    modify an existing attribute.
 
@@ -883,21 +890,20 @@ Internet-Draft              MISP core format                    May 2020
    the same event.  UUID version 4 is RECOMMENDED when assigning it to a
    new event.
 
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 16]
+
+Internet-Draft              MISP core format                October 2020
+
+
    uuid is represented as a JSON string. uuid MUST be present.
 
 2.5.2.2.  id
 
    id represents the human-readable identifier associated to the event
    for a specific MISP instance. human-readable identifier MUST be
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 16]
-
-Internet-Draft              MISP core format                    May 2020
-
-
    represented as an unsigned integer.  id is represented as a JSON
    string. id SHALL be present.
 
@@ -916,20 +922,21 @@ Internet-Draft              MISP core format                    May 2020
 
    Artifacts dropped
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
-      authentihash, vhash, cdhash, filename, filename|md5,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash,
+      impfuzzy, authentihash, vhash, cdhash, filename, filename|md5,
       filename|sha1, filename|sha224, filename|sha256, filename|sha384,
       filename|sha512, filename|sha512/224, filename|sha512/256,
       filename|sha3-224, filename|sha3-256, filename|sha3-384,
       filename|sha3-512, filename|authentihash, filename|vhash,
       filename|ssdeep, filename|tlsh, filename|imphash,
       filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-
-      in-file, pattern-in-memory, pdb, stix2-pattern, yara, sigma,
-      attachment, malware-sample, named pipe, mutex, windows-scheduled-
-      task, windows-service-name, windows-service-displayname, comment,
-      text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-
-      fingerprint-sha256, other, cookie, gene, kusto-query, mime-type,
-      anonymised, pgp-public-key, pgp-private-key
+      in-file, pattern-in-memory, filename-pattern, pdb, stix2-pattern,
+      yara, sigma, attachment, malware-sample, named pipe, mutex,
+      windows-scheduled-task, windows-service-name, windows-service-
+      displayname, comment, text, hex, x509-fingerprint-sha1, x509-
+      fingerprint-md5, x509-fingerprint-sha256, other, cookie, gene,
+      kusto-query, mime-type, anonymised, pgp-public-key, pgp-private-
+      key
 
    Attribution
       threat-actor, campaign-name, campaign-id, whois-registrant-phone,
@@ -939,25 +946,25 @@ Internet-Draft              MISP core format                    May 2020
       other, dns-soa-email, anonymised, email
 
    External analysis
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 17]
+
+Internet-Draft              MISP core format                October 2020
+
+
       md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512,
       filename, filename|md5, filename|sha1, filename|sha256,
       filename|sha3-224, filename|sha3-256, filename|sha3-384,
       filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-
       address, mac-eui-64, hostname, domain, domain|ip, url, user-agent,
       regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file,
-      pattern-in-traffic, pattern-in-memory, vulnerability, weakness,
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 17]
-
-Internet-Draft              MISP core format                    May 2020
-
-
-      attachment, malware-sample, link, comment, text, x509-fingerprint-
-      sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-
-      fingerprint-md5, hassh-md5, hasshserver-md5, github-repository,
-      other, cortex, anonymised, community-id
+      pattern-in-traffic, pattern-in-memory, filename-pattern,
+      vulnerability, cpe, weakness, attachment, malware-sample, link,
+      comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-
+      fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-
+      md5, github-repository, other, cortex, anonymised, community-id
 
    Financial fraud
       btc, dash, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-
@@ -970,11 +977,11 @@ Internet-Draft              MISP core format                    May 2020
       ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain,
       domain|ip, mac-address, mac-eui-64, email, email-dst, email-src,
       eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-
-      file, stix2-pattern, pattern-in-traffic, attachment, comment,
-      text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-
-      fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-
-      md5, other, hex, cookie, hostname|port, bro, zeek, anonymised,
-      community-id, email-subject
+      file, filename-pattern, stix2-pattern, pattern-in-traffic,
+      attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-
+      sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5,
+      hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek,
+      anonymised, community-id, email-subject
 
    Other
       comment, text, other, size-in-bytes, counter, datetime, cpe, port,
@@ -983,48 +990,50 @@ Internet-Draft              MISP core format                    May 2020
 
    Payload delivery
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
-      authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5,
-      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
-      filename|sha512, filename|sha512/224, filename|sha512/256,
-      filename|sha3-224, filename|sha3-256, filename|sha3-384,
-      filename|sha3-512, filename|authentihash, filename|vhash,
-      filename|ssdeep, filename|tlsh, filename|imphash,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash,
+      impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename,
+      filename|md5, filename|sha1, filename|sha224, filename|sha256,
+      filename|sha384, filename|sha512, filename|sha512/224,
+      filename|sha512/256, filename|sha3-224, filename|sha3-256,
+      filename|sha3-384, filename|sha3-512, filename|authentihash,
+      filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash,
       filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-
       src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email,
       email-src, email-dst, email-subject, email-attachment, email-body,
       url, user-agent, AS, pattern-in-file, pattern-in-traffic,
-      stix2-pattern, yara, sigma, mime-type, attachment, malware-sample,
-      link, malware-type, comment, text, hex, vulnerability, weakness,
-      x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-
-      sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other,
-      hostname|port, email-dst-display-name, email-src-display-name,
-      email-header, email-reply-to, email-x-mailer, email-mime-boundary,
-      email-thread-index, email-message-id, mobile-application-id,
-      chrome-extension-id, whois-registrant-email, anonymised
+      filename-pattern, stix2-pattern, yara, sigma, mime-type,
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 18]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 18]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
+
+      attachment, malware-sample, link, malware-type, comment, text,
+      hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-
+      fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5,
+      hassh-md5, hasshserver-md5, other, hostname|port, email-dst-
+      display-name, email-src-display-name, email-header, email-reply-
+      to, email-x-mailer, email-mime-boundary, email-thread-index,
+      email-message-id, mobile-application-id, chrome-extension-id,
+      whois-registrant-email, anonymised
 
    Payload installation
       md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256,
-      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy,
-      authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5,
-      filename|sha1, filename|sha224, filename|sha256, filename|sha384,
-      filename|sha512, filename|sha512/224, filename|sha512/256,
-      filename|sha3-224, filename|sha3-256, filename|sha3-384,
-      filename|sha3-512, filename|authentihash, filename|vhash,
-      filename|ssdeep, filename|tlsh, filename|imphash,
+      sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash,
+      impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename,
+      filename|md5, filename|sha1, filename|sha224, filename|sha256,
+      filename|sha384, filename|sha512, filename|sha512/224,
+      filename|sha512/256, filename|sha3-224, filename|sha3-256,
+      filename|sha3-384, filename|sha3-512, filename|authentihash,
+      filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash,
       filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-
-      traffic, pattern-in-memory, stix2-pattern, yara, sigma,
-      vulnerability, weakness, attachment, malware-sample, malware-type,
-      comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5,
-      x509-fingerprint-sha256, mobile-application-id, chrome-extension-
-      id, other, mime-type, anonymised
+      traffic, pattern-in-memory, filename-pattern, stix2-pattern, yara,
+      sigma, vulnerability, cpe, weakness, attachment, malware-sample,
+      malware-type, comment, text, hex, x509-fingerprint-sha1, x509-
+      fingerprint-md5, x509-fingerprint-sha256, mobile-application-id,
+      chrome-extension-id, other, mime-type, anonymised
 
    Payload type
       comment, text, other, anonymised
@@ -1050,21 +1059,19 @@ Internet-Draft              MISP core format                    May 2020
       other, whois-registrant-email, anonymised, pgp-public-key, pgp-
       private-key
 
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 19]
+
+Internet-Draft              MISP core format                October 2020
+
+
    Support Tool
       link, text, attachment, comment, other, hex, anonymised
 
    Targeting data
       target-user, target-email, target-machine, target-org, target-
       location, target-external, comment, anonymised
-
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 19]
-
-Internet-Draft              MISP core format                    May 2020
-
 
    Attributes are based on the usage within their different communities.
    Attributes can be extended on a regular basis and this reference
@@ -1106,6 +1113,15 @@ Internet-Draft              MISP core format                    May 2020
    Attribute object that the ShadowAttribute belongs to.  A
    ShadowAttribute can this way target an existing Attribute, implying
    that it is a proposal to modify an existing Attribute, or
+
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 20]
+
+Internet-Draft              MISP core format                October 2020
+
+
    alternatively it can be a proposal to create a new Attribute for the
    containing Event.
 
@@ -1113,14 +1129,6 @@ Internet-Draft              MISP core format                    May 2020
    the newly created Attribute's id on the instance.  Alternatively, if
    the ShadowAttribute proposes the creation of a new Attribute, it
    should be set to 0.
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 20]
-
-Internet-Draft              MISP core format                    May 2020
-
 
    old_id is represented as a JSON string. old_id MUST be present.
 
@@ -1162,6 +1170,14 @@ Internet-Draft              MISP core format                    May 2020
    proposal_to_delete is a JSON boolean and it MUST be present.  If
    proposal_to_delete is set to true, old_id MUST NOT be 0.
 
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 21]
+
+Internet-Draft              MISP core format                October 2020
+
+
 2.5.2.12.  deleted
 
    deleted represents a setting that allows shadow attributes to be
@@ -1169,14 +1185,6 @@ Internet-Draft              MISP core format                    May 2020
    instances that the shadow attribute is no longer active.
 
    deleted is represented by a JSON boolean. deleted SHOULD be present.
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 21]
-
-Internet-Draft              MISP core format                    May 2020
-
 
 2.5.2.13.  data
 
@@ -1218,21 +1226,18 @@ Internet-Draft              MISP core format                    May 2020
    instance and used as reference in the event.  A human-readable
    identifier MUST be represented as an unsigned integer.
 
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 22]
+
+Internet-Draft              MISP core format                October 2020
+
+
    uuid, name and id are represented as a JSON string. uuid, name and id
    MUST be present.
 
 2.5.3.1.  Sample Org Object
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 22]
-
-Internet-Draft              MISP core format                    May 2020
-
 
           "Org": {
                   "id": "2",
@@ -1280,14 +1285,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 23]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 23]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 "Object": {
@@ -1341,9 +1341,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 24]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 24]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 2.6.2.1.  uuid
@@ -1397,9 +1397,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 25]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 25]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 2.6.2.7.  template_version
@@ -1453,9 +1453,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 26]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 26]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
       Sharing Group
@@ -1509,9 +1509,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 27]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 27]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 2.6.2.16.  last_seen
@@ -1565,9 +1565,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 28]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 28]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 2.7.2.2.  id
@@ -1621,9 +1621,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 29]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 29]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 2.7.2.8.  relationship_type
@@ -1663,7 +1663,146 @@ Internet-Draft              MISP core format                    May 2020
    object reference.  The referenced_uuid MUST be preserved to preserve
    the object reference's association with the object or attribute.
 
-2.8.  Tag
+2.8.  EventReport
+
+   EventReport are used to complement an event with one or more report
+   in Markdown format.  The EventReport contains unstructured
+   information which can be linked to Attributes, Objects, Tags or
+   Galaxy with an extension to the Markdown marking language.
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 30]
+
+Internet-Draft              MISP core format                October 2020
+
+
+2.8.1.  id
+
+   id represents the human-readable identifier associated to the
+   EventReport for a specific MISP instance.  A human-readable
+   identifier MUST be represented as an unsigned integer.
+
+   id is represented as a JSON string. id SHALL be present.
+
+2.8.2.  UUID
+
+   uuid represents the Universally Unique IDentifier (UUID) [RFC4122] of
+   the EventReport.  The uuid MUST be preserved for any updates or
+   transfer of the same EventReport.  UUID version 4 is RECOMMENDED when
+   assigning it to a new EventReport.
+
+   uuid is represented as a JSON string. uuid MUST be present.
+
+2.8.3.  event_id
+
+   event_id represents the human-readable identifier associating the
+   EventReport to an event on a specific MISP instance.  A human-
+   readable identifier MUST be represented as an unsigned integer.
+
+   event_id is represented as a JSON string. event_id MUST be present.
+
+2.8.4.  name
+
+   name represents the information field of the EventReport. name is a
+   free-text value to provide a human-readable summary of the report.
+   name SHOULD NOT be bigger than 256 characters and SHOULD NOT include
+   new-lines.
+
+   name is represented as a JSON string. name MUST be present.
+
+2.8.5.  content
+
+   content includes the raw EventReport in Markdown format with or
+   without the specific MISP Markdown markup extension.
+
+   The markdown extension for MISP is composed with a symbol as prefix
+   then between square bracket the scope (attribute, object, tag or
+   galaxymatrix) followed by the UUID in parenthesis.
+
+   content is represented as a JSON string. content MUST be present.
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 31]
+
+Internet-Draft              MISP core format                October 2020
+
+
+2.8.6.  distribution
+
+   distribution represents the basic distribution rules of the
+   EventReport.  The system must adhere to the distribution setting for
+   access control and for dissemination of the EventReport.
+
+   distribution is represented by a JSON string. distribution MUST be
+   present and be one of the following options:
+
+   0
+      Your Organisation Only
+
+   1
+      This Community Only
+
+   2
+      Connected Communities
+
+   3
+      All Communities
+
+   4
+      Sharing Group
+
+   5
+      Inherit Event
+
+2.8.7.  sharing_group_id
+
+   sharing_group_id represents the local id to the MISP local instance
+   of the Sharing Group associated for the distribution.
+
+   sharing_group_id is represented by a JSON string. sharing_group_id
+   MUST be present and set to "0" if not used.
+
+2.8.8.  timestamp
+
+   timestamp represents a reference time when the EventReport was
+   created or last modified. timestamp is expressed in seconds (decimal)
+   since 1st of January 1970 (Unix timestamp).  The time zone MUST be
+   UTC.
+
+   timestamp is represented as a JSON string. timestamp MUST be present.
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 32]
+
+Internet-Draft              MISP core format                October 2020
+
+
+2.8.9.  deleted
+
+   deleted represents a setting that allows EventReport to be revoked.
+   Revoked EventReport are not actionable and exist merely to inform
+   other instances of a revocation.
+
+   deleted is represented by a JSON boolean. deleted MUST be present.
+
+2.9.  Tag
 
    A tag is a simple method to classify an event with a simple string.
    The tag name can be freely chosen.  The tag name can be also chosen
@@ -1675,13 +1814,6 @@ Internet-Draft              MISP core format                    May 2020
    or attribute level.  A tag element is described with a name, id,
    colour and exportable flag.
 
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 30]
-
-Internet-Draft              MISP core format                    May 2020
-
-
    exportable represents a setting if the tag is kept local or
    exportable to other MISP instances. exportable is represented by a
    JSON boolean. id is a human-readable identifier that references the
@@ -1689,7 +1821,7 @@ Internet-Draft              MISP core format                    May 2020
 
    name MUST be present. colour, id and exportable SHALL be present.
 
-2.8.1.  Sample Tag
+2.9.1.  Sample Tag
 
                        "Tag": [{
                                "exportable": true,
@@ -1697,7 +1829,7 @@ Internet-Draft              MISP core format                    May 2020
                                "name": "tlp:white",
                                "id": "2" }]
 
-2.9.  Sighting
+2.10.  Sighting
 
    A sighting is an ascertainment which describes whether an attribute
    has been seen under a given set of conditions.  The sighting can
@@ -1708,6 +1840,15 @@ Internet-Draft              MISP core format                    May 2020
 
    type MUST be present. type describes the type of a sighting.  MISP
    allows 3 default types:
+
+
+
+
+
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 33]
+
+Internet-Draft              MISP core format                October 2020
+
 
    +------------+------------------------------------------------------+
    |  Sighting  |                     Description                      |
@@ -1730,14 +1871,6 @@ Internet-Draft              MISP core format                    May 2020
 
    source MAY be present. source is represented as a JSON string and
    represents the human-readable version of the sighting source, which
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 31]
-
-Internet-Draft              MISP core format                    May 2020
-
-
    can be a given piece of software (e.g.  SIEM), device or a specific
    analytical process.
 
@@ -1760,7 +1893,7 @@ Internet-Draft              MISP core format                    May 2020
    A human-readable identifier MUST be represented as an unsigned
    integer.
 
-2.9.1.  Sample Sighting
+2.10.1.  Sample Sighting
 
 
 
@@ -1768,30 +1901,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 32]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 34]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 "Sighting": [
@@ -1827,13 +1939,13 @@ Internet-Draft              MISP core format                    May 2020
                         }
                 ]
 
-2.10.  Galaxy
+2.11.  Galaxy
 
    A galaxy is a simple method to express a large object called cluster
    that can be attached to MISP events.  A cluster can be composed of
    one or more elements.  Elements are expressed as key-values.
 
-2.10.1.  Sample Galaxy
+2.11.1.  Sample Galaxy
 
 
 
@@ -1845,9 +1957,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 33]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 35]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 "Galaxy": [ {
@@ -1901,9 +2013,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 34]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 36]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 3.  JSON Schema
@@ -1957,9 +2069,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 35]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 37]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
        "type": "object",
@@ -2013,9 +2125,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 36]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 38]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
            "items": {
@@ -2069,9 +2181,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 37]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 39]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
            "type": "string"
@@ -2125,9 +2237,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 38]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 40]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
            "type": "string"
@@ -2181,9 +2293,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 39]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 41]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
        "properties": {
@@ -2237,9 +2349,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 40]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 42]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
        "properties": {
@@ -2293,9 +2405,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 41]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 43]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
        "properties": {
@@ -2349,9 +2461,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 42]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 44]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
          },
@@ -2405,9 +2517,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 43]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 45]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
          },
@@ -2461,9 +2573,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 44]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 46]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
            "type": "string"
@@ -2517,9 +2629,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 45]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 47]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
            "uniqueItems": true,
@@ -2573,9 +2685,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 46]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 48]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
            "type": "boolean"
@@ -2629,9 +2741,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 47]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 49]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
        "type": "object",
@@ -2685,9 +2797,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 48]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 50]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
      "Event": {
@@ -2741,9 +2853,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 49]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 51]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
    o  integrity:pgp represents a detached PGP signature [RFC4880] of the
@@ -2797,9 +2909,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 50]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 52]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
         "name": "circl:incident-classification=\"malware\""
@@ -2853,9 +2965,9 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 51]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 53]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
 9.1.  Normative References
@@ -2909,9 +3021,9 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 52]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 54]
 
-Internet-Draft              MISP core format                    May 2020
+Internet-Draft              MISP core format                October 2020
 
 
    Alexandre Dulaunoy
@@ -2965,4 +3077,4 @@ Internet-Draft              MISP core format                    May 2020
 
 
 
-Dulaunoy & Iklody       Expires November 27, 2020              [Page 53]
+Dulaunoy & Iklody        Expires April 24, 2021                [Page 55]

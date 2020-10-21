@@ -396,12 +396,22 @@
 <link href="#rfc.section.2.7" rel="Chapter" title="2.7 Object References">
 <link href="#rfc.section.2.7.1" rel="Chapter" title="2.7.1 Sample ObjectReference object">
 <link href="#rfc.section.2.7.2" rel="Chapter" title="2.7.2 ObjectReference Attributes">
-<link href="#rfc.section.2.8" rel="Chapter" title="2.8 Tag">
-<link href="#rfc.section.2.8.1" rel="Chapter" title="2.8.1 Sample Tag">
-<link href="#rfc.section.2.9" rel="Chapter" title="2.9 Sighting">
-<link href="#rfc.section.2.9.1" rel="Chapter" title="2.9.1 Sample Sighting">
-<link href="#rfc.section.2.10" rel="Chapter" title="2.10 Galaxy">
-<link href="#rfc.section.2.10.1" rel="Chapter" title="2.10.1 Sample Galaxy">
+<link href="#rfc.section.2.8" rel="Chapter" title="2.8 EventReport">
+<link href="#rfc.section.2.8.1" rel="Chapter" title="2.8.1 id">
+<link href="#rfc.section.2.8.2" rel="Chapter" title="2.8.2 UUID">
+<link href="#rfc.section.2.8.3" rel="Chapter" title="2.8.3 event_id">
+<link href="#rfc.section.2.8.4" rel="Chapter" title="2.8.4 name">
+<link href="#rfc.section.2.8.5" rel="Chapter" title="2.8.5 content">
+<link href="#rfc.section.2.8.6" rel="Chapter" title="2.8.6 distribution">
+<link href="#rfc.section.2.8.7" rel="Chapter" title="2.8.7 sharing_group_id">
+<link href="#rfc.section.2.8.8" rel="Chapter" title="2.8.8 timestamp">
+<link href="#rfc.section.2.8.9" rel="Chapter" title="2.8.9 deleted">
+<link href="#rfc.section.2.9" rel="Chapter" title="2.9 Tag">
+<link href="#rfc.section.2.9.1" rel="Chapter" title="2.9.1 Sample Tag">
+<link href="#rfc.section.2.10" rel="Chapter" title="2.10 Sighting">
+<link href="#rfc.section.2.10.1" rel="Chapter" title="2.10.1 Sample Sighting">
+<link href="#rfc.section.2.11" rel="Chapter" title="2.11 Galaxy">
+<link href="#rfc.section.2.11.1" rel="Chapter" title="2.11.1 Sample Galaxy">
 <link href="#rfc.section.3" rel="Chapter" title="3 JSON Schema">
 <link href="#rfc.section.4" rel="Chapter" title="4 Manifest">
 <link href="#rfc.section.4.1" rel="Chapter" title="4.1 Format">
@@ -421,7 +431,7 @@
 
   <meta name="dct.creator" content="Dulaunoy, A. and A. Iklody" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-dulaunoy-misp-core-format" />
-  <meta name="dct.issued" scheme="ISO8601" content="2020-05-26" />
+  <meta name="dct.issued" scheme="ISO8601" content="2020-10-21" />
   <meta name="dct.abstract" content="This document describes the MISP core format used to exchange indicators and threat information between MISP (Open Source Threat Intelligence Sharing Platform formerly known as Malware Information Sharing Platform) instances.  The JSON format includes the overall structure along with the semantic associated for each respective key. The format is described to support other implementations which reuse the format and ensuring an interoperability with existing MISP  software and other Threat Intelligence Platforms.  " />
   <meta name="description" content="This document describes the MISP core format used to exchange indicators and threat information between MISP (Open Source Threat Intelligence Sharing Platform formerly known as Malware Information Sharing Platform) instances.  The JSON format includes the overall structure along with the semantic associated for each respective key. The format is described to support other implementations which reuse the format and ensuring an interoperability with existing MISP  software and other Threat Intelligence Platforms.  " />
 
@@ -445,8 +455,8 @@
 <td class="right">CIRCL</td>
 </tr>
 <tr>
-<td class="left">Expires: November 27, 2020</td>
-<td class="right">May 26, 2020</td>
+<td class="left">Expires: April 24, 2021</td>
+<td class="right">October 21, 2020</td>
 </tr>
 
     	
@@ -462,7 +472,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 27, 2020.</p>
+<p>This Internet-Draft will expire on April 24, 2021.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2020 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -516,17 +526,37 @@
 </li>
 <li>2.7.2.   <a href="#rfc.section.2.7.2">ObjectReference Attributes</a>
 </li>
-</ul><li>2.8.   <a href="#rfc.section.2.8">Tag</a>
+</ul><li>2.8.   <a href="#rfc.section.2.8">EventReport</a>
 </li>
-<ul><li>2.8.1.   <a href="#rfc.section.2.8.1">Sample Tag</a>
+<ul><li>2.8.1.   <a href="#rfc.section.2.8.1">id</a>
 </li>
-</ul><li>2.9.   <a href="#rfc.section.2.9">Sighting</a>
+<li>2.8.2.   <a href="#rfc.section.2.8.2">UUID</a>
 </li>
-<ul><li>2.9.1.   <a href="#rfc.section.2.9.1">Sample Sighting</a>
+<li>2.8.3.   <a href="#rfc.section.2.8.3">event_id</a>
 </li>
-</ul><li>2.10.   <a href="#rfc.section.2.10">Galaxy</a>
+<li>2.8.4.   <a href="#rfc.section.2.8.4">name</a>
 </li>
-<ul><li>2.10.1.   <a href="#rfc.section.2.10.1">Sample Galaxy</a>
+<li>2.8.5.   <a href="#rfc.section.2.8.5">content</a>
+</li>
+<li>2.8.6.   <a href="#rfc.section.2.8.6">distribution</a>
+</li>
+<li>2.8.7.   <a href="#rfc.section.2.8.7">sharing_group_id</a>
+</li>
+<li>2.8.8.   <a href="#rfc.section.2.8.8">timestamp</a>
+</li>
+<li>2.8.9.   <a href="#rfc.section.2.8.9">deleted</a>
+</li>
+</ul><li>2.9.   <a href="#rfc.section.2.9">Tag</a>
+</li>
+<ul><li>2.9.1.   <a href="#rfc.section.2.9.1">Sample Tag</a>
+</li>
+</ul><li>2.10.   <a href="#rfc.section.2.10">Sighting</a>
+</li>
+<ul><li>2.10.1.   <a href="#rfc.section.2.10.1">Sample Sighting</a>
+</li>
+</ul><li>2.11.   <a href="#rfc.section.2.11">Galaxy</a>
+</li>
+<ul><li>2.11.1.   <a href="#rfc.section.2.11.1">Sample Galaxy</a>
 </li>
 </ul></ul><li>3.   <a href="#rfc.section.3">JSON Schema</a>
 </li>
@@ -794,13 +824,13 @@
 <br> link, comment, text, hex, attachment, other, anonymised</dd>
 <dt>Artifacts dropped</dt>
 <dd style="margin-left: 8">
-<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy, authentihash, vhash, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, pdb, stix2-pattern, yara, sigma, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, other, cookie, gene, kusto-query, mime-type, anonymised, pgp-public-key, pgp-private-key</dd>
+<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, filename-pattern, pdb, stix2-pattern, yara, sigma, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, other, cookie, gene, kusto-query, mime-type, anonymised, pgp-public-key, pgp-private-key</dd>
 <dt>Attribution</dt>
 <dd style="margin-left: 8">
 <br> threat-actor, campaign-name, campaign-id, whois-registrant-phone, whois-registrant-email, whois-registrant-name, whois-registrant-org, whois-registrar, whois-creation-date, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, other, dns-soa-email, anonymised, email</dd>
 <dt>External analysis</dt>
 <dd style="margin-left: 8">
-<br> md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512, filename, filename|md5, filename|sha1, filename|sha256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, weakness, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, github-repository, other, cortex, anonymised, community-id</dd>
+<br> md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512, filename, filename|md5, filename|sha1, filename|sha256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, vulnerability, cpe, weakness, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, github-repository, other, cortex, anonymised, community-id</dd>
 <dt>Financial fraud</dt>
 <dd style="margin-left: 8">
 <br> btc, dash, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, phone-number, comment, text, other, hex, anonymised</dd>
@@ -809,16 +839,16 @@
 <br> text, link, comment, other, hex, anonymised, git-commit-id</dd>
 <dt>Network activity</dt>
 <dd style="margin-left: 8">
-<br> ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject</dd>
+<br> ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject</dd>
 <dt>Other</dt>
 <dd style="margin-left: 8">
 <br> comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key</dd>
 <dt>Payload delivery</dt>
 <dd style="margin-left: 8">
-<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised</dd>
+<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, filename-pattern, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised</dd>
 <dt>Payload installation</dt>
 <dd style="margin-left: 8">
-<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, stix2-pattern, yara, sigma, vulnerability, weakness, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, mobile-application-id, chrome-extension-id, other, mime-type, anonymised</dd>
+<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, stix2-pattern, yara, sigma, vulnerability, cpe, weakness, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, mobile-application-id, chrome-extension-id, other, mime-type, anonymised</dd>
 <dt>Payload type</dt>
 <dd style="margin-left: 8">
 <br> comment, text, other, anonymised</dd>
@@ -993,13 +1023,13 @@
 <br> link, comment, text, hex, attachment, other, anonymised</dd>
 <dt>Artifacts dropped</dt>
 <dd style="margin-left: 8">
-<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy, authentihash, vhash, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, pdb, stix2-pattern, yara, sigma, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, other, cookie, gene, kusto-query, mime-type, anonymised, pgp-public-key, pgp-private-key</dd>
+<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, regkey, regkey|value, pattern-in-file, pattern-in-memory, filename-pattern, pdb, stix2-pattern, yara, sigma, attachment, malware-sample, named pipe, mutex, windows-scheduled-task, windows-service-name, windows-service-displayname, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, other, cookie, gene, kusto-query, mime-type, anonymised, pgp-public-key, pgp-private-key</dd>
 <dt>Attribution</dt>
 <dd style="margin-left: 8">
 <br> threat-actor, campaign-name, campaign-id, whois-registrant-phone, whois-registrant-email, whois-registrant-name, whois-registrant-org, whois-registrar, whois-creation-date, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, other, dns-soa-email, anonymised, email</dd>
 <dt>External analysis</dt>
 <dd style="margin-left: 8">
-<br> md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512, filename, filename|md5, filename|sha1, filename|sha256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, vulnerability, weakness, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, github-repository, other, cortex, anonymised, community-id</dd>
+<br> md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512, filename, filename|md5, filename|sha1, filename|sha256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, vulnerability, cpe, weakness, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, github-repository, other, cortex, anonymised, community-id</dd>
 <dt>Financial fraud</dt>
 <dd style="margin-left: 8">
 <br> btc, dash, xmr, iban, bic, bank-account-nr, aba-rtn, bin, cc-number, prtn, phone-number, comment, text, other, hex, anonymised</dd>
@@ -1008,16 +1038,16 @@
 <br> text, link, comment, other, hex, anonymised, git-commit-id</dd>
 <dt>Network activity</dt>
 <dd style="margin-left: 8">
-<br> ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject</dd>
+<br> ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject</dd>
 <dt>Other</dt>
 <dd style="margin-left: 8">
 <br> comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key</dd>
 <dt>Payload delivery</dt>
 <dd style="margin-left: 8">
-<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised</dd>
+<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, filename-pattern, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised</dd>
 <dt>Payload installation</dt>
 <dd style="margin-left: 8">
-<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, stix2-pattern, yara, sigma, vulnerability, weakness, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, mobile-application-id, chrome-extension-id, other, mime-type, anonymised</dd>
+<br> md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, stix2-pattern, yara, sigma, vulnerability, cpe, weakness, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, mobile-application-id, chrome-extension-id, other, mime-type, anonymised</dd>
 <dt>Payload type</dt>
 <dd style="margin-left: 8">
 <br> comment, text, other, anonymised</dd>
@@ -1368,13 +1398,87 @@
 </h1>
 <p id="rfc.section.2.7.2.12.p.1">referenced_uuid represents the Universally Unique IDentifier (UUID) <a href="#RFC4122" class="xref">[RFC4122]</a> of the object or attribute that is being referenced by the object reference. The referenced_uuid MUST be preserved to preserve the object reference's association with the object or attribute.  </p>
 <h1 id="rfc.section.2.8">
-<a href="#rfc.section.2.8">2.8.</a> <a href="#tag" id="tag">Tag</a>
+<a href="#rfc.section.2.8">2.8.</a> <a href="#eventreport" id="eventreport">EventReport</a>
 </h1>
-<p id="rfc.section.2.8.p.1">A tag is a simple method to classify an event with a simple string. The tag name can be freely chosen. The tag name can be also chosen from a fixed machine-tag vocabulary called MISP taxonomies[<a href="#MISP-T" class="xref">[MISP-T]</a>]. When an event is distributed outside an organisation, the use of MISP taxonomies[<a href="#MISP-T" class="xref">[MISP-T]</a>] is RECOMMENDED to ensure a coherent naming of the tags. A tag is represented as a JSON array where each element describes each tag associated. A tag array SHALL be at event level or attribute level. A tag element is described with a name, id, colour and exportable flag.  </p>
-<p id="rfc.section.2.8.p.2">exportable represents a setting if the tag is kept local or exportable to other MISP instances. exportable is represented by a JSON boolean. id is a human-readable identifier that references the tag on the local instance. colour represents an RGB value of the tag.  </p>
-<p id="rfc.section.2.8.p.3">name MUST be present. colour, id and exportable SHALL be present.  </p>
+<p id="rfc.section.2.8.p.1">EventReport are used to complement an event with one or more report in Markdown format. The EventReport contains unstructured information which can be linked to Attributes, Objects, Tags or Galaxy with an extension to the Markdown marking language.  </p>
 <h1 id="rfc.section.2.8.1">
-<a href="#rfc.section.2.8.1">2.8.1.</a> <a href="#sample-tag" id="sample-tag">Sample Tag</a>
+<a href="#rfc.section.2.8.1">2.8.1.</a> <a href="#id-5" id="id-5">id</a>
+</h1>
+<p id="rfc.section.2.8.1.p.1">id represents the human-readable identifier associated to the EventReport for a specific MISP instance. A human-readable identifier MUST be represented as an unsigned integer.  </p>
+<p id="rfc.section.2.8.1.p.2">id is represented as a JSON string. id SHALL be present.  </p>
+<h1 id="rfc.section.2.8.2">
+<a href="#rfc.section.2.8.2">2.8.2.</a> <a href="#uuid-5" id="uuid-5">UUID</a>
+</h1>
+<p id="rfc.section.2.8.2.p.1">uuid represents the Universally Unique IDentifier (UUID) <a href="#RFC4122" class="xref">[RFC4122]</a> of the EventReport. The uuid MUST be preserved for any updates or transfer of the same EventReport. UUID version 4 is RECOMMENDED when assigning it to a new EventReport.  </p>
+<p id="rfc.section.2.8.2.p.2">uuid is represented as a JSON string. uuid MUST be present.  </p>
+<h1 id="rfc.section.2.8.3">
+<a href="#rfc.section.2.8.3">2.8.3.</a> <a href="#eventid-4" id="eventid-4">event_id</a>
+</h1>
+<p id="rfc.section.2.8.3.p.1">event_id represents the human-readable identifier associating the EventReport to an event on a specific MISP instance. A human-readable identifier MUST be represented as an unsigned integer.  </p>
+<p id="rfc.section.2.8.3.p.2">event_id is represented as a JSON string. event_id  MUST be present.  </p>
+<h1 id="rfc.section.2.8.4">
+<a href="#rfc.section.2.8.4">2.8.4.</a> <a href="#name-1" id="name-1">name</a>
+</h1>
+<p id="rfc.section.2.8.4.p.1">name represents the information field of the EventReport. name is a free-text value to provide a human-readable summary of the report. name SHOULD NOT be bigger than 256 characters and SHOULD NOT include new-lines.  </p>
+<p id="rfc.section.2.8.4.p.2">name is represented as a JSON string. name MUST be present.  </p>
+<h1 id="rfc.section.2.8.5">
+<a href="#rfc.section.2.8.5">2.8.5.</a> <a href="#content" id="content">content</a>
+</h1>
+<p id="rfc.section.2.8.5.p.1">content includes the raw EventReport in Markdown format with or without the specific MISP Markdown markup extension.  </p>
+<p id="rfc.section.2.8.5.p.2">The markdown extension for MISP is composed with a symbol as prefix then between square bracket the scope (attribute, object, tag or galaxymatrix) followed by the UUID in parenthesis.  </p>
+<p id="rfc.section.2.8.5.p.3">content is represented as a JSON string. content MUST be present.  </p>
+<h1 id="rfc.section.2.8.6">
+<a href="#rfc.section.2.8.6">2.8.6.</a> <a href="#distribution-3" id="distribution-3">distribution</a>
+</h1>
+<p id="rfc.section.2.8.6.p.1">distribution represents the basic distribution rules of the EventReport. The system must adhere to the distribution setting for access control and for dissemination of the EventReport.  </p>
+<p id="rfc.section.2.8.6.p.2">distribution is represented by a JSON string. distribution MUST be present and be one of the following options: </p>
+<p></p>
+
+<dl>
+<dt>0</dt>
+<dd style="margin-left: 8">
+<br> Your Organisation Only</dd>
+<dt>1</dt>
+<dd style="margin-left: 8">
+<br> This Community Only</dd>
+<dt>2</dt>
+<dd style="margin-left: 8">
+<br> Connected Communities</dd>
+<dt>3</dt>
+<dd style="margin-left: 8">
+<br> All Communities</dd>
+<dt>4</dt>
+<dd style="margin-left: 8">
+<br> Sharing Group</dd>
+<dt>5</dt>
+<dd style="margin-left: 8">
+<br> Inherit Event</dd>
+</dl>
+
+<p> </p>
+<h1 id="rfc.section.2.8.7">
+<a href="#rfc.section.2.8.7">2.8.7.</a> <a href="#sharinggroupid-3" id="sharinggroupid-3">sharing_group_id</a>
+</h1>
+<p id="rfc.section.2.8.7.p.1">sharing_group_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.  </p>
+<p id="rfc.section.2.8.7.p.2">sharing_group_id is represented by a JSON string. sharing_group_id MUST be present and set to "0" if not used.  </p>
+<h1 id="rfc.section.2.8.8">
+<a href="#rfc.section.2.8.8">2.8.8.</a> <a href="#timestamp-5" id="timestamp-5">timestamp</a>
+</h1>
+<p id="rfc.section.2.8.8.p.1">timestamp represents a reference time when the EventReport was created or last modified. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone MUST be UTC.  </p>
+<p id="rfc.section.2.8.8.p.2">timestamp is represented as a JSON string. timestamp MUST be present.  </p>
+<h1 id="rfc.section.2.8.9">
+<a href="#rfc.section.2.8.9">2.8.9.</a> <a href="#deleted-4" id="deleted-4">deleted</a>
+</h1>
+<p id="rfc.section.2.8.9.p.1">deleted represents a setting that allows EventReport to be revoked. Revoked EventReport are not actionable and exist merely to inform other instances of a revocation.  </p>
+<p id="rfc.section.2.8.9.p.2">deleted is represented by a JSON boolean. deleted MUST be present.  </p>
+<h1 id="rfc.section.2.9">
+<a href="#rfc.section.2.9">2.9.</a> <a href="#tag" id="tag">Tag</a>
+</h1>
+<p id="rfc.section.2.9.p.1">A tag is a simple method to classify an event with a simple string. The tag name can be freely chosen. The tag name can be also chosen from a fixed machine-tag vocabulary called MISP taxonomies[<a href="#MISP-T" class="xref">[MISP-T]</a>]. When an event is distributed outside an organisation, the use of MISP taxonomies[<a href="#MISP-T" class="xref">[MISP-T]</a>] is RECOMMENDED to ensure a coherent naming of the tags. A tag is represented as a JSON array where each element describes each tag associated. A tag array SHALL be at event level or attribute level. A tag element is described with a name, id, colour and exportable flag.  </p>
+<p id="rfc.section.2.9.p.2">exportable represents a setting if the tag is kept local or exportable to other MISP instances. exportable is represented by a JSON boolean. id is a human-readable identifier that references the tag on the local instance. colour represents an RGB value of the tag.  </p>
+<p id="rfc.section.2.9.p.3">name MUST be present. colour, id and exportable SHALL be present.  </p>
+<h1 id="rfc.section.2.9.1">
+<a href="#rfc.section.2.9.1">2.9.1.</a> <a href="#sample-tag" id="sample-tag">Sample Tag</a>
 </h1>
 <pre>
 "Tag": [{
@@ -1383,11 +1487,11 @@
         "name": "tlp:white",
         "id": "2" }]
 </pre>
-<h1 id="rfc.section.2.9">
-<a href="#rfc.section.2.9">2.9.</a> <a href="#sighting" id="sighting">Sighting</a>
+<h1 id="rfc.section.2.10">
+<a href="#rfc.section.2.10">2.10.</a> <a href="#sighting" id="sighting">Sighting</a>
 </h1>
-<p id="rfc.section.2.9.p.1">A sighting is an ascertainment which describes whether an attribute has been seen under a given set of conditions. The sighting can include the organisation who sighted the attribute or can be anonymised. Sighting is composed of a JSON array in which each element describes one singular instance of a sighting. A sighting element is a JSON object composed of the following values: </p>
-<p id="rfc.section.2.9.p.2">type MUST be present. type describes the type of a sighting. MISP allows 3 default types: </p>
+<p id="rfc.section.2.10.p.1">A sighting is an ascertainment which describes whether an attribute has been seen under a given set of conditions. The sighting can include the organisation who sighted the attribute or can be anonymised. Sighting is composed of a JSON array in which each element describes one singular instance of a sighting. A sighting element is a JSON object composed of the following values: </p>
+<p id="rfc.section.2.10.p.2">type MUST be present. type describes the type of a sighting. MISP allows 3 default types: </p>
 <table cellpadding="3" cellspacing="0" class="tt full center">
 <thead><tr>
 <th class="center">Sighting type</th>
@@ -1408,16 +1512,16 @@
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.2.9.p.3">uuid MUST be present. uuid references the uuid of the sighted attribute.  </p>
-<p id="rfc.section.2.9.p.4">date_sighting MUST be present. date_sighting is expressed in seconds (decimal) elapsed since 1st of January 1970 (Unix timestamp). date_sighting represents when the referenced attribute, designated by its uuid, is sighted.  </p>
-<p id="rfc.section.2.9.p.5">source MAY be present. source is represented as a JSON string and represents the human-readable version of the sighting source, which can be a given piece of software (e.g. SIEM), device or a specific analytical process.  </p>
-<p id="rfc.section.2.9.p.6">id, event_id and attribute_id MAY be present.  </p>
-<p id="rfc.section.2.9.p.7">id represents the human-readable identifier of the sighting reference which belongs to a specific MISP instance.  event_id represents the human-readable identifier of the event referenced by the sighting and belongs to a specific MISP instance.  attribute_id represents the human-readable identifier of the attribute referenced by the sighting and belongs to a specific MISP instance.  </p>
-<p id="rfc.section.2.9.p.8">org_id MAY be present along the JSON object describing the organisation. If the org_id is not present, the sighting is considered as anonymised.  </p>
-<p id="rfc.section.2.9.p.9">org_id represents the human-readable identifier of the organisation which did the sighting and belongs to a specific MISP instance.  </p>
-<p id="rfc.section.2.9.p.10">A human-readable identifier MUST be represented as an unsigned integer.  </p>
-<h1 id="rfc.section.2.9.1">
-<a href="#rfc.section.2.9.1">2.9.1.</a> <a href="#sample-sighting" id="sample-sighting">Sample Sighting</a>
+<p id="rfc.section.2.10.p.3">uuid MUST be present. uuid references the uuid of the sighted attribute.  </p>
+<p id="rfc.section.2.10.p.4">date_sighting MUST be present. date_sighting is expressed in seconds (decimal) elapsed since 1st of January 1970 (Unix timestamp). date_sighting represents when the referenced attribute, designated by its uuid, is sighted.  </p>
+<p id="rfc.section.2.10.p.5">source MAY be present. source is represented as a JSON string and represents the human-readable version of the sighting source, which can be a given piece of software (e.g. SIEM), device or a specific analytical process.  </p>
+<p id="rfc.section.2.10.p.6">id, event_id and attribute_id MAY be present.  </p>
+<p id="rfc.section.2.10.p.7">id represents the human-readable identifier of the sighting reference which belongs to a specific MISP instance.  event_id represents the human-readable identifier of the event referenced by the sighting and belongs to a specific MISP instance.  attribute_id represents the human-readable identifier of the attribute referenced by the sighting and belongs to a specific MISP instance.  </p>
+<p id="rfc.section.2.10.p.8">org_id MAY be present along the JSON object describing the organisation. If the org_id is not present, the sighting is considered as anonymised.  </p>
+<p id="rfc.section.2.10.p.9">org_id represents the human-readable identifier of the organisation which did the sighting and belongs to a specific MISP instance.  </p>
+<p id="rfc.section.2.10.p.10">A human-readable identifier MUST be represented as an unsigned integer.  </p>
+<h1 id="rfc.section.2.10.1">
+<a href="#rfc.section.2.10.1">2.10.1.</a> <a href="#sample-sighting" id="sample-sighting">Sample Sighting</a>
 </h1>
 <pre>
 "Sighting": [
@@ -1453,12 +1557,12 @@
 			}
 		]
 </pre>
-<h1 id="rfc.section.2.10">
-<a href="#rfc.section.2.10">2.10.</a> <a href="#galaxy" id="galaxy">Galaxy</a>
+<h1 id="rfc.section.2.11">
+<a href="#rfc.section.2.11">2.11.</a> <a href="#galaxy" id="galaxy">Galaxy</a>
 </h1>
-<p id="rfc.section.2.10.p.1">A galaxy is a simple method to express a large object called cluster that can be attached to MISP events. A cluster can be composed of one or more elements. Elements are expressed as key-values.  </p>
-<h1 id="rfc.section.2.10.1">
-<a href="#rfc.section.2.10.1">2.10.1.</a> <a href="#sample-galaxy" id="sample-galaxy">Sample Galaxy</a>
+<p id="rfc.section.2.11.p.1">A galaxy is a simple method to express a large object called cluster that can be attached to MISP events. A cluster can be composed of one or more elements. Elements are expressed as key-values.  </p>
+<h1 id="rfc.section.2.11.1">
+<a href="#rfc.section.2.11.1">2.11.1.</a> <a href="#sample-galaxy" id="sample-galaxy">Sample Galaxy</a>
 </h1>
 <pre>
 "Galaxy": [ {
