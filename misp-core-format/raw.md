@@ -5,8 +5,14 @@ category = "info"
 docName = "draft-dulaunoy-misp-core-format"
 ipr= "trust200902"
 area = "Security"
+submissiontype = "independent"
 
-date = 2020-10-21T00:00:00Z
+[seriesInfo]
+name = "Internet-Draft"
+value = "draft-00"
+stream = "independent"
+status = "informational"
+
 
 [[author]]
 initials="A."
@@ -328,7 +334,7 @@ Internal reference
 :   text, link, comment, other, hex, anonymised, git-commit-id
 
 Network activity
-:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3
+:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint
 
 Other
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key
@@ -346,7 +352,7 @@ Persistence mechanism
 :   filename, regkey, regkey|value, comment, text, other, hex, anonymised
 
 Person
-:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number, identity-card-number, anonymised, email, pgp-public-key, pgp-private-key
+:   first-name, middle-name, last-name, full-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number, identity-card-number, anonymised, email, pgp-public-key, pgp-private-key
 
 Social network
 :   github-username, github-repository, github-organisation, jabber-id, twitter-id, email, email-src, email-dst, eppn, comment, text, other, whois-registrant-email, anonymised, pgp-public-key, pgp-private-key
@@ -538,7 +544,7 @@ Internal reference
 :   text, link, comment, other, hex, anonymised, git-commit-id
 
 Network activity
-:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3
+:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint
 
 Other
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key
@@ -556,7 +562,7 @@ Persistence mechanism
 :   filename, regkey, regkey|value, comment, text, other, hex, anonymised
 
 Person
-:   first-name, middle-name, last-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number, identity-card-number, anonymised, email, pgp-public-key, pgp-private-key
+:   first-name, middle-name, last-name, full-name, date-of-birth, place-of-birth, gender, passport-number, passport-country, passport-expiration, redress-number, nationality, visa-number, issue-date-of-the-visa, primary-residence, country-of-residence, special-service-request, frequent-flyer-number, travel-details, payment-details, place-port-of-original-embarkation, place-port-of-clearance, place-port-of-onward-foreign-destination, passenger-name-record-locator-number, comment, text, other, phone-number, identity-card-number, anonymised, email, pgp-public-key, pgp-private-key
 
 Social network
 :   github-username, github-repository, github-organisation, jabber-id, twitter-id, email, email-src, email-dst, eppn, comment, text, other, whois-registrant-email, anonymised, pgp-public-key, pgp-private-key
