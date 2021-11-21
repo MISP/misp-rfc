@@ -5,8 +5,14 @@ category = "info"
 docName = "draft-dulaunoy-misp-object-template-format"
 ipr= "trust200902"
 area = "Security"
+submissiontype = "independent"
 
-date = 2021-01-05T00:00:00Z
+[seriesInfo]
+name = "Internet-Draft"
+value = "draft-00"
+stream = "independent"
+status = "informational"
+
 
 [[author]]
 initials="A."
