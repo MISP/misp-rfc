@@ -925,7 +925,7 @@ referenced_type is represented as a JSON string. referenced_type **MAY** be pres
 
 relationship_type represents the human-readable context of the relationship between an object and another object or attribute as described by the object_reference.
 
-referenced_type is represented as a JSON string. relationship_type **MUST** be present.
+relationship_type is represented as a JSON string. relationship_type **MUST** be present.
 
 #### comment
 
