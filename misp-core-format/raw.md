@@ -900,7 +900,7 @@ timestamp is represented as a JSON string. timestamp **MUST** be present.
 object_id represents the human-readable identifier of the object that the object reference belongs to on a specific MISP instance. A human-readable identifier **MUST** be
 represented as an unsigned integer.
 
-event_id is represented as a JSON string. event_id **SHALL** be present.
+object_id is represented as a JSON string. object_id **SHALL** be present.
 
 #### event_id
 
