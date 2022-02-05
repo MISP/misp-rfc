@@ -752,20 +752,20 @@ id is represented as a JSON string. id **SHALL** be present.
 
 name represents the human-readable name of the object describing the intent of the object package.
 
-name is represented as a JSON string. name **MUST** be present
+name is represented as a JSON string. name **MUST** be present.
 
 #### meta-category
 
 meta-category represents the sub-category of objects that the given object belongs to. meta-categories are not
 tied to a fixed list of options but can be created on the fly.
 
-meta-category is represented as a JSON string. meta-category **MUST** be present
+meta-category is represented as a JSON string. meta-category **MUST** be present.
 
 #### description
 
 description is a human-readable description of the given object type, as derived from the template used for creation.
 
-description is represented as a JSON string. id **SHALL** be present.
+description is represented as a JSON string. description **SHALL** be present.
 
 #### template\_uuid
 
