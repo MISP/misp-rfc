@@ -827,7 +827,7 @@ comment is represented by a JSON string. comment **MAY** be present.
 
 #### deleted
 
-deleted represents a setting that allows attributes to be revoked. Revoked attributes are not actionable and exist merely to inform other instances of a revocation.
+deleted represents a setting that allows objects to be revoked. Revoked objects are not actionable and exist merely to inform other instances of a revocation.
 
 deleted is represented by a JSON boolean. deleted **MUST** be present.
 
