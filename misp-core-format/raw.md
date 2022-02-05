@@ -769,15 +769,17 @@ description is represented as a JSON string. id **SHALL** be present.
 
 #### template\_uuid
 
-uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the template used to create the object. The uuid **MUST** be preserved
+template_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the template used to create the object. The uuid **MUST** be preserved
 to preserve the object's association with the correct template used for creation. UUID version 4 is **RECOMMENDED** when assigning it to a new object.
+
+template_uuid is represented as a JSON string. template_uuid **MUST** be present.
 
 #### template\_version
 
 template_version represents a numeric incrementing version of the template used to create the object. It is used to associate the object to the
 correct version of the template and together with the template_uuid forms an association to the correct template type and version.
 
-version is represented as a JSON string. version **MUST** be present.
+template_version is represented as a JSON string. template_version **MUST** be present.
 
 #### event\_id
 
