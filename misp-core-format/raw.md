@@ -1071,7 +1071,7 @@ date_sighting **MUST** be present. date_sighting is expressed in seconds (decima
 
 source **MAY** be present. source is represented as a JSON string and represents the human-readable version of the sighting source, which can be a given piece of software (e.g. SIEM), device or a specific analytical process.
 
-id, event_id and attribute_id **MAY** be present.
+id, event_id and attribute_id are represented as a JSON string and **MAY** be present.
 
 id represents the human-readable identifier of the sighting reference which belongs to a specific MISP instance.
 event_id represents the human-readable identifier of the event referenced by the sighting and belongs to a specific MISP instance.
@@ -1081,7 +1081,7 @@ org_id **MAY** be present along the JSON object describing the organisation. If 
 
 org_id represents the human-readable identifier of the organisation which did the sighting and belongs to a specific MISP instance.
 
-A human-readable identifier **MUST** be represented as an unsigned integer.
+A human-readable identifier **MUST** be considered as an unsigned integer.
 
 ### Sample Sighting
 
