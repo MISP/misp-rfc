@@ -223,9 +223,9 @@ extends\_uuid represents which event is extended by this event. The extends\_uui
 
 extends\_uuid is represented as a JSON string. extends\_uuid **SHOULD** be present.
 
-## Objects
+### Event Objects
 
-### Org
+#### Org
 
 An Org object is composed of an uuid, name and id.
 
@@ -238,7 +238,7 @@ A human-readable identifier **MUST** be represented as an unsigned integer.
 
 uuid, name and id are represented as a JSON string. uuid, name and id **MUST** be present.
 
-#### Sample Org Object
+##### Sample Org Object
 
 ~~~~
 "Org": {
@@ -248,7 +248,7 @@ uuid, name and id are represented as a JSON string. uuid, name and id **MUST** b
        }
 ~~~~
 
-### Orgc
+#### Orgc
 
 An Orgc object is composed of an uuid, name and id.
 
@@ -655,7 +655,15 @@ last_seen represents a reference time when the attribute was last seen. last_see
 
 last_seen is represented as a JSON string. last_seen **MAY** be present.
 
-### Org
+#### value
+
+value represents the payload of an attribute. The format of the value is dependent on the type of the attribute.
+
+value is represented by a JSON string. value **MUST** be present.
+
+### ShadowAttribute Objects
+
+#### Org
 
 An Org object is composed of an uuid, name and id.
 
@@ -668,7 +676,7 @@ A human-readable identifier **MUST** be represented as an unsigned integer.
 
 uuid, name and id are represented as a JSON string. uuid, name and id **MUST** be present.
 
-#### Sample Org Object
+##### Sample Org Object
 
 ~~~~
 "Org": {
@@ -677,12 +685,6 @@ uuid, name and id are represented as a JSON string. uuid, name and id **MUST** b
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
 ~~~~
-
-#### value
-
-value represents the payload of an attribute. The format of the value is dependent on the type of the attribute.
-
-value is represented by a JSON string. value **MUST** be present.
 
 ## Object
 
@@ -1076,7 +1078,7 @@ date_sighting **MUST** be present. date_sighting is expressed in seconds (decima
 
 source **MAY** be present. source is represented as a JSON string and represents the human-readable version of the sighting source, which can be a given piece of software (e.g. SIEM), device or a specific analytical process.
 
-id, event_id and attribute_id **MAY** be present.
+id, event_id and attribute_id are represented as a JSON string and **MAY** be present.
 
 id represents the human-readable identifier of the sighting reference which belongs to a specific MISP instance.
 event_id represents the human-readable identifier of the event referenced by the sighting and belongs to a specific MISP instance.
@@ -1086,7 +1088,7 @@ org_id **MAY** be present along the JSON object describing the organisation. If 
 
 org_id represents the human-readable identifier of the organisation which did the sighting and belongs to a specific MISP instance.
 
-A human-readable identifier **MUST** be represented as an unsigned integer.
+A human-readable identifier **MUST** be considered as an unsigned integer.
 
 ### Sample Sighting
 
