@@ -333,7 +333,7 @@ Internal reference
 :   text, link, comment, other, hex, anonymised, git-commit-id
 
 Network activity
-:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature
+:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint
 
 Other
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key
@@ -543,7 +543,7 @@ Internal reference
 :   text, link, comment, other, hex, anonymised, git-commit-id
 
 Network activity
-:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature
+:   ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint
 
 Other
 :   comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key
