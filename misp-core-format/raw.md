@@ -218,9 +218,9 @@ extends\_uuid represents which event is extended by this event. The extends\_uui
 
 extends\_uuid is represented as a JSON string. extends\_uuid **SHOULD** be present.
 
-## Objects
+### Event Objects
 
-### Org
+#### Org
 
 An Org object is composed of an uuid, name and id.
 
@@ -233,7 +233,7 @@ A human-readable identifier **MUST** be represented as an unsigned integer.
 
 uuid, name and id are represented as a JSON string. uuid, name and id **MUST** be present.
 
-#### Sample Org Object
+##### Sample Org Object
 
 ~~~~
 "Org": {
@@ -243,7 +243,7 @@ uuid, name and id are represented as a JSON string. uuid, name and id **MUST** b
        }
 ~~~~
 
-### Orgc
+#### Orgc
 
 An Orgc object is composed of an uuid, name and id.
 
@@ -650,7 +650,15 @@ last_seen represents a reference time when the attribute was last seen. last_see
 
 last_seen is represented as a JSON string. last_seen **MAY** be present.
 
-### Org
+#### value
+
+value represents the payload of an attribute. The format of the value is dependent on the type of the attribute.
+
+value is represented by a JSON string. value **MUST** be present.
+
+### ShadowAttribute Objects
+
+#### Org
 
 An Org object is composed of an uuid, name and id.
 
@@ -663,7 +671,7 @@ A human-readable identifier **MUST** be represented as an unsigned integer.
 
 uuid, name and id are represented as a JSON string. uuid, name and id **MUST** be present.
 
-#### Sample Org Object
+##### Sample Org Object
 
 ~~~~
 "Org": {
@@ -672,12 +680,6 @@ uuid, name and id are represented as a JSON string. uuid, name and id **MUST** b
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
 ~~~~
-
-#### value
-
-value represents the payload of an attribute. The format of the value is dependent on the type of the attribute.
-
-value is represented by a JSON string. value **MUST** be present.
 
 ## Object
 
