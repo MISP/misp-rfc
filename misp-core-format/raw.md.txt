@@ -525,7 +525,7 @@ Internet-Draft              MISP core format               February 2022
       fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5,
       jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie,
       hostname|port, bro, zeek, anonymised, community-id, email-subject,
-      favicon-mmh3, dkim, dkim-signature
+      favicon-mmh3, dkim, dkim-signature, ssh-fingerprint
    Other  comment, text, other, size-in-bytes, counter, datetime, cpe,
       port, float, hex, phone-number, boolean, anonymised, pgp-public-
       key, pgp-private-key
@@ -905,7 +905,7 @@ Internet-Draft              MISP core format               February 2022
       fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5,
       jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie,
       hostname|port, bro, zeek, anonymised, community-id, email-subject,
-      favicon-mmh3, dkim, dkim-signature
+      favicon-mmh3, dkim, dkim-signature, ssh-fingerprint
    Other  comment, text, other, size-in-bytes, counter, datetime, cpe,
       port, float, hex, phone-number, boolean, anonymised, pgp-public-
       key, pgp-private-key
