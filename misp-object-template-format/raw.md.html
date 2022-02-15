@@ -1,0 +1,2639 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>MISP object template format</title>
+<meta content="Alexandre Dulaunoy" name="author">
+<meta content="Andras Iklody" name="author">
+<meta content="
+       This document describes the MISP object template format which describes a simple JSON format to represent the various templates used to construct MISP objects. A public directory of common vocabularies MISP object templates   is available and relies on the MISP object reference format. 
+    " name="description">
+<meta content="xml2rfc 3.12.1" name="generator">
+<meta content="draft-00" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.12.1
+    Python 3.8.10
+    appdirs 1.4.4
+    ConfigArgParse 1.5.3
+    google-i18n-address 2.5.0
+    html5lib 1.1
+    intervaltree 3.1.0
+    Jinja2 2.11.3
+    kitchen 1.2.6
+    lxml 4.7.1
+    pycairo 1.16.2
+    pycountry 22.1.10
+    pyflakes 2.4.0
+    PyYAML 5.4.1
+    requests 2.24.0
+    setuptools 45.2.0
+    six 1.15.0
+-->
+<link href="raw.md.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">/*
+
+  NOTE: Changes at the bottom of this file overrides some earlier settings.
+
+  Once the style has stabilized and has been adopted as an official RFC style,
+  this can be consolidated so that style settings occur only in one place, but
+  for now the contents of this file consists first of the initial CSS work as
+  provided to the RFC Formatter (xml2rfc) work, followed by itemized and
+  commented changes found necssary during the development of the v3
+  formatters.
+
+*/
+
+/* fonts */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans'); /* Sans-serif */
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif'); /* Serif (print) */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono'); /* Monospace */
+
+@viewport {
+  zoom: 1.0;
+  width: extend-to-zoom;
+}
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+/* general and mobile first */
+html {
+}
+body {
+  max-width: 90%;
+  margin: 1.5em auto;
+  color: #222;
+  background-color: #fff;
+  font-size: 14px;
+  font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+.ears {
+  display: none;
+}
+
+/* headings */
+#title, h1, h2, h3, h4, h5, h6 {
+  margin: 1em 0 0.5em;
+  font-weight: bold;
+  line-height: 1.3;
+}
+#title {
+  clear: both;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 0.5em 0;
+  padding: 1em 0 0.5em;
+}
+.author {
+  padding-bottom: 4px;
+}
+h1 {
+  font-size: 26px;
+  margin: 1em 0;
+}
+h2 {
+  font-size: 22px;
+  margin-top: -20px;  /* provide offset for in-page anchors */
+  padding-top: 33px;
+}
+h3 {
+  font-size: 18px;
+  margin-top: -36px;  /* provide offset for in-page anchors */
+  padding-top: 42px;
+}
+h4 {
+  font-size: 16px;
+  margin-top: -36px;  /* provide offset for in-page anchors */
+  padding-top: 42px;
+}
+h5, h6 {
+  font-size: 14px;
+}
+#n-copyright-notice {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+/* general structure */
+p {
+  padding: 0;
+  margin: 0 0 1em 0;
+  text-align: left;
+}
+div, span {
+  position: relative;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 1em 1em 0;
+  margin-bottom: 1.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+.alignCenter.art-text {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  padding: 1em 1em 0;
+  margin-bottom: 1.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 1em 2em;
+}
+ol ol, ul ul, ol ul, ul ol {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+ul.ulBare, li.ulBare {
+  margin-left: 0em !important;
+}
+ul.compact, .ulCompact,
+ol.compact, .olCompact {
+  line-height: 100%;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+}
+/* 
+dl.nohang > dt {
+  float: none;
+}
+*/
+dl > dd {
+  margin-bottom: .8em;
+  min-height: 1.3em;
+}
+dl.compact > dd, .dlCompact > dd {
+  margin-bottom: 0em;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+
+/* links */
+a {
+  text-decoration: none;
+}
+a[href] {
+  color: #22e; /* Arlen: WCAG 2019 */
+}
+a[href]:hover {
+  background-color: #f2f2f2;
+}
+figcaption a[href],
+a[href].selfRef {
+  color: #222;
+}
+/* XXX probably not this:
+a.selfRef:hover {
+  background-color: transparent;
+  cursor: default;
+} */
+
+/* Figures */
+tt, code, pre, code {
+  background-color: #f9f9f9;
+  font-family: 'Roboto Mono', monospace;
+}
+pre {
+  border: 1px solid #eee;
+  margin: 0;
+  padding: 1em;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption {
+  font-style: italic;
+  margin: 0 0 1em 0;
+}
+@media screen {
+  pre {
+    overflow-x: auto;
+    max-width: 100%;
+    max-width: calc(100% - 22px);
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 1.2em 2em;
+}
+blockquote {
+  background-color: #f9f9f9;
+  color: #111; /* Arlen: WCAG 2019 */
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.5em 0.75em;
+}
+th {
+  text-align: left;
+  background-color: #e9e9e9;
+}
+tr:nth-child(2n+1) > td {
+  background-color: #f5f5f5;
+}
+table caption {
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+table p {
+  /* XXX to avoid bottom margin on table row signifiers. If paragraphs should
+     be allowed within tables more generally, it would be far better to select on a class. */
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  color: #666; /* Arlen: AHDJ 2019 */
+  text-decoration: none;
+  visibility: hidden;
+  user-select: none;
+  -ms-user-select: none;
+  -o-user-select:none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+@media screen {
+  aside:hover > a.pilcrow,
+  p:hover > a.pilcrow,
+  blockquote:hover > a.pilcrow,
+  div:hover > a.pilcrow,
+  li:hover > a.pilcrow,
+  pre:hover > a.pilcrow {
+    visibility: visible;
+  }
+  a.pilcrow:hover {
+    background-color: transparent;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.bcp14 {
+  font-variant: small-caps;
+}
+
+.role {
+  font-variant: all-small-caps;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: 0.9em;
+}
+#identifiers dt {
+  width: 3em;
+  clear: left;
+}
+#identifiers dd {
+  float: left;
+  margin-bottom: 0;
+}
+/* Fix PDF info block run off issue */
+@media print {
+  #identifiers dd {
+    float: none;
+  }
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #666; /* Arlen: WCAG 2019 */
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc  {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+nav.toc ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+nav.toc li {
+  line-height: 1.3em;
+  margin: 0.75em 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 7em;
+}
+.references dd {
+  margin-left: 8em;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+.index ul {
+  margin: 0 0 0 1em;
+  padding: 0;
+  list-style: none;
+}
+.index ul ul {
+  margin: 0;
+}
+.index li {
+  margin: 0;
+  text-indent: -2em;
+  padding-left: 2em;
+  padding-bottom: 5px;
+}
+.indexIndex {
+  margin: 0.5em 0 1em;
+}
+.index a {
+  font-weight: 700;
+}
+/* make the index two-column on all but the smallest screens */
+@media (min-width: 600px) {
+  .index ul {
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+  }
+  .index ul ul {
+    -moz-column-count: 1;
+    -moz-column-gap: 0;
+  }
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  font-family: "Noto Sans",Arial,Helvetica,sans-serif;
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+
+/* temporary notes */
+.rfcEditorRemove::before {
+  position: absolute;
+  top: 0.2em;
+  right: 0.2em;
+  padding: 0.2em;
+  content: "The RFC Editor will remove this note";
+  color: #9e2a00; /* Arlen: WCAG 2019 */
+  background-color: #ffd; /* Arlen: WCAG 2019 */
+}
+.rfcEditorRemove {
+  position: relative;
+  padding-top: 1.8em;
+  background-color: #ffd; /* Arlen: WCAG 2019 */
+  border-radius: 3px;
+}
+.cref {
+  background-color: #ffd; /* Arlen: WCAG 2019 */
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 1023px) {
+  body {
+    padding-top: 2em;
+  }
+  #title {
+    padding: 1em 0;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
+    margin-top: -18px;  /* provide offset for in-page anchors */
+    padding-top: 38px;
+  }
+  #identifiers dd {
+    max-width: 60%;
+  }
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    background-color: inherit;
+    border-bottom: 1px solid #ccc;
+  }
+  #toc h2 {
+    margin: -1px 0 0 0;
+    padding: 4px 0 4px 6px;
+    padding-right: 1em;
+    min-width: 190px;
+    font-size: 1.1em;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 6px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 1024px) {
+  body {
+    max-width: 724px;
+    margin: 42px auto;
+    padding-left: 1.5em;
+    padding-right: 29em;
+  }
+  #toc {
+    position: fixed;
+    top: 42px;
+    right: 42px;
+    width: 25%;
+    margin: 0;
+    padding: 0 1em;
+    z-index: 1;
+  }
+  #toc h2 {
+    border-top: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 0;
+    overflow: auto;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre {
+    page-break-inside: avoid;
+  }
+  figure {
+    overflow: scroll;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  h2+*, h3+*, h4+*, h5+*, h6+* {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+/* This is commented out here, as the string-set: doesn't
+   pass W3C validation currently */
+/*
+.ears thead .left {
+  string-set: ears-top-left content();
+}
+
+.ears thead .center {
+  string-set: ears-top-center content();
+}
+
+.ears thead .right {
+  string-set: ears-top-right content();
+}
+
+.ears tfoot .left {
+  string-set: ears-bottom-left content();
+}
+
+.ears tfoot .center {
+  string-set: ears-bottom-center content();
+}
+
+.ears tfoot .right {
+  string-set: ears-bottom-right content();
+}
+*/
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+  /* The follwing is commented out here, but set appropriately by in code, as
+     the content depends on the document */
+  /*
+  @top-left {
+    content: 'Internet-Draft';
+    vertical-align: bottom;
+    border-bottom: solid 1px #ccc;
+  }
+  @top-left {
+    content: string(ears-top-left);
+    vertical-align: bottom;
+    border-bottom: solid 1px #ccc;
+  }
+  @top-center {
+    content: string(ears-top-center);
+    vertical-align: bottom;
+    border-bottom: solid 1px #ccc;
+  }
+  @top-right {
+    content: string(ears-top-right);
+    vertical-align: bottom;
+    border-bottom: solid 1px #ccc;
+  }
+  @bottom-left {
+    content: string(ears-bottom-left);
+    vertical-align: top;
+    border-top: solid 1px #ccc;
+  }
+  @bottom-center {
+    content: string(ears-bottom-center);
+    vertical-align: top;
+    border-top: solid 1px #ccc;
+  }
+  @bottom-right {
+      content: '[Page ' counter(page) ']';
+      vertical-align: top;
+      border-top: solid 1px #ccc;
+  }
+  */
+
+}
+
+/* Changes introduced to fix issues found during implementation */
+/* Make sure links are clickable even if overlapped by following H* */
+a {
+  z-index: 2;
+}
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Leave room in document info to show Internet-Draft on one line */
+#identifiers dt {
+  width: 8em;
+}
+
+/* Don't waste quite as much whitespace between label and value in doc info */
+#identifiers dd {
+  margin-left: 1em;
+}
+
+/* Give floating toc a background color (needed when it's a div inside section */
+#toc {
+  background-color: white;
+}
+
+/* Make the collapsed ToC header render white on gray also when it's a link */
+@media screen and (max-width: 1023px) {
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+}
+
+/* Give the bottom of the ToC some whitespace */
+@media screen and (min-width: 1024px) {
+  #toc {
+    padding: 0 0 1em 1em;
+  }
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* prevent monospace from becoming overly large */
+tt, code, pre, code {
+  font-size: 95%;
+}
+
+/* Fix the height/width aspect for ascii art*/
+pre.sourcecode,
+.art-text pre {
+  line-height: 1.12;
+}
+
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin-right: 0.5em;
+}
+
+/* Fix the dl styling to match the RFC 7992 attributes */
+dl > dt,
+dl.dlParallel > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+
+/* Provide styling for table cell text alignment */
+table td.text-left,
+table th.text-left {
+  text-align: left;
+}
+table td.text-center,
+table th.text-center {
+  text-align: center;
+}
+table td.text-right,
+table th.text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact informatio look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 30em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Provide table alignment support.  We can't use the alignX classes above
+   since they do unwanted things with caption and other styling. */
+table.right {
+ margin-left: auto;
+ margin-right: 0;
+}
+table.center {
+ margin-left: auto;
+ margin-right: auto;
+}
+table.left {
+ margin-left: 0;
+ margin-right: auto;
+}
+
+/* Give the table caption label the same styling as the figcaption */
+caption a[href] {
+  color: #222;
+}
+
+@media print {
+  .toplink {
+    display: none;
+  }
+
+  /* avoid overwriting the top border line with the ToC header */
+  #toc {
+    padding-top: 1px;
+  }
+
+  /* Avoid page breaks inside dl and author address entries */
+  .vcard {
+    page-break-inside: avoid;
+  }
+
+}
+/* Tweak the bcp14 keyword presentation */
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+/* Tweak the invisible space above H* in order not to overlay links in text above */
+ h2 {
+  margin-top: -18px;  /* provide offset for in-page anchors */
+  padding-top: 31px;
+ }
+ h3 {
+  margin-top: -18px;  /* provide offset for in-page anchors */
+  padding-top: 24px;
+ }
+ h4 {
+  margin-top: -18px;  /* provide offset for in-page anchors */
+  padding-top: 24px;
+ }
+/* Float artwork pilcrow to the right */
+@media screen {
+  .artwork a.pilcrow {
+    display: block;
+    line-height: 0.7;
+    margin-top: 0.15em;
+  }
+}
+/* Make pilcrows on dd visible */
+@media screen {
+  dd:hover > a.pilcrow {
+    visibility: visible;
+  }
+}
+/* Make the placement of figcaption match that of a table's caption
+   by removing the figure's added bottom margin */
+.alignLeft.art-text,
+.alignCenter.art-text,
+.alignRight.art-text {
+   margin-bottom: 0;
+}
+.alignLeft,
+.alignCenter,
+.alignRight {
+  margin: 1em 0 0 0;
+}
+/* In print, the pilcrow won't show on hover, so prevent it from taking up space,
+   possibly even requiring a new line */
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+/* Styling for the external metadata */
+div#external-metadata {
+  background-color: #eee;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  display: none;
+}
+div#internal-metadata {
+  padding: 0.5em;                       /* to match the external-metadata padding */
+}
+/* Styling for title RFC Number */
+h1#rfcnum {
+  clear: both;
+  margin: 0 0 -1em;
+  padding: 1em 0 0 0;
+}
+/* Make .olPercent look the same as <ol><li> */
+dl.olPercent > dd {
+  margin-bottom: 0.25em;
+  min-height: initial;
+}
+/* Give aside some styling to set it apart */
+aside {
+  border-left: 1px solid #ddd;
+  margin: 1em 0 1em 2em;
+  padding: 0.2em 2em;
+}
+aside > dl,
+aside > ol,
+aside > ul,
+aside > table,
+aside > p {
+  margin-bottom: 0.5em;
+}
+/* Additional page break settings */
+@media print {
+  figcaption, table caption {
+    page-break-before: avoid;
+  }
+}
+/* Font size adjustments for print */
+@media print {
+  body  { font-size: 10pt;      line-height: normal; max-width: 96%; }
+  h1    { font-size: 1.72em;    padding-top: 1.5em; } /* 1*1.2*1.2*1.2 */
+  h2    { font-size: 1.44em;    padding-top: 1.5em; } /* 1*1.2*1.2 */
+  h3    { font-size: 1.2em;     padding-top: 1.5em; } /* 1*1.2 */
+  h4    { font-size: 1em;       padding-top: 1.5em; }
+  h5, h6 { font-size: 1em;      margin: initial; padding: 0.5em 0 0.3em; }
+}
+/* Sourcecode margin in print, when there's no pilcrow */
+@media print {
+  .artwork,
+  .sourcecode {
+    margin-bottom: 1em;
+  }
+}
+/* Avoid narrow tables forcing too narrow table captions, which may render badly */
+table {
+  min-width: 20em;
+}
+/* ol type a */
+ol.type-a { list-style-type: lower-alpha; }
+ol.type-A { list-style-type: upper-alpha; }
+ol.type-i { list-style-type: lower-roman; }
+ol.type-I { list-style-type: lower-roman; }
+/* Apply the print table and row borders in general, on request from the RPC,
+and increase the contrast between border and odd row background sligthtly */
+table {
+  border: 1px solid #ddd;
+}
+td {
+  border-top: 1px solid #ddd;
+}
+tr:nth-child(2n+1) > td {
+  background-color: #f8f8f8;
+}
+/* Use style rules to govern display of the TOC. */
+@media screen and (max-width: 1023px) {
+  #toc nav { display: none; }
+  #toc.active nav { display: block; }
+}
+/* Add support for keepWithNext */
+.keepWithNext {
+  break-after: avoid-page;
+  break-after: avoid-page;
+}
+/* Add support for keepWithPrevious */
+.keepWithPrevious {
+  break-before: avoid-page;
+}
+/* Change the approach to avoiding breaks inside artwork etc. */
+figure, pre, table, .artwork, .sourcecode  {
+  break-before: auto;
+  break-after: auto;
+}
+/* Avoid breaks between <dt> and <dd> */
+dl {
+  break-before: auto;
+  break-inside: auto;
+}
+dt {
+  break-before: auto;
+  break-after: avoid-page;
+}
+dd {
+  break-before: avoid-page;
+  break-after: auto;
+  orphans: 3;
+  widows: 3
+}
+span.break, dd.break {
+  margin-bottom: 0;
+  min-height: 0;
+  break-before: auto;
+  break-inside: auto;
+  break-after: auto;
+}
+/* Undo break-before ToC */
+@media print {
+  #toc {
+    break-before: auto;
+  }
+}
+/* Text in compact lists should not get extra bottim margin space,
+   since that would makes the list not compact */
+ul.compact p, .ulCompact p,
+ol.compact p, .olCompact p {
+ margin: 0;
+}
+/* But the list as a whole needs the extra space at the end */
+section ul.compact,
+section .ulCompact,
+section ol.compact,
+section .olCompact {
+  margin-bottom: 1em;                    /* same as p not within ul.compact etc. */
+}
+/* The tt and code background above interferes with for instance table cell
+   backgrounds.  Changed to something a bit more selective. */
+tt, code {
+  background-color: transparent;
+}
+p tt, p code, li tt, li code {
+  background-color: #f8f8f8;
+}
+/* Tweak the pre margin -- 0px doesn't come out well */
+pre {
+   margin-top: 0.5px;
+}
+/* Tweak the comact list text */
+ul.compact, .ulCompact,
+ol.compact, .olCompact,
+dl.compact, .dlCompact {
+  line-height: normal;
+}
+/* Don't add top margin for nested lists */
+li > ul, li > ol, li > dl,
+dd > ul, dd > ol, dd > dl,
+dl > dd > dl {
+  margin-top: initial;
+}
+/* Elements that should not be rendered on the same line as a <dt> */
+/* This should match the element list in writer.text.TextWriter.render_dl() */
+dd > div.artwork:first-child,
+dd > aside:first-child,
+dd > figure:first-child,
+dd > ol:first-child,
+dd > div:first-child > pre.sourcecode,
+dd > table:first-child,
+dd > ul:first-child {
+  clear: left;
+}
+/* fix for weird browser behaviour when <dd/> is empty */
+dt+dd:empty::before{
+  content: "\00a0";
+}
+/* Make paragraph spacing inside <li> smaller than in body text, to fit better within the list */
+li > p {
+  margin-bottom: 0.5em
+}
+/* Don't let p margin spill out from inside list items */
+li > p:last-of-type {
+  margin-bottom: 0;
+}
+</style>
+<link href="rfc-local.css" rel="stylesheet" type="text/css">
+<script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
+</head>
+<body>
+<script src="metadata.min.js"></script>
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">MISP object template format</td>
+<td class="right">February 2022</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Dulaunoy &amp; Iklody</td>
+<td class="center">Expires 19 August 2022</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">Network Working Group</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-00</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2022-02-15" class="published">15 February 2022</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2022-08-19">19 August 2022</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">A. Dulaunoy</div>
+<div class="org">CIRCL</div>
+</div>
+<div class="author">
+      <div class="author-name">A. Iklody</div>
+<div class="org">CIRCL</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">MISP object template format</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document describes the MISP object template format which describes a simple JSON format to represent the various templates used to construct MISP objects. A public directory of common vocabularies MISP object templates <span>[<a href="#MISP-O" class="xref">MISP-O</a>]</span> is available and relies on the MISP object reference format.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 19 August 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2022 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-conventions-and-terminology" class="xref">Conventions and Terminology</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-format" class="xref">Format</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-overview" class="xref">Overview</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.1">
+                    <p id="section-toc.1-1.2.2.1.2.1.1" class="keepWithNext"><a href="#section-2.1.1" class="xref">2.1.1</a>.  <a href="#name-object-template" class="xref">Object Template</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.2">
+                    <p id="section-toc.1-1.2.2.1.2.2.1"><a href="#section-2.1.2" class="xref">2.1.2</a>.  <a href="#name-attributes" class="xref">attributes</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.3">
+                    <p id="section-toc.1-1.2.2.1.2.3.1"><a href="#section-2.1.3" class="xref">2.1.3</a>.  <a href="#name-sample-object-template-obje" class="xref">Sample Object Template object</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1.2.4">
+                    <p id="section-toc.1-1.2.2.1.2.4.1"><a href="#section-2.1.4" class="xref">2.1.4</a>.  <a href="#name-object-relationships" class="xref">Object Relationships</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-directory" class="xref">Directory</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-existing-and-public-misp-ob" class="xref">Existing and public MISP object templates</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">Due to the increased maturity of threat information sharing, the need arose for more complex and exhaustive data-points to be shared across the various sharing communities. MISP's information sharing in general relied on a flat structure of attributes contained within an event, where attributes served as atomic secluded data-points with some commonalities as defined by the encapsulating event. However, this flat structure restricted the use of more diverse and complex data-points described by a list of atomic values, a problem solved by the MISP object structure.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">MISP objects combine a list of attributes to represent a singular object with various facets. In order to bootstrap the object creation process and to maintain uniformity among objects describing similar data-points, the MISP object template format serves as a reusable and share-able blueprint format.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">MISP object templates also include a vocabulary to describe the various inter object and object to attribute relationships and are leveraged by MISP object references.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<div id="conventions-and-terminology">
+<section id="section-1.1">
+        <h3 id="name-conventions-and-terminology">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-conventions-and-terminology" class="section-name selfRef">Conventions and Terminology</a>
+        </h3>
+<p id="section-1.1-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>",
+"<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this
+document are to be interpreted as described in RFC 2119 <span>[<a href="#RFC2119" class="xref">RFC2119</a>]</span>.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="format">
+<section id="section-2">
+      <h2 id="name-format">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-format" class="section-name selfRef">Format</a>
+      </h2>
+<p id="section-2-1">MISP object templates are composed of the MISP object template (<span class="bcp14">MUST</span>) structure itself and a list of MISP object template elements (<span class="bcp14">SHOULD</span>) describing the list of possible attributes belonging to the resulting object, along with their context and settings.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">MISP object templates themselves consist of a name (<span class="bcp14">MUST</span>), a meta-category (<span class="bcp14">MUST</span>) and a description (<span class="bcp14">SHOULD</span>). They are identified by a uuid (<span class="bcp14">MUST</span>) and a version (<span class="bcp14">MUST</span>). For any updates or transfer of the same object reference. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new object reference. The list of requirements when it comes to the contained MISP object template elements is defined in the requirements field (<span class="bcp14">OPTIONAL</span>).<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">MISP object template elements consist of an object_relation (<span class="bcp14">MUST</span>), a type (<span class="bcp14">MUST</span>), an object_template_id (<span class="bcp14">SHOULD</span>), a ui_priority (<span class="bcp14">SHOULD</span>), a list of categories (<span class="bcp14">MAY</span>), a list of sane_default values (<span class="bcp14">MAY</span>) or a values_list (<span class="bcp14">MAY</span>).<a href="#section-2-3" class="pilcrow">¶</a></p>
+<div id="overview">
+<section id="section-2.1">
+        <h3 id="name-overview">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-overview" class="section-name selfRef">Overview</a>
+        </h3>
+<p id="section-2.1-1">The MISP object template format uses the JSON <span>[<a href="#RFC8259" class="xref">RFC8259</a>]</span> format. Each template is represented as a JSON object with meta information including the following fields: uuid, requiredOneOf, description, version, meta-category, name.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<div id="object-template">
+<section id="section-2.1.1">
+          <h4 id="name-object-template">
+<a href="#section-2.1.1" class="section-number selfRef">2.1.1. </a><a href="#name-object-template" class="section-name selfRef">Object Template</a>
+          </h4>
+<div id="uuid">
+<section id="section-2.1.1.1">
+            <h5 id="name-uuid">
+<a href="#section-2.1.1.1" class="section-number selfRef">2.1.1.1. </a><a href="#name-uuid" class="section-name selfRef">uuid</a>
+            </h5>
+<p id="section-2.1.1.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the object template. The uuid <span class="bcp14">MUST</span> be preserved for to keep consistency of the templates across instances. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new object template.<a href="#section-2.1.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.1.1-2">uuid is represented as a JSON string. uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.1.1.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="requiredoneof">
+<section id="section-2.1.1.2">
+            <h5 id="name-requiredoneof">
+<a href="#section-2.1.1.2" class="section-number selfRef">2.1.1.2. </a><a href="#name-requiredoneof" class="section-name selfRef">requiredOneOf</a>
+            </h5>
+<p id="section-2.1.1.2-1">requiredOneOf is represented as a JSON list and contains a list of attribute relationships of which one must be present in the object to be created based on the given template. The requiredOneOf field <span class="bcp14">MAY</span> be present.<a href="#section-2.1.1.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="required">
+<section id="section-2.1.1.3">
+            <h5 id="name-required">
+<a href="#section-2.1.1.3" class="section-number selfRef">2.1.1.3. </a><a href="#name-required" class="section-name selfRef">required</a>
+            </h5>
+<p id="section-2.1.1.3-1">required is represented as a JSON list and contains a list of attribute relationships of which all must be present in the object to be created based on the given template. The required field <span class="bcp14">MAY</span> be present.<a href="#section-2.1.1.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="description">
+<section id="section-2.1.1.4">
+            <h5 id="name-description">
+<a href="#section-2.1.1.4" class="section-number selfRef">2.1.1.4. </a><a href="#name-description" class="section-name selfRef">description</a>
+            </h5>
+<p id="section-2.1.1.4-1">description is represented as a JSON string and contains the assigned meaning given to objects created using this template. The description field <span class="bcp14">MUST</span> be present.<a href="#section-2.1.1.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="version">
+<section id="section-2.1.1.5">
+            <h5 id="name-version">
+<a href="#section-2.1.1.5" class="section-number selfRef">2.1.1.5. </a><a href="#name-version" class="section-name selfRef">version</a>
+            </h5>
+<p id="section-2.1.1.5-1">version represents a numeric incrementing version of the object template. It is used to associate the object to the correct version of the template and together with the uuid field forms an association to the correct template type and version.<a href="#section-2.1.1.5-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.1.5-2">version is represented as a JSON string. version <span class="bcp14">MUST</span> be present.<a href="#section-2.1.1.5-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="meta-category">
+<section id="section-2.1.1.6">
+            <h5 id="name-meta-category">
+<a href="#section-2.1.1.6" class="section-number selfRef">2.1.1.6. </a><a href="#name-meta-category" class="section-name selfRef">meta-category</a>
+            </h5>
+<p id="section-2.1.1.6-1">meta-category represents the sub-category of objects that the given object template belongs to. meta-categories are not tied to a fixed list of options but can be created on the fly.<a href="#section-2.1.1.6-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.1.6-2">meta-category is represented as a JSON string. meta-category <span class="bcp14">MUST</span> be present.<a href="#section-2.1.1.6-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="name">
+<section id="section-2.1.1.7">
+            <h5 id="name-name">
+<a href="#section-2.1.1.7" class="section-number selfRef">2.1.1.7. </a><a href="#name-name" class="section-name selfRef">name</a>
+            </h5>
+<p id="section-2.1.1.7-1">name represents the human-readable name of the objects created using the given template, describing the intent of the object package.<a href="#section-2.1.1.7-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.1.7-2">name is represented as a JSON string. name <span class="bcp14">MUST</span> be present<a href="#section-2.1.1.7-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="attributes">
+<section id="section-2.1.2">
+          <h4 id="name-attributes">
+<a href="#section-2.1.2" class="section-number selfRef">2.1.2. </a><a href="#name-attributes" class="section-name selfRef">attributes</a>
+          </h4>
+<p id="section-2.1.2-1">attributes is represented as a JSON list and contains a list of template elements used as a template for creating the individual attributes within the object that is to be created with the object.<a href="#section-2.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.2-2">attributes is represented as a JSON list. attributes <span class="bcp14">MUST</span> be present.<a href="#section-2.1.2-2" class="pilcrow">¶</a></p>
+<div id="description-1">
+<section id="section-2.1.2.1">
+            <h5 id="name-description-2">
+<a href="#section-2.1.2.1" class="section-number selfRef">2.1.2.1. </a><a href="#name-description-2" class="section-name selfRef">description</a>
+            </h5>
+<p id="section-2.1.2.1-1">description is represented as a JSON string and contains the description of the given attribute in the context of the object with the given relationship. The description field <span class="bcp14">MUST</span> be present.<a href="#section-2.1.2.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="ui-priority">
+<section id="section-2.1.2.2">
+            <h5 id="name-ui-priority">
+<a href="#section-2.1.2.2" class="section-number selfRef">2.1.2.2. </a><a href="#name-ui-priority" class="section-name selfRef">ui-priority</a>
+            </h5>
+<p id="section-2.1.2.2-1">ui-priority is represented by a numeric values in JSON string format and is meant to provide a priority for the given element in the object template visualisation. The ui-priority <span class="bcp14">MAY</span> be present.<a href="#section-2.1.2.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="misp-attribute">
+<section id="section-2.1.2.3">
+            <h5 id="name-misp-attribute">
+<a href="#section-2.1.2.3" class="section-number selfRef">2.1.2.3. </a><a href="#name-misp-attribute" class="section-name selfRef">misp-attribute</a>
+            </h5>
+<p id="section-2.1.2.3-1">misp-attribute is represented by a JSON string or a JSON object with a list of values. The value(s) are taken from the pool of types defined by the MISP core format's Attribute Object's type list. type can contain a JSON object with a list of suggested value alternatives encapsulated in a list within a sane_default key or a list of enforced value alternatives encapsulated in a list_values key.<a href="#section-2.1.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.2.3-2">The misp-attribute field <span class="bcp14">MUST</span> be present.<a href="#section-2.1.2.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="disable-correlation">
+<section id="section-2.1.2.4">
+            <h5 id="name-disable_correlation">
+<a href="#section-2.1.2.4" class="section-number selfRef">2.1.2.4. </a><a href="#name-disable_correlation" class="section-name selfRef">disable_correlation</a>
+            </h5>
+<p id="section-2.1.2.4-1">disable_correlation is represented by a JSON boolean. The disable_correlation field flags the attribute(s) created by the given object template element to be marked as non correlating.<a href="#section-2.1.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.2.4-2">The misp-attribute field <span class="bcp14">MAY</span> be present.<a href="#section-2.1.2.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="categories">
+<section id="section-2.1.2.5">
+            <h5 id="name-categories">
+<a href="#section-2.1.2.5" class="section-number selfRef">2.1.2.5. </a><a href="#name-categories" class="section-name selfRef">categories</a>
+            </h5>
+<p id="section-2.1.2.5-1">categories is represented by a JSON list containing one or several valid options from the list of verbs valid for the category field in the Attribute object within the MISP core format.<a href="#section-2.1.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.2.5-2">The categories field <span class="bcp14">MAY</span> be present.<a href="#section-2.1.2.5-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="multiple">
+<section id="section-2.1.2.6">
+            <h5 id="name-multiple">
+<a href="#section-2.1.2.6" class="section-number selfRef">2.1.2.6. </a><a href="#name-multiple" class="section-name selfRef">multiple</a>
+            </h5>
+<p id="section-2.1.2.6-1">multiple is represented by a JSON boolean value. It marks the MISP object template element as a multiple input field, allowing for several attributes to be created by the element within the same object.<a href="#section-2.1.2.6-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.2.6-2">The multiple field <span class="bcp14">MAY</span> be present.<a href="#section-2.1.2.6-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sane-default">
+<section id="section-2.1.2.7">
+            <h5 id="name-sane_default">
+<a href="#section-2.1.2.7" class="section-number selfRef">2.1.2.7. </a><a href="#name-sane_default" class="section-name selfRef">sane_default</a>
+            </h5>
+<p id="section-2.1.2.7-1">sane_default is represented by a JSON list containing one or several recommended/sane values for an attribute. sane_default is mutually exclusive with values_list.<a href="#section-2.1.2.7-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.2.7-2">The sane_default field <span class="bcp14">MAY</span> be present.<a href="#section-2.1.2.7-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="values-list">
+<section id="section-2.1.2.8">
+            <h5 id="name-values_list">
+<a href="#section-2.1.2.8" class="section-number selfRef">2.1.2.8. </a><a href="#name-values_list" class="section-name selfRef">values_list</a>
+            </h5>
+<p id="section-2.1.2.8-1">values_list is represented by a JSON List containing one or several of fixed values for an attribute. values_list is mutually exclusive with sane_default.<a href="#section-2.1.2.8-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.2.8-2">The value_list field <span class="bcp14">MAY</span> be present.<a href="#section-2.1.2.8-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="sample-object-template-object">
+<section id="section-2.1.3">
+          <h4 id="name-sample-object-template-obje">
+<a href="#section-2.1.3" class="section-number selfRef">2.1.3. </a><a href="#name-sample-object-template-obje" class="section-name selfRef">Sample Object Template object</a>
+          </h4>
+<p id="section-2.1.3-1">The MISP object template directory is publicly available <span>[<a href="#MISP-O" class="xref">MISP-O</a>]</span> in a git repository and contains more than 60 object templates. As illustration, two sample objects templates are included.<a href="#section-2.1.3-1" class="pilcrow">¶</a></p>
+<div id="credit-card-object-template">
+<section id="section-2.1.3.1">
+            <h5 id="name-credit-card-object-template">
+<a href="#section-2.1.3.1" class="section-number selfRef">2.1.3.1. </a><a href="#name-credit-card-object-template" class="section-name selfRef">credit-card object template</a>
+            </h5>
+<div class="alignLeft art-text artwork" id="section-2.1.3.1-1">
+<pre>{
+  "requiredOneOf": [
+    "cc-number"
+  ],
+  "attributes": {
+    "version": {
+      "description": "Version of the card.",
+      "ui-priority": 0,
+      "misp-attribute": "text"
+    },
+    "comment": {
+      "description": "A description of the card.",
+      "ui-priority": 0,
+      "misp-attribute": "comment"
+    },
+    "card-security-code": {
+      "description": "Card security code (CSC, CVD, CVV, CVC and SPC) as embossed or printed on the card.",
+      "ui-priority": 0,
+      "misp-attribute": "text"
+    },
+    "name": {
+      "description": "Name of the card owner.",
+      "ui-priority": 0,
+      "misp-attribute": "text"
+    },
+    "issued": {
+      "description": "Initial date of validity or issued date.",
+      "ui-priority": 0,
+      "misp-attribute": "datetime"
+    },
+    "expiration": {
+      "description": "Maximum date of validity",
+      "ui-priority": 0,
+      "misp-attribute": "datetime"
+    },
+    "cc-number": {
+      "description": "credit-card number as encoded on the card.",
+      "ui-priority": 0,
+      "misp-attribute": "cc-number"
+    }
+  },
+  "version": 2,
+  "description": "A payment card like credit card, debit card or any similar cards which can be used for financial transactions.",
+  "meta-category": "financial",
+  "uuid": "2b9c57aa-daba-4330-a738-56f18743b0c7",
+  "name": "credit-card"
+}
+</pre><a href="#section-2.1.3.1-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="credential-object-template">
+<section id="section-2.1.3.2">
+            <h5 id="name-credential-object-template">
+<a href="#section-2.1.3.2" class="section-number selfRef">2.1.3.2. </a><a href="#name-credential-object-template" class="section-name selfRef">credential object template</a>
+            </h5>
+<div class="alignLeft art-text artwork" id="section-2.1.3.2-1">
+<pre>{
+  "requiredOneOf": [
+    "password"
+  ],
+  "attributes": {
+    "text": {
+      "description": "A description of the credential(s)",
+      "disable_correlation": true,
+      "ui-priority": 1,
+      "misp-attribute": "text"
+    },
+    "username": {
+      "description": "Username related to the password(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text"
+    },
+    "password": {
+      "description": "Password",
+      "multiple": true,
+      "ui-priority": 1,
+      "misp-attribute": "text"
+    },
+    "type": {
+      "description": "Type of password(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "values_list": [
+        "password",
+        "api-key",
+        "encryption-key",
+        "unknown"
+      ]
+    },
+    "origin": {
+      "description": "Origin of the credential(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "sane_default": [
+        "bruteforce-scanning",
+        "malware-analysis",
+        "memory-analysis",
+        "network-analysis",
+        "leak",
+        "unknown"
+      ]
+    },
+    "format": {
+      "description": "Format of the password(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "values_list": [
+        "clear-text",
+        "hashed",
+        "encrypted",
+        "unknown"
+      ]
+    },
+    "notification": {
+      "description": "Mention of any notification(s) towards the potential owner(s) of the credential(s)",
+      "ui-priority": 1,
+      "misp-attribute": "text",
+      "multiple": true,
+      "values_list": [
+        "victim-notified",
+        "service-notified",
+        "none"
+      ]
+    }
+  },
+  "version": 2,
+  "description": "Credential describes one or more credential(s) including password(s), api key(s) or decryption key(s).",
+  "meta-category": "misc",
+  "uuid": "a27e98c9-9b0e-414c-8076-d201e039ca09",
+  "name": "credential"
+}
+</pre><a href="#section-2.1.3.2-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="object-relationships">
+<section id="section-2.1.4">
+          <h4 id="name-object-relationships">
+<a href="#section-2.1.4" class="section-number selfRef">2.1.4. </a><a href="#name-object-relationships" class="section-name selfRef">Object Relationships</a>
+          </h4>
+<div id="name-1">
+<section id="section-2.1.4.1">
+            <h5 id="name-name-2">
+<a href="#section-2.1.4.1" class="section-number selfRef">2.1.4.1. </a><a href="#name-name-2" class="section-name selfRef">name</a>
+            </h5>
+<p id="section-2.1.4.1-1">name represents the human-readable relationship type which can be used when creating MISP object relations.<a href="#section-2.1.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1.4.1-2">name is represented as a JSON string. name <span class="bcp14">MUST</span> be present.<a href="#section-2.1.4.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="description-2">
+<section id="section-2.1.4.2">
+            <h5 id="name-description-3">
+<a href="#section-2.1.4.2" class="section-number selfRef">2.1.4.2. </a><a href="#name-description-3" class="section-name selfRef">description</a>
+            </h5>
+<p id="section-2.1.4.2-1">description is represented as a JSON string and contains the description of the object relationship type. The description field <span class="bcp14">MUST</span> be present.<a href="#section-2.1.4.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="format-1">
+<section id="section-2.1.4.3">
+            <h5 id="name-format-2">
+<a href="#section-2.1.4.3" class="section-number selfRef">2.1.4.3. </a><a href="#name-format-2" class="section-name selfRef">format</a>
+            </h5>
+<p id="section-2.1.4.3-1">format is represented by a JSON list containing a list of formats that the relationship type is valid for and can be mapped to. The format field <span class="bcp14">MUST</span> be present.<a href="#section-2.1.4.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="directory">
+<section id="section-3">
+      <h2 id="name-directory">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-directory" class="section-name selfRef">Directory</a>
+      </h2>
+<p id="section-3-1">The MISP object template directory is publicly available <span>[<a href="#MISP-O" class="xref">MISP-O</a>]</span> in a git repository. The repository contains an objects directory, which contains a directory per object type, containing a file named definition.json which contains the definition of the object template in the above described format.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">A relationships directory is also included, containing a definition.json file which contains a list of MISP object relation definitions. There are more than 125 existing templates object documented in <span>[<a href="#MISP-O-DOC" class="xref">MISP-O-DOC</a>]</span>.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<div id="existing-and-public-misp-object-templates">
+<section id="section-3.1">
+        <h3 id="name-existing-and-public-misp-ob">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-existing-and-public-misp-ob" class="section-name selfRef">Existing and public MISP object templates</a>
+        </h3>
+<ul class="compact">
+<li class="compact" id="section-3.1-1.1">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ail-leak/definition.json">objects/ail-leak</a> - An information leak as defined by the AIL Analysis Information Leak framework.<a href="#section-3.1-1.1" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.2">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ais-info/definition.json">objects/ais-info</a> - Automated Indicator Sharing (AIS) Information Source Markings.<a href="#section-3.1-1.2" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.3">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/android-app/definition.json">objects/android-app</a> - Indicators related to an Android app.<a href="#section-3.1-1.3" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.4">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/android-permission/definition.json">objects/android-permission</a> - A set of android permissions - one or more permission(s) which can be linked to other objects (e.g. malware, app).<a href="#section-3.1-1.4" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.5">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/annotation/definition.json">objects/annotation</a> - An annotation object allowing analysts to add annotations, comments, executive summary to a MISP event, objects or attributes.<a href="#section-3.1-1.5" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.6">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/anonymisation/definition.json">objects/anonymisation</a> - Anonymisation object describing an anonymisation technique used to encode MISP attribute values. Reference: <a href="https://www.caida.org/tools/taxonomy/anonymization.xml">https://www.caida.org/tools/taxonomy/anonymization.xml</a>.<a href="#section-3.1-1.6" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.7">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/apivoid-email-verification/definition.json">objects/apivoid-email-verification</a> - Apivoid email verification API result. Reference: <a href="https://www.apivoid.com/api/email-verify/">https://www.apivoid.com/api/email-verify/</a>.<a href="#section-3.1-1.7" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.8">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/artifact/definition.json">objects/artifact</a> - The Artifact object permits capturing an array of bytes (8-bits), as a base64-encoded string, or linking to a file-like payload. from STIX 2.1 (6.1).<a href="#section-3.1-1.8" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.9">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/asn/definition.json">objects/asn</a> - Autonomous system object describing an autonomous system which can include one or more network operators management an entity (e.g. ISP) along with their routing policy, routing prefixes or alike.<a href="#section-3.1-1.9" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.10">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/attack-pattern/definition.json">objects/attack-pattern</a> - Attack pattern describing a common attack pattern enumeration and classification.<a href="#section-3.1-1.10" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.11">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/authentication-failure-report/definition.json">objects/authentication-failure-report</a> - Authentication Failure Report.<a href="#section-3.1-1.11" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.12">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/authenticode-signerinfo/definition.json">objects/authenticode-signerinfo</a> - Authenticode Signer Info.<a href="#section-3.1-1.12" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.13">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/av-signature/definition.json">objects/av-signature</a> - Antivirus detection signature.<a href="#section-3.1-1.13" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.14">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/bank-account/definition.json">objects/bank-account</a> - An object describing bank account information based on account description from goAML 4.0.<a href="#section-3.1-1.14" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.15">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/bgp-hijack/definition.json">objects/bgp-hijack</a> - Object encapsulating BGP Hijack description as specified, for example, by bgpstream.com.<a href="#section-3.1-1.15" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.16">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/bgp-ranking/definition.json">objects/bgp-ranking</a> - BGP Ranking object describing the ranking of an ASN for a given day, along with its position, 1 being the most malicious ASN of the day, with the highest ranking. This object is meant to have a relationship with the corresponding ASN object and represents its ranking for a specific date.<a href="#section-3.1-1.16" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.17">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/blog/definition.json">objects/blog</a> - Blog post like Medium or WordPress.<a href="#section-3.1-1.17" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.18">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/boleto/definition.json">objects/boleto</a> - A common form of payment used in Brazil.<a href="#section-3.1-1.18" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.19">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/btc-transaction/definition.json">objects/btc-transaction</a> - An object to describe a Bitcoin transaction. Best to be used with bitcoin-wallet.<a href="#section-3.1-1.19" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.20">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/btc-wallet/definition.json">objects/btc-wallet</a> - An object to describe a Bitcoin wallet. Best to be used with bitcoin-transactions.<a href="#section-3.1-1.20" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.21">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cap-alert/definition.json">objects/cap-alert</a> - Common Alerting Protocol Version (CAP) alert object.<a href="#section-3.1-1.21" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.22">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cap-info/definition.json">objects/cap-info</a> - Common Alerting Protocol Version (CAP) info object.<a href="#section-3.1-1.22" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.23">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cap-resource/definition.json">objects/cap-resource</a> - Common Alerting Protocol Version (CAP) resource object.<a href="#section-3.1-1.23" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.24">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/coin-address/definition.json">objects/coin-address</a> - An address used in a cryptocurrency.<a href="#section-3.1-1.24" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.25">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/command/definition.json">objects/command</a> - Command functionalities related to specific commands executed by a program, whether it is malicious or not. Command-line are attached to this object for the related commands.<a href="#section-3.1-1.25" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.26">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/command-line/definition.json">objects/command-line</a> - Command line and options related to a specific command executed by a program, whether it is malicious or not.<a href="#section-3.1-1.26" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.27">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/concordia-mtmf-intrusion-set/definition.json">objects/concordia-mtmf-intrusion-set</a> - Intrusion Set - Phase Description.<a href="#section-3.1-1.27" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.28">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cookie/definition.json">objects/cookie</a> - An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser. The browser may store it and send it back with the next request to the same server. Typically, it's used to tell if two requests came from the same browser <span class="unicode">— (U+2014)</span> keeping a user logged-in, for example. It remembers stateful information for the stateless HTTP protocol. (as defined by the Mozilla foundation.<a href="#section-3.1-1.28" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.29">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cortex/definition.json">objects/cortex</a> - Cortex object describing a complete cortex analysis. Observables would be attribute with a relationship from this object.<a href="#section-3.1-1.29" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.30">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cortex-taxonomy/definition.json">objects/cortex-taxonomy</a> - Cortex object describing an Cortex Taxonomy (or mini report).<a href="#section-3.1-1.30" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.31">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/course-of-action/definition.json">objects/course-of-action</a> - An object describing a specific measure taken to prevent or respond to an attack.<a href="#section-3.1-1.31" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.32">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/covid19-csse-daily-report/definition.json">objects/covid19-csse-daily-report</a> - CSSE COVID-19 Daily report.<a href="#section-3.1-1.32" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.33">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/covid19-dxy-live-city/definition.json">objects/covid19-dxy-live-city</a> - COVID 19 from dxy.cn - Aggregation by city.<a href="#section-3.1-1.33" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.34">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/covid19-dxy-live-province/definition.json">objects/covid19-dxy-live-province</a> - COVID 19 from dxy.cn - Aggregation by province.<a href="#section-3.1-1.34" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.35">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cowrie/definition.json">objects/cowrie</a> - Cowrie honeypot object template.<a href="#section-3.1-1.35" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.36">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cpe-asset/definition.json">objects/cpe-asset</a> - An asset which can be defined by a CPE. This can be a generic asset. CPE is a structured naming scheme for information technology systems, software, and packages.<a href="#section-3.1-1.36" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.37">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/credential/definition.json">objects/credential</a> - Credential describes one or more credential(s) including password(s), api key(s) or decryption key(s).<a href="#section-3.1-1.37" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.38">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/credit-card/definition.json">objects/credit-card</a> - A payment card like credit card, debit card or any similar cards which can be used for financial transactions.<a href="#section-3.1-1.38" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.39">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/crypto-material/definition.json">objects/crypto-material</a> - Cryptographic materials such as public or/and private keys.<a href="#section-3.1-1.39" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.40">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cytomic-orion-file/definition.json">objects/cytomic-orion-file</a> - Cytomic Orion File Detection.<a href="#section-3.1-1.40" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.41">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cytomic-orion-machine/definition.json">objects/cytomic-orion-machine</a> - Cytomic Orion File at Machine Detection.<a href="#section-3.1-1.41" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.42">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/dark-pattern-item/definition.json">objects/dark-pattern-item</a> - An Item whose User Interface implements a dark pattern.<a href="#section-3.1-1.42" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.43">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ddos/definition.json">objects/ddos</a> - DDoS object describes a current DDoS activity from a specific or/and to a specific target. Type of DDoS can be attached to the object as a taxonomy.<a href="#section-3.1-1.43" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.44">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/device/definition.json">objects/device</a> - An object to define a device.<a href="#section-3.1-1.44" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.45">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/diameter-attack/definition.json">objects/diameter-attack</a> - Attack as seen on the diameter signaling protocol supporting LTE networks.<a href="#section-3.1-1.45" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.46">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/dkim/definition.json">objects/dkim</a> - DomainKeys Identified Mail - DKIM.<a href="#section-3.1-1.46" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.47">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/dns-record/definition.json">objects/dns-record</a> - A set of DNS records observed for a specific domain.<a href="#section-3.1-1.47" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.48">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/domain-crawled/definition.json">objects/domain-crawled</a> - A domain crawled over time.<a href="#section-3.1-1.48" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.49">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/domain-ip/definition.json">objects/domain-ip</a> - A domain/hostname and IP address seen as a tuple in a specific time frame.<a href="#section-3.1-1.49" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.50">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/edr-report/definition.json">objects/edr-report</a> - An Object Template to encode an EDR<span class="unicode">  (U+00A0)</span>detection report.<a href="#section-3.1-1.50" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.51">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/elf/definition.json">objects/elf</a> - Object describing a Executable and Linkable Format.<a href="#section-3.1-1.51" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.52">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/elf-section/definition.json">objects/elf-section</a> - Object describing a section of an Executable and Linkable Format.<a href="#section-3.1-1.52" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.53">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/email/definition.json">objects/email</a> - Email object describing an email with meta-information.<a href="#section-3.1-1.53" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.54">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/employee/definition.json">objects/employee</a> - An employee and related data points.<a href="#section-3.1-1.54" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.55">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/exploit-poc/definition.json">objects/exploit-poc</a> - Exploit-poc object describing a proof of concept or exploit of a vulnerability. This object has often a relationship with a vulnerability object.<a href="#section-3.1-1.55" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.56">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-account/definition.json">objects/facebook-account</a> - Facebook account.<a href="#section-3.1-1.56" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.57">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-group/definition.json">objects/facebook-group</a> - Public or private facebook group.<a href="#section-3.1-1.57" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.58">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-page/definition.json">objects/facebook-page</a> - Facebook page.<a href="#section-3.1-1.58" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.59">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-post/definition.json">objects/facebook-post</a> - Post on a Facebook wall.<a href="#section-3.1-1.59" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.60">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facial-composite/definition.json">objects/facial-composite</a> - An object which describes a facial composite.<a href="#section-3.1-1.60" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.61">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/fail2ban/definition.json">objects/fail2ban</a> - Fail2ban event.<a href="#section-3.1-1.61" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.62">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/favicon/definition.json">objects/favicon</a> - A favicon, also known as a shortcut icon, website icon, tab icon, URL icon, or bookmark icon, is a file containing one or more small icons, associated with a particular website or web page. The object template can include the murmur3 hash of the favicon to facilitate correlation.<a href="#section-3.1-1.62" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.63">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/file/definition.json">objects/file</a> - File object describing a file with meta-information.<a href="#section-3.1-1.63" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.64">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/forensic-case/definition.json">objects/forensic-case</a> - An object template to describe a digital forensic case.<a href="#section-3.1-1.64" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.65">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/forensic-evidence/definition.json">objects/forensic-evidence</a> - An object template to describe a digital forensic evidence.<a href="#section-3.1-1.65" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.66">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/forged-document/definition.json">objects/forged-document</a> - Object describing a forged document.<a href="#section-3.1-1.66" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.67">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Airplane/definition.json">objects/ftm-Airplane</a> - .<a href="#section-3.1-1.67" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.68">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Assessment/definition.json">objects/ftm-Assessment</a> - .<a href="#section-3.1-1.68" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.69">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Asset/definition.json">objects/ftm-Asset</a> - .<a href="#section-3.1-1.69" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.70">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Associate/definition.json">objects/ftm-Associate</a> - Non-family association between two people.<a href="#section-3.1-1.70" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.71">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Audio/definition.json">objects/ftm-Audio</a> - .<a href="#section-3.1-1.71" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.72">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-BankAccount/definition.json">objects/ftm-BankAccount</a> - .<a href="#section-3.1-1.72" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.73">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Call/definition.json">objects/ftm-Call</a> - .<a href="#section-3.1-1.73" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.74">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Company/definition.json">objects/ftm-Company</a> - A legal entity representing an association of people, whether natural, legal or a mixture of both, with a specific objective.<a href="#section-3.1-1.74" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.75">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Contract/definition.json">objects/ftm-Contract</a> - An contract or contract lot issued by an authority. Multiple lots may be awarded to different suppliers (see ContractAward).
+.<a href="#section-3.1-1.75" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.76">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-ContractAward/definition.json">objects/ftm-ContractAward</a> - A contract or contract lot as awarded to a supplier.<a href="#section-3.1-1.76" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.77">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-CourtCase/definition.json">objects/ftm-CourtCase</a> - .<a href="#section-3.1-1.77" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.78">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-CourtCaseParty/definition.json">objects/ftm-CourtCaseParty</a> - .<a href="#section-3.1-1.78" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.79">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Debt/definition.json">objects/ftm-Debt</a> - A monetary debt between two parties.<a href="#section-3.1-1.79" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.80">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Directorship/definition.json">objects/ftm-Directorship</a> - .<a href="#section-3.1-1.80" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.81">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Document/definition.json">objects/ftm-Document</a> - .<a href="#section-3.1-1.81" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.82">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Documentation/definition.json">objects/ftm-Documentation</a> - .<a href="#section-3.1-1.82" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.83">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-EconomicActivity/definition.json">objects/ftm-EconomicActivity</a> - A foreign economic activity.<a href="#section-3.1-1.83" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.84">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Email/definition.json">objects/ftm-Email</a> - .<a href="#section-3.1-1.84" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.85">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Event/definition.json">objects/ftm-Event</a> - .<a href="#section-3.1-1.85" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.86">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Family/definition.json">objects/ftm-Family</a> - Family relationship between two people.<a href="#section-3.1-1.86" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.87">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Folder/definition.json">objects/ftm-Folder</a> - .<a href="#section-3.1-1.87" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.88">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-HyperText/definition.json">objects/ftm-HyperText</a> - .<a href="#section-3.1-1.88" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.89">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Image/definition.json">objects/ftm-Image</a> - .<a href="#section-3.1-1.89" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.90">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Land/definition.json">objects/ftm-Land</a> - .<a href="#section-3.1-1.90" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.91">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-LegalEntity/definition.json">objects/ftm-LegalEntity</a> - A legal entity may be a person or a company.<a href="#section-3.1-1.91" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.92">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-License/definition.json">objects/ftm-License</a> - A grant of land, rights or property. A type of Contract.<a href="#section-3.1-1.92" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.93">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Membership/definition.json">objects/ftm-Membership</a> - .<a href="#section-3.1-1.93" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.94">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Message/definition.json">objects/ftm-Message</a> - .<a href="#section-3.1-1.94" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.95">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Organization/definition.json">objects/ftm-Organization</a> - .<a href="#section-3.1-1.95" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.96">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Ownership/definition.json">objects/ftm-Ownership</a> - .<a href="#section-3.1-1.96" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.97">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Package/definition.json">objects/ftm-Package</a> - .<a href="#section-3.1-1.97" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.98">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Page/definition.json">objects/ftm-Page</a> - .<a href="#section-3.1-1.98" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.99">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Pages/definition.json">objects/ftm-Pages</a> - .<a href="#section-3.1-1.99" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.100">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Passport/definition.json">objects/ftm-Passport</a> - Passport.<a href="#section-3.1-1.100" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.101">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Payment/definition.json">objects/ftm-Payment</a> - A monetary payment between two parties.<a href="#section-3.1-1.101" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.102">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Person/definition.json">objects/ftm-Person</a> - An individual.<a href="#section-3.1-1.102" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.103">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-PlainText/definition.json">objects/ftm-PlainText</a> - .<a href="#section-3.1-1.103" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.104">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-PublicBody/definition.json">objects/ftm-PublicBody</a> - A public body, such as a ministry, department or state company.<a href="#section-3.1-1.104" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.105">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-RealEstate/definition.json">objects/ftm-RealEstate</a> - A piece of land or property.<a href="#section-3.1-1.105" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.106">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Representation/definition.json">objects/ftm-Representation</a> - A mediatory, intermediary, middleman, or broker acting on behalf of a legal entity.<a href="#section-3.1-1.106" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.107">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Row/definition.json">objects/ftm-Row</a> - .<a href="#section-3.1-1.107" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.108">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Sanction/definition.json">objects/ftm-Sanction</a> - A sanction designation.<a href="#section-3.1-1.108" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.109">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Succession/definition.json">objects/ftm-Succession</a> - Two entities that legally succeed each other.<a href="#section-3.1-1.109" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.110">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Table/definition.json">objects/ftm-Table</a> - .<a href="#section-3.1-1.110" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.111">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-TaxRoll/definition.json">objects/ftm-TaxRoll</a> - A tax declaration of an individual.<a href="#section-3.1-1.111" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.112">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-UnknownLink/definition.json">objects/ftm-UnknownLink</a> - .<a href="#section-3.1-1.112" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.113">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-UserAccount/definition.json">objects/ftm-UserAccount</a> - .<a href="#section-3.1-1.113" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.114">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Vehicle/definition.json">objects/ftm-Vehicle</a> - .<a href="#section-3.1-1.114" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.115">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Vessel/definition.json">objects/ftm-Vessel</a> - A boat or ship.<a href="#section-3.1-1.115" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.116">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Video/definition.json">objects/ftm-Video</a> - .<a href="#section-3.1-1.116" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.117">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Workbook/definition.json">objects/ftm-Workbook</a> - .<a href="#section-3.1-1.117" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.118">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/geolocation/definition.json">objects/geolocation</a> - An object to describe a geographic location.<a href="#section-3.1-1.118" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.119">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/git-vuln-finder/definition.json">objects/git-vuln-finder</a> - Export from git-vuln-finder.<a href="#section-3.1-1.119" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.120">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/github-user/definition.json">objects/github-user</a> - GitHub user.<a href="#section-3.1-1.120" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.121">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/gitlab-user/definition.json">objects/gitlab-user</a> - GitLab user. Gitlab.com user or self-hosted GitLab instance.<a href="#section-3.1-1.121" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.122">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/gtp-attack/definition.json">objects/gtp-attack</a> - GTP attack object as attack as seen on the GTP signaling protocol supporting GPRS/LTE networks.<a href="#section-3.1-1.122" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.123">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/hashlookup/definition.json">objects/hashlookup</a> - hashlookup object as described on hashlookup services from circl.lu - <a href="https://www.circl.lu/services/hashlookup">https://www.circl.lu/services/hashlookup</a>.<a href="#section-3.1-1.123" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.124">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/http-request/definition.json">objects/http-request</a> - A single HTTP request header.<a href="#section-3.1-1.124" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.125">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/identity/definition.json">objects/identity</a> - Identities can represent actual individuals, organizations, or groups (e.g., ACME, Inc.) as well as classes of individuals, organizations, systems or groups (e.g., the finance sector).  The Identity SDO can capture basic identifying information, contact information, and the sectors that the Identity belongs to. Identity is used in STIX to represent, among other things, targets of attacks, information sources, object creators, and threat actor identities. (ref. STIX 2.1 - 4.5).<a href="#section-3.1-1.125" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.126">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ilr-impact/definition.json">objects/ilr-impact</a> - Institut Luxembourgeois de Regulation - Impact.<a href="#section-3.1-1.126" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.127">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ilr-notification-incident/definition.json">objects/ilr-notification-incident</a> - Institut Luxembourgeois de Regulation - Notification d'incident.<a href="#section-3.1-1.127" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.128">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/image/definition.json">objects/image</a> - Object describing an image file.<a href="#section-3.1-1.128" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.129">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/impersonation/definition.json">objects/impersonation</a> - Represent an impersonating account.<a href="#section-3.1-1.129" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.130">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/imsi-catcher/definition.json">objects/imsi-catcher</a> - IMSI Catcher entry object based on the open source IMSI cather.<a href="#section-3.1-1.130" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.131">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/infrastructure/definition.json">objects/infrastructure</a> - The Infrastructure object represents a type of TTP and describes any systems, software services and any associated physical or virtual resources intended to support some purpose (e.g., C2 servers used as part of an attack, device or server that are part of defense, database servers targeted by an attack, etc.). While elements of an attack can be represented by other objects, the Infrastructure object represents a named group of related data that constitutes the infrastructure. STIX 2.1 - 4.8.<a href="#section-3.1-1.131" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.132">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/instant-message/definition.json">objects/instant-message</a> - Instant Message (IM) object template describing one or more IM message.<a href="#section-3.1-1.132" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.133">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/instant-message-group/definition.json">objects/instant-message-group</a> - Instant Message (IM) group object template describing a public or private IM group, channel or conversation.<a href="#section-3.1-1.133" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.134">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intel471-vulnerability-intelligence/definition.json">objects/intel471-vulnerability-intelligence</a> - Intel 471 vulnerability intelligence object.<a href="#section-3.1-1.134" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.135">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intelmq_event/definition.json">objects/intelmq_event</a> - IntelMQ Event.<a href="#section-3.1-1.135" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.136">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intelmq_report/definition.json">objects/intelmq_report</a> - IntelMQ Report.<a href="#section-3.1-1.136" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.137">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/internal-reference/definition.json">objects/internal-reference</a> - Internal reference.<a href="#section-3.1-1.137" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.138">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/interpol-notice/definition.json">objects/interpol-notice</a> - An object which describes a Interpol notice.<a href="#section-3.1-1.138" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.139">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/iot-device/definition.json">objects/iot-device</a> - An IoT device.<a href="#section-3.1-1.139" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.140">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/iot-firmware/definition.json">objects/iot-firmware</a> - A firmware for an IoT device.<a href="#section-3.1-1.140" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.141">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ip-api-address/definition.json">objects/ip-api-address</a> - IP Address information. Useful if you are pulling your ip information from ip-api.com.<a href="#section-3.1-1.141" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.142">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ip-port/definition.json">objects/ip-port</a> - An IP address (or domain or hostname) and a port seen as a tuple (or as a triple) in a specific time frame.<a href="#section-3.1-1.142" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.143">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/irc/definition.json">objects/irc</a> - An IRC object to describe an IRC server and the associated channels.<a href="#section-3.1-1.143" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.144">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ja3/definition.json">objects/ja3</a> - JA3 is a new technique for creating SSL client fingerprints that are easy to produce and can be easily shared for threat intelligence. Fingerprints are composed of Client Hello packet; SSL Version, Accepted Ciphers, List of Extensions, Elliptic Curves, and Elliptic Curve Formats. <a href="https://github.com/salesforce/ja3">https://github.com/salesforce/ja3</a>.<a href="#section-3.1-1.144" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.145">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ja3s/definition.json">objects/ja3s</a> - JA3S is JA3 for the Server side of the SSL/TLS communication and fingerprints how servers respond to particular clients. JA3S fingerprints are composed of Server Hello packet; SSL Version, Cipher, SSLExtensions. <a href="https://github.com/salesforce/ja3">https://github.com/salesforce/ja3</a>.<a href="#section-3.1-1.145" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.146">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/jarm/definition.json">objects/jarm</a> - Jarm object to describe an TLS/SSL implementation used for malicious or legitimate use-case.<a href="#section-3.1-1.146" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.147">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/keybase-account/definition.json">objects/keybase-account</a> - Information related to a keybase account, from API Users Object.<a href="#section-3.1-1.147" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.148">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/language-content/definition.json">objects/language-content</a> - The Language Content object represents text content for objects represented in languages other than that of the original object. Language content may be a translation of the original object by a third-party, a first-source translation by the original publisher, or additional official language content provided at the time of creation. STIX 2.1 ref 7.1.<a href="#section-3.1-1.148" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.149">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/leaked-document/definition.json">objects/leaked-document</a> - Object describing a leaked document.<a href="#section-3.1-1.149" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.150">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/legal-entity/definition.json">objects/legal-entity</a> - An object to describe a legal entity.<a href="#section-3.1-1.150" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.151">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/lnk/definition.json">objects/lnk</a> - LNK object describing a Windows LNK binary file (aka Windows shortcut).<a href="#section-3.1-1.151" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.152">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/macho/definition.json">objects/macho</a> - Object describing a file in Mach-O format.<a href="#section-3.1-1.152" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.153">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/macho-section/definition.json">objects/macho-section</a> - Object describing a section of a file in Mach-O format.<a href="#section-3.1-1.153" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.154">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/mactime-timeline-analysis/definition.json">objects/mactime-timeline-analysis</a> - Mactime template, used in forensic investigations to describe the timeline of a file activity.<a href="#section-3.1-1.154" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.155">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/malware-config/definition.json">objects/malware-config</a> - Malware configuration recovered or extracted from a malicious binary.<a href="#section-3.1-1.155" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.156">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/meme-image/definition.json">objects/meme-image</a> - Object describing a meme (image).<a href="#section-3.1-1.156" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.157">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/microblog/definition.json">objects/microblog</a> - Microblog post like a Twitter tweet or a post on a Facebook wall.<a href="#section-3.1-1.157" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.158">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/mutex/definition.json">objects/mutex</a> - Object to describe mutual exclusion locks (mutex) as seen in memory or computer program.<a href="#section-3.1-1.158" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.159">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/narrative/definition.json">objects/narrative</a> - Object describing a narrative.<a href="#section-3.1-1.159" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.160">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/netflow/definition.json">objects/netflow</a> - Netflow object describes an network object based on the Netflowv5/v9 minimal definition.<a href="#section-3.1-1.160" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.161">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/network-connection/definition.json">objects/network-connection</a> - A local or remote network connection.<a href="#section-3.1-1.161" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.162">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/network-profile/definition.json">objects/network-profile</a> - Elements that can be used to profile, pivot or identify a network infrastructure, including domains, ip and urls.<a href="#section-3.1-1.162" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.163">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/network-socket/definition.json">objects/network-socket</a> - Network socket object describes a local or remote network connections based on the socket data structure.<a href="#section-3.1-1.163" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.164">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/news-agency/definition.json">objects/news-agency</a> - News agencies compile news and disseminate news in bulk.<a href="#section-3.1-1.164" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.165">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/news-media/definition.json">objects/news-media</a> - News media are forms of mass media delivering news to the general public.<a href="#section-3.1-1.165" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.166">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/open-data-security/definition.json">objects/open-data-security</a> - An object describing an open dataset available and described under the open data security model. ref. <a href="https://github.com/CIRCL/open-data-security">https://github.com/CIRCL/open-data-security</a>.<a href="#section-3.1-1.166" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.167">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/organization/definition.json">objects/organization</a> - An object which describes an organization.<a href="#section-3.1-1.167" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.168">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/original-imported-file/definition.json">objects/original-imported-file</a> - Object describing the original file used to import data in MISP.<a href="#section-3.1-1.168" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.169">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/paloalto-threat-event/definition.json">objects/paloalto-threat-event</a> - Palo Alto Threat Log Event.<a href="#section-3.1-1.169" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.170">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/parler-account/definition.json">objects/parler-account</a> - Parler account.<a href="#section-3.1-1.170" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.171">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/parler-comment/definition.json">objects/parler-comment</a> - Parler comment.<a href="#section-3.1-1.171" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.172">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/parler-post/definition.json">objects/parler-post</a> - Parler post (parley).<a href="#section-3.1-1.172" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.173">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/passive-dns/definition.json">objects/passive-dns</a> - Passive DNS records as expressed in draft-dulaunoy-dnsop-passive-dns-cof-07. See <a href="https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html">https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html</a>.<a href="#section-3.1-1.173" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.174">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/passive-dns-dnsdbflex/definition.json">objects/passive-dns-dnsdbflex</a> - DNSDBFLEX object. This object is used at farsight security. Roughly based on Passive DNS records as expressed in draft-dulaunoy-dnsop-passive-dns-cof-07. See <a href="https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html">https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html</a>.<a href="#section-3.1-1.174" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.175">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/passive-ssh/definition.json">objects/passive-ssh</a> - Passive-ssh object as described on passive-ssh services from circl.lu - <a href="https://github.com/D4-project/passive-ssh">https://github.com/D4-project/passive-ssh</a>.<a href="#section-3.1-1.175" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.176">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/paste/definition.json">objects/paste</a> - Paste or similar post from a website allowing to share privately or publicly posts.<a href="#section-3.1-1.176" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.177">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pcap-metadata/definition.json">objects/pcap-metadata</a> - Network packet capture metadata.<a href="#section-3.1-1.177" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.178">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pe/definition.json">objects/pe</a> - Object describing a Portable Executable.<a href="#section-3.1-1.178" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.179">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pe-section/definition.json">objects/pe-section</a> - Object describing a section of a Portable Executable.<a href="#section-3.1-1.179" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.180">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/person/definition.json">objects/person</a> - An object which describes a person or an identity.<a href="#section-3.1-1.180" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.181">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pgp-meta/definition.json">objects/pgp-meta</a> - Metadata extracted from a PGP keyblock, message or signature.<a href="#section-3.1-1.181" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.182">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/phishing/definition.json">objects/phishing</a> - Phishing template to describe a phishing website and its analysis.<a href="#section-3.1-1.182" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.183">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/phishing-kit/definition.json">objects/phishing-kit</a> - Object to describe a phishing-kit.<a href="#section-3.1-1.183" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.184">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/phone/definition.json">objects/phone</a> - A phone or mobile phone object which describe a phone.<a href="#section-3.1-1.184" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.185">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/postal-address/definition.json">objects/postal-address</a> - A postal address.<a href="#section-3.1-1.185" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.186">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/probabilistic-data-structure/definition.json">objects/probabilistic-data-structure</a> - Probabilistic data structure object describe a space-efficient data structure such as Bloom filter or similar structure.<a href="#section-3.1-1.186" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.187">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/process/definition.json">objects/process</a> - Object describing a system process.<a href="#section-3.1-1.187" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.188">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/publication/definition.json">objects/publication</a> - An object to describe a book, journal, or academic publication.<a href="#section-3.1-1.188" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.189">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/python-etvx-event-log/definition.json">objects/python-etvx-event-log</a> - Event log object template to share information of the activities conducted on a system. .<a href="#section-3.1-1.189" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.190">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/r2graphity/definition.json">objects/r2graphity</a> - Indicators extracted from files using radare2 and graphml.<a href="#section-3.1-1.190" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.191">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-account/definition.json">objects/reddit-account</a> - Reddit account.<a href="#section-3.1-1.191" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.192">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-comment/definition.json">objects/reddit-comment</a> - A Reddit post comment.<a href="#section-3.1-1.192" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.193">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-post/definition.json">objects/reddit-post</a> - A Reddit post.<a href="#section-3.1-1.193" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.194">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-subreddit/definition.json">objects/reddit-subreddit</a> - Public or private subreddit.<a href="#section-3.1-1.194" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.195">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regexp/definition.json">objects/regexp</a> - An object describing a regular expression (regex or regexp). The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a regular expression.<a href="#section-3.1-1.195" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.196">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/registry-key/definition.json">objects/registry-key</a> - Registry key object describing a Windows registry key with value and last-modified timestamp.<a href="#section-3.1-1.196" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.197">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-NTUser/definition.json">objects/regripper-NTUser</a> - Regripper Object template designed to present user specific configuration details extracted from the NTUSER.dat hive.<a href="#section-3.1-1.197" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.198">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-sam-hive-single-user/definition.json">objects/regripper-sam-hive-single-user</a> - Regripper Object template designed to present user profile details extracted from the SAM hive.<a href="#section-3.1-1.198" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.199">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-sam-hive-user-group/definition.json">objects/regripper-sam-hive-user-group</a> - Regripper Object template designed to present group profile details extracted from the SAM hive.<a href="#section-3.1-1.199" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.200">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-BHO/definition.json">objects/regripper-software-hive-BHO</a> - Regripper Object template designed to gather information of the browser helper objects installed on the system.<a href="#section-3.1-1.200" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.201">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-appInit-DLLS/definition.json">objects/regripper-software-hive-appInit-DLLS</a> - Regripper Object template designed to gather information of the DLL files installed on the system.<a href="#section-3.1-1.201" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.202">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-application-paths/definition.json">objects/regripper-software-hive-application-paths</a> - Regripper Object template designed to gather information of the application paths.<a href="#section-3.1-1.202" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.203">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-applications-installed/definition.json">objects/regripper-software-hive-applications-installed</a> - Regripper Object template designed to gather information of the applications installed on the system.<a href="#section-3.1-1.203" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.204">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-command-shell/definition.json">objects/regripper-software-hive-command-shell</a> - Regripper Object template designed to gather information of the shell commands executed on the system.<a href="#section-3.1-1.204" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.205">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-software-run/definition.json">objects/regripper-software-hive-software-run</a> - Regripper Object template designed to gather information of the applications set to run on the system.<a href="#section-3.1-1.205" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.206">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-userprofile-winlogon/definition.json">objects/regripper-software-hive-userprofile-winlogon</a> - Regripper Object template designed to gather user profile information when the user logs onto the system, gathered from the software hive.<a href="#section-3.1-1.206" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.207">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-windows-general-info/definition.json">objects/regripper-software-hive-windows-general-info</a> - Regripper Object template designed to gather general windows information extracted from the software-hive.<a href="#section-3.1-1.207" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.208">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-firewall-configuration/definition.json">objects/regripper-system-hive-firewall-configuration</a> - Regripper Object template designed to present firewall configuration information extracted from the system-hive.<a href="#section-3.1-1.208" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.209">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-general-configuration/definition.json">objects/regripper-system-hive-general-configuration</a> - Regripper Object template designed to present general system properties extracted from the system-hive.<a href="#section-3.1-1.209" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.210">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-network-information/definition.json">objects/regripper-system-hive-network-information</a> - Regripper object template designed to gather network information from the system-hive.<a href="#section-3.1-1.210" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.211">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-services-drivers/definition.json">objects/regripper-system-hive-services-drivers</a> - Regripper Object template designed to gather information regarding the services/drivers from the system-hive.<a href="#section-3.1-1.211" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.212">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/report/definition.json">objects/report</a> - Metadata used to generate an executive level report.<a href="#section-3.1-1.212" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.213">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/research-scanner/definition.json">objects/research-scanner</a> - Information related to known scanning activity (e.g. from research projects).<a href="#section-3.1-1.213" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.214">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/rogue-dns/definition.json">objects/rogue-dns</a> - Rogue DNS as defined by CERT.br.<a href="#section-3.1-1.214" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.215">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/rtir/definition.json">objects/rtir</a> - RTIR - Request Tracker for Incident Response.<a href="#section-3.1-1.215" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.216">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sandbox-report/definition.json">objects/sandbox-report</a> - Sandbox report.<a href="#section-3.1-1.216" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.217">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sb-signature/definition.json">objects/sb-signature</a> - Sandbox detection signature.<a href="#section-3.1-1.217" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.218">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scheduled-event/definition.json">objects/scheduled-event</a> - Event object template describing a gathering of individuals in meatspace.<a href="#section-3.1-1.218" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.219">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-c13-daily/definition.json">objects/scrippsco2-c13-daily</a> - Daily average C13 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.219" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.220">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-c13-monthly/definition.json">objects/scrippsco2-c13-monthly</a> - Monthly average C13 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.220" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.221">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-co2-daily/definition.json">objects/scrippsco2-co2-daily</a> - Daily average CO2 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.221" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.222">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-co2-monthly/definition.json">objects/scrippsco2-co2-monthly</a> - Monthly average CO2 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.222" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.223">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-o18-daily/definition.json">objects/scrippsco2-o18-daily</a> - Daily average O18 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.223" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.224">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-o18-monthly/definition.json">objects/scrippsco2-o18-monthly</a> - Monthly average O18 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.224" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.225">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/script/definition.json">objects/script</a> - Object describing a computer program written to be run in a special run-time environment. The script or shell script can be used for malicious activities but also as support tools for threat analysts.<a href="#section-3.1-1.225" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.226">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/security-playbook/definition.json">objects/security-playbook</a> - An object to manage, represent, and share course of action playbooks (security playbooks) for cyberspace defense.<a href="#section-3.1-1.226" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.227">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shell-commands/definition.json">objects/shell-commands</a> - Object describing a series of shell commands executed. This object can be linked with malicious files in order to describe a specific execution of shell commands.<a href="#section-3.1-1.227" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.228">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shodan-report/definition.json">objects/shodan-report</a> - Shodan Report for a given IP.<a href="#section-3.1-1.228" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.229">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/short-message-service/definition.json">objects/short-message-service</a> - Short Message Service (SMS) object template describing one or more SMS message. Restriction of the initial format 3GPP 23.038 GSM character set doesn't apply.<a href="#section-3.1-1.229" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.230">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shortened-link/definition.json">objects/shortened-link</a> - Shortened link and its redirect target.<a href="#section-3.1-1.230" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.231">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/social-media-group/definition.json">objects/social-media-group</a> - Social media group object template describing a public or private group or channel.<a href="#section-3.1-1.231" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.232">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/software/definition.json">objects/software</a> - The Software object represents high-level properties associated with software, including software products. STIX 2.1 - 6.14.<a href="#section-3.1-1.232" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.233">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/splunk/definition.json">objects/splunk</a> - Splunk / Splunk ES object.<a href="#section-3.1-1.233" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.234">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ss7-attack/definition.json">objects/ss7-attack</a> - SS7 object of an attack as seen on the SS7 signaling protocol supporting GSM/GPRS/UMTS networks.<a href="#section-3.1-1.234" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.235">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ssh-authorized-keys/definition.json">objects/ssh-authorized-keys</a> - An object to store ssh authorized keys file.<a href="#section-3.1-1.235" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.236">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/stix2-pattern/definition.json">objects/stix2-pattern</a> - An object describing a STIX pattern. The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a STIX pattern.<a href="#section-3.1-1.236" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.237">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/submarine/definition.json">objects/submarine</a> - Submarine description.<a href="#section-3.1-1.237" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.238">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/suricata/definition.json">objects/suricata</a> - An object describing one or more Suricata rule(s) along with version and contextual information.<a href="#section-3.1-1.238" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.239">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/target-system/definition.json">objects/target-system</a> - Description about an targeted system, this could potentially be a compromissed internal system.<a href="#section-3.1-1.239" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.240">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/telegram-account/definition.json">objects/telegram-account</a> - Information related to a telegram account.<a href="#section-3.1-1.240" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.241">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/temporal-event/definition.json">objects/temporal-event</a> - A temporal event consists of some temporal and spacial boundaries. Spacial boundaries can be physical, virtual or hybrid.<a href="#section-3.1-1.241" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.242">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/threatgrid-report/definition.json">objects/threatgrid-report</a> - ThreatGrid report.<a href="#section-3.1-1.242" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.243">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timecode/definition.json">objects/timecode</a> - Timecode object to describe a start of video sequence (e.g. CCTV evidence) and the end of the video sequence.<a href="#section-3.1-1.243" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.244">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timesketch-timeline/definition.json">objects/timesketch-timeline</a> - A timesketch timeline object based on mandatory field in timesketch to describe a log entry.<a href="#section-3.1-1.244" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.245">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timesketch_message/definition.json">objects/timesketch_message</a> - A timesketch message entry.<a href="#section-3.1-1.245" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.246">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timestamp/definition.json">objects/timestamp</a> - A generic timestamp object to represent time including first time and last time seen. Relationship will then define the kind of time relationship.<a href="#section-3.1-1.246" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.247">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tor-hiddenservice/definition.json">objects/tor-hiddenservice</a> - Tor hidden service (onion service) object.<a href="#section-3.1-1.247" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.248">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tor-node/definition.json">objects/tor-node</a> - Tor node (which protects your privacy on the internet by hiding the connection between users Internet address and the services used by the users) description which are part of the Tor network at a time.<a href="#section-3.1-1.248" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.249">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tracking-id/definition.json">objects/tracking-id</a> - Analytics and tracking ID such as used in Google Analytics or other analytic platform.<a href="#section-3.1-1.249" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.250">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/transaction/definition.json">objects/transaction</a> - An object to describe a financial transaction.<a href="#section-3.1-1.250" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.251">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/translation/definition.json">objects/translation</a> - Used to keep a text and its translation.<a href="#section-3.1-1.251" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.252">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/trustar_report/definition.json">objects/trustar_report</a> - TruStar Report.<a href="#section-3.1-1.252" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.253">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-chats/definition.json">objects/tsk-chats</a> - An Object Template to gather information from evidential or interesting exchange of messages identified during a digital forensic investigation.<a href="#section-3.1-1.253" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.254">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-bookmark/definition.json">objects/tsk-web-bookmark</a> - An Object Template to add evidential bookmarks identified during a digital forensic investigation.<a href="#section-3.1-1.254" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.255">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-cookie/definition.json">objects/tsk-web-cookie</a> - An TSK-Autopsy Object Template to represent cookies identified during a forensic investigation.<a href="#section-3.1-1.255" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.256">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-downloads/definition.json">objects/tsk-web-downloads</a> - An Object Template to add web-downloads.<a href="#section-3.1-1.256" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.257">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-history/definition.json">objects/tsk-web-history</a> - An Object Template to share web history information.<a href="#section-3.1-1.257" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.258">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-search-query/definition.json">objects/tsk-web-search-query</a> - An Object Template to share web search query information.<a href="#section-3.1-1.258" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.259">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/twitter-account/definition.json">objects/twitter-account</a> - Twitter account.<a href="#section-3.1-1.259" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.260">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/twitter-list/definition.json">objects/twitter-list</a> - Twitter list.<a href="#section-3.1-1.260" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.261">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/twitter-post/definition.json">objects/twitter-post</a> - Twitter post (tweet).<a href="#section-3.1-1.261" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.262">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/url/definition.json">objects/url</a> - url object describes an url along with its normalized field (like extracted using faup parsing library) and its metadata.<a href="#section-3.1-1.262" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.263">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/user-account/definition.json">objects/user-account</a> - User-account object, defining aspects of user identification, authentication, privileges and other relevant data points.<a href="#section-3.1-1.263" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.264">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/vehicle/definition.json">objects/vehicle</a> - Vehicle object template to describe a vehicle information and registration.<a href="#section-3.1-1.264" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.265">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/victim/definition.json">objects/victim</a> - Victim object describes the target of an attack or abuse.<a href="#section-3.1-1.265" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.266">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/virustotal-graph/definition.json">objects/virustotal-graph</a> - VirusTotal graph.<a href="#section-3.1-1.266" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.267">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/virustotal-report/definition.json">objects/virustotal-report</a> - VirusTotal report.<a href="#section-3.1-1.267" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.268">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/vulnerability/definition.json">objects/vulnerability</a> - Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.<a href="#section-3.1-1.268" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.269">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/weakness/definition.json">objects/weakness</a> - Weakness object describing a common weakness enumeration which can describe usable, incomplete, draft or deprecated weakness for software, equipment of hardware.<a href="#section-3.1-1.269" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.270">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/whois/definition.json">objects/whois</a> - Whois records information for a domain name or an IP address.<a href="#section-3.1-1.270" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.271">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/windows-service/definition.json">objects/windows-service</a> - Windows service and detailed about a service running a Windows operating system.<a href="#section-3.1-1.271" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.272">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/x509/definition.json">objects/x509</a> - x509 object describing a X.509 certificate.<a href="#section-3.1-1.272" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.273">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/yabin/definition.json">objects/yabin</a> - yabin.py generates Yara rules from function prologs, for matching and hunting binaries. ref: <a href="https://github.com/AlienVault-OTX/yabin">https://github.com/AlienVault-OTX/yabin</a>.<a href="#section-3.1-1.273" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.274">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/yara/definition.json">objects/yara</a> - An object describing a YARA rule (or a YARA rule name) along with its version.<a href="#section-3.1-1.274" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.275">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-channel/definition.json">objects/youtube-channel</a> - A YouTube channel.<a href="#section-3.1-1.275" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.276">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-comment/definition.json">objects/youtube-comment</a> - A YouTube video comment.<a href="#section-3.1-1.276" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.277">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-playlist/definition.json">objects/youtube-playlist</a> - A YouTube playlist.<a href="#section-3.1-1.277" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.278">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-video/definition.json">objects/youtube-video</a> - A YouTube video.<a href="#section-3.1-1.278" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="acknowledgements">
+<section id="section-4">
+      <h2 id="name-acknowledgements">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
+      </h2>
+<p id="section-4-1">The authors wish to thank all the MISP community who are supporting the creation
+of open standards in threat intelligence sharing.<a href="#section-4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-5">
+      <h2 id="name-normative-references">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      </h2>
+<dl class="references">
+<dt id="RFC2119">[RFC2119]</dt>
+      <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4122">[RFC4122]</dt>
+      <dd>
+<span class="refAuthor">Leach, P.</span>, <span class="refAuthor">Mealling, M.</span>, and <span class="refAuthor">R. Salz</span>, <span class="refTitle">"A Universally Unique IDentifier (UUID) URN Namespace"</span>, <span class="seriesInfo">RFC 4122</span>, <span class="seriesInfo">DOI 10.17487/RFC4122</span>, <time datetime="2005-07" class="refDate">July 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4122">https://www.rfc-editor.org/info/rfc4122</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8259">[RFC8259]</dt>
+    <dd>
+<span class="refAuthor">Bray, T., Ed.</span>, <span class="refTitle">"The JavaScript Object Notation (JSON) Data Interchange Format"</span>, <span class="seriesInfo">STD 90</span>, <span class="seriesInfo">RFC 8259</span>, <span class="seriesInfo">DOI 10.17487/RFC8259</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8259">https://www.rfc-editor.org/info/rfc8259</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+<section id="section-6">
+      <h2 id="name-informative-references">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+      </h2>
+<dl class="references">
+<dt id="MISP-O">[MISP-O]</dt>
+      <dd>
+<span class="refAuthor">Community, M.</span>, <span class="refTitle">"MISP Objects - shared and common object templates"</span>, <span>&lt;<a href="https://github.com/MISP/misp-objects">https://github.com/MISP/misp-objects</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MISP-O-DOC">[MISP-O-DOC]</dt>
+    <dd>
+<span class="refAuthor">community, M.</span>, <span class="refTitle">"MISP objects directory"</span>, <time datetime="2018" class="refDate">2018</time>, <span>&lt;<a href="https://www.misp-project.org/objects.html">https://www.misp-project.org/objects.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+<div id="authors-addresses">
+<section id="appendix-A">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Alexandre Dulaunoy</span></div>
+<div dir="auto" class="left"><span class="org">Computer Incident Response Center Luxembourg</span></div>
+<div dir="auto" class="left"><span class="street-address">16, bd d'Avranches</span></div>
+<div dir="auto" class="left">L-<span class="postal-code">L-1611</span> <span class="locality">Luxembourg</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">Luxembourg</span></div>
+<div class="tel">
+<span>Phone:</span>
+<a href="tel:+352%20247%2088444" class="tel">+352 247 88444</a>
+</div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:alexandre.dulaunoy@circl.lu" class="email">alexandre.dulaunoy@circl.lu</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Andras Iklody</span></div>
+<div dir="auto" class="left"><span class="org">Computer Incident Response Center Luxembourg</span></div>
+<div dir="auto" class="left"><span class="street-address">16, bd d'Avranches</span></div>
+<div dir="auto" class="left">L-<span class="postal-code">L-1611</span> <span class="locality">Luxembourg</span>
+</div>
+<div dir="auto" class="left"><span class="country-name">Luxembourg</span></div>
+<div class="tel">
+<span>Phone:</span>
+<a href="tel:+352%20247%2088444" class="tel">+352 247 88444</a>
+</div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:andras.iklody@circl.lu" class="email">andras.iklody@circl.lu</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>

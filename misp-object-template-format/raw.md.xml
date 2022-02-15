@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- name="GENERATOR" content="github.com/mmarkdown/mmark Mmark Markdown Processor - mmark.miek.nl" -->
+<rfc version="3" ipr="trust200902" docName="draft-00" submissionType="independent" category="info" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true">
+
+<front>
+<title abbrev="MISP object template format">MISP object template format</title><seriesInfo value="draft-00" stream="independent" status="informational" name="Internet-Draft"></seriesInfo>
+<author initials="A." surname="Dulaunoy" fullname="Alexandre Dulaunoy"><organization abbrev="CIRCL">Computer Incident Response Center Luxembourg</organization><address><postal><street>16, bd d'Avranches</street>
+<city>Luxembourg</city>
+<code>L-1611</code>
+<country>Luxembourg</country>
+</postal><phone>+352 247 88444</phone>
+<email>alexandre.dulaunoy@circl.lu</email>
+</address></author><author initials="A." surname="Iklody" fullname="Andras Iklody"><organization abbrev="CIRCL">Computer Incident Response Center Luxembourg</organization><address><postal><street> 16, bd d'Avranches</street>
+<city>Luxembourg</city>
+<code>L-1611</code>
+<country>Luxembourg</country>
+</postal><phone>+352 247 88444</phone>
+<email>andras.iklody@circl.lu</email>
+</address></author><date/>
+<area>Security</area>
+<workgroup></workgroup>
+
+<abstract>
+<t>This document describes the MISP object template format which describes a simple JSON format to represent the various templates used to construct MISP objects. A public directory of common vocabularies MISP object templates <xref target="MISP-O"></xref> is available and relies on the MISP object reference format.</t>
+</abstract>
+
+</front>
+
+<middle>
+
+<section anchor="introduction"><name>Introduction</name>
+<t>Due to the increased maturity of threat information sharing, the need arose for more complex and exhaustive data-points to be shared across the various sharing communities. MISP's information sharing in general relied on a flat structure of attributes contained within an event, where attributes served as atomic secluded data-points with some commonalities as defined by the encapsulating event. However, this flat structure restricted the use of more diverse and complex data-points described by a list of atomic values, a problem solved by the MISP object structure.</t>
+<t>MISP objects combine a list of attributes to represent a singular object with various facets. In order to bootstrap the object creation process and to maintain uniformity among objects describing similar data-points, the MISP object template format serves as a reusable and share-able blueprint format.</t>
+<t>MISP object templates also include a vocabulary to describe the various inter object and object to attribute relationships and are leveraged by MISP object references.</t>
+
+<section anchor="conventions-and-terminology"><name>Conventions and Terminology</name>
+<t>The key words &quot;<bcp14>MUST</bcp14>&quot;, &quot;<bcp14>MUST NOT</bcp14>&quot;, &quot;<bcp14>REQUIRED</bcp14>&quot;, &quot;<bcp14>SHALL</bcp14>&quot;, &quot;<bcp14>SHALL NOT</bcp14>&quot;,
+&quot;<bcp14>SHOULD</bcp14>&quot;, &quot;<bcp14>SHOULD NOT</bcp14>&quot;, &quot;<bcp14>RECOMMENDED</bcp14>&quot;, &quot;<bcp14>MAY</bcp14>&quot;, and &quot;<bcp14>OPTIONAL</bcp14>&quot; in this
+document are to be interpreted as described in RFC 2119 <xref target="RFC2119"></xref>.</t>
+</section>
+</section>
+
+<section anchor="format"><name>Format</name>
+<t>MISP object templates are composed of the MISP object template (<bcp14>MUST</bcp14>) structure itself and a list of MISP object template elements (<bcp14>SHOULD</bcp14>) describing the list of possible attributes belonging to the resulting object, along with their context and settings.</t>
+<t>MISP object templates themselves consist of a name (<bcp14>MUST</bcp14>), a meta-category (<bcp14>MUST</bcp14>) and a description (<bcp14>SHOULD</bcp14>). They are identified by a uuid (<bcp14>MUST</bcp14>) and a version (<bcp14>MUST</bcp14>). For any updates or transfer of the same object reference. UUID version 4 is <bcp14>RECOMMENDED</bcp14> when assigning it to a new object reference. The list of requirements when it comes to the contained MISP object template elements is defined in the requirements field (<bcp14>OPTIONAL</bcp14>).</t>
+<t>MISP object template elements consist of an object_relation (<bcp14>MUST</bcp14>), a type (<bcp14>MUST</bcp14>), an object_template_id (<bcp14>SHOULD</bcp14>), a ui_priority (<bcp14>SHOULD</bcp14>), a list of categories (<bcp14>MAY</bcp14>), a list of sane_default values (<bcp14>MAY</bcp14>) or a values_list (<bcp14>MAY</bcp14>).</t>
+
+<section anchor="overview"><name>Overview</name>
+<t>The MISP object template format uses the JSON <xref target="RFC8259"></xref> format. Each template is represented as a JSON object with meta information including the following fields: uuid, requiredOneOf, description, version, meta-category, name.</t>
+
+<section anchor="object-template"><name>Object Template</name>
+
+<section anchor="uuid"><name>uuid</name>
+<t>uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> of the object template. The uuid <bcp14>MUST</bcp14> be preserved for to keep consistency of the templates across instances. UUID version 4 is <bcp14>RECOMMENDED</bcp14> when assigning it to a new object template.</t>
+<t>uuid is represented as a JSON string. uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="requiredoneof"><name>requiredOneOf</name>
+<t>requiredOneOf is represented as a JSON list and contains a list of attribute relationships of which one must be present in the object to be created based on the given template. The requiredOneOf field <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="required"><name>required</name>
+<t>required is represented as a JSON list and contains a list of attribute relationships of which all must be present in the object to be created based on the given template. The required field <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="description"><name>description</name>
+<t>description is represented as a JSON string and contains the assigned meaning given to objects created using this template. The description field <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="version"><name>version</name>
+<t>version represents a numeric incrementing version of the object template. It is used to associate the object to the correct version of the template and together with the uuid field forms an association to the correct template type and version.</t>
+<t>version is represented as a JSON string. version <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="meta-category"><name>meta-category</name>
+<t>meta-category represents the sub-category of objects that the given object template belongs to. meta-categories are not tied to a fixed list of options but can be created on the fly.</t>
+<t>meta-category is represented as a JSON string. meta-category <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="name"><name>name</name>
+<t>name represents the human-readable name of the objects created using the given template, describing the intent of the object package.</t>
+<t>name is represented as a JSON string. name <bcp14>MUST</bcp14> be present</t>
+</section>
+</section>
+
+<section anchor="attributes"><name>attributes</name>
+<t>attributes is represented as a JSON list and contains a list of template elements used as a template for creating the individual attributes within the object that is to be created with the object.</t>
+<t>attributes is represented as a JSON list. attributes <bcp14>MUST</bcp14> be present.</t>
+
+<section anchor="description-1"><name>description</name>
+<t>description is represented as a JSON string and contains the description of the given attribute in the context of the object with the given relationship. The description field <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="ui-priority"><name>ui-priority</name>
+<t>ui-priority is represented by a numeric values in JSON string format and is meant to provide a priority for the given element in the object template visualisation. The ui-priority <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="misp-attribute"><name>misp-attribute</name>
+<t>misp-attribute is represented by a JSON string or a JSON object with a list of values. The value(s) are taken from the pool of types defined by the MISP core format's Attribute Object's type list. type can contain a JSON object with a list of suggested value alternatives encapsulated in a list within a sane_default key or a list of enforced value alternatives encapsulated in a list_values key.</t>
+<t>The misp-attribute field <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="disable-correlation"><name>disable_correlation</name>
+<t>disable_correlation is represented by a JSON boolean. The disable_correlation field flags the attribute(s) created by the given object template element to be marked as non correlating.</t>
+<t>The misp-attribute field <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="categories"><name>categories</name>
+<t>categories is represented by a JSON list containing one or several valid options from the list of verbs valid for the category field in the Attribute object within the MISP core format.</t>
+<t>The categories field <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="multiple"><name>multiple</name>
+<t>multiple is represented by a JSON boolean value. It marks the MISP object template element as a multiple input field, allowing for several attributes to be created by the element within the same object.</t>
+<t>The multiple field <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="sane-default"><name>sane_default</name>
+<t>sane_default is represented by a JSON list containing one or several recommended/sane values for an attribute. sane_default is mutually exclusive with values_list.</t>
+<t>The sane_default field <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="values-list"><name>values_list</name>
+<t>values_list is represented by a JSON List containing one or several of fixed values for an attribute. values_list is mutually exclusive with sane_default.</t>
+<t>The value_list field <bcp14>MAY</bcp14> be present.</t>
+</section>
+</section>
+
+<section anchor="sample-object-template-object"><name>Sample Object Template object</name>
+<t>The MISP object template directory is publicly available <xref target="MISP-O"></xref> in a git repository and contains more than 60 object templates. As illustration, two sample objects templates are included.</t>
+
+<section anchor="credit-card-object-template"><name>credit-card object template</name>
+
+<artwork>{
+  &quot;requiredOneOf&quot;: [
+    &quot;cc-number&quot;
+  ],
+  &quot;attributes&quot;: {
+    &quot;version&quot;: {
+      &quot;description&quot;: &quot;Version of the card.&quot;,
+      &quot;ui-priority&quot;: 0,
+      &quot;misp-attribute&quot;: &quot;text&quot;
+    },
+    &quot;comment&quot;: {
+      &quot;description&quot;: &quot;A description of the card.&quot;,
+      &quot;ui-priority&quot;: 0,
+      &quot;misp-attribute&quot;: &quot;comment&quot;
+    },
+    &quot;card-security-code&quot;: {
+      &quot;description&quot;: &quot;Card security code (CSC, CVD, CVV, CVC and SPC) as embossed or printed on the card.&quot;,
+      &quot;ui-priority&quot;: 0,
+      &quot;misp-attribute&quot;: &quot;text&quot;
+    },
+    &quot;name&quot;: {
+      &quot;description&quot;: &quot;Name of the card owner.&quot;,
+      &quot;ui-priority&quot;: 0,
+      &quot;misp-attribute&quot;: &quot;text&quot;
+    },
+    &quot;issued&quot;: {
+      &quot;description&quot;: &quot;Initial date of validity or issued date.&quot;,
+      &quot;ui-priority&quot;: 0,
+      &quot;misp-attribute&quot;: &quot;datetime&quot;
+    },
+    &quot;expiration&quot;: {
+      &quot;description&quot;: &quot;Maximum date of validity&quot;,
+      &quot;ui-priority&quot;: 0,
+      &quot;misp-attribute&quot;: &quot;datetime&quot;
+    },
+    &quot;cc-number&quot;: {
+      &quot;description&quot;: &quot;credit-card number as encoded on the card.&quot;,
+      &quot;ui-priority&quot;: 0,
+      &quot;misp-attribute&quot;: &quot;cc-number&quot;
+    }
+  },
+  &quot;version&quot;: 2,
+  &quot;description&quot;: &quot;A payment card like credit card, debit card or any similar cards which can be used for financial transactions.&quot;,
+  &quot;meta-category&quot;: &quot;financial&quot;,
+  &quot;uuid&quot;: &quot;2b9c57aa-daba-4330-a738-56f18743b0c7&quot;,
+  &quot;name&quot;: &quot;credit-card&quot;
+}
+</artwork>
+</section>
+
+<section anchor="credential-object-template"><name>credential object template</name>
+
+<artwork>{
+  &quot;requiredOneOf&quot;: [
+    &quot;password&quot;
+  ],
+  &quot;attributes&quot;: {
+    &quot;text&quot;: {
+      &quot;description&quot;: &quot;A description of the credential(s)&quot;,
+      &quot;disable_correlation&quot;: true,
+      &quot;ui-priority&quot;: 1,
+      &quot;misp-attribute&quot;: &quot;text&quot;
+    },
+    &quot;username&quot;: {
+      &quot;description&quot;: &quot;Username related to the password(s)&quot;,
+      &quot;ui-priority&quot;: 1,
+      &quot;misp-attribute&quot;: &quot;text&quot;
+    },
+    &quot;password&quot;: {
+      &quot;description&quot;: &quot;Password&quot;,
+      &quot;multiple&quot;: true,
+      &quot;ui-priority&quot;: 1,
+      &quot;misp-attribute&quot;: &quot;text&quot;
+    },
+    &quot;type&quot;: {
+      &quot;description&quot;: &quot;Type of password(s)&quot;,
+      &quot;ui-priority&quot;: 1,
+      &quot;misp-attribute&quot;: &quot;text&quot;,
+      &quot;values_list&quot;: [
+        &quot;password&quot;,
+        &quot;api-key&quot;,
+        &quot;encryption-key&quot;,
+        &quot;unknown&quot;
+      ]
+    },
+    &quot;origin&quot;: {
+      &quot;description&quot;: &quot;Origin of the credential(s)&quot;,
+      &quot;ui-priority&quot;: 1,
+      &quot;misp-attribute&quot;: &quot;text&quot;,
+      &quot;sane_default&quot;: [
+        &quot;bruteforce-scanning&quot;,
+        &quot;malware-analysis&quot;,
+        &quot;memory-analysis&quot;,
+        &quot;network-analysis&quot;,
+        &quot;leak&quot;,
+        &quot;unknown&quot;
+      ]
+    },
+    &quot;format&quot;: {
+      &quot;description&quot;: &quot;Format of the password(s)&quot;,
+      &quot;ui-priority&quot;: 1,
+      &quot;misp-attribute&quot;: &quot;text&quot;,
+      &quot;values_list&quot;: [
+        &quot;clear-text&quot;,
+        &quot;hashed&quot;,
+        &quot;encrypted&quot;,
+        &quot;unknown&quot;
+      ]
+    },
+    &quot;notification&quot;: {
+      &quot;description&quot;: &quot;Mention of any notification(s) towards the potential owner(s) of the credential(s)&quot;,
+      &quot;ui-priority&quot;: 1,
+      &quot;misp-attribute&quot;: &quot;text&quot;,
+      &quot;multiple&quot;: true,
+      &quot;values_list&quot;: [
+        &quot;victim-notified&quot;,
+        &quot;service-notified&quot;,
+        &quot;none&quot;
+      ]
+    }
+  },
+  &quot;version&quot;: 2,
+  &quot;description&quot;: &quot;Credential describes one or more credential(s) including password(s), api key(s) or decryption key(s).&quot;,
+  &quot;meta-category&quot;: &quot;misc&quot;,
+  &quot;uuid&quot;: &quot;a27e98c9-9b0e-414c-8076-d201e039ca09&quot;,
+  &quot;name&quot;: &quot;credential&quot;
+}
+</artwork>
+</section>
+</section>
+
+<section anchor="object-relationships"><name>Object Relationships</name>
+
+<section anchor="name-1"><name>name</name>
+<t>name represents the human-readable relationship type which can be used when creating MISP object relations.</t>
+<t>name is represented as a JSON string. name <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="description-2"><name>description</name>
+<t>description is represented as a JSON string and contains the description of the object relationship type. The description field <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="format-1"><name>format</name>
+<t>format is represented by a JSON list containing a list of formats that the relationship type is valid for and can be mapped to. The format field <bcp14>MUST</bcp14> be present.</t>
+</section>
+</section>
+</section>
+</section>
+
+<section anchor="directory"><name>Directory</name>
+<t>The MISP object template directory is publicly available <xref target="MISP-O"></xref> in a git repository. The repository contains an objects directory, which contains a directory per object type, containing a file named definition.json which contains the definition of the object template in the above described format.</t>
+<t>A relationships directory is also included, containing a definition.json file which contains a list of MISP object relation definitions. There are more than 125 existing templates object documented in <xref target="MISP-O-DOC"></xref>.</t>
+
+<section anchor="existing-and-public-misp-object-templates"><name>Existing and public MISP object templates</name>
+
+<ul spacing="compact">
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ail-leak/definition.json">objects/ail-leak</eref> - An information leak as defined by the AIL Analysis Information Leak framework.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ais-info/definition.json">objects/ais-info</eref> - Automated Indicator Sharing (AIS) Information Source Markings.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/android-app/definition.json">objects/android-app</eref> - Indicators related to an Android app.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/android-permission/definition.json">objects/android-permission</eref> - A set of android permissions - one or more permission(s) which can be linked to other objects (e.g. malware, app).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/annotation/definition.json">objects/annotation</eref> - An annotation object allowing analysts to add annotations, comments, executive summary to a MISP event, objects or attributes.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/anonymisation/definition.json">objects/anonymisation</eref> - Anonymisation object describing an anonymisation technique used to encode MISP attribute values. Reference: <eref target="https://www.caida.org/tools/taxonomy/anonymization.xml">https://www.caida.org/tools/taxonomy/anonymization.xml</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/apivoid-email-verification/definition.json">objects/apivoid-email-verification</eref> - Apivoid email verification API result. Reference: <eref target="https://www.apivoid.com/api/email-verify/">https://www.apivoid.com/api/email-verify/</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/artifact/definition.json">objects/artifact</eref> - The Artifact object permits capturing an array of bytes (8-bits), as a base64-encoded string, or linking to a file-like payload. from STIX 2.1 (6.1).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/asn/definition.json">objects/asn</eref> - Autonomous system object describing an autonomous system which can include one or more network operators management an entity (e.g. ISP) along with their routing policy, routing prefixes or alike.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/attack-pattern/definition.json">objects/attack-pattern</eref> - Attack pattern describing a common attack pattern enumeration and classification.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/authentication-failure-report/definition.json">objects/authentication-failure-report</eref> - Authentication Failure Report.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/authenticode-signerinfo/definition.json">objects/authenticode-signerinfo</eref> - Authenticode Signer Info.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/av-signature/definition.json">objects/av-signature</eref> - Antivirus detection signature.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/bank-account/definition.json">objects/bank-account</eref> - An object describing bank account information based on account description from goAML 4.0.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/bgp-hijack/definition.json">objects/bgp-hijack</eref> - Object encapsulating BGP Hijack description as specified, for example, by bgpstream.com.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/bgp-ranking/definition.json">objects/bgp-ranking</eref> - BGP Ranking object describing the ranking of an ASN for a given day, along with its position, 1 being the most malicious ASN of the day, with the highest ranking. This object is meant to have a relationship with the corresponding ASN object and represents its ranking for a specific date.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/blog/definition.json">objects/blog</eref> - Blog post like Medium or WordPress.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/boleto/definition.json">objects/boleto</eref> - A common form of payment used in Brazil.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/btc-transaction/definition.json">objects/btc-transaction</eref> - An object to describe a Bitcoin transaction. Best to be used with bitcoin-wallet.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/btc-wallet/definition.json">objects/btc-wallet</eref> - An object to describe a Bitcoin wallet. Best to be used with bitcoin-transactions.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cap-alert/definition.json">objects/cap-alert</eref> - Common Alerting Protocol Version (CAP) alert object.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cap-info/definition.json">objects/cap-info</eref> - Common Alerting Protocol Version (CAP) info object.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cap-resource/definition.json">objects/cap-resource</eref> - Common Alerting Protocol Version (CAP) resource object.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/coin-address/definition.json">objects/coin-address</eref> - An address used in a cryptocurrency.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/command/definition.json">objects/command</eref> - Command functionalities related to specific commands executed by a program, whether it is malicious or not. Command-line are attached to this object for the related commands.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/command-line/definition.json">objects/command-line</eref> - Command line and options related to a specific command executed by a program, whether it is malicious or not.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/concordia-mtmf-intrusion-set/definition.json">objects/concordia-mtmf-intrusion-set</eref> - Intrusion Set - Phase Description.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cookie/definition.json">objects/cookie</eref> - An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser. The browser may store it and send it back with the next request to the same server. Typically, it's used to tell if two requests came from the same browser <u format="char-num">—</u> keeping a user logged-in, for example. It remembers stateful information for the stateless HTTP protocol. (as defined by the Mozilla foundation.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cortex/definition.json">objects/cortex</eref> - Cortex object describing a complete cortex analysis. Observables would be attribute with a relationship from this object.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cortex-taxonomy/definition.json">objects/cortex-taxonomy</eref> - Cortex object describing an Cortex Taxonomy (or mini report).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/course-of-action/definition.json">objects/course-of-action</eref> - An object describing a specific measure taken to prevent or respond to an attack.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/covid19-csse-daily-report/definition.json">objects/covid19-csse-daily-report</eref> - CSSE COVID-19 Daily report.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/covid19-dxy-live-city/definition.json">objects/covid19-dxy-live-city</eref> - COVID 19 from dxy.cn - Aggregation by city.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/covid19-dxy-live-province/definition.json">objects/covid19-dxy-live-province</eref> - COVID 19 from dxy.cn - Aggregation by province.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cowrie/definition.json">objects/cowrie</eref> - Cowrie honeypot object template.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cpe-asset/definition.json">objects/cpe-asset</eref> - An asset which can be defined by a CPE. This can be a generic asset. CPE is a structured naming scheme for information technology systems, software, and packages.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/credential/definition.json">objects/credential</eref> - Credential describes one or more credential(s) including password(s), api key(s) or decryption key(s).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/credit-card/definition.json">objects/credit-card</eref> - A payment card like credit card, debit card or any similar cards which can be used for financial transactions.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/crypto-material/definition.json">objects/crypto-material</eref> - Cryptographic materials such as public or/and private keys.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cytomic-orion-file/definition.json">objects/cytomic-orion-file</eref> - Cytomic Orion File Detection.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/cytomic-orion-machine/definition.json">objects/cytomic-orion-machine</eref> - Cytomic Orion File at Machine Detection.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/dark-pattern-item/definition.json">objects/dark-pattern-item</eref> - An Item whose User Interface implements a dark pattern.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ddos/definition.json">objects/ddos</eref> - DDoS object describes a current DDoS activity from a specific or/and to a specific target. Type of DDoS can be attached to the object as a taxonomy.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/device/definition.json">objects/device</eref> - An object to define a device.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/diameter-attack/definition.json">objects/diameter-attack</eref> - Attack as seen on the diameter signaling protocol supporting LTE networks.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/dkim/definition.json">objects/dkim</eref> - DomainKeys Identified Mail - DKIM.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/dns-record/definition.json">objects/dns-record</eref> - A set of DNS records observed for a specific domain.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/domain-crawled/definition.json">objects/domain-crawled</eref> - A domain crawled over time.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/domain-ip/definition.json">objects/domain-ip</eref> - A domain/hostname and IP address seen as a tuple in a specific time frame.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/edr-report/definition.json">objects/edr-report</eref> - An Object Template to encode an EDR<u format="char-num"> </u>detection report.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/elf/definition.json">objects/elf</eref> - Object describing a Executable and Linkable Format.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/elf-section/definition.json">objects/elf-section</eref> - Object describing a section of an Executable and Linkable Format.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/email/definition.json">objects/email</eref> - Email object describing an email with meta-information.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/employee/definition.json">objects/employee</eref> - An employee and related data points.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/exploit-poc/definition.json">objects/exploit-poc</eref> - Exploit-poc object describing a proof of concept or exploit of a vulnerability. This object has often a relationship with a vulnerability object.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/facebook-account/definition.json">objects/facebook-account</eref> - Facebook account.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/facebook-group/definition.json">objects/facebook-group</eref> - Public or private facebook group.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/facebook-page/definition.json">objects/facebook-page</eref> - Facebook page.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/facebook-post/definition.json">objects/facebook-post</eref> - Post on a Facebook wall.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/facial-composite/definition.json">objects/facial-composite</eref> - An object which describes a facial composite.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/fail2ban/definition.json">objects/fail2ban</eref> - Fail2ban event.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/favicon/definition.json">objects/favicon</eref> - A favicon, also known as a shortcut icon, website icon, tab icon, URL icon, or bookmark icon, is a file containing one or more small icons, associated with a particular website or web page. The object template can include the murmur3 hash of the favicon to facilitate correlation.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/file/definition.json">objects/file</eref> - File object describing a file with meta-information.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/forensic-case/definition.json">objects/forensic-case</eref> - An object template to describe a digital forensic case.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/forensic-evidence/definition.json">objects/forensic-evidence</eref> - An object template to describe a digital forensic evidence.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/forged-document/definition.json">objects/forged-document</eref> - Object describing a forged document.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Airplane/definition.json">objects/ftm-Airplane</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Assessment/definition.json">objects/ftm-Assessment</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Asset/definition.json">objects/ftm-Asset</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Associate/definition.json">objects/ftm-Associate</eref> - Non-family association between two people.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Audio/definition.json">objects/ftm-Audio</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-BankAccount/definition.json">objects/ftm-BankAccount</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Call/definition.json">objects/ftm-Call</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Company/definition.json">objects/ftm-Company</eref> - A legal entity representing an association of people, whether natural, legal or a mixture of both, with a specific objective.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Contract/definition.json">objects/ftm-Contract</eref> - An contract or contract lot issued by an authority. Multiple lots may be awarded to different suppliers (see ContractAward).
+.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-ContractAward/definition.json">objects/ftm-ContractAward</eref> - A contract or contract lot as awarded to a supplier.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-CourtCase/definition.json">objects/ftm-CourtCase</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-CourtCaseParty/definition.json">objects/ftm-CourtCaseParty</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Debt/definition.json">objects/ftm-Debt</eref> - A monetary debt between two parties.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Directorship/definition.json">objects/ftm-Directorship</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Document/definition.json">objects/ftm-Document</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Documentation/definition.json">objects/ftm-Documentation</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-EconomicActivity/definition.json">objects/ftm-EconomicActivity</eref> - A foreign economic activity.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Email/definition.json">objects/ftm-Email</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Event/definition.json">objects/ftm-Event</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Family/definition.json">objects/ftm-Family</eref> - Family relationship between two people.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Folder/definition.json">objects/ftm-Folder</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-HyperText/definition.json">objects/ftm-HyperText</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Image/definition.json">objects/ftm-Image</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Land/definition.json">objects/ftm-Land</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-LegalEntity/definition.json">objects/ftm-LegalEntity</eref> - A legal entity may be a person or a company.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-License/definition.json">objects/ftm-License</eref> - A grant of land, rights or property. A type of Contract.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Membership/definition.json">objects/ftm-Membership</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Message/definition.json">objects/ftm-Message</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Organization/definition.json">objects/ftm-Organization</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Ownership/definition.json">objects/ftm-Ownership</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Package/definition.json">objects/ftm-Package</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Page/definition.json">objects/ftm-Page</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Pages/definition.json">objects/ftm-Pages</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Passport/definition.json">objects/ftm-Passport</eref> - Passport.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Payment/definition.json">objects/ftm-Payment</eref> - A monetary payment between two parties.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Person/definition.json">objects/ftm-Person</eref> - An individual.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-PlainText/definition.json">objects/ftm-PlainText</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-PublicBody/definition.json">objects/ftm-PublicBody</eref> - A public body, such as a ministry, department or state company.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-RealEstate/definition.json">objects/ftm-RealEstate</eref> - A piece of land or property.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Representation/definition.json">objects/ftm-Representation</eref> - A mediatory, intermediary, middleman, or broker acting on behalf of a legal entity.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Row/definition.json">objects/ftm-Row</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Sanction/definition.json">objects/ftm-Sanction</eref> - A sanction designation.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Succession/definition.json">objects/ftm-Succession</eref> - Two entities that legally succeed each other.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Table/definition.json">objects/ftm-Table</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-TaxRoll/definition.json">objects/ftm-TaxRoll</eref> - A tax declaration of an individual.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-UnknownLink/definition.json">objects/ftm-UnknownLink</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-UserAccount/definition.json">objects/ftm-UserAccount</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Vehicle/definition.json">objects/ftm-Vehicle</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Vessel/definition.json">objects/ftm-Vessel</eref> - A boat or ship.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Video/definition.json">objects/ftm-Video</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Workbook/definition.json">objects/ftm-Workbook</eref> - .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/geolocation/definition.json">objects/geolocation</eref> - An object to describe a geographic location.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/git-vuln-finder/definition.json">objects/git-vuln-finder</eref> - Export from git-vuln-finder.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/github-user/definition.json">objects/github-user</eref> - GitHub user.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/gitlab-user/definition.json">objects/gitlab-user</eref> - GitLab user. Gitlab.com user or self-hosted GitLab instance.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/gtp-attack/definition.json">objects/gtp-attack</eref> - GTP attack object as attack as seen on the GTP signaling protocol supporting GPRS/LTE networks.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/hashlookup/definition.json">objects/hashlookup</eref> - hashlookup object as described on hashlookup services from circl.lu - <eref target="https://www.circl.lu/services/hashlookup">https://www.circl.lu/services/hashlookup</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/http-request/definition.json">objects/http-request</eref> - A single HTTP request header.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/identity/definition.json">objects/identity</eref> - Identities can represent actual individuals, organizations, or groups (e.g., ACME, Inc.) as well as classes of individuals, organizations, systems or groups (e.g., the finance sector).  The Identity SDO can capture basic identifying information, contact information, and the sectors that the Identity belongs to. Identity is used in STIX to represent, among other things, targets of attacks, information sources, object creators, and threat actor identities. (ref. STIX 2.1 - 4.5).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ilr-impact/definition.json">objects/ilr-impact</eref> - Institut Luxembourgeois de Regulation - Impact.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ilr-notification-incident/definition.json">objects/ilr-notification-incident</eref> - Institut Luxembourgeois de Regulation - Notification d'incident.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/image/definition.json">objects/image</eref> - Object describing an image file.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/impersonation/definition.json">objects/impersonation</eref> - Represent an impersonating account.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/imsi-catcher/definition.json">objects/imsi-catcher</eref> - IMSI Catcher entry object based on the open source IMSI cather.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/infrastructure/definition.json">objects/infrastructure</eref> - The Infrastructure object represents a type of TTP and describes any systems, software services and any associated physical or virtual resources intended to support some purpose (e.g., C2 servers used as part of an attack, device or server that are part of defense, database servers targeted by an attack, etc.). While elements of an attack can be represented by other objects, the Infrastructure object represents a named group of related data that constitutes the infrastructure. STIX 2.1 - 4.8.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/instant-message/definition.json">objects/instant-message</eref> - Instant Message (IM) object template describing one or more IM message.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/instant-message-group/definition.json">objects/instant-message-group</eref> - Instant Message (IM) group object template describing a public or private IM group, channel or conversation.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/intel471-vulnerability-intelligence/definition.json">objects/intel471-vulnerability-intelligence</eref> - Intel 471 vulnerability intelligence object.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/intelmq_event/definition.json">objects/intelmq_event</eref> - IntelMQ Event.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/intelmq_report/definition.json">objects/intelmq_report</eref> - IntelMQ Report.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/internal-reference/definition.json">objects/internal-reference</eref> - Internal reference.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/interpol-notice/definition.json">objects/interpol-notice</eref> - An object which describes a Interpol notice.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/iot-device/definition.json">objects/iot-device</eref> - An IoT device.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/iot-firmware/definition.json">objects/iot-firmware</eref> - A firmware for an IoT device.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ip-api-address/definition.json">objects/ip-api-address</eref> - IP Address information. Useful if you are pulling your ip information from ip-api.com.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ip-port/definition.json">objects/ip-port</eref> - An IP address (or domain or hostname) and a port seen as a tuple (or as a triple) in a specific time frame.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/irc/definition.json">objects/irc</eref> - An IRC object to describe an IRC server and the associated channels.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ja3/definition.json">objects/ja3</eref> - JA3 is a new technique for creating SSL client fingerprints that are easy to produce and can be easily shared for threat intelligence. Fingerprints are composed of Client Hello packet; SSL Version, Accepted Ciphers, List of Extensions, Elliptic Curves, and Elliptic Curve Formats. <eref target="https://github.com/salesforce/ja3">https://github.com/salesforce/ja3</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ja3s/definition.json">objects/ja3s</eref> - JA3S is JA3 for the Server side of the SSL/TLS communication and fingerprints how servers respond to particular clients. JA3S fingerprints are composed of Server Hello packet; SSL Version, Cipher, SSLExtensions. <eref target="https://github.com/salesforce/ja3">https://github.com/salesforce/ja3</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/jarm/definition.json">objects/jarm</eref> - Jarm object to describe an TLS/SSL implementation used for malicious or legitimate use-case.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/keybase-account/definition.json">objects/keybase-account</eref> - Information related to a keybase account, from API Users Object.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/language-content/definition.json">objects/language-content</eref> - The Language Content object represents text content for objects represented in languages other than that of the original object. Language content may be a translation of the original object by a third-party, a first-source translation by the original publisher, or additional official language content provided at the time of creation. STIX 2.1 ref 7.1.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/leaked-document/definition.json">objects/leaked-document</eref> - Object describing a leaked document.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/legal-entity/definition.json">objects/legal-entity</eref> - An object to describe a legal entity.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/lnk/definition.json">objects/lnk</eref> - LNK object describing a Windows LNK binary file (aka Windows shortcut).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/macho/definition.json">objects/macho</eref> - Object describing a file in Mach-O format.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/macho-section/definition.json">objects/macho-section</eref> - Object describing a section of a file in Mach-O format.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/mactime-timeline-analysis/definition.json">objects/mactime-timeline-analysis</eref> - Mactime template, used in forensic investigations to describe the timeline of a file activity.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/malware-config/definition.json">objects/malware-config</eref> - Malware configuration recovered or extracted from a malicious binary.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/meme-image/definition.json">objects/meme-image</eref> - Object describing a meme (image).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/microblog/definition.json">objects/microblog</eref> - Microblog post like a Twitter tweet or a post on a Facebook wall.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/mutex/definition.json">objects/mutex</eref> - Object to describe mutual exclusion locks (mutex) as seen in memory or computer program.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/narrative/definition.json">objects/narrative</eref> - Object describing a narrative.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/netflow/definition.json">objects/netflow</eref> - Netflow object describes an network object based on the Netflowv5/v9 minimal definition.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/network-connection/definition.json">objects/network-connection</eref> - A local or remote network connection.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/network-profile/definition.json">objects/network-profile</eref> - Elements that can be used to profile, pivot or identify a network infrastructure, including domains, ip and urls.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/network-socket/definition.json">objects/network-socket</eref> - Network socket object describes a local or remote network connections based on the socket data structure.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/news-agency/definition.json">objects/news-agency</eref> - News agencies compile news and disseminate news in bulk.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/news-media/definition.json">objects/news-media</eref> - News media are forms of mass media delivering news to the general public.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/open-data-security/definition.json">objects/open-data-security</eref> - An object describing an open dataset available and described under the open data security model. ref. <eref target="https://github.com/CIRCL/open-data-security">https://github.com/CIRCL/open-data-security</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/organization/definition.json">objects/organization</eref> - An object which describes an organization.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/original-imported-file/definition.json">objects/original-imported-file</eref> - Object describing the original file used to import data in MISP.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/paloalto-threat-event/definition.json">objects/paloalto-threat-event</eref> - Palo Alto Threat Log Event.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/parler-account/definition.json">objects/parler-account</eref> - Parler account.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/parler-comment/definition.json">objects/parler-comment</eref> - Parler comment.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/parler-post/definition.json">objects/parler-post</eref> - Parler post (parley).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/passive-dns/definition.json">objects/passive-dns</eref> - Passive DNS records as expressed in draft-dulaunoy-dnsop-passive-dns-cof-07. See <eref target="https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html">https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/passive-dns-dnsdbflex/definition.json">objects/passive-dns-dnsdbflex</eref> - DNSDBFLEX object. This object is used at farsight security. Roughly based on Passive DNS records as expressed in draft-dulaunoy-dnsop-passive-dns-cof-07. See <eref target="https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html">https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/passive-ssh/definition.json">objects/passive-ssh</eref> - Passive-ssh object as described on passive-ssh services from circl.lu - <eref target="https://github.com/D4-project/passive-ssh">https://github.com/D4-project/passive-ssh</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/paste/definition.json">objects/paste</eref> - Paste or similar post from a website allowing to share privately or publicly posts.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/pcap-metadata/definition.json">objects/pcap-metadata</eref> - Network packet capture metadata.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/pe/definition.json">objects/pe</eref> - Object describing a Portable Executable.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/pe-section/definition.json">objects/pe-section</eref> - Object describing a section of a Portable Executable.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/person/definition.json">objects/person</eref> - An object which describes a person or an identity.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/pgp-meta/definition.json">objects/pgp-meta</eref> - Metadata extracted from a PGP keyblock, message or signature.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/phishing/definition.json">objects/phishing</eref> - Phishing template to describe a phishing website and its analysis.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/phishing-kit/definition.json">objects/phishing-kit</eref> - Object to describe a phishing-kit.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/phone/definition.json">objects/phone</eref> - A phone or mobile phone object which describe a phone.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/postal-address/definition.json">objects/postal-address</eref> - A postal address.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/probabilistic-data-structure/definition.json">objects/probabilistic-data-structure</eref> - Probabilistic data structure object describe a space-efficient data structure such as Bloom filter or similar structure.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/process/definition.json">objects/process</eref> - Object describing a system process.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/publication/definition.json">objects/publication</eref> - An object to describe a book, journal, or academic publication.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/python-etvx-event-log/definition.json">objects/python-etvx-event-log</eref> - Event log object template to share information of the activities conducted on a system. .</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/r2graphity/definition.json">objects/r2graphity</eref> - Indicators extracted from files using radare2 and graphml.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/reddit-account/definition.json">objects/reddit-account</eref> - Reddit account.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/reddit-comment/definition.json">objects/reddit-comment</eref> - A Reddit post comment.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/reddit-post/definition.json">objects/reddit-post</eref> - A Reddit post.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/reddit-subreddit/definition.json">objects/reddit-subreddit</eref> - Public or private subreddit.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regexp/definition.json">objects/regexp</eref> - An object describing a regular expression (regex or regexp). The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a regular expression.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/registry-key/definition.json">objects/registry-key</eref> - Registry key object describing a Windows registry key with value and last-modified timestamp.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-NTUser/definition.json">objects/regripper-NTUser</eref> - Regripper Object template designed to present user specific configuration details extracted from the NTUSER.dat hive.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-sam-hive-single-user/definition.json">objects/regripper-sam-hive-single-user</eref> - Regripper Object template designed to present user profile details extracted from the SAM hive.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-sam-hive-user-group/definition.json">objects/regripper-sam-hive-user-group</eref> - Regripper Object template designed to present group profile details extracted from the SAM hive.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-BHO/definition.json">objects/regripper-software-hive-BHO</eref> - Regripper Object template designed to gather information of the browser helper objects installed on the system.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-appInit-DLLS/definition.json">objects/regripper-software-hive-appInit-DLLS</eref> - Regripper Object template designed to gather information of the DLL files installed on the system.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-application-paths/definition.json">objects/regripper-software-hive-application-paths</eref> - Regripper Object template designed to gather information of the application paths.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-applications-installed/definition.json">objects/regripper-software-hive-applications-installed</eref> - Regripper Object template designed to gather information of the applications installed on the system.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-command-shell/definition.json">objects/regripper-software-hive-command-shell</eref> - Regripper Object template designed to gather information of the shell commands executed on the system.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-software-run/definition.json">objects/regripper-software-hive-software-run</eref> - Regripper Object template designed to gather information of the applications set to run on the system.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-userprofile-winlogon/definition.json">objects/regripper-software-hive-userprofile-winlogon</eref> - Regripper Object template designed to gather user profile information when the user logs onto the system, gathered from the software hive.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-windows-general-info/definition.json">objects/regripper-software-hive-windows-general-info</eref> - Regripper Object template designed to gather general windows information extracted from the software-hive.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-firewall-configuration/definition.json">objects/regripper-system-hive-firewall-configuration</eref> - Regripper Object template designed to present firewall configuration information extracted from the system-hive.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-general-configuration/definition.json">objects/regripper-system-hive-general-configuration</eref> - Regripper Object template designed to present general system properties extracted from the system-hive.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-network-information/definition.json">objects/regripper-system-hive-network-information</eref> - Regripper object template designed to gather network information from the system-hive.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-services-drivers/definition.json">objects/regripper-system-hive-services-drivers</eref> - Regripper Object template designed to gather information regarding the services/drivers from the system-hive.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/report/definition.json">objects/report</eref> - Metadata used to generate an executive level report.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/research-scanner/definition.json">objects/research-scanner</eref> - Information related to known scanning activity (e.g. from research projects).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/rogue-dns/definition.json">objects/rogue-dns</eref> - Rogue DNS as defined by CERT.br.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/rtir/definition.json">objects/rtir</eref> - RTIR - Request Tracker for Incident Response.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/sandbox-report/definition.json">objects/sandbox-report</eref> - Sandbox report.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/sb-signature/definition.json">objects/sb-signature</eref> - Sandbox detection signature.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/scheduled-event/definition.json">objects/scheduled-event</eref> - Event object template describing a gathering of individuals in meatspace.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-c13-daily/definition.json">objects/scrippsco2-c13-daily</eref> - Daily average C13 concentrations (ppm) derived from flask air samples.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-c13-monthly/definition.json">objects/scrippsco2-c13-monthly</eref> - Monthly average C13 concentrations (ppm) derived from flask air samples.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-co2-daily/definition.json">objects/scrippsco2-co2-daily</eref> - Daily average CO2 concentrations (ppm) derived from flask air samples.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-co2-monthly/definition.json">objects/scrippsco2-co2-monthly</eref> - Monthly average CO2 concentrations (ppm) derived from flask air samples.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-o18-daily/definition.json">objects/scrippsco2-o18-daily</eref> - Daily average O18 concentrations (ppm) derived from flask air samples.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-o18-monthly/definition.json">objects/scrippsco2-o18-monthly</eref> - Monthly average O18 concentrations (ppm) derived from flask air samples.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/script/definition.json">objects/script</eref> - Object describing a computer program written to be run in a special run-time environment. The script or shell script can be used for malicious activities but also as support tools for threat analysts.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/security-playbook/definition.json">objects/security-playbook</eref> - An object to manage, represent, and share course of action playbooks (security playbooks) for cyberspace defense.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/shell-commands/definition.json">objects/shell-commands</eref> - Object describing a series of shell commands executed. This object can be linked with malicious files in order to describe a specific execution of shell commands.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/shodan-report/definition.json">objects/shodan-report</eref> - Shodan Report for a given IP.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/short-message-service/definition.json">objects/short-message-service</eref> - Short Message Service (SMS) object template describing one or more SMS message. Restriction of the initial format 3GPP 23.038 GSM character set doesn't apply.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/shortened-link/definition.json">objects/shortened-link</eref> - Shortened link and its redirect target.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/social-media-group/definition.json">objects/social-media-group</eref> - Social media group object template describing a public or private group or channel.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/software/definition.json">objects/software</eref> - The Software object represents high-level properties associated with software, including software products. STIX 2.1 - 6.14.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/splunk/definition.json">objects/splunk</eref> - Splunk / Splunk ES object.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ss7-attack/definition.json">objects/ss7-attack</eref> - SS7 object of an attack as seen on the SS7 signaling protocol supporting GSM/GPRS/UMTS networks.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/ssh-authorized-keys/definition.json">objects/ssh-authorized-keys</eref> - An object to store ssh authorized keys file.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/stix2-pattern/definition.json">objects/stix2-pattern</eref> - An object describing a STIX pattern. The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a STIX pattern.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/submarine/definition.json">objects/submarine</eref> - Submarine description.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/suricata/definition.json">objects/suricata</eref> - An object describing one or more Suricata rule(s) along with version and contextual information.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/target-system/definition.json">objects/target-system</eref> - Description about an targeted system, this could potentially be a compromissed internal system.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/telegram-account/definition.json">objects/telegram-account</eref> - Information related to a telegram account.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/temporal-event/definition.json">objects/temporal-event</eref> - A temporal event consists of some temporal and spacial boundaries. Spacial boundaries can be physical, virtual or hybrid.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/threatgrid-report/definition.json">objects/threatgrid-report</eref> - ThreatGrid report.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/timecode/definition.json">objects/timecode</eref> - Timecode object to describe a start of video sequence (e.g. CCTV evidence) and the end of the video sequence.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/timesketch-timeline/definition.json">objects/timesketch-timeline</eref> - A timesketch timeline object based on mandatory field in timesketch to describe a log entry.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/timesketch_message/definition.json">objects/timesketch_message</eref> - A timesketch message entry.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/timestamp/definition.json">objects/timestamp</eref> - A generic timestamp object to represent time including first time and last time seen. Relationship will then define the kind of time relationship.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/tor-hiddenservice/definition.json">objects/tor-hiddenservice</eref> - Tor hidden service (onion service) object.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/tor-node/definition.json">objects/tor-node</eref> - Tor node (which protects your privacy on the internet by hiding the connection between users Internet address and the services used by the users) description which are part of the Tor network at a time.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/tracking-id/definition.json">objects/tracking-id</eref> - Analytics and tracking ID such as used in Google Analytics or other analytic platform.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/transaction/definition.json">objects/transaction</eref> - An object to describe a financial transaction.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/translation/definition.json">objects/translation</eref> - Used to keep a text and its translation.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/trustar_report/definition.json">objects/trustar_report</eref> - TruStar Report.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/tsk-chats/definition.json">objects/tsk-chats</eref> - An Object Template to gather information from evidential or interesting exchange of messages identified during a digital forensic investigation.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-bookmark/definition.json">objects/tsk-web-bookmark</eref> - An Object Template to add evidential bookmarks identified during a digital forensic investigation.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-cookie/definition.json">objects/tsk-web-cookie</eref> - An TSK-Autopsy Object Template to represent cookies identified during a forensic investigation.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-downloads/definition.json">objects/tsk-web-downloads</eref> - An Object Template to add web-downloads.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-history/definition.json">objects/tsk-web-history</eref> - An Object Template to share web history information.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-search-query/definition.json">objects/tsk-web-search-query</eref> - An Object Template to share web search query information.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/twitter-account/definition.json">objects/twitter-account</eref> - Twitter account.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/twitter-list/definition.json">objects/twitter-list</eref> - Twitter list.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/twitter-post/definition.json">objects/twitter-post</eref> - Twitter post (tweet).</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/url/definition.json">objects/url</eref> - url object describes an url along with its normalized field (like extracted using faup parsing library) and its metadata.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/user-account/definition.json">objects/user-account</eref> - User-account object, defining aspects of user identification, authentication, privileges and other relevant data points.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/vehicle/definition.json">objects/vehicle</eref> - Vehicle object template to describe a vehicle information and registration.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/victim/definition.json">objects/victim</eref> - Victim object describes the target of an attack or abuse.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/virustotal-graph/definition.json">objects/virustotal-graph</eref> - VirusTotal graph.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/virustotal-report/definition.json">objects/virustotal-report</eref> - VirusTotal report.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/vulnerability/definition.json">objects/vulnerability</eref> - Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/weakness/definition.json">objects/weakness</eref> - Weakness object describing a common weakness enumeration which can describe usable, incomplete, draft or deprecated weakness for software, equipment of hardware.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/whois/definition.json">objects/whois</eref> - Whois records information for a domain name or an IP address.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/windows-service/definition.json">objects/windows-service</eref> - Windows service and detailed about a service running a Windows operating system.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/x509/definition.json">objects/x509</eref> - x509 object describing a X.509 certificate.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/yabin/definition.json">objects/yabin</eref> - yabin.py generates Yara rules from function prologs, for matching and hunting binaries. ref: <eref target="https://github.com/AlienVault-OTX/yabin">https://github.com/AlienVault-OTX/yabin</eref>.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/yara/definition.json">objects/yara</eref> - An object describing a YARA rule (or a YARA rule name) along with its version.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/youtube-channel/definition.json">objects/youtube-channel</eref> - A YouTube channel.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/youtube-comment/definition.json">objects/youtube-comment</eref> - A YouTube video comment.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/youtube-playlist/definition.json">objects/youtube-playlist</eref> - A YouTube playlist.</li>
+<li><eref target="https://github.com/MISP/misp-objects/blob/main/objects/youtube-video/definition.json">objects/youtube-video</eref> - A YouTube video.</li>
+</ul>
+</section>
+</section>
+
+<section anchor="acknowledgements"><name>Acknowledgements</name>
+<t>The authors wish to thank all the MISP community who are supporting the creation
+of open standards in threat intelligence sharing.</t>
+</section>
+
+</middle>
+
+<back>
+<references><name>Normative References</name>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4122.xml"/>
+<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8259.xml"/>
+</references>
+<references><name>Informative References</name>
+<reference anchor="MISP-O" target="https://github.com/MISP/misp-objects">
+  <front>
+    <title>MISP Objects - shared and common object templates</title>
+    <author fullname="MISP Community" surname="MISP"></author>
+    <date></date>
+  </front>
+</reference>
+<reference anchor="MISP-O-DOC" target="https://www.misp-project.org/objects.html">
+  <front>
+    <title>MISP objects directory</title>
+    <author fullname="MISP community"></author>
+    <date year="2018"></date>
+  </front>
+</reference>
+</references>
+
+</back>
+
+</rfc>
