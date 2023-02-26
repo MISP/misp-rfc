@@ -9,7 +9,7 @@ submissiontype = "independent"
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-00"
+value = "draft-16"
 stream = "independent"
 status = "informational"
 
@@ -23,9 +23,9 @@ organization = "Computer Incident Response Center Luxembourg"
  email = "alexandre.dulaunoy@circl.lu"
  phone = "+352 247 88444"
  [author.address.postal]
- street = "16, bd d'Avranches"
+ street = "122, rue Adolphe Fischer"
  city = "Luxembourg"
- code = "L-1160"
+ code = "L-1521"
  country = "Luxembourg"
 [[author]]
 initials="A."
@@ -37,9 +37,9 @@ organization = "Computer Incident Response Center Luxembourg"
  email = "andras.iklody@circl.lu"
  phone = "+352 247 88444"
  [author.address.postal]
- street = "16, bd d'Avranches"
+ street = "122, rue Adolphe Fischer"
  city = "Luxembourg"
- code = "L-1160"
+ code = "L-1521"
  country = "Luxembourg"
 %%%
 
