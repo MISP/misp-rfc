@@ -1,4 +1,4 @@
-MMARK:=mmark -xml2 -page
+MMARK:=mmark
 
 docs = $(wildcard *.md)
 

@@ -5,8 +5,14 @@ category = "info"
 docName = "draft-dulaunoy-misp-galaxy-format"
 ipr= "trust200902"
 area = "Security"
+submissiontype = "independent"
 
-date = 2019-10-04T00:00:00Z
+
+[seriesInfo]
+name = "Internet-Draft"
+value = "draft-08"
+stream = "independent"
+status = "informational"
 
 [[author]]
 initials="A."
@@ -18,9 +24,9 @@ organization = "Computer Incident Response Center Luxembourg"
  email = "alexandre.dulaunoy@circl.lu"
  phone = "+352 247 88444"
   [author.address.postal]
-  street = "16, bd d'Avranches"
+  street = "122, rue Adolphe Fischer"
   city = "Luxembourg"
-  code = "L-1611"
+  code = "L-1521"
   country = "Luxembourg"
 [[author]]
 initials="A."
@@ -32,9 +38,9 @@ organization = "Computer Incident Response Center Luxembourg"
  email = "andras.iklody@circl.lu"
  phone = "+352 247 88444"
   [author.address.postal]
-  street = " 16, bd d'Avranches"
+  street = "122, rue Adolphe Fischer"
   city = "Luxembourg"
-  code = "L-1611"
+  code = "L-1521"
   country = "Luxembourg"
 [[author]]
 initials="D."
@@ -46,9 +52,9 @@ organization = "Computer Incident Response Center Luxembourg"
  email = "deborah.servili@circl.lu"
  phone = "+352 247 88444"
   [author.address.postal]
- street = " 16, bd d'Avranches"
+ street = "122, rue Adolphe Fischer"
   city = "Luxembourg"
-  code = "L-1611"
+  code = "L-1521"
   country = "Luxembourg"
 %%%
 
