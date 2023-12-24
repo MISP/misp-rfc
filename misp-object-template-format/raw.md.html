@@ -11,7 +11,7 @@
        This document describes the MISP object template format which describes a simple JSON format to represent the various templates used to construct MISP objects. A public directory of common vocabularies MISP object templates   is available and relies on the MISP object reference format. 
     " name="description">
 <meta content="xml2rfc 3.12.1" name="generator">
-<meta content="draft-00" name="ietf.draft">
+<meta content="draft-06" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.12.1
     Python 3.8.10
@@ -20,16 +20,16 @@
     google-i18n-address 2.5.0
     html5lib 1.1
     intervaltree 3.1.0
-    Jinja2 2.11.3
+    Jinja2 3.1.2
     kitchen 1.2.6
-    lxml 4.7.1
+    lxml 4.9.2
     pycairo 1.16.2
-    pycountry 22.1.10
+    pycountry 22.3.5
     pyflakes 2.4.0
-    PyYAML 5.4.1
-    requests 2.24.0
-    setuptools 45.2.0
-    six 1.15.0
+    PyYAML 6.0
+    requests 2.31.0
+    setuptools 68.1.2
+    six 1.16.0
 -->
 <link href="raw.md.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1186,11 +1186,11 @@ li > p:last-of-type {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">MISP object template format</td>
-<td class="right">February 2022</td>
+<td class="right">December 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Dulaunoy &amp; Iklody</td>
-<td class="center">Expires 19 August 2022</td>
+<td class="center">Expires 26 June 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1200,15 +1200,15 @@ li > p:last-of-type {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Network Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-00</dd>
+<dd class="internet-draft">draft-06</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-02-15" class="published">15 February 2022</time>
+<time datetime="2023-12-24" class="published">24 December 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-08-19">19 August 2022</time></dd>
+<dd class="expires"><time datetime="2024-06-26">26 June 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1246,7 +1246,7 @@ li > p:last-of-type {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 19 August 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 26 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1255,7 +1255,7 @@ li > p:last-of-type {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2022 IETF Trust and the persons identified as the
+            Copyright (c) 2023 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1706,839 +1706,1019 @@ document are to be interpreted as described in RFC 2119 <span>[<a href="#RFC2119
         </h3>
 <ul class="compact">
 <li class="compact" id="section-3.1-1.1">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ail-leak/definition.json">objects/ail-leak</a> - An information leak as defined by the AIL Analysis Information Leak framework.<a href="#section-3.1-1.1" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ADS/definition.json">objects/ADS</a> - An object defining ADS - Alerting and Detection Strategy by PALANTIR. Can be used for detection engineering.<a href="#section-3.1-1.1" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.2">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ais-info/definition.json">objects/ais-info</a> - Automated Indicator Sharing (AIS) Information Source Markings.<a href="#section-3.1-1.2" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/abuseipdb/definition.json">objects/abuseipdb</a> - AbuseIPDB checks an ip address, domain name, or subnet against a central blacklist.<a href="#section-3.1-1.2" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.3">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/android-app/definition.json">objects/android-app</a> - Indicators related to an Android app.<a href="#section-3.1-1.3" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ai-chat-prompt/definition.json">objects/ai-chat-prompt</a> - Object describing an AI prompt such as ChatGPT.<a href="#section-3.1-1.3" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.4">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/android-permission/definition.json">objects/android-permission</a> - A set of android permissions - one or more permission(s) which can be linked to other objects (e.g. malware, app).<a href="#section-3.1-1.4" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ail-leak/definition.json">objects/ail-leak</a> - An information leak as defined by the AIL Analysis Information Leak framework.<a href="#section-3.1-1.4" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.5">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/annotation/definition.json">objects/annotation</a> - An annotation object allowing analysts to add annotations, comments, executive summary to a MISP event, objects or attributes.<a href="#section-3.1-1.5" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ais/definition.json">objects/ais</a> - Automatic Identification System (AIS) is an automatic tracking system that uses transceivers on ships.<a href="#section-3.1-1.5" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.6">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/anonymisation/definition.json">objects/anonymisation</a> - Anonymisation object describing an anonymisation technique used to encode MISP attribute values. Reference: <a href="https://www.caida.org/tools/taxonomy/anonymization.xml">https://www.caida.org/tools/taxonomy/anonymization.xml</a>.<a href="#section-3.1-1.6" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ais-info/definition.json">objects/ais-info</a> - Automated Indicator Sharing (AIS) Information Source Markings.<a href="#section-3.1-1.6" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.7">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/apivoid-email-verification/definition.json">objects/apivoid-email-verification</a> - Apivoid email verification API result. Reference: <a href="https://www.apivoid.com/api/email-verify/">https://www.apivoid.com/api/email-verify/</a>.<a href="#section-3.1-1.7" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/android-app/definition.json">objects/android-app</a> - Indicators related to an Android app.<a href="#section-3.1-1.7" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.8">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/artifact/definition.json">objects/artifact</a> - The Artifact object permits capturing an array of bytes (8-bits), as a base64-encoded string, or linking to a file-like payload. from STIX 2.1 (6.1).<a href="#section-3.1-1.8" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/android-permission/definition.json">objects/android-permission</a> - A set of android permissions - one or more permission(s) which can be linked to other objects (e.g. malware, app).<a href="#section-3.1-1.8" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.9">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/asn/definition.json">objects/asn</a> - Autonomous system object describing an autonomous system which can include one or more network operators management an entity (e.g. ISP) along with their routing policy, routing prefixes or alike.<a href="#section-3.1-1.9" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/annotation/definition.json">objects/annotation</a> - An annotation object allowing analysts to add annotations, comments, executive summary to a MISP event, objects or attributes.<a href="#section-3.1-1.9" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.10">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/attack-pattern/definition.json">objects/attack-pattern</a> - Attack pattern describing a common attack pattern enumeration and classification.<a href="#section-3.1-1.10" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/anonymisation/definition.json">objects/anonymisation</a> - Anonymisation object describing an anonymisation technique used to encode MISP attribute values. Reference: <a href="https://www.caida.org/tools/taxonomy/anonymization.xml">https://www.caida.org/tools/taxonomy/anonymization.xml</a>.<a href="#section-3.1-1.10" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.11">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/authentication-failure-report/definition.json">objects/authentication-failure-report</a> - Authentication Failure Report.<a href="#section-3.1-1.11" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/apivoid-email-verification/definition.json">objects/apivoid-email-verification</a> - Apivoid email verification API result. Reference: <a href="https://www.apivoid.com/api/email-verify/">https://www.apivoid.com/api/email-verify/</a>.<a href="#section-3.1-1.11" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.12">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/authenticode-signerinfo/definition.json">objects/authenticode-signerinfo</a> - Authenticode Signer Info.<a href="#section-3.1-1.12" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/artifact/definition.json">objects/artifact</a> - The Artifact object permits capturing an array of bytes (8-bits), as a base64-encoded string, or linking to a file-like payload. From STIX 2.1 (6.1).<a href="#section-3.1-1.12" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.13">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/av-signature/definition.json">objects/av-signature</a> - Antivirus detection signature.<a href="#section-3.1-1.13" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/asn/definition.json">objects/asn</a> - Autonomous system object describing an autonomous system which can include one or more network operators managing an entity (e.g. ISP) along with their routing policy, routing prefixes or alike.<a href="#section-3.1-1.13" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.14">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/bank-account/definition.json">objects/bank-account</a> - An object describing bank account information based on account description from goAML 4.0.<a href="#section-3.1-1.14" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/attack-pattern/definition.json">objects/attack-pattern</a> - Attack pattern describing a common attack pattern enumeration and classification.<a href="#section-3.1-1.14" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.15">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/bgp-hijack/definition.json">objects/bgp-hijack</a> - Object encapsulating BGP Hijack description as specified, for example, by bgpstream.com.<a href="#section-3.1-1.15" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/attack-step/definition.json">objects/attack-step</a> - An object defining a singular attack-step. Especially useful for red/purple teaming, but can also be used for actual attacks.<a href="#section-3.1-1.15" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.16">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/bgp-ranking/definition.json">objects/bgp-ranking</a> - BGP Ranking object describing the ranking of an ASN for a given day, along with its position, 1 being the most malicious ASN of the day, with the highest ranking. This object is meant to have a relationship with the corresponding ASN object and represents its ranking for a specific date.<a href="#section-3.1-1.16" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/authentication-failure-report/definition.json">objects/authentication-failure-report</a> - Authentication Failure Report.<a href="#section-3.1-1.16" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.17">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/blog/definition.json">objects/blog</a> - Blog post like Medium or WordPress.<a href="#section-3.1-1.17" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/authenticode-signerinfo/definition.json">objects/authenticode-signerinfo</a> - Authenticode Signer Info.<a href="#section-3.1-1.17" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.18">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/boleto/definition.json">objects/boleto</a> - A common form of payment used in Brazil.<a href="#section-3.1-1.18" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/av-signature/definition.json">objects/av-signature</a> - Antivirus detection signature.<a href="#section-3.1-1.18" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.19">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/btc-transaction/definition.json">objects/btc-transaction</a> - An object to describe a Bitcoin transaction. Best to be used with bitcoin-wallet.<a href="#section-3.1-1.19" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/availability-impact/definition.json">objects/availability-impact</a> - Availability Impact object as described in STIX 2.1 Incident object extension.<a href="#section-3.1-1.19" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.20">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/btc-wallet/definition.json">objects/btc-wallet</a> - An object to describe a Bitcoin wallet. Best to be used with bitcoin-transactions.<a href="#section-3.1-1.20" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/bank-account/definition.json">objects/bank-account</a> - An object describing bank account information based on account description from goAML 4.0.<a href="#section-3.1-1.20" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.21">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cap-alert/definition.json">objects/cap-alert</a> - Common Alerting Protocol Version (CAP) alert object.<a href="#section-3.1-1.21" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/bgp-hijack/definition.json">objects/bgp-hijack</a> - Object encapsulating BGP Hijack description as specified, for example, by bgpstream.com.<a href="#section-3.1-1.21" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.22">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cap-info/definition.json">objects/cap-info</a> - Common Alerting Protocol Version (CAP) info object.<a href="#section-3.1-1.22" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/bgp-ranking/definition.json">objects/bgp-ranking</a> - BGP Ranking object describing the ranking of an ASN for a given day, along with its position, 1 being the most malicious ASN of the day, with the highest ranking. This object is meant to have a relationship with the corresponding ASN object and represents its ranking for a specific date.<a href="#section-3.1-1.22" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.23">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cap-resource/definition.json">objects/cap-resource</a> - Common Alerting Protocol Version (CAP) resource object.<a href="#section-3.1-1.23" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/blog/definition.json">objects/blog</a> - Blog post like Medium or WordPress.<a href="#section-3.1-1.23" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.24">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/coin-address/definition.json">objects/coin-address</a> - An address used in a cryptocurrency.<a href="#section-3.1-1.24" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/boleto/definition.json">objects/boleto</a> - A common form of payment used in Brazil.<a href="#section-3.1-1.24" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.25">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/command/definition.json">objects/command</a> - Command functionalities related to specific commands executed by a program, whether it is malicious or not. Command-line are attached to this object for the related commands.<a href="#section-3.1-1.25" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/btc-transaction/definition.json">objects/btc-transaction</a> - An object to describe a Bitcoin transaction. Best to be used with bitcoin-wallet.<a href="#section-3.1-1.25" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.26">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/command-line/definition.json">objects/command-line</a> - Command line and options related to a specific command executed by a program, whether it is malicious or not.<a href="#section-3.1-1.26" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/btc-wallet/definition.json">objects/btc-wallet</a> - An object to describe a Bitcoin wallet. Best to be used with btc-transaction object.<a href="#section-3.1-1.26" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.27">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/concordia-mtmf-intrusion-set/definition.json">objects/concordia-mtmf-intrusion-set</a> - Intrusion Set - Phase Description.<a href="#section-3.1-1.27" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/c2-list/definition.json">objects/c2-list</a> - List of C2-servers with common ground, e.g. extracted from a blog post or ransomware analysis.<a href="#section-3.1-1.27" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.28">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cookie/definition.json">objects/cookie</a> - An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser. The browser may store it and send it back with the next request to the same server. Typically, it's used to tell if two requests came from the same browser <span class="unicode">— (U+2014)</span> keeping a user logged-in, for example. It remembers stateful information for the stateless HTTP protocol. (as defined by the Mozilla foundation.<a href="#section-3.1-1.28" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cap-alert/definition.json">objects/cap-alert</a> - Common Alerting Protocol Version (CAP) alert object.<a href="#section-3.1-1.28" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.29">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cortex/definition.json">objects/cortex</a> - Cortex object describing a complete cortex analysis. Observables would be attribute with a relationship from this object.<a href="#section-3.1-1.29" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cap-info/definition.json">objects/cap-info</a> - Common Alerting Protocol Version (CAP) info object.<a href="#section-3.1-1.29" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.30">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cortex-taxonomy/definition.json">objects/cortex-taxonomy</a> - Cortex object describing an Cortex Taxonomy (or mini report).<a href="#section-3.1-1.30" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cap-resource/definition.json">objects/cap-resource</a> - Common Alerting Protocol Version (CAP) resource object.<a href="#section-3.1-1.30" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.31">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/course-of-action/definition.json">objects/course-of-action</a> - An object describing a specific measure taken to prevent or respond to an attack.<a href="#section-3.1-1.31" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cloth/definition.json">objects/cloth</a> - Describes clothes a natural person wears.<a href="#section-3.1-1.31" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.32">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/covid19-csse-daily-report/definition.json">objects/covid19-csse-daily-report</a> - CSSE COVID-19 Daily report.<a href="#section-3.1-1.32" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/coin-address/definition.json">objects/coin-address</a> - An address used in a cryptocurrency.<a href="#section-3.1-1.32" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.33">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/covid19-dxy-live-city/definition.json">objects/covid19-dxy-live-city</a> - COVID 19 from dxy.cn - Aggregation by city.<a href="#section-3.1-1.33" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/command/definition.json">objects/command</a> - Command functionalities related to specific commands executed by a program, whether it is malicious or not. Command-line are attached to this object for the related commands.<a href="#section-3.1-1.33" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.34">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/covid19-dxy-live-province/definition.json">objects/covid19-dxy-live-province</a> - COVID 19 from dxy.cn - Aggregation by province.<a href="#section-3.1-1.34" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/command-line/definition.json">objects/command-line</a> - Command line and options related to a specific command executed by a program, whether it is malicious or not.<a href="#section-3.1-1.34" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.35">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cowrie/definition.json">objects/cowrie</a> - Cowrie honeypot object template.<a href="#section-3.1-1.35" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/concordia-mtmf-intrusion-set/definition.json">objects/concordia-mtmf-intrusion-set</a> - Intrusion Set - Phase Description.<a href="#section-3.1-1.35" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.36">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cpe-asset/definition.json">objects/cpe-asset</a> - An asset which can be defined by a CPE. This can be a generic asset. CPE is a structured naming scheme for information technology systems, software, and packages.<a href="#section-3.1-1.36" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/confidentiality-impact/definition.json">objects/confidentiality-impact</a> - Confidentiality Impact object as described in STIX 2.1 Incident object extension.<a href="#section-3.1-1.36" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.37">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/credential/definition.json">objects/credential</a> - Credential describes one or more credential(s) including password(s), api key(s) or decryption key(s).<a href="#section-3.1-1.37" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cookie/definition.json">objects/cookie</a> - An HTTP cookie (web cookie, browser cookie) is a small piece of data that a server sends to the user's web browser. The browser may store it and send it back with the next request to the same server. Typically, it's used to tell if two requests came from the same browser - keeping a user logged-in, for example. It remembers stateful information for the stateless HTTP protocol. As defined by the Mozilla foundation.<a href="#section-3.1-1.37" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.38">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/credit-card/definition.json">objects/credit-card</a> - A payment card like credit card, debit card or any similar cards which can be used for financial transactions.<a href="#section-3.1-1.38" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cortex/definition.json">objects/cortex</a> - Cortex object describing a complete Cortex analysis. Observables would be attribute with a relationship from this object.<a href="#section-3.1-1.38" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.39">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/crypto-material/definition.json">objects/crypto-material</a> - Cryptographic materials such as public or/and private keys.<a href="#section-3.1-1.39" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cortex-taxonomy/definition.json">objects/cortex-taxonomy</a> - Cortex object describing a Cortex Taxonomy (or mini report).<a href="#section-3.1-1.39" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.40">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cytomic-orion-file/definition.json">objects/cytomic-orion-file</a> - Cytomic Orion File Detection.<a href="#section-3.1-1.40" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/course-of-action/definition.json">objects/course-of-action</a> - An object describing a specific measure taken to prevent or respond to an attack.<a href="#section-3.1-1.40" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.41">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cytomic-orion-machine/definition.json">objects/cytomic-orion-machine</a> - Cytomic Orion File at Machine Detection.<a href="#section-3.1-1.41" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/covid19-csse-daily-report/definition.json">objects/covid19-csse-daily-report</a> - CSSE COVID-19 Daily report.<a href="#section-3.1-1.41" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.42">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/dark-pattern-item/definition.json">objects/dark-pattern-item</a> - An Item whose User Interface implements a dark pattern.<a href="#section-3.1-1.42" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/covid19-dxy-live-city/definition.json">objects/covid19-dxy-live-city</a> - COVID 19 from dxy.cn - Aggregation by city.<a href="#section-3.1-1.42" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.43">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ddos/definition.json">objects/ddos</a> - DDoS object describes a current DDoS activity from a specific or/and to a specific target. Type of DDoS can be attached to the object as a taxonomy.<a href="#section-3.1-1.43" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/covid19-dxy-live-province/definition.json">objects/covid19-dxy-live-province</a> - COVID 19 from dxy.cn - Aggregation by province.<a href="#section-3.1-1.43" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.44">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/device/definition.json">objects/device</a> - An object to define a device.<a href="#section-3.1-1.44" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cowrie/definition.json">objects/cowrie</a> - Cowrie honeypot object template.<a href="#section-3.1-1.44" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.45">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/diameter-attack/definition.json">objects/diameter-attack</a> - Attack as seen on the diameter signaling protocol supporting LTE networks.<a href="#section-3.1-1.45" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cpe-asset/definition.json">objects/cpe-asset</a> - An asset which can be defined by a CPE. This can be a generic asset. CPE is a structured naming scheme for information technology systems, software, and packages.<a href="#section-3.1-1.45" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.46">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/dkim/definition.json">objects/dkim</a> - DomainKeys Identified Mail - DKIM.<a href="#section-3.1-1.46" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/credential/definition.json">objects/credential</a> - Credential describes one or more credential(s) including password(s), api key(s) or decryption key(s).<a href="#section-3.1-1.46" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.47">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/dns-record/definition.json">objects/dns-record</a> - A set of DNS records observed for a specific domain.<a href="#section-3.1-1.47" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/credit-card/definition.json">objects/credit-card</a> - A payment card like credit card, debit card or any similar cards which can be used for financial transactions.<a href="#section-3.1-1.47" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.48">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/domain-crawled/definition.json">objects/domain-crawled</a> - A domain crawled over time.<a href="#section-3.1-1.48" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/crowdsec-ip-context/definition.json">objects/crowdsec-ip-context</a> - CrowdSec Threat Intelligence - IP CTI search.<a href="#section-3.1-1.48" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.49">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/domain-ip/definition.json">objects/domain-ip</a> - A domain/hostname and IP address seen as a tuple in a specific time frame.<a href="#section-3.1-1.49" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/crowdstrike-report/definition.json">objects/crowdstrike-report</a> - An Object Template to encode an Crowdstrike detection report.<a href="#section-3.1-1.49" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.50">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/edr-report/definition.json">objects/edr-report</a> - An Object Template to encode an EDR<span class="unicode">  (U+00A0)</span>detection report.<a href="#section-3.1-1.50" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/crypto-material/definition.json">objects/crypto-material</a> - Cryptographic materials such as public or/and private keys.<a href="#section-3.1-1.50" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.51">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/elf/definition.json">objects/elf</a> - Object describing a Executable and Linkable Format.<a href="#section-3.1-1.51" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cryptocurrency-transaction/definition.json">objects/cryptocurrency-transaction</a> - An object to describe a cryptocurrency transaction.<a href="#section-3.1-1.51" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.52">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/elf-section/definition.json">objects/elf-section</a> - Object describing a section of an Executable and Linkable Format.<a href="#section-3.1-1.52" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cs-beacon-config/definition.json">objects/cs-beacon-config</a> - Cobalt Strike Beacon Config.<a href="#section-3.1-1.52" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.53">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/email/definition.json">objects/email</a> - Email object describing an email with meta-information.<a href="#section-3.1-1.53" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cytomic-orion-file/definition.json">objects/cytomic-orion-file</a> - Cytomic Orion File Detection.<a href="#section-3.1-1.53" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.54">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/employee/definition.json">objects/employee</a> - An employee and related data points.<a href="#section-3.1-1.54" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/cytomic-orion-machine/definition.json">objects/cytomic-orion-machine</a> - Cytomic Orion File at Machine Detection.<a href="#section-3.1-1.54" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.55">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/exploit-poc/definition.json">objects/exploit-poc</a> - Exploit-poc object describing a proof of concept or exploit of a vulnerability. This object has often a relationship with a vulnerability object.<a href="#section-3.1-1.55" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/dark-pattern-item/definition.json">objects/dark-pattern-item</a> - An Item whose User Interface implements a dark pattern.<a href="#section-3.1-1.55" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.56">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-account/definition.json">objects/facebook-account</a> - Facebook account.<a href="#section-3.1-1.56" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ddos/definition.json">objects/ddos</a> - DDoS object describes a current DDoS activity from a specific or/and to a specific target. Type of DDoS can be attached to the object as a taxonomy or using the type field.<a href="#section-3.1-1.56" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.57">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-group/definition.json">objects/facebook-group</a> - Public or private facebook group.<a href="#section-3.1-1.57" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/device/definition.json">objects/device</a> - An object to define a device.<a href="#section-3.1-1.57" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.58">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-page/definition.json">objects/facebook-page</a> - Facebook page.<a href="#section-3.1-1.58" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/diameter-attack/definition.json">objects/diameter-attack</a> - Attack as seen on the diameter signaling protocol supporting LTE networks.<a href="#section-3.1-1.58" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.59">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-post/definition.json">objects/facebook-post</a> - Post on a Facebook wall.<a href="#section-3.1-1.59" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/diamond-event/definition.json">objects/diamond-event</a> - A diamond model event object consisting of the four diamond features advesary, infrastructure, capability and victim, several meta-features and ioc attributes.<a href="#section-3.1-1.59" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.60">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facial-composite/definition.json">objects/facial-composite</a> - An object which describes a facial composite.<a href="#section-3.1-1.60" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/directory/definition.json">objects/directory</a> - Directory object describing a directory with meta-information.<a href="#section-3.1-1.60" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.61">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/fail2ban/definition.json">objects/fail2ban</a> - Fail2ban event.<a href="#section-3.1-1.61" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/dkim/definition.json">objects/dkim</a> - DomainKeys Identified Mail - DKIM.<a href="#section-3.1-1.61" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.62">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/favicon/definition.json">objects/favicon</a> - A favicon, also known as a shortcut icon, website icon, tab icon, URL icon, or bookmark icon, is a file containing one or more small icons, associated with a particular website or web page. The object template can include the murmur3 hash of the favicon to facilitate correlation.<a href="#section-3.1-1.62" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/dns-record/definition.json">objects/dns-record</a> - A set of DNS records observed for a specific domain.<a href="#section-3.1-1.62" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.63">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/file/definition.json">objects/file</a> - File object describing a file with meta-information.<a href="#section-3.1-1.63" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/domain-crawled/definition.json">objects/domain-crawled</a> - A domain crawled over time.<a href="#section-3.1-1.63" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.64">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/forensic-case/definition.json">objects/forensic-case</a> - An object template to describe a digital forensic case.<a href="#section-3.1-1.64" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/domain-ip/definition.json">objects/domain-ip</a> - A domain/hostname and IP address seen as a tuple in a specific time frame.<a href="#section-3.1-1.64" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.65">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/forensic-evidence/definition.json">objects/forensic-evidence</a> - An object template to describe a digital forensic evidence.<a href="#section-3.1-1.65" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/edr-report/definition.json">objects/edr-report</a> - An Object Template to encode an EDR detection report.<a href="#section-3.1-1.65" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.66">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/forged-document/definition.json">objects/forged-document</a> - Object describing a forged document.<a href="#section-3.1-1.66" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/elf/definition.json">objects/elf</a> - Object describing a Executable and Linkable Format.<a href="#section-3.1-1.66" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.67">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Airplane/definition.json">objects/ftm-Airplane</a> - .<a href="#section-3.1-1.67" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/elf-section/definition.json">objects/elf-section</a> - Object describing a section of an Executable and Linkable Format.<a href="#section-3.1-1.67" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.68">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Assessment/definition.json">objects/ftm-Assessment</a> - .<a href="#section-3.1-1.68" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/email/definition.json">objects/email</a> - Email object describing an email with meta-information.<a href="#section-3.1-1.68" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.69">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Asset/definition.json">objects/ftm-Asset</a> - .<a href="#section-3.1-1.69" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/employee/definition.json">objects/employee</a> - An employee and related data points.<a href="#section-3.1-1.69" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.70">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Associate/definition.json">objects/ftm-Associate</a> - Non-family association between two people.<a href="#section-3.1-1.70" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/error-message/definition.json">objects/error-message</a> - An error message which can be related to the processing of data such as import, export scripts from the original MISP instance.<a href="#section-3.1-1.70" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.71">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Audio/definition.json">objects/ftm-Audio</a> - .<a href="#section-3.1-1.71" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/event/definition.json">objects/event</a> - Event object as described in STIX 2.1 Incident object extension.<a href="#section-3.1-1.71" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.72">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-BankAccount/definition.json">objects/ftm-BankAccount</a> - .<a href="#section-3.1-1.72" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/exploit/definition.json">objects/exploit</a> - Exploit object describes a program in binary or source code form used to abuse one or more vulnerabilities.<a href="#section-3.1-1.72" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.73">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Call/definition.json">objects/ftm-Call</a> - .<a href="#section-3.1-1.73" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/exploit-poc/definition.json">objects/exploit-poc</a> - Exploit-poc object describing a proof of concept or exploit of a vulnerability. This object has often a relationship with a vulnerability object.<a href="#section-3.1-1.73" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.74">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Company/definition.json">objects/ftm-Company</a> - A legal entity representing an association of people, whether natural, legal or a mixture of both, with a specific objective.<a href="#section-3.1-1.74" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/external-impact/definition.json">objects/external-impact</a> - External Impact object as described in STIX 2.1 Incident object extension.<a href="#section-3.1-1.74" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.75">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Contract/definition.json">objects/ftm-Contract</a> - An contract or contract lot issued by an authority. Multiple lots may be awarded to different suppliers (see ContractAward).
-.<a href="#section-3.1-1.75" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-account/definition.json">objects/facebook-account</a> - Facebook account.<a href="#section-3.1-1.75" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.76">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-ContractAward/definition.json">objects/ftm-ContractAward</a> - A contract or contract lot as awarded to a supplier.<a href="#section-3.1-1.76" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-group/definition.json">objects/facebook-group</a> - Public or private facebook group.<a href="#section-3.1-1.76" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.77">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-CourtCase/definition.json">objects/ftm-CourtCase</a> - .<a href="#section-3.1-1.77" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-page/definition.json">objects/facebook-page</a> - Facebook page.<a href="#section-3.1-1.77" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.78">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-CourtCaseParty/definition.json">objects/ftm-CourtCaseParty</a> - .<a href="#section-3.1-1.78" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-post/definition.json">objects/facebook-post</a> - Post on a Facebook wall.<a href="#section-3.1-1.78" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.79">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Debt/definition.json">objects/ftm-Debt</a> - A monetary debt between two parties.<a href="#section-3.1-1.79" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facebook-reaction/definition.json">objects/facebook-reaction</a> - Reaction to facebook posts.<a href="#section-3.1-1.79" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.80">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Directorship/definition.json">objects/ftm-Directorship</a> - .<a href="#section-3.1-1.80" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/facial-composite/definition.json">objects/facial-composite</a> - An object which describes a facial composite.<a href="#section-3.1-1.80" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.81">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Document/definition.json">objects/ftm-Document</a> - .<a href="#section-3.1-1.81" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/fail2ban/definition.json">objects/fail2ban</a> - Fail2ban event.<a href="#section-3.1-1.81" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.82">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Documentation/definition.json">objects/ftm-Documentation</a> - .<a href="#section-3.1-1.82" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/favicon/definition.json">objects/favicon</a> - A favicon, also known as a shortcut icon, website icon, tab icon, URL icon, or bookmark icon, is a file containing one or more small icons, associated with a particular website or web page. The object template can include the murmur3 hash of the favicon to facilitate correlation.<a href="#section-3.1-1.82" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.83">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-EconomicActivity/definition.json">objects/ftm-EconomicActivity</a> - A foreign economic activity.<a href="#section-3.1-1.83" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/file/definition.json">objects/file</a> - File object describing a file with meta-information.<a href="#section-3.1-1.83" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.84">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Email/definition.json">objects/ftm-Email</a> - .<a href="#section-3.1-1.84" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/flowintel-cm-case/definition.json">objects/flowintel-cm-case</a> - A case as defined by flowintel-cm.<a href="#section-3.1-1.84" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.85">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Event/definition.json">objects/ftm-Event</a> - .<a href="#section-3.1-1.85" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/flowintel-cm-task/definition.json">objects/flowintel-cm-task</a> - A task as defined by flowintel-cm.<a href="#section-3.1-1.85" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.86">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Family/definition.json">objects/ftm-Family</a> - Family relationship between two people.<a href="#section-3.1-1.86" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/forensic-case/definition.json">objects/forensic-case</a> - An object template to describe a digital forensic case.<a href="#section-3.1-1.86" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.87">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Folder/definition.json">objects/ftm-Folder</a> - .<a href="#section-3.1-1.87" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/forensic-evidence/definition.json">objects/forensic-evidence</a> - An object template to describe a digital forensic evidence.<a href="#section-3.1-1.87" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.88">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-HyperText/definition.json">objects/ftm-HyperText</a> - .<a href="#section-3.1-1.88" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/forged-document/definition.json">objects/forged-document</a> - Object describing a forged document.<a href="#section-3.1-1.88" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.89">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Image/definition.json">objects/ftm-Image</a> - .<a href="#section-3.1-1.89" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Airplane/definition.json">objects/ftm-Airplane</a> - An airplane, helicopter or other flying vehicle.<a href="#section-3.1-1.89" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.90">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Land/definition.json">objects/ftm-Land</a> - .<a href="#section-3.1-1.90" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Assessment/definition.json">objects/ftm-Assessment</a> - Assessment with meta-data.<a href="#section-3.1-1.90" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.91">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-LegalEntity/definition.json">objects/ftm-LegalEntity</a> - A legal entity may be a person or a company.<a href="#section-3.1-1.91" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Asset/definition.json">objects/ftm-Asset</a> - A piece of property which can be owned and assigned a monetary value.<a href="#section-3.1-1.91" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.92">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-License/definition.json">objects/ftm-License</a> - A grant of land, rights or property. A type of Contract.<a href="#section-3.1-1.92" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Associate/definition.json">objects/ftm-Associate</a> - Non-family association between two people.<a href="#section-3.1-1.92" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.93">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Membership/definition.json">objects/ftm-Membership</a> - .<a href="#section-3.1-1.93" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Audio/definition.json">objects/ftm-Audio</a> - Audio with meta-data.<a href="#section-3.1-1.93" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.94">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Message/definition.json">objects/ftm-Message</a> - .<a href="#section-3.1-1.94" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-BankAccount/definition.json">objects/ftm-BankAccount</a> - An account held at a bank and controlled by an owner. This may also be used to describe more complex arrangements like correspondent bank settlement accounts.<a href="#section-3.1-1.94" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.95">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Organization/definition.json">objects/ftm-Organization</a> - .<a href="#section-3.1-1.95" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Call/definition.json">objects/ftm-Call</a> - Phone call object template including the call and all associated meta-data.<a href="#section-3.1-1.95" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.96">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Ownership/definition.json">objects/ftm-Ownership</a> - .<a href="#section-3.1-1.96" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Company/definition.json">objects/ftm-Company</a> - A legal entity representing an association of people, whether natural, legal or a mixture of both, with a specific objective.<a href="#section-3.1-1.96" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.97">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Package/definition.json">objects/ftm-Package</a> - .<a href="#section-3.1-1.97" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Contract/definition.json">objects/ftm-Contract</a> - An contract or contract lot issued by an authority. Multiple lots may be awarded to different suppliers (see ContractAward).
+.<a href="#section-3.1-1.97" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.98">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Page/definition.json">objects/ftm-Page</a> - .<a href="#section-3.1-1.98" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-ContractAward/definition.json">objects/ftm-ContractAward</a> - A contract or contract lot as awarded to a supplier.<a href="#section-3.1-1.98" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.99">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Pages/definition.json">objects/ftm-Pages</a> - .<a href="#section-3.1-1.99" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-CourtCase/definition.json">objects/ftm-CourtCase</a> - Court case.<a href="#section-3.1-1.99" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.100">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Passport/definition.json">objects/ftm-Passport</a> - Passport.<a href="#section-3.1-1.100" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-CourtCaseParty/definition.json">objects/ftm-CourtCaseParty</a> - Court Case Party.<a href="#section-3.1-1.100" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.101">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Payment/definition.json">objects/ftm-Payment</a> - A monetary payment between two parties.<a href="#section-3.1-1.101" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Debt/definition.json">objects/ftm-Debt</a> - A monetary debt between two parties.<a href="#section-3.1-1.101" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.102">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Person/definition.json">objects/ftm-Person</a> - An individual.<a href="#section-3.1-1.102" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Directorship/definition.json">objects/ftm-Directorship</a> - Directorship.<a href="#section-3.1-1.102" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.103">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-PlainText/definition.json">objects/ftm-PlainText</a> - .<a href="#section-3.1-1.103" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Document/definition.json">objects/ftm-Document</a> - Document.<a href="#section-3.1-1.103" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.104">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-PublicBody/definition.json">objects/ftm-PublicBody</a> - A public body, such as a ministry, department or state company.<a href="#section-3.1-1.104" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Documentation/definition.json">objects/ftm-Documentation</a> - Documentation.<a href="#section-3.1-1.104" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.105">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-RealEstate/definition.json">objects/ftm-RealEstate</a> - A piece of land or property.<a href="#section-3.1-1.105" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-EconomicActivity/definition.json">objects/ftm-EconomicActivity</a> - A foreign economic activity.<a href="#section-3.1-1.105" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.106">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Representation/definition.json">objects/ftm-Representation</a> - A mediatory, intermediary, middleman, or broker acting on behalf of a legal entity.<a href="#section-3.1-1.106" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Email/definition.json">objects/ftm-Email</a> - Email.<a href="#section-3.1-1.106" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.107">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Row/definition.json">objects/ftm-Row</a> - .<a href="#section-3.1-1.107" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Event/definition.json">objects/ftm-Event</a> - Event.<a href="#section-3.1-1.107" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.108">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Sanction/definition.json">objects/ftm-Sanction</a> - A sanction designation.<a href="#section-3.1-1.108" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Family/definition.json">objects/ftm-Family</a> - Family relationship between two people.<a href="#section-3.1-1.108" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.109">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Succession/definition.json">objects/ftm-Succession</a> - Two entities that legally succeed each other.<a href="#section-3.1-1.109" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Folder/definition.json">objects/ftm-Folder</a> - Folder.<a href="#section-3.1-1.109" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.110">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Table/definition.json">objects/ftm-Table</a> - .<a href="#section-3.1-1.110" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-HyperText/definition.json">objects/ftm-HyperText</a> - HyperText.<a href="#section-3.1-1.110" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.111">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-TaxRoll/definition.json">objects/ftm-TaxRoll</a> - A tax declaration of an individual.<a href="#section-3.1-1.111" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Image/definition.json">objects/ftm-Image</a> - Image.<a href="#section-3.1-1.111" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.112">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-UnknownLink/definition.json">objects/ftm-UnknownLink</a> - .<a href="#section-3.1-1.112" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Land/definition.json">objects/ftm-Land</a> - Land.<a href="#section-3.1-1.112" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.113">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-UserAccount/definition.json">objects/ftm-UserAccount</a> - .<a href="#section-3.1-1.113" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-LegalEntity/definition.json">objects/ftm-LegalEntity</a> - A legal entity may be a person or a company.<a href="#section-3.1-1.113" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.114">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Vehicle/definition.json">objects/ftm-Vehicle</a> - .<a href="#section-3.1-1.114" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-License/definition.json">objects/ftm-License</a> - A grant of land, rights or property. A type of Contract.<a href="#section-3.1-1.114" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.115">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Vessel/definition.json">objects/ftm-Vessel</a> - A boat or ship.<a href="#section-3.1-1.115" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Membership/definition.json">objects/ftm-Membership</a> - Membership.<a href="#section-3.1-1.115" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.116">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Video/definition.json">objects/ftm-Video</a> - .<a href="#section-3.1-1.116" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Message/definition.json">objects/ftm-Message</a> - Message.<a href="#section-3.1-1.116" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.117">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Workbook/definition.json">objects/ftm-Workbook</a> - .<a href="#section-3.1-1.117" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Organization/definition.json">objects/ftm-Organization</a> - Organization.<a href="#section-3.1-1.117" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.118">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/geolocation/definition.json">objects/geolocation</a> - An object to describe a geographic location.<a href="#section-3.1-1.118" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Ownership/definition.json">objects/ftm-Ownership</a> - Ownership.<a href="#section-3.1-1.118" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.119">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/git-vuln-finder/definition.json">objects/git-vuln-finder</a> - Export from git-vuln-finder.<a href="#section-3.1-1.119" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Package/definition.json">objects/ftm-Package</a> - Package.<a href="#section-3.1-1.119" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.120">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/github-user/definition.json">objects/github-user</a> - GitHub user.<a href="#section-3.1-1.120" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Page/definition.json">objects/ftm-Page</a> - Page.<a href="#section-3.1-1.120" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.121">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/gitlab-user/definition.json">objects/gitlab-user</a> - GitLab user. Gitlab.com user or self-hosted GitLab instance.<a href="#section-3.1-1.121" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Pages/definition.json">objects/ftm-Pages</a> - Pages.<a href="#section-3.1-1.121" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.122">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/gtp-attack/definition.json">objects/gtp-attack</a> - GTP attack object as attack as seen on the GTP signaling protocol supporting GPRS/LTE networks.<a href="#section-3.1-1.122" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Passport/definition.json">objects/ftm-Passport</a> - Passport.<a href="#section-3.1-1.122" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.123">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/hashlookup/definition.json">objects/hashlookup</a> - hashlookup object as described on hashlookup services from circl.lu - <a href="https://www.circl.lu/services/hashlookup">https://www.circl.lu/services/hashlookup</a>.<a href="#section-3.1-1.123" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Payment/definition.json">objects/ftm-Payment</a> - A monetary payment between two parties.<a href="#section-3.1-1.123" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.124">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/http-request/definition.json">objects/http-request</a> - A single HTTP request header.<a href="#section-3.1-1.124" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Person/definition.json">objects/ftm-Person</a> - An individual.<a href="#section-3.1-1.124" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.125">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/identity/definition.json">objects/identity</a> - Identities can represent actual individuals, organizations, or groups (e.g., ACME, Inc.) as well as classes of individuals, organizations, systems or groups (e.g., the finance sector).  The Identity SDO can capture basic identifying information, contact information, and the sectors that the Identity belongs to. Identity is used in STIX to represent, among other things, targets of attacks, information sources, object creators, and threat actor identities. (ref. STIX 2.1 - 4.5).<a href="#section-3.1-1.125" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-PlainText/definition.json">objects/ftm-PlainText</a> - Plaintext.<a href="#section-3.1-1.125" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.126">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ilr-impact/definition.json">objects/ilr-impact</a> - Institut Luxembourgeois de Regulation - Impact.<a href="#section-3.1-1.126" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-PublicBody/definition.json">objects/ftm-PublicBody</a> - A public body, such as a ministry, department or state company.<a href="#section-3.1-1.126" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.127">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ilr-notification-incident/definition.json">objects/ilr-notification-incident</a> - Institut Luxembourgeois de Regulation - Notification d'incident.<a href="#section-3.1-1.127" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-RealEstate/definition.json">objects/ftm-RealEstate</a> - A piece of land or property.<a href="#section-3.1-1.127" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.128">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/image/definition.json">objects/image</a> - Object describing an image file.<a href="#section-3.1-1.128" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Representation/definition.json">objects/ftm-Representation</a> - A mediatory, intermediary, middleman, or broker acting on behalf of a legal entity.<a href="#section-3.1-1.128" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.129">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/impersonation/definition.json">objects/impersonation</a> - Represent an impersonating account.<a href="#section-3.1-1.129" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Row/definition.json">objects/ftm-Row</a> - Row.<a href="#section-3.1-1.129" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.130">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/imsi-catcher/definition.json">objects/imsi-catcher</a> - IMSI Catcher entry object based on the open source IMSI cather.<a href="#section-3.1-1.130" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Sanction/definition.json">objects/ftm-Sanction</a> - A sanction designation.<a href="#section-3.1-1.130" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.131">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/infrastructure/definition.json">objects/infrastructure</a> - The Infrastructure object represents a type of TTP and describes any systems, software services and any associated physical or virtual resources intended to support some purpose (e.g., C2 servers used as part of an attack, device or server that are part of defense, database servers targeted by an attack, etc.). While elements of an attack can be represented by other objects, the Infrastructure object represents a named group of related data that constitutes the infrastructure. STIX 2.1 - 4.8.<a href="#section-3.1-1.131" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Succession/definition.json">objects/ftm-Succession</a> - Two entities that legally succeed each other.<a href="#section-3.1-1.131" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.132">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/instant-message/definition.json">objects/instant-message</a> - Instant Message (IM) object template describing one or more IM message.<a href="#section-3.1-1.132" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Table/definition.json">objects/ftm-Table</a> - Table.<a href="#section-3.1-1.132" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.133">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/instant-message-group/definition.json">objects/instant-message-group</a> - Instant Message (IM) group object template describing a public or private IM group, channel or conversation.<a href="#section-3.1-1.133" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-TaxRoll/definition.json">objects/ftm-TaxRoll</a> - A tax declaration of an individual.<a href="#section-3.1-1.133" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.134">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intel471-vulnerability-intelligence/definition.json">objects/intel471-vulnerability-intelligence</a> - Intel 471 vulnerability intelligence object.<a href="#section-3.1-1.134" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-UnknownLink/definition.json">objects/ftm-UnknownLink</a> - Unknown Link.<a href="#section-3.1-1.134" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.135">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intelmq_event/definition.json">objects/intelmq_event</a> - IntelMQ Event.<a href="#section-3.1-1.135" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-UserAccount/definition.json">objects/ftm-UserAccount</a> - User Account.<a href="#section-3.1-1.135" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.136">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intelmq_report/definition.json">objects/intelmq_report</a> - IntelMQ Report.<a href="#section-3.1-1.136" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Vehicle/definition.json">objects/ftm-Vehicle</a> - Vehicle.<a href="#section-3.1-1.136" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.137">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/internal-reference/definition.json">objects/internal-reference</a> - Internal reference.<a href="#section-3.1-1.137" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Vessel/definition.json">objects/ftm-Vessel</a> - A boat or ship.<a href="#section-3.1-1.137" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.138">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/interpol-notice/definition.json">objects/interpol-notice</a> - An object which describes a Interpol notice.<a href="#section-3.1-1.138" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Video/definition.json">objects/ftm-Video</a> - Video.<a href="#section-3.1-1.138" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.139">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/iot-device/definition.json">objects/iot-device</a> - An IoT device.<a href="#section-3.1-1.139" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ftm-Workbook/definition.json">objects/ftm-Workbook</a> - Workbook.<a href="#section-3.1-1.139" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.140">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/iot-firmware/definition.json">objects/iot-firmware</a> - A firmware for an IoT device.<a href="#section-3.1-1.140" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/game-cheat/definition.json">objects/game-cheat</a> - Describes a game cheat or a cheatware.<a href="#section-3.1-1.140" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.141">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ip-api-address/definition.json">objects/ip-api-address</a> - IP Address information. Useful if you are pulling your ip information from ip-api.com.<a href="#section-3.1-1.141" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/geolocation/definition.json">objects/geolocation</a> - An object to describe a geographic location.<a href="#section-3.1-1.141" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.142">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ip-port/definition.json">objects/ip-port</a> - An IP address (or domain or hostname) and a port seen as a tuple (or as a triple) in a specific time frame.<a href="#section-3.1-1.142" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/git-vuln-finder/definition.json">objects/git-vuln-finder</a> - Export from git-vuln-finder.<a href="#section-3.1-1.142" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.143">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/irc/definition.json">objects/irc</a> - An IRC object to describe an IRC server and the associated channels.<a href="#section-3.1-1.143" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/github-user/definition.json">objects/github-user</a> - GitHub user.<a href="#section-3.1-1.143" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.144">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ja3/definition.json">objects/ja3</a> - JA3 is a new technique for creating SSL client fingerprints that are easy to produce and can be easily shared for threat intelligence. Fingerprints are composed of Client Hello packet; SSL Version, Accepted Ciphers, List of Extensions, Elliptic Curves, and Elliptic Curve Formats. <a href="https://github.com/salesforce/ja3">https://github.com/salesforce/ja3</a>.<a href="#section-3.1-1.144" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/gitlab-user/definition.json">objects/gitlab-user</a> - GitLab user. Gitlab.com user or self-hosted GitLab instance.<a href="#section-3.1-1.144" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.145">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ja3s/definition.json">objects/ja3s</a> - JA3S is JA3 for the Server side of the SSL/TLS communication and fingerprints how servers respond to particular clients. JA3S fingerprints are composed of Server Hello packet; SSL Version, Cipher, SSLExtensions. <a href="https://github.com/salesforce/ja3">https://github.com/salesforce/ja3</a>.<a href="#section-3.1-1.145" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/google-safe-browsing/definition.json">objects/google-safe-browsing</a> - Google Safe checks a URL against Google's constantly updated list of unsafe web resources.<a href="#section-3.1-1.145" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.146">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/jarm/definition.json">objects/jarm</a> - Jarm object to describe an TLS/SSL implementation used for malicious or legitimate use-case.<a href="#section-3.1-1.146" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/greynoise-ip/definition.json">objects/greynoise-ip</a> - GreyNoise IP Information.<a href="#section-3.1-1.146" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.147">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/keybase-account/definition.json">objects/keybase-account</a> - Information related to a keybase account, from API Users Object.<a href="#section-3.1-1.147" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/gtp-attack/definition.json">objects/gtp-attack</a> - GTP attack object as attack as seen on the GTP signaling protocol supporting GPRS/LTE networks.<a href="#section-3.1-1.147" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.148">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/language-content/definition.json">objects/language-content</a> - The Language Content object represents text content for objects represented in languages other than that of the original object. Language content may be a translation of the original object by a third-party, a first-source translation by the original publisher, or additional official language content provided at the time of creation. STIX 2.1 ref 7.1.<a href="#section-3.1-1.148" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/hashlookup/definition.json">objects/hashlookup</a> - hashlookup object as described on hashlookup services from circl.lu - <a href="https://www.circl.lu/services/hashlookup">https://www.circl.lu/services/hashlookup</a>.<a href="#section-3.1-1.148" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.149">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/leaked-document/definition.json">objects/leaked-document</a> - Object describing a leaked document.<a href="#section-3.1-1.149" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/hhhash/definition.json">objects/hhhash</a> - An object describing a HHHash object with the hash value along with the crawling parameters. For more information: <a href="https://www.foo.be/2023/07/HTTP-Headers-Hashing_HHHash">https://www.foo.be/2023/07/HTTP-Headers-Hashing_HHHash</a>.<a href="#section-3.1-1.149" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.150">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/legal-entity/definition.json">objects/legal-entity</a> - An object to describe a legal entity.<a href="#section-3.1-1.150" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/http-request/definition.json">objects/http-request</a> - A single HTTP request header.<a href="#section-3.1-1.150" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.151">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/lnk/definition.json">objects/lnk</a> - LNK object describing a Windows LNK binary file (aka Windows shortcut).<a href="#section-3.1-1.151" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/identity/definition.json">objects/identity</a> - Identities can represent actual individuals, organizations, or groups (e.g., ACME, Inc.) as well as classes of individuals, organizations, systems or groups (e.g., the finance sector).  The Identity SDO can capture basic identifying information, contact information, and the sectors that the Identity belongs to. Identity is used in STIX to represent, among other things, targets of attacks, information sources, object creators, and threat actor identities. (ref. STIX 2.1 - 4.5).<a href="#section-3.1-1.151" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.152">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/macho/definition.json">objects/macho</a> - Object describing a file in Mach-O format.<a href="#section-3.1-1.152" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ilr-impact/definition.json">objects/ilr-impact</a> - Institut Luxembourgeois de Regulation - Impact.<a href="#section-3.1-1.152" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.153">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/macho-section/definition.json">objects/macho-section</a> - Object describing a section of a file in Mach-O format.<a href="#section-3.1-1.153" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ilr-notification-incident/definition.json">objects/ilr-notification-incident</a> - Institut Luxembourgeois de Regulation - Notification d'incident.<a href="#section-3.1-1.153" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.154">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/mactime-timeline-analysis/definition.json">objects/mactime-timeline-analysis</a> - Mactime template, used in forensic investigations to describe the timeline of a file activity.<a href="#section-3.1-1.154" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/image/definition.json">objects/image</a> - Object describing an image file.<a href="#section-3.1-1.154" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.155">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/malware-config/definition.json">objects/malware-config</a> - Malware configuration recovered or extracted from a malicious binary.<a href="#section-3.1-1.155" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/impersonation/definition.json">objects/impersonation</a> - Represent an impersonating account.<a href="#section-3.1-1.155" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.156">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/meme-image/definition.json">objects/meme-image</a> - Object describing a meme (image).<a href="#section-3.1-1.156" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/imsi-catcher/definition.json">objects/imsi-catcher</a> - IMSI Catcher entry object based on the open source IMSI cather.<a href="#section-3.1-1.156" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.157">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/microblog/definition.json">objects/microblog</a> - Microblog post like a Twitter tweet or a post on a Facebook wall.<a href="#section-3.1-1.157" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/incident/definition.json">objects/incident</a> - Incident object template as described in STIX 2.1 Incident object and its core extension.<a href="#section-3.1-1.157" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.158">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/mutex/definition.json">objects/mutex</a> - Object to describe mutual exclusion locks (mutex) as seen in memory or computer program.<a href="#section-3.1-1.158" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/infrastructure/definition.json">objects/infrastructure</a> - The Infrastructure object represents a type of TTP and describes any systems, software services and any associated physical or virtual resources intended to support some purpose (e.g., C2 servers used as part of an attack, device or server that are part of defense, database servers targeted by an attack, etc.). While elements of an attack can be represented by other objects, the Infrastructure object represents a named group of related data that constitutes the infrastructure. STIX 2.1 - 4.8.<a href="#section-3.1-1.158" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.159">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/narrative/definition.json">objects/narrative</a> - Object describing a narrative.<a href="#section-3.1-1.159" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/instant-message/definition.json">objects/instant-message</a> - Instant Message (IM) object template describing one or more IM message.<a href="#section-3.1-1.159" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.160">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/netflow/definition.json">objects/netflow</a> - Netflow object describes an network object based on the Netflowv5/v9 minimal definition.<a href="#section-3.1-1.160" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/instant-message-group/definition.json">objects/instant-message-group</a> - Instant Message (IM) group object template describing a public or private IM group, channel or conversation.<a href="#section-3.1-1.160" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.161">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/network-connection/definition.json">objects/network-connection</a> - A local or remote network connection.<a href="#section-3.1-1.161" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/integrity-impact/definition.json">objects/integrity-impact</a> - Integrity Impact object as described in STIX 2.1 Incident object extension.<a href="#section-3.1-1.161" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.162">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/network-profile/definition.json">objects/network-profile</a> - Elements that can be used to profile, pivot or identify a network infrastructure, including domains, ip and urls.<a href="#section-3.1-1.162" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intel471-vulnerability-intelligence/definition.json">objects/intel471-vulnerability-intelligence</a> - Intel 471 vulnerability intelligence object.<a href="#section-3.1-1.162" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.163">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/network-socket/definition.json">objects/network-socket</a> - Network socket object describes a local or remote network connections based on the socket data structure.<a href="#section-3.1-1.163" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intelmq_event/definition.json">objects/intelmq_event</a> - IntelMQ Event.<a href="#section-3.1-1.163" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.164">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/news-agency/definition.json">objects/news-agency</a> - News agencies compile news and disseminate news in bulk.<a href="#section-3.1-1.164" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intelmq_report/definition.json">objects/intelmq_report</a> - IntelMQ Report.<a href="#section-3.1-1.164" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.165">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/news-media/definition.json">objects/news-media</a> - News media are forms of mass media delivering news to the general public.<a href="#section-3.1-1.165" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/internal-reference/definition.json">objects/internal-reference</a> - Internal reference.<a href="#section-3.1-1.165" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.166">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/open-data-security/definition.json">objects/open-data-security</a> - An object describing an open dataset available and described under the open data security model. ref. <a href="https://github.com/CIRCL/open-data-security">https://github.com/CIRCL/open-data-security</a>.<a href="#section-3.1-1.166" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/interpol-notice/definition.json">objects/interpol-notice</a> - An object which describes a Interpol notice.<a href="#section-3.1-1.166" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.167">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/organization/definition.json">objects/organization</a> - An object which describes an organization.<a href="#section-3.1-1.167" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/intrusion-set/definition.json">objects/intrusion-set</a> - A object template describing an Intrusion Set as defined in STIX 2.1. An Intrusion Set is a grouped set of adversarial behaviors and resources with common properties that is believed to be orchestrated by a single organization. An Intrusion Set may capture multiple Campaigns or other activities that are all tied together by shared attributes indicating a commonly known or unknown Threat Actor. New activity can be attributed to an Intrusion Set even if the Threat Actors behind the attack are not known. Threat Actors can move from supporting one Intrusion Set to supporting another, or they may support multiple Intrusion Sets.  Where a Campaign is a set of attacks over a period of time against a specific set of targets to achieve some objective, an Intrusion Set is the entire attack package and may be used over a very long period of time in multiple Campaigns to achieve potentially multiple purposes.  While sometimes an Intrusion Set is not active, or changes focus, it is usually difficult to know if it has truly disappeared or ended. Analysts may have varying level of fidelity on attributing an Intrusion Set back to Threat Actors and may be able to only attribute it back to a nation state or perhaps back to an organization within that nation state.<a href="#section-3.1-1.167" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.168">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/original-imported-file/definition.json">objects/original-imported-file</a> - Object describing the original file used to import data in MISP.<a href="#section-3.1-1.168" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/iot-device/definition.json">objects/iot-device</a> - An IoT device.<a href="#section-3.1-1.168" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.169">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/paloalto-threat-event/definition.json">objects/paloalto-threat-event</a> - Palo Alto Threat Log Event.<a href="#section-3.1-1.169" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/iot-firmware/definition.json">objects/iot-firmware</a> - A firmware for an IoT device.<a href="#section-3.1-1.169" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.170">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/parler-account/definition.json">objects/parler-account</a> - Parler account.<a href="#section-3.1-1.170" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ip-api-address/definition.json">objects/ip-api-address</a> - IP Address information. Useful if you are pulling your ip information from ip-api.com.<a href="#section-3.1-1.170" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.171">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/parler-comment/definition.json">objects/parler-comment</a> - Parler comment.<a href="#section-3.1-1.171" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ip-port/definition.json">objects/ip-port</a> - An IP address (or domain or hostname) and a port seen as a tuple (or as a triple) in a specific time frame.<a href="#section-3.1-1.171" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.172">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/parler-post/definition.json">objects/parler-post</a> - Parler post (parley).<a href="#section-3.1-1.172" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/irc/definition.json">objects/irc</a> - An IRC object to describe an IRC server and the associated channels.<a href="#section-3.1-1.172" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.173">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/passive-dns/definition.json">objects/passive-dns</a> - Passive DNS records as expressed in draft-dulaunoy-dnsop-passive-dns-cof-07. See <a href="https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html">https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html</a>.<a href="#section-3.1-1.173" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ja3/definition.json">objects/ja3</a> - JA3 is a new technique for creating SSL client fingerprints that are easy to produce and can be easily shared for threat intelligence. Fingerprints are composed of Client Hello packet; SSL Version, Accepted Ciphers, List of Extensions, Elliptic Curves, and Elliptic Curve Formats. <a href="https://github.com/salesforce/ja3">https://github.com/salesforce/ja3</a>.<a href="#section-3.1-1.173" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.174">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/passive-dns-dnsdbflex/definition.json">objects/passive-dns-dnsdbflex</a> - DNSDBFLEX object. This object is used at farsight security. Roughly based on Passive DNS records as expressed in draft-dulaunoy-dnsop-passive-dns-cof-07. See <a href="https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html">https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html</a>.<a href="#section-3.1-1.174" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ja3s/definition.json">objects/ja3s</a> - JA3S is JA3 for the Server side of the SSL/TLS communication and fingerprints how servers respond to particular clients. JA3S fingerprints are composed of Server Hello packet; SSL Version, Cipher, SSLExtensions. <a href="https://github.com/salesforce/ja3">https://github.com/salesforce/ja3</a>.<a href="#section-3.1-1.174" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.175">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/passive-ssh/definition.json">objects/passive-ssh</a> - Passive-ssh object as described on passive-ssh services from circl.lu - <a href="https://github.com/D4-project/passive-ssh">https://github.com/D4-project/passive-ssh</a>.<a href="#section-3.1-1.175" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/jarm/definition.json">objects/jarm</a> - Jarm object to describe an TLS/SSL implementation used for malicious or legitimate use-case.<a href="#section-3.1-1.175" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.176">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/paste/definition.json">objects/paste</a> - Paste or similar post from a website allowing to share privately or publicly posts.<a href="#section-3.1-1.176" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/keybase-account/definition.json">objects/keybase-account</a> - Information related to a keybase account, from API Users Object.<a href="#section-3.1-1.176" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.177">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pcap-metadata/definition.json">objects/pcap-metadata</a> - Network packet capture metadata.<a href="#section-3.1-1.177" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/language-content/definition.json">objects/language-content</a> - The Language Content object represents text content for objects represented in languages other than that of the original object. Language content may be a translation of the original object by a third-party, a first-source translation by the original publisher, or additional official language content provided at the time of creation. STIX 2.1 ref 7.1.<a href="#section-3.1-1.177" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.178">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pe/definition.json">objects/pe</a> - Object describing a Portable Executable.<a href="#section-3.1-1.178" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/leaked-document/definition.json">objects/leaked-document</a> - Object describing a leaked document.<a href="#section-3.1-1.178" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.179">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pe-section/definition.json">objects/pe-section</a> - Object describing a section of a Portable Executable.<a href="#section-3.1-1.179" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/legal-entity/definition.json">objects/legal-entity</a> - An object to describe a legal entity.<a href="#section-3.1-1.179" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.180">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/person/definition.json">objects/person</a> - An object which describes a person or an identity.<a href="#section-3.1-1.180" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/lnk/definition.json">objects/lnk</a> - LNK object describing a Windows LNK binary file (aka Windows shortcut).<a href="#section-3.1-1.180" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.181">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pgp-meta/definition.json">objects/pgp-meta</a> - Metadata extracted from a PGP keyblock, message or signature.<a href="#section-3.1-1.181" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/macho/definition.json">objects/macho</a> - Object describing a file in Mach-O format.<a href="#section-3.1-1.181" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.182">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/phishing/definition.json">objects/phishing</a> - Phishing template to describe a phishing website and its analysis.<a href="#section-3.1-1.182" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/macho-section/definition.json">objects/macho-section</a> - Object describing a section of a file in Mach-O format.<a href="#section-3.1-1.182" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.183">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/phishing-kit/definition.json">objects/phishing-kit</a> - Object to describe a phishing-kit.<a href="#section-3.1-1.183" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/mactime-timeline-analysis/definition.json">objects/mactime-timeline-analysis</a> - Mactime template, used in forensic investigations to describe the timeline of a file activity.<a href="#section-3.1-1.183" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.184">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/phone/definition.json">objects/phone</a> - A phone or mobile phone object which describe a phone.<a href="#section-3.1-1.184" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/malware/definition.json">objects/malware</a> - Malware is a type of TTP that represents malicious code.<a href="#section-3.1-1.184" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.185">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/postal-address/definition.json">objects/postal-address</a> - A postal address.<a href="#section-3.1-1.185" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/malware-analysis/definition.json">objects/malware-analysis</a> - Malware Analysis captures the metadata and results of a particular static or dynamic analysis performed on a malware instance or family.<a href="#section-3.1-1.185" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.186">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/probabilistic-data-structure/definition.json">objects/probabilistic-data-structure</a> - Probabilistic data structure object describe a space-efficient data structure such as Bloom filter or similar structure.<a href="#section-3.1-1.186" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/malware-config/definition.json">objects/malware-config</a> - Malware configuration recovered or extracted from a malicious binary.<a href="#section-3.1-1.186" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.187">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/process/definition.json">objects/process</a> - Object describing a system process.<a href="#section-3.1-1.187" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/meme-image/definition.json">objects/meme-image</a> - Object describing a meme (image).<a href="#section-3.1-1.187" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.188">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/publication/definition.json">objects/publication</a> - An object to describe a book, journal, or academic publication.<a href="#section-3.1-1.188" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/microblog/definition.json">objects/microblog</a> - Microblog post like a Twitter tweet or a post on a Facebook wall.<a href="#section-3.1-1.188" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.189">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/python-etvx-event-log/definition.json">objects/python-etvx-event-log</a> - Event log object template to share information of the activities conducted on a system. .<a href="#section-3.1-1.189" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/monetary-impact/definition.json">objects/monetary-impact</a> - Monetary Impact object as described in STIX 2.1 Incident object extension.<a href="#section-3.1-1.189" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.190">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/r2graphity/definition.json">objects/r2graphity</a> - Indicators extracted from files using radare2 and graphml.<a href="#section-3.1-1.190" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/mutex/definition.json">objects/mutex</a> - Object to describe mutual exclusion locks (mutex) as seen in memory or computer program.<a href="#section-3.1-1.190" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.191">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-account/definition.json">objects/reddit-account</a> - Reddit account.<a href="#section-3.1-1.191" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/narrative/definition.json">objects/narrative</a> - Object describing a narrative.<a href="#section-3.1-1.191" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.192">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-comment/definition.json">objects/reddit-comment</a> - A Reddit post comment.<a href="#section-3.1-1.192" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/netflow/definition.json">objects/netflow</a> - Netflow object describes an network object based on the Netflowv5/v9 minimal definition.<a href="#section-3.1-1.192" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.193">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-post/definition.json">objects/reddit-post</a> - A Reddit post.<a href="#section-3.1-1.193" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/network-connection/definition.json">objects/network-connection</a> - A local or remote network connection.<a href="#section-3.1-1.193" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.194">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-subreddit/definition.json">objects/reddit-subreddit</a> - Public or private subreddit.<a href="#section-3.1-1.194" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/network-profile/definition.json">objects/network-profile</a> - Elements that can be used to profile, pivot or identify a network infrastructure, including domains, ip and urls.<a href="#section-3.1-1.194" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.195">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regexp/definition.json">objects/regexp</a> - An object describing a regular expression (regex or regexp). The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a regular expression.<a href="#section-3.1-1.195" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/network-socket/definition.json">objects/network-socket</a> - Network socket object describes a local or remote network connections based on the socket data structure.<a href="#section-3.1-1.195" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.196">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/registry-key/definition.json">objects/registry-key</a> - Registry key object describing a Windows registry key with value and last-modified timestamp.<a href="#section-3.1-1.196" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/news-agency/definition.json">objects/news-agency</a> - News agencies compile news and disseminate news in bulk.<a href="#section-3.1-1.196" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.197">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-NTUser/definition.json">objects/regripper-NTUser</a> - Regripper Object template designed to present user specific configuration details extracted from the NTUSER.dat hive.<a href="#section-3.1-1.197" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/news-media/definition.json">objects/news-media</a> - News media are forms of mass media delivering news to the general public.<a href="#section-3.1-1.197" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.198">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-sam-hive-single-user/definition.json">objects/regripper-sam-hive-single-user</a> - Regripper Object template designed to present user profile details extracted from the SAM hive.<a href="#section-3.1-1.198" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/open-data-security/definition.json">objects/open-data-security</a> - An object describing an open dataset available and described under the open data security model. ref. <a href="https://github.com/CIRCL/open-data-security">https://github.com/CIRCL/open-data-security</a>.<a href="#section-3.1-1.198" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.199">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-sam-hive-user-group/definition.json">objects/regripper-sam-hive-user-group</a> - Regripper Object template designed to present group profile details extracted from the SAM hive.<a href="#section-3.1-1.199" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/organization/definition.json">objects/organization</a> - An object which describes an organization.<a href="#section-3.1-1.199" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.200">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-BHO/definition.json">objects/regripper-software-hive-BHO</a> - Regripper Object template designed to gather information of the browser helper objects installed on the system.<a href="#section-3.1-1.200" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/original-imported-file/definition.json">objects/original-imported-file</a> - Object describing the original file used to import data in MISP.<a href="#section-3.1-1.200" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.201">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-appInit-DLLS/definition.json">objects/regripper-software-hive-appInit-DLLS</a> - Regripper Object template designed to gather information of the DLL files installed on the system.<a href="#section-3.1-1.201" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/paloalto-threat-event/definition.json">objects/paloalto-threat-event</a> - Palo Alto Threat Log Event.<a href="#section-3.1-1.201" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.202">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-application-paths/definition.json">objects/regripper-software-hive-application-paths</a> - Regripper Object template designed to gather information of the application paths.<a href="#section-3.1-1.202" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/parler-account/definition.json">objects/parler-account</a> - Parler account.<a href="#section-3.1-1.202" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.203">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-applications-installed/definition.json">objects/regripper-software-hive-applications-installed</a> - Regripper Object template designed to gather information of the applications installed on the system.<a href="#section-3.1-1.203" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/parler-comment/definition.json">objects/parler-comment</a> - Parler comment.<a href="#section-3.1-1.203" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.204">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-command-shell/definition.json">objects/regripper-software-hive-command-shell</a> - Regripper Object template designed to gather information of the shell commands executed on the system.<a href="#section-3.1-1.204" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/parler-post/definition.json">objects/parler-post</a> - Parler post (parley).<a href="#section-3.1-1.204" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.205">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-software-run/definition.json">objects/regripper-software-hive-software-run</a> - Regripper Object template designed to gather information of the applications set to run on the system.<a href="#section-3.1-1.205" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/passive-dns/definition.json">objects/passive-dns</a> - Passive DNS records as expressed in draft-dulaunoy-dnsop-passive-dns-cof-07. See <a href="https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html">https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html</a>.<a href="#section-3.1-1.205" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.206">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-userprofile-winlogon/definition.json">objects/regripper-software-hive-userprofile-winlogon</a> - Regripper Object template designed to gather user profile information when the user logs onto the system, gathered from the software hive.<a href="#section-3.1-1.206" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/passive-dns-dnsdbflex/definition.json">objects/passive-dns-dnsdbflex</a> - DNSDBFLEX object. This object is used at farsight security. Roughly based on Passive DNS records as expressed in draft-dulaunoy-dnsop-passive-dns-cof-07. See <a href="https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html">https://tools.ietf.org/id/draft-dulaunoy-dnsop-passive-dns-cof-07.html</a>.<a href="#section-3.1-1.206" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.207">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-windows-general-info/definition.json">objects/regripper-software-hive-windows-general-info</a> - Regripper Object template designed to gather general windows information extracted from the software-hive.<a href="#section-3.1-1.207" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/passive-ssh/definition.json">objects/passive-ssh</a> - Passive-ssh object as described on passive-ssh services from circl.lu - <a href="https://github.com/D4-project/passive-ssh">https://github.com/D4-project/passive-ssh</a>.<a href="#section-3.1-1.207" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.208">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-firewall-configuration/definition.json">objects/regripper-system-hive-firewall-configuration</a> - Regripper Object template designed to present firewall configuration information extracted from the system-hive.<a href="#section-3.1-1.208" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/paste/definition.json">objects/paste</a> - Paste or similar post from a website allowing to share privately or publicly posts.<a href="#section-3.1-1.208" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.209">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-general-configuration/definition.json">objects/regripper-system-hive-general-configuration</a> - Regripper Object template designed to present general system properties extracted from the system-hive.<a href="#section-3.1-1.209" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pcap-metadata/definition.json">objects/pcap-metadata</a> - Network packet capture metadata.<a href="#section-3.1-1.209" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.210">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-network-information/definition.json">objects/regripper-system-hive-network-information</a> - Regripper object template designed to gather network information from the system-hive.<a href="#section-3.1-1.210" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pe/definition.json">objects/pe</a> - Object describing a Portable Executable.<a href="#section-3.1-1.210" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.211">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-services-drivers/definition.json">objects/regripper-system-hive-services-drivers</a> - Regripper Object template designed to gather information regarding the services/drivers from the system-hive.<a href="#section-3.1-1.211" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pe-section/definition.json">objects/pe-section</a> - Object describing a section of a Portable Executable.<a href="#section-3.1-1.211" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.212">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/report/definition.json">objects/report</a> - Metadata used to generate an executive level report.<a href="#section-3.1-1.212" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/Deception%20PersNOna/definition.json">objects/Deception PersNOna</a> - Fake persona with tasks.<a href="#section-3.1-1.212" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.213">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/research-scanner/definition.json">objects/research-scanner</a> - Information related to known scanning activity (e.g. from research projects).<a href="#section-3.1-1.213" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/person/definition.json">objects/person</a> - An object which describes a person or an identity.<a href="#section-3.1-1.213" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.214">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/rogue-dns/definition.json">objects/rogue-dns</a> - Rogue DNS as defined by CERT.br.<a href="#section-3.1-1.214" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/personification/definition.json">objects/personification</a> - An object which describes a person or an identity.<a href="#section-3.1-1.214" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.215">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/rtir/definition.json">objects/rtir</a> - RTIR - Request Tracker for Incident Response.<a href="#section-3.1-1.215" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/pgp-meta/definition.json">objects/pgp-meta</a> - Metadata extracted from a PGP keyblock, message or signature.<a href="#section-3.1-1.215" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.216">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sandbox-report/definition.json">objects/sandbox-report</a> - Sandbox report.<a href="#section-3.1-1.216" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/phishing/definition.json">objects/phishing</a> - Phishing template to describe a phishing website and its analysis.<a href="#section-3.1-1.216" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.217">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sb-signature/definition.json">objects/sb-signature</a> - Sandbox detection signature.<a href="#section-3.1-1.217" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/phishing-kit/definition.json">objects/phishing-kit</a> - Object to describe a phishing-kit.<a href="#section-3.1-1.217" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.218">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scheduled-event/definition.json">objects/scheduled-event</a> - Event object template describing a gathering of individuals in meatspace.<a href="#section-3.1-1.218" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/phone/definition.json">objects/phone</a> - A phone or mobile phone object which describe a phone.<a href="#section-3.1-1.218" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.219">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-c13-daily/definition.json">objects/scrippsco2-c13-daily</a> - Daily average C13 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.219" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/physical-impact/definition.json">objects/physical-impact</a> - Physical Impact object as described in STIX 2.1 Incident object extension.<a href="#section-3.1-1.219" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.220">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-c13-monthly/definition.json">objects/scrippsco2-c13-monthly</a> - Monthly average C13 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.220" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/postal-address/definition.json">objects/postal-address</a> - A postal address.<a href="#section-3.1-1.220" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.221">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-co2-daily/definition.json">objects/scrippsco2-co2-daily</a> - Daily average CO2 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.221" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/probabilistic-data-structure/definition.json">objects/probabilistic-data-structure</a> - Probabilistic data structure object describe a space-efficient data structure such as Bloom filter or similar structure.<a href="#section-3.1-1.221" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.222">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-co2-monthly/definition.json">objects/scrippsco2-co2-monthly</a> - Monthly average CO2 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.222" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/process/definition.json">objects/process</a> - Object describing a system process.<a href="#section-3.1-1.222" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.223">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-o18-daily/definition.json">objects/scrippsco2-o18-daily</a> - Daily average O18 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.223" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/publication/definition.json">objects/publication</a> - An object to describe a book, journal, or academic publication.<a href="#section-3.1-1.223" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.224">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-o18-monthly/definition.json">objects/scrippsco2-o18-monthly</a> - Monthly average O18 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.224" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/python-etvx-event-log/definition.json">objects/python-etvx-event-log</a> - Event log object template to share information of the activities conducted on a system. .<a href="#section-3.1-1.224" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.225">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/script/definition.json">objects/script</a> - Object describing a computer program written to be run in a special run-time environment. The script or shell script can be used for malicious activities but also as support tools for threat analysts.<a href="#section-3.1-1.225" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/query/definition.json">objects/query</a> - An object describing a query, along with its format.<a href="#section-3.1-1.225" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.226">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/security-playbook/definition.json">objects/security-playbook</a> - An object to manage, represent, and share course of action playbooks (security playbooks) for cyberspace defense.<a href="#section-3.1-1.226" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/r2graphity/definition.json">objects/r2graphity</a> - Indicators extracted from files using radare2 and graphml.<a href="#section-3.1-1.226" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.227">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shell-commands/definition.json">objects/shell-commands</a> - Object describing a series of shell commands executed. This object can be linked with malicious files in order to describe a specific execution of shell commands.<a href="#section-3.1-1.227" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ransom-negotiation/definition.json">objects/ransom-negotiation</a> - An object to describe ransom negotiations, as seen in ransomware incidents.<a href="#section-3.1-1.227" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.228">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shodan-report/definition.json">objects/shodan-report</a> - Shodan Report for a given IP.<a href="#section-3.1-1.228" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ransomware-group-post/definition.json">objects/ransomware-group-post</a> - Ransomware group post as monitored by ransomlook.io.<a href="#section-3.1-1.228" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.229">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/short-message-service/definition.json">objects/short-message-service</a> - Short Message Service (SMS) object template describing one or more SMS message. Restriction of the initial format 3GPP 23.038 GSM character set doesn't apply.<a href="#section-3.1-1.229" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-account/definition.json">objects/reddit-account</a> - Reddit account.<a href="#section-3.1-1.229" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.230">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shortened-link/definition.json">objects/shortened-link</a> - Shortened link and its redirect target.<a href="#section-3.1-1.230" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-comment/definition.json">objects/reddit-comment</a> - A Reddit post comment.<a href="#section-3.1-1.230" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.231">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/social-media-group/definition.json">objects/social-media-group</a> - Social media group object template describing a public or private group or channel.<a href="#section-3.1-1.231" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-post/definition.json">objects/reddit-post</a> - A Reddit post.<a href="#section-3.1-1.231" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.232">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/software/definition.json">objects/software</a> - The Software object represents high-level properties associated with software, including software products. STIX 2.1 - 6.14.<a href="#section-3.1-1.232" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/reddit-subreddit/definition.json">objects/reddit-subreddit</a> - Public or private subreddit.<a href="#section-3.1-1.232" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.233">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/splunk/definition.json">objects/splunk</a> - Splunk / Splunk ES object.<a href="#section-3.1-1.233" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regexp/definition.json">objects/regexp</a> - An object describing a regular expression (regex or regexp). The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a regular expression.<a href="#section-3.1-1.233" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.234">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ss7-attack/definition.json">objects/ss7-attack</a> - SS7 object of an attack as seen on the SS7 signaling protocol supporting GSM/GPRS/UMTS networks.<a href="#section-3.1-1.234" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/registry-key/definition.json">objects/registry-key</a> - Registry key object describing a Windows registry key with value and last-modified timestamp.<a href="#section-3.1-1.234" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.235">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ssh-authorized-keys/definition.json">objects/ssh-authorized-keys</a> - An object to store ssh authorized keys file.<a href="#section-3.1-1.235" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/registry-key-value/definition.json">objects/registry-key-value</a> - Registry key value object describing a Windows registry key value, with its data, data type and name values. To be used when a registry key has multiple values.<a href="#section-3.1-1.235" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.236">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/stix2-pattern/definition.json">objects/stix2-pattern</a> - An object describing a STIX pattern. The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a STIX pattern.<a href="#section-3.1-1.236" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-NTUser/definition.json">objects/regripper-NTUser</a> - Regripper Object template designed to present user specific configuration details extracted from the NTUSER.dat hive.<a href="#section-3.1-1.236" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.237">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/submarine/definition.json">objects/submarine</a> - Submarine description.<a href="#section-3.1-1.237" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-sam-hive-single-user/definition.json">objects/regripper-sam-hive-single-user</a> - Regripper Object template designed to present user profile details extracted from the SAM hive.<a href="#section-3.1-1.237" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.238">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/suricata/definition.json">objects/suricata</a> - An object describing one or more Suricata rule(s) along with version and contextual information.<a href="#section-3.1-1.238" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-sam-hive-user-group/definition.json">objects/regripper-sam-hive-user-group</a> - Regripper Object template designed to present group profile details extracted from the SAM hive.<a href="#section-3.1-1.238" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.239">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/target-system/definition.json">objects/target-system</a> - Description about an targeted system, this could potentially be a compromissed internal system.<a href="#section-3.1-1.239" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-BHO/definition.json">objects/regripper-software-hive-BHO</a> - Regripper Object template designed to gather information of the browser helper objects installed on the system.<a href="#section-3.1-1.239" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.240">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/telegram-account/definition.json">objects/telegram-account</a> - Information related to a telegram account.<a href="#section-3.1-1.240" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-appInit-DLLS/definition.json">objects/regripper-software-hive-appInit-DLLS</a> - Regripper Object template designed to gather information of the DLL files installed on the system.<a href="#section-3.1-1.240" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.241">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/temporal-event/definition.json">objects/temporal-event</a> - A temporal event consists of some temporal and spacial boundaries. Spacial boundaries can be physical, virtual or hybrid.<a href="#section-3.1-1.241" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-application-paths/definition.json">objects/regripper-software-hive-application-paths</a> - Regripper Object template designed to gather information of the application paths.<a href="#section-3.1-1.241" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.242">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/threatgrid-report/definition.json">objects/threatgrid-report</a> - ThreatGrid report.<a href="#section-3.1-1.242" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-applications-installed/definition.json">objects/regripper-software-hive-applications-installed</a> - Regripper Object template designed to gather information of the applications installed on the system.<a href="#section-3.1-1.242" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.243">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timecode/definition.json">objects/timecode</a> - Timecode object to describe a start of video sequence (e.g. CCTV evidence) and the end of the video sequence.<a href="#section-3.1-1.243" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-command-shell/definition.json">objects/regripper-software-hive-command-shell</a> - Regripper Object template designed to gather information of the shell commands executed on the system.<a href="#section-3.1-1.243" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.244">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timesketch-timeline/definition.json">objects/timesketch-timeline</a> - A timesketch timeline object based on mandatory field in timesketch to describe a log entry.<a href="#section-3.1-1.244" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-software-run/definition.json">objects/regripper-software-hive-software-run</a> - Regripper Object template designed to gather information of the applications set to run on the system.<a href="#section-3.1-1.244" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.245">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timesketch_message/definition.json">objects/timesketch_message</a> - A timesketch message entry.<a href="#section-3.1-1.245" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-userprofile-winlogon/definition.json">objects/regripper-software-hive-userprofile-winlogon</a> - Regripper Object template designed to gather user profile information when the user logs onto the system, gathered from the software hive.<a href="#section-3.1-1.245" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.246">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timestamp/definition.json">objects/timestamp</a> - A generic timestamp object to represent time including first time and last time seen. Relationship will then define the kind of time relationship.<a href="#section-3.1-1.246" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-software-hive-windows-general-info/definition.json">objects/regripper-software-hive-windows-general-info</a> - Regripper Object template designed to gather general windows information extracted from the software-hive.<a href="#section-3.1-1.246" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.247">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tor-hiddenservice/definition.json">objects/tor-hiddenservice</a> - Tor hidden service (onion service) object.<a href="#section-3.1-1.247" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-firewall-configuration/definition.json">objects/regripper-system-hive-firewall-configuration</a> - Regripper Object template designed to present firewall configuration information extracted from the system-hive.<a href="#section-3.1-1.247" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.248">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tor-node/definition.json">objects/tor-node</a> - Tor node (which protects your privacy on the internet by hiding the connection between users Internet address and the services used by the users) description which are part of the Tor network at a time.<a href="#section-3.1-1.248" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-general-configuration/definition.json">objects/regripper-system-hive-general-configuration</a> - Regripper Object template designed to present general system properties extracted from the system-hive.<a href="#section-3.1-1.248" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.249">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tracking-id/definition.json">objects/tracking-id</a> - Analytics and tracking ID such as used in Google Analytics or other analytic platform.<a href="#section-3.1-1.249" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-network-information/definition.json">objects/regripper-system-hive-network-information</a> - Regripper object template designed to gather network information from the system-hive.<a href="#section-3.1-1.249" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.250">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/transaction/definition.json">objects/transaction</a> - An object to describe a financial transaction.<a href="#section-3.1-1.250" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/regripper-system-hive-services-drivers/definition.json">objects/regripper-system-hive-services-drivers</a> - Regripper Object template designed to gather information regarding the services/drivers from the system-hive.<a href="#section-3.1-1.250" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.251">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/translation/definition.json">objects/translation</a> - Used to keep a text and its translation.<a href="#section-3.1-1.251" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/report/definition.json">objects/report</a> - Report object to describe a report along with its metadata.<a href="#section-3.1-1.251" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.252">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/trustar_report/definition.json">objects/trustar_report</a> - TruStar Report.<a href="#section-3.1-1.252" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/research-scanner/definition.json">objects/research-scanner</a> - Information related to known scanning activity (e.g. from research projects).<a href="#section-3.1-1.252" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.253">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-chats/definition.json">objects/tsk-chats</a> - An Object Template to gather information from evidential or interesting exchange of messages identified during a digital forensic investigation.<a href="#section-3.1-1.253" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/risk-assessment-report/definition.json">objects/risk-assessment-report</a> - Risk assessment report object which includes the assessment report from a risk assessment platform such as MONARC.<a href="#section-3.1-1.253" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.254">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-bookmark/definition.json">objects/tsk-web-bookmark</a> - An Object Template to add evidential bookmarks identified during a digital forensic investigation.<a href="#section-3.1-1.254" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/rogue-dns/definition.json">objects/rogue-dns</a> - Rogue DNS as defined by CERT.br.<a href="#section-3.1-1.254" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.255">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-cookie/definition.json">objects/tsk-web-cookie</a> - An TSK-Autopsy Object Template to represent cookies identified during a forensic investigation.<a href="#section-3.1-1.255" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/rtir/definition.json">objects/rtir</a> - RTIR - Request Tracker for Incident Response.<a href="#section-3.1-1.255" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.256">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-downloads/definition.json">objects/tsk-web-downloads</a> - An Object Template to add web-downloads.<a href="#section-3.1-1.256" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sandbox-report/definition.json">objects/sandbox-report</a> - Sandbox report.<a href="#section-3.1-1.256" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.257">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-history/definition.json">objects/tsk-web-history</a> - An Object Template to share web history information.<a href="#section-3.1-1.257" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sb-signature/definition.json">objects/sb-signature</a> - Sandbox detection signature.<a href="#section-3.1-1.257" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.258">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-search-query/definition.json">objects/tsk-web-search-query</a> - An Object Template to share web search query information.<a href="#section-3.1-1.258" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scan-result/definition.json">objects/scan-result</a> - Scan result object to add meta-data and the output of the scan result by itself.<a href="#section-3.1-1.258" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.259">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/twitter-account/definition.json">objects/twitter-account</a> - Twitter account.<a href="#section-3.1-1.259" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scheduled-event/definition.json">objects/scheduled-event</a> - Event object template describing a gathering of individuals in meatspace.<a href="#section-3.1-1.259" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.260">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/twitter-list/definition.json">objects/twitter-list</a> - Twitter list.<a href="#section-3.1-1.260" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scheduled-task/definition.json">objects/scheduled-task</a> - Windows scheduled task description.<a href="#section-3.1-1.260" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.261">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/twitter-post/definition.json">objects/twitter-post</a> - Twitter post (tweet).<a href="#section-3.1-1.261" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-c13-daily/definition.json">objects/scrippsco2-c13-daily</a> - Daily average C13 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.261" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.262">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/url/definition.json">objects/url</a> - url object describes an url along with its normalized field (like extracted using faup parsing library) and its metadata.<a href="#section-3.1-1.262" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-c13-monthly/definition.json">objects/scrippsco2-c13-monthly</a> - Monthly average C13 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.262" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.263">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/user-account/definition.json">objects/user-account</a> - User-account object, defining aspects of user identification, authentication, privileges and other relevant data points.<a href="#section-3.1-1.263" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-co2-daily/definition.json">objects/scrippsco2-co2-daily</a> - Daily average CO2 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.263" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.264">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/vehicle/definition.json">objects/vehicle</a> - Vehicle object template to describe a vehicle information and registration.<a href="#section-3.1-1.264" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-co2-monthly/definition.json">objects/scrippsco2-co2-monthly</a> - Monthly average CO2 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.264" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.265">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/victim/definition.json">objects/victim</a> - Victim object describes the target of an attack or abuse.<a href="#section-3.1-1.265" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-o18-daily/definition.json">objects/scrippsco2-o18-daily</a> - Daily average O18 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.265" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.266">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/virustotal-graph/definition.json">objects/virustotal-graph</a> - VirusTotal graph.<a href="#section-3.1-1.266" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/scrippsco2-o18-monthly/definition.json">objects/scrippsco2-o18-monthly</a> - Monthly average O18 concentrations (ppm) derived from flask air samples.<a href="#section-3.1-1.266" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.267">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/virustotal-report/definition.json">objects/virustotal-report</a> - VirusTotal report.<a href="#section-3.1-1.267" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/script/definition.json">objects/script</a> - Object describing a computer program written to be run in a special run-time environment. The script or shell script can be used for malicious activities but also as support tools for threat analysts.<a href="#section-3.1-1.267" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.268">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/vulnerability/definition.json">objects/vulnerability</a> - Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.<a href="#section-3.1-1.268" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/security-playbook/definition.json">objects/security-playbook</a> - The security-playbook object provides meta-information and allows managing, storing, and sharing cybersecurity playbooks and orchestration workflows.<a href="#section-3.1-1.268" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.269">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/weakness/definition.json">objects/weakness</a> - Weakness object describing a common weakness enumeration which can describe usable, incomplete, draft or deprecated weakness for software, equipment of hardware.<a href="#section-3.1-1.269" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shadowserver-malware-url-report/definition.json">objects/shadowserver-malware-url-report</a> - This report identifies URLs that were observed in exploitation attempts in the last 24 hours. They are assumed to contain a malware payload or serve as C2 controllers. If a payload was successfully downloaded in the last 24 hours, it's SHA256 hash will also be published. The data is primarily sourced from honeypots (in which case they will often be IoT related), but other sources are possible. As always, you only receive information on IPs found on your network/constituency or in the case of a National CSIRT, your country. Ref: <a href="https://www.shadowserver.org/what-we-do/network-reporting/malware-url-report/">https://www.shadowserver.org/what-we-do/network-reporting/malware-url-report/</a>.<a href="#section-3.1-1.269" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.270">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/whois/definition.json">objects/whois</a> - Whois records information for a domain name or an IP address.<a href="#section-3.1-1.270" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shell-commands/definition.json">objects/shell-commands</a> - Object describing a series of shell commands executed. This object can be linked with malicious files in order to describe a specific execution of shell commands.<a href="#section-3.1-1.270" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.271">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/windows-service/definition.json">objects/windows-service</a> - Windows service and detailed about a service running a Windows operating system.<a href="#section-3.1-1.271" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shodan-report/definition.json">objects/shodan-report</a> - Shodan Report for a given IP.<a href="#section-3.1-1.271" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.272">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/x509/definition.json">objects/x509</a> - x509 object describing a X.509 certificate.<a href="#section-3.1-1.272" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/short-message-service/definition.json">objects/short-message-service</a> - Short Message Service (SMS) object template describing one or more SMS message. Restriction of the initial format 3GPP 23.038 GSM character set doesn't apply.<a href="#section-3.1-1.272" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.273">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/yabin/definition.json">objects/yabin</a> - yabin.py generates Yara rules from function prologs, for matching and hunting binaries. ref: <a href="https://github.com/AlienVault-OTX/yabin">https://github.com/AlienVault-OTX/yabin</a>.<a href="#section-3.1-1.273" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/shortened-link/definition.json">objects/shortened-link</a> - Shortened link and its redirect target.<a href="#section-3.1-1.273" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.274">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/yara/definition.json">objects/yara</a> - An object describing a YARA rule (or a YARA rule name) along with its version.<a href="#section-3.1-1.274" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sigma/definition.json">objects/sigma</a> - An object describing a Sigma rule (or a Sigma rule name).<a href="#section-3.1-1.274" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.275">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-channel/definition.json">objects/youtube-channel</a> - A YouTube channel.<a href="#section-3.1-1.275" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sigmf-archive/definition.json">objects/sigmf-archive</a> - An object representing an archive containing one or multiple recordings in the Signal Metadata Format Specification (SigMF).<a href="#section-3.1-1.275" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.276">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-comment/definition.json">objects/youtube-comment</a> - A YouTube video comment.<a href="#section-3.1-1.276" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sigmf-expanded-recording/definition.json">objects/sigmf-expanded-recording</a> - An object representing a single IQ/RF sample in the Signal Metadata Format Specification (SigMF).<a href="#section-3.1-1.276" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.277">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-playlist/definition.json">objects/youtube-playlist</a> - A YouTube playlist.<a href="#section-3.1-1.277" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/sigmf-recording/definition.json">objects/sigmf-recording</a> - An object representing a single IQ/RF sample in the Signal Metadata Format Specification (SigMF).<a href="#section-3.1-1.277" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-3.1-1.278">
-            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-video/definition.json">objects/youtube-video</a> - A YouTube video.<a href="#section-3.1-1.278" class="pilcrow">¶</a>
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/social-media-group/definition.json">objects/social-media-group</a> - Social media group object template describing a public or private group or channel.<a href="#section-3.1-1.278" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.279">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/software/definition.json">objects/software</a> - The Software object represents high-level properties associated with software, including software products. STIX 2.1 - 6.14.<a href="#section-3.1-1.279" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.280">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/spearphishing-attachment/definition.json">objects/spearphishing-attachment</a> - Spearphishing Attachment.<a href="#section-3.1-1.280" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.281">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/spearphishing-link/definition.json">objects/spearphishing-link</a> - Spearphishing Link.<a href="#section-3.1-1.281" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.282">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/splunk/definition.json">objects/splunk</a> - Splunk / Splunk ES object.<a href="#section-3.1-1.282" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.283">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ss7-attack/definition.json">objects/ss7-attack</a> - SS7 object of an attack as seen on the SS7 signaling protocol supporting GSM/GPRS/UMTS networks.<a href="#section-3.1-1.283" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.284">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/ssh-authorized-keys/definition.json">objects/ssh-authorized-keys</a> - An object to store ssh authorized keys file.<a href="#section-3.1-1.284" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.285">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/stix2-pattern/definition.json">objects/stix2-pattern</a> - An object describing a STIX pattern. The object can be linked via a relationship to other attributes or objects to describe how it can be represented as a STIX pattern.<a href="#section-3.1-1.285" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.286">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/stock/definition.json">objects/stock</a> - Object to describe stock market.<a href="#section-3.1-1.286" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.287">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/submarine/definition.json">objects/submarine</a> - Submarine description.<a href="#section-3.1-1.287" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.288">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/suricata/definition.json">objects/suricata</a> - An object describing one or more Suricata rule(s) along with version and contextual information.<a href="#section-3.1-1.288" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.289">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/target-system/definition.json">objects/target-system</a> - Description about an targeted system, this could potentially be a compromissed internal system.<a href="#section-3.1-1.289" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.290">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/task/definition.json">objects/task</a> - Task object as described in STIX 2.1 Incident object extension.<a href="#section-3.1-1.290" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.291">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tattoo/definition.json">objects/tattoo</a> - Describes tattoos on a natural person's body.<a href="#section-3.1-1.291" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.292">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/telegram-account/definition.json">objects/telegram-account</a> - Information related to a telegram account.<a href="#section-3.1-1.292" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.293">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/telegram-bot/definition.json">objects/telegram-bot</a> - Information related to a telegram bot.<a href="#section-3.1-1.293" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.294">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/temporal-event/definition.json">objects/temporal-event</a> - A temporal event consists of some temporal and spacial boundaries. Spacial boundaries can be physical, virtual or hybrid.<a href="#section-3.1-1.294" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.295">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/thaicert-group-cards/definition.json">objects/thaicert-group-cards</a> - Adversary group cards inspired by ThaiCERT.<a href="#section-3.1-1.295" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.296">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/threatgrid-report/definition.json">objects/threatgrid-report</a> - ThreatGrid report.<a href="#section-3.1-1.296" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.297">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timecode/definition.json">objects/timecode</a> - Timecode object to describe a start of video sequence (e.g. CCTV evidence) and the end of the video sequence.<a href="#section-3.1-1.297" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.298">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timesketch-timeline/definition.json">objects/timesketch-timeline</a> - A timesketch timeline object based on mandatory field in timesketch to describe a log entry.<a href="#section-3.1-1.298" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.299">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timesketch_message/definition.json">objects/timesketch_message</a> - A timesketch message entry.<a href="#section-3.1-1.299" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.300">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/timestamp/definition.json">objects/timestamp</a> - A generic timestamp object to represent time including first time and last time seen. Relationship will then define the kind of time relationship.<a href="#section-3.1-1.300" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.301">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tor-hiddenservice/definition.json">objects/tor-hiddenservice</a> - Tor hidden service (onion service) object.<a href="#section-3.1-1.301" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.302">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tor-node/definition.json">objects/tor-node</a> - Tor node (which protects your privacy on the internet by hiding the connection between users Internet address and the services used by the users) description which are part of the Tor network at a time.<a href="#section-3.1-1.302" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.303">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/traceability-impact/definition.json">objects/traceability-impact</a> - Traceability Impact object as described in STIX 2.1 Incident object extension.<a href="#section-3.1-1.303" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.304">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tracking-id/definition.json">objects/tracking-id</a> - Analytics and tracking ID such as used in Google Analytics or other analytic platform.<a href="#section-3.1-1.304" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.305">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/transaction/definition.json">objects/transaction</a> - An object to describe a financial transaction.<a href="#section-3.1-1.305" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.306">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/translation/definition.json">objects/translation</a> - Used to keep a text and its translation.<a href="#section-3.1-1.306" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.307">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/transport-ticket/definition.json">objects/transport-ticket</a> - A transport ticket.<a href="#section-3.1-1.307" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.308">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/trustar_report/definition.json">objects/trustar_report</a> - TruStar Report.<a href="#section-3.1-1.308" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.309">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-chats/definition.json">objects/tsk-chats</a> - An Object Template to gather information from evidential or interesting exchange of messages identified during a digital forensic investigation.<a href="#section-3.1-1.309" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.310">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-bookmark/definition.json">objects/tsk-web-bookmark</a> - An Object Template to add evidential bookmarks identified during a digital forensic investigation.<a href="#section-3.1-1.310" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.311">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-cookie/definition.json">objects/tsk-web-cookie</a> - An TSK-Autopsy Object Template to represent cookies identified during a forensic investigation.<a href="#section-3.1-1.311" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.312">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-downloads/definition.json">objects/tsk-web-downloads</a> - An Object Template to add web-downloads.<a href="#section-3.1-1.312" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.313">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-history/definition.json">objects/tsk-web-history</a> - An Object Template to share web history information.<a href="#section-3.1-1.313" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.314">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/tsk-web-search-query/definition.json">objects/tsk-web-search-query</a> - An Object Template to share web search query information.<a href="#section-3.1-1.314" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.315">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/twitter-account/definition.json">objects/twitter-account</a> - Twitter account.<a href="#section-3.1-1.315" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.316">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/twitter-list/definition.json">objects/twitter-list</a> - Twitter list.<a href="#section-3.1-1.316" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.317">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/twitter-post/definition.json">objects/twitter-post</a> - Twitter post (tweet).<a href="#section-3.1-1.317" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.318">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/typosquatting-finder/definition.json">objects/typosquatting-finder</a> - Typosquatting info.<a href="#section-3.1-1.318" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.319">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/typosquatting-finder-result/definition.json">objects/typosquatting-finder-result</a> - Typosquatting result.<a href="#section-3.1-1.319" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.320">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/url/definition.json">objects/url</a> - url object describes an url along with its normalized field (like extracted using faup parsing library) and its metadata.<a href="#section-3.1-1.320" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.321">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/user-account/definition.json">objects/user-account</a> - User-account object, defining aspects of user identification, authentication, privileges and other relevant data points.<a href="#section-3.1-1.321" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.322">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/vehicle/definition.json">objects/vehicle</a> - Vehicle object template to describe a vehicle information and registration.<a href="#section-3.1-1.322" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.323">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/victim/definition.json">objects/victim</a> - Victim object describes the target of an attack or abuse.<a href="#section-3.1-1.323" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.324">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/virustotal-graph/definition.json">objects/virustotal-graph</a> - VirusTotal graph.<a href="#section-3.1-1.324" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.325">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/virustotal-report/definition.json">objects/virustotal-report</a> - VirusTotal report.<a href="#section-3.1-1.325" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.326">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/virustotal-submission/definition.json">objects/virustotal-submission</a> - VirusTotal Submission.<a href="#section-3.1-1.326" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.327">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/vulnerability/definition.json">objects/vulnerability</a> - Vulnerability object describing a common vulnerability enumeration which can describe published, unpublished, under review or embargo vulnerability for software, equipments or hardware.<a href="#section-3.1-1.327" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.328">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/weakness/definition.json">objects/weakness</a> - Weakness object describing a common weakness enumeration which can describe usable, incomplete, draft or deprecated weakness for software, equipment of hardware.<a href="#section-3.1-1.328" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.329">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/whois/definition.json">objects/whois</a> - Whois records information for a domain name or an IP address.<a href="#section-3.1-1.329" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.330">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/windows-service/definition.json">objects/windows-service</a> - Windows service and detailed about a service running a Windows operating system.<a href="#section-3.1-1.330" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.331">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/x-header/definition.json">objects/x-header</a> - X header generic object for SMTP, HTTP or any other protocols using X headers.<a href="#section-3.1-1.331" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.332">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/x509/definition.json">objects/x509</a> - x509 object describing a X.509 certificate.<a href="#section-3.1-1.332" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.333">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/yabin/definition.json">objects/yabin</a> - yabin.py generates Yara rules from function prologs, for matching and hunting binaries. ref: <a href="https://github.com/AlienVault-OTX/yabin">https://github.com/AlienVault-OTX/yabin</a>.<a href="#section-3.1-1.333" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.334">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/yara/definition.json">objects/yara</a> - An object describing a YARA rule (or a YARA rule name) along with its version.<a href="#section-3.1-1.334" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.335">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-channel/definition.json">objects/youtube-channel</a> - A YouTube channel.<a href="#section-3.1-1.335" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.336">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-comment/definition.json">objects/youtube-comment</a> - A YouTube video comment.<a href="#section-3.1-1.336" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.337">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-playlist/definition.json">objects/youtube-playlist</a> - A YouTube playlist.<a href="#section-3.1-1.337" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.1-1.338">
+            <a href="https://github.com/MISP/misp-objects/blob/main/objects/youtube-video/definition.json">objects/youtube-video</a> - A YouTube video.<a href="#section-3.1-1.338" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -2596,8 +2776,8 @@ of open standards in threat intelligence sharing.<a href="#section-4-1" class="p
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Alexandre Dulaunoy</span></div>
 <div dir="auto" class="left"><span class="org">Computer Incident Response Center Luxembourg</span></div>
-<div dir="auto" class="left"><span class="street-address">16, bd d'Avranches</span></div>
-<div dir="auto" class="left">L-<span class="postal-code">L-1611</span> <span class="locality">Luxembourg</span>
+<div dir="auto" class="left"><span class="street-address">122, rue Adolphe Fischer</span></div>
+<div dir="auto" class="left">L-<span class="postal-code">L-1521</span> <span class="locality">Luxembourg</span>
 </div>
 <div dir="auto" class="left"><span class="country-name">Luxembourg</span></div>
 <div class="tel">
@@ -2612,8 +2792,8 @@ of open standards in threat intelligence sharing.<a href="#section-4-1" class="p
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Andras Iklody</span></div>
 <div dir="auto" class="left"><span class="org">Computer Incident Response Center Luxembourg</span></div>
-<div dir="auto" class="left"><span class="street-address">16, bd d'Avranches</span></div>
-<div dir="auto" class="left">L-<span class="postal-code">L-1611</span> <span class="locality">Luxembourg</span>
+<div dir="auto" class="left"><span class="street-address">122, rue Adolphe Fischer</span></div>
+<div dir="auto" class="left">L-<span class="postal-code">L-1521</span> <span class="locality">Luxembourg</span>
 </div>
 <div dir="auto" class="left"><span class="country-name">Luxembourg</span></div>
 <div class="tel">
