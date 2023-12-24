@@ -1071,6 +1071,7 @@ type **MUST** be present. type describes the type of a sighting. MISP allows 3 d
 | 0             | denotes an attribute which has been seen                                  |
 | 1             | denotes an attribute which has been seen and confirmed as false-positive  |
 | 2             | denotes an attribute which will be expired at the time of the sighting    |
+| 3             | denotes an attribute which has been seen and confirmed as a true-positive |
 
 uuid **MUST** be present. uuid references the uuid of the sighted attribute.
 
