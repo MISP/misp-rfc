@@ -9,7 +9,7 @@ submissiontype = "independent"
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-16"
+value = "draft-17"
 stream = "independent"
 status = "informational"
 
