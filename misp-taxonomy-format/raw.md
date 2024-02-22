@@ -45,20 +45,13 @@ organization = "Computer Incident Response Center Luxembourg"
 
 .# Abstract
 
-This document describes the MISP taxonomy format which describes a simple JSON format to
-represent machine tags (also called triple tags) vocabularies. A public directory of common vocabularies
-called MISP taxonomies is available and relies on the MISP taxonomy format. MISP taxonomies are used to classify
-cyber security events, threats, suspicious events, or indicators.
+This document describes the MISP taxonomy format, a simple JSON format used to represent machine tags (also known as triple tags) vocabularies. A public directory, known as MISP taxonomies, is available and utilizes the MISP taxonomy format. These taxonomies are employed to classify cybersecurity events, threats, suspicious events, or indicators.
 
 {mainmatter}
 
 # Introduction
 
-Sharing threat information became a fundamental requirements on the Internet, security and intelligence community at large. Threat
-information can include indicators of compromise, malicious file indicators, financial fraud indicators
-or even detailed information about a threat actor. While sharing such indicators or information, classification plays an important role
-to ensure adequate distribution, understanding, validation or action of the shared information. MISP taxonomies is a public repository
-of known vocabularies that can be used in threat information sharing.
+Sharing threat information has become a fundamental requirement in the Internet security and intelligence community at large. This information can include indicators of compromise, malicious file indicators, financial fraud indicators, or even detailed information about a threat actor. Classification plays a crucial role while sharing such indicators or information, ensuring adequate distribution, understanding, validation, or action regarding the shared information. The MISP taxonomies are a public repository of known vocabularies that can be utilized in threat information sharing.
 
 Machine tags were introduced in 2007 [@?machine-tags] to allow users to be more precise when tagging their pictures with geolocation.
 So a machine tag is a tag which uses a special syntax to provide more information to users and machines. Machine tags are also known
@@ -1036,7 +1029,7 @@ of open standards in threat intelligence sharing.
 
 <reference anchor='MISP-P' target='https://github.com/MISP'>
   <front>
-   <title>MISP Project - Malware Information Sharing Platform and Threat Sharing</title>
+   <title>MISP Project - Open Source Threat Intelligence Platform and Open Standards For Threat Information Sharing</title>
    <author initials='' surname='MISP' fullname='MISP Community'></author>
    <date></date>
   </front>

@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: 26 June 2024                                   24 December 2023
+Expires: 24 August 2024                                 21 February 2024
 
 
                           MISP taxonomy format
@@ -13,12 +13,12 @@ Expires: 26 June 2024                                   24 December 2023
 
 Abstract
 
-   This document describes the MISP taxonomy format which describes a
-   simple JSON format to represent machine tags (also called triple
-   tags) vocabularies.  A public directory of common vocabularies called
-   MISP taxonomies is available and relies on the MISP taxonomy format.
-   MISP taxonomies are used to classify cyber security events, threats,
-   suspicious events, or indicators.
+   This document describes the MISP taxonomy format, a simple JSON
+   format used to represent machine tags (also known as triple tags)
+   vocabularies.  A public directory, known as MISP taxonomies, is
+   available and utilizes the MISP taxonomy format.  These taxonomies
+   are employed to classify cybersecurity events, threats, suspicious
+   events, or indicators.
 
 Status of This Memo
 
@@ -35,11 +35,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 June 2024.
+   This Internet-Draft will expire on 24 August 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 1]
+Dulaunoy & Iklody        Expires 24 August 2024                 [Page 1]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
 Table of Contents
@@ -84,15 +84,16 @@ Table of Contents
 
 1.  Introduction
 
-   Sharing threat information became a fundamental requirements on the
-   Internet, security and intelligence community at large.  Threat
+   Sharing threat information has become a fundamental requirement in
+   the Internet security and intelligence community at large.  This
    information can include indicators of compromise, malicious file
-   indicators, financial fraud indicators or even detailed information
-   about a threat actor.  While sharing such indicators or information,
-   classification plays an important role to ensure adequate
-   distribution, understanding, validation or action of the shared
-   information.  MISP taxonomies is a public repository of known
-   vocabularies that can be used in threat information sharing.
+   indicators, financial fraud indicators, or even detailed information
+   about a threat actor.  Classification plays a crucial role while
+   sharing such indicators or information, ensuring adequate
+   distribution, understanding, validation, or action regarding the
+   shared information.  The MISP taxonomies are a public repository of
+   known vocabularies that can be utilized in threat information
+   sharing.
 
    Machine tags were introduced in 2007 [machine-tags] to allow users to
    be more precise when tagging their pictures with geolocation.  So a
@@ -108,10 +109,9 @@ Table of Contents
 
 
 
-
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 2]
+Dulaunoy & Iklody        Expires 24 August 2024                 [Page 2]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
 1.1.  Conventions and Terminology
@@ -165,9 +165,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 3]
+Dulaunoy & Iklody        Expires 24 August 2024                 [Page 3]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
 2.2.  predicates
@@ -221,9 +221,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 4]
+Dulaunoy & Iklody        Expires 24 August 2024                 [Page 4]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
    "predicates": [
@@ -277,9 +277,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 5]
+Dulaunoy & Iklody        Expires 24 August 2024                 [Page 5]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
        {
@@ -333,9 +333,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 6]
+Dulaunoy & Iklody        Expires 24 August 2024                 [Page 6]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
 3.1.  Sample Manifest
@@ -389,9 +389,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 7]
+Dulaunoy & Iklody        Expires 24 August 2024                 [Page 7]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
              "value": "a",
@@ -445,9 +445,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 8]
+Dulaunoy & Iklody        Expires 24 August 2024                 [Page 8]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
            {
@@ -501,9 +501,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 9]
+Dulaunoy & Iklody        Expires 24 August 2024                 [Page 9]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
        "predicate": "source-type"
@@ -557,9 +557,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 10]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 10]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
            "description": "30% Probably not"
@@ -613,9 +613,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 11]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 11]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
       maturity model for referencing ones maturity in detecting cyber
@@ -669,9 +669,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 12]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 12]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
    common-taxonomy:  Common Taxonomy for Law enforcement and CSIRTs
@@ -725,9 +725,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 13]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 13]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
    data-classification:  Data classification for data potentially at
@@ -781,9 +781,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 14]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 14]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
    ecsirt:  Incident Classification by the ecsirt.net version mkVI of 31
@@ -837,9 +837,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 15]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 15]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
    file-type:  List of known file types.
@@ -893,9 +893,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 16]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 16]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
       Information Exchange Policy (IEP) v2.0 Policy
@@ -949,9 +949,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 17]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 17]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
    maec-malware-behavior:  Malware behaviours based on MAEC 5.0
@@ -1005,9 +1005,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 18]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 18]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
       glossary.aspx),
@@ -1061,9 +1061,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 19]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 19]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
    pandemic:  Pandemic
@@ -1117,9 +1117,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 20]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 20]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
       engineering as described in 'A Taxonomy of Social Engineering
@@ -1173,9 +1173,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 21]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 21]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
       discipline which can be described the origin of intelligence.
@@ -1229,9 +1229,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 22]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 22]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
                "type": "string"
@@ -1285,9 +1285,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 23]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 23]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
              },
@@ -1341,9 +1341,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 24]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 24]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
        },
@@ -1386,8 +1386,9 @@ Internet-Draft            MISP taxonomy format             December 2023
               Documents", 2016,
               <https://tools.ietf.org/html/draft-wright-json-schema>.
 
-   [MISP-P]   Community, M., "MISP Project - Malware Information Sharing
-              Platform and Threat Sharing", <https://github.com/MISP>.
+   [MISP-P]   Community, M., "MISP Project - Open Source Threat
+              Intelligence Platform and Open Standards For Threat
+              Information Sharing", <https://github.com/MISP>.
 
    [MISP-T]   Community, M., "MISP Taxonomies - shared and common
               vocabularies of tags",
@@ -1396,10 +1397,9 @@ Internet-Draft            MISP taxonomy format             December 2023
 
 
 
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 25]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 25]
 
-Internet-Draft            MISP taxonomy format             December 2023
+Internet-Draft            MISP taxonomy format             February 2024
 
 
    [machine-tags]
@@ -1453,4 +1453,4 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 26]
+Dulaunoy & Iklody        Expires 24 August 2024                [Page 26]
