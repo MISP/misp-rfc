@@ -1204,10 +1204,8 @@ Analyst data can be nested to describe complementary analysis on the analyst dat
                         "modified": "2024-06-25 04:40:01",
                         "distribution": "3",
                         "sharing_group_id": null,
-                        "locked": false,
                         "opinion": "0",
                         "comment": "Incorrect selector",
-                        "note_type": 1,
                         "note_type_name": "Opinion",
                         "Orgc": {
                             "id": "2",
@@ -1259,20 +1257,23 @@ uuid is represented as a JSON string. uuid **MUST** be present.
 #### object\_type
 
 #### authors
+optional
 
 #### org\_uuid
 
 #### orgc\_uuid
 
 #### created
+optional
 
 #### modified
+optional
 
 #### distribution
+optional
 
 #### sharing\_group\_id
-
-#### locked
+optional
 
 #### opinion
 
@@ -1298,10 +1299,8 @@ uuid is represented as a JSON string. uuid **MUST** be present.
                 "modified": "2024-06-25 04:37:03",
                 "distribution": "3",
                 "sharing_group_id": null,
-                "locked": false,
                 "note": "Note to an event",
                 "language": "en",
-                "note_type": 0,
                 "note_type_name": "Note",
                 "Orgc": {
                     "id": "2",
@@ -1338,26 +1337,28 @@ uuid is represented as a JSON string. uuid **MUST** be present.
 #### object\_type
 
 #### authors
+optional
 
 #### org\_uuid
 
 #### orgc\_uuid
 
 #### created
+optional
 
 #### modified
+optional
 
 #### distribution
+optional
 
 #### sharing\_group\_id
-
-#### locked
+optional
 
 #### opinion
 
 #### comment
-
-#### note\_type
+optional
 
 #### note\_type\_name
 
@@ -1377,7 +1378,6 @@ uuid is represented as a JSON string. uuid **MUST** be present.
                 "modified": "2024-06-25 04:39:30",
                 "distribution": "3",
                 "sharing_group_id": null,
-                "locked": false,
                 "relationship_type": "relates",
                 "related_object_uuid": "f3290493-8f74-4220-aa04-b83408e37a0c",
                 "related_object_type": "Event",
@@ -1451,22 +1451,22 @@ uuid is represented as a JSON string. uuid **MUST** be present.
 #### orgc\_uuid
 
 #### created
+optional
 
 #### modified
+optional
 
 #### distribution
+optional
 
 #### sharing\_group\_id
-
-#### locked
+optional
 
 #### relationship\_type
 
 #### related\_object\_uuid
 
 #### related\_object\_type
-
-#### note\_type
 
 #### note\_type\_name
 
