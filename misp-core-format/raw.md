@@ -1182,6 +1182,294 @@ A galaxy is a simple method to express a large object called cluster that can be
         ]
 ~~~~
 
+## Analyst Data
+
+Analyst Data are objects which can be in different level of MISP format including objects, attributes, event or detached from MISP core format. It can expressed
+a `Opinion`, `Note` or a `Relationship` from an analyst. Those three types define the key of the analyst data and can be present at the level where analyst data is applied.
+Analyst data can be nested to describe complementary analysis on the analyst data by itself.
+
+### Opinion
+
+~~~~
+ "Opinion": [
+                    {
+                        "id": "13",
+                        "uuid": "238b1e74-e378-4bde-a463-cbb8fc496989",
+                        "object_uuid": "ae4396d9-3deb-49c9-b13e-b01f3a0736c3",
+                        "object_type": "Attribute",
+                        "authors": "alexandre.dulaunoy@circl.lu",
+                        "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                        "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                        "created": "2024-06-25 04:40:01",
+                        "modified": "2024-06-25 04:40:01",
+                        "distribution": "3",
+                        "sharing_group_id": null,
+                        "locked": false,
+                        "opinion": "0",
+                        "comment": "Incorrect selector",
+                        "note_type": 1,
+                        "note_type_name": "Opinion",
+                        "Orgc": {
+                            "id": "2",
+                            "name": "CIRCL",
+                            "date_created": "2016-06-29 08:47:35",
+                            "date_modified": "2017-11-24 12:51:22",
+                            "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                            "type": "",
+                            "nationality": "Luxembourg",
+                            "sector": "",
+                            "created_by": "218",
+                            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                            "contacts": "",
+                            "local": true,
+                            "landingpage": "",
+                            "restricted_to_domain": null
+                        },
+                        "Org": {
+                            "id": "2",
+                            "name": "CIRCL",
+                            "date_created": "2016-06-29 08:47:35",
+                            "date_modified": "2017-11-24 12:51:22",
+                            "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                            "type": "",
+                            "nationality": "Luxembourg",
+                            "sector": "",
+                            "created_by": "218",
+                            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                            "contacts": "",
+                            "local": true,
+                            "landingpage": "",
+                            "restricted_to_domain": null
+                        }
+                    }
+                ]
+~~~~
+
+#### id
+
+#### uuid
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the event. The uuid **MUST** be preserved
+for any updates or transfer of the same `Opinion` object. UUID version 4 is **RECOMMENDED** when assigning it to a new `Opinion`.
+
+uuid is represented as a JSON string. uuid **MUST** be present.
+
+#### object\_uuid
+
+#### object\_type
+
+#### authors
+
+#### org\_uuid
+
+#### orgc\_uuid
+
+#### created
+
+#### modified
+
+#### distribution
+
+#### sharing\_group\_id
+
+#### locked
+
+#### opinion
+
+#### comment
+
+#### note\_type
+
+#### note\_type\_name
+
+### Note
+
+~~~~
+        "Note": [
+            {
+                "id": "6",
+                "uuid": "e4b54bda-1006-43f3-a269-2c271c1aaed0",
+                "object_uuid": "ac22932c-27dc-415d-bc7b-6fd1dbf8743d",
+                "object_type": "Event",
+                "authors": "alexandre.dulaunoy@circl.lu",
+                "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "created": "2024-06-25 04:37:03",
+                "modified": "2024-06-25 04:37:03",
+                "distribution": "3",
+                "sharing_group_id": null,
+                "locked": false,
+                "note": "Note to an event",
+                "language": "en",
+                "note_type": 0,
+                "note_type_name": "Note",
+                "Orgc": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "Org": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                }
+~~~~
+
+#### id
+
+#### uuid
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the event. The uuid **MUST** be preserved
+for any updates or transfer of the same `Note` object. UUID version 4 is **RECOMMENDED** when assigning it to a new `Note`.
+
+uuid is represented as a JSON string. uuid **MUST** be present.
+
+#### object\_uuid
+
+#### object\_type
+
+#### authors
+
+#### org\_uuid
+
+#### orgc\_uuid
+
+#### created
+
+#### modified
+
+#### distribution
+
+#### sharing\_group\_id
+
+#### locked
+
+#### opinion
+
+#### comment
+
+#### note\_type
+
+#### note\_type\_name
+
+### Relationship
+
+~~~~
+"Relationship": [
+            {
+                "id": "2",
+                "uuid": "8f358641-4bdc-4261-8a9f-5a926fde2b0d",
+                "object_uuid": "ac22932c-27dc-415d-bc7b-6fd1dbf8743d",
+                "object_type": "Event",
+                "authors": "alexandre.dulaunoy@circl.lu",
+                "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "created": "2024-06-25 04:39:30",
+                "modified": "2024-06-25 04:39:30",
+                "distribution": "3",
+                "sharing_group_id": null,
+                "locked": false,
+                "relationship_type": "relates",
+                "related_object_uuid": "f3290493-8f74-4220-aa04-b83408e37a0c",
+                "related_object_type": "Event",
+                "note_type": 2,
+                "note_type_name": "Relationship",
+                "Orgc": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "Org": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "related_object": {
+                    "Event": {
+                        "id": "205025",
+                        "date": "2023-12-19",
+                        "info": "Phishing targeting Luxembourg services (hosted and served on/from AWS)",
+                        "user_id": "21",
+                        "published": true,
+                        "uuid": "f3290493-8f74-4220-aa04-b83408e37a0c",
+                        "attribute_count": "446",
+                        "analysis": "2",
+                        "timestamp": "1719217388",
+                        "distribution": "3",
+                        "proposal_email_lock": false,
+                        "locked": false,
+                        "threat_level_id": "2",
+                        "publish_timestamp": "1719217456",
+                        "sighting_timestamp": "0",
+                        "sharing_group_id": "0",
+                        "org_id": "2",
+                        "orgc_id": "2",
+                        "disable_correlation": false,
+                        "extends_uuid": "",
+                        "protected": null
+                    }
+                }
+            }
+        ]
+~~~~
+
+#### id
+
+#### uuid
+
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the event. The uuid **MUST** be preserved
+for any updates or transfer of the same `Relationship` object. UUID version 4 is **RECOMMENDED** when assigning it to a new `Relationship`.
+
+uuid is represented as a JSON string. uuid **MUST** be present.
+
+#### object\_uuid
+
+#### object\_type
+
+#### authors
+
+#### org\_uuid
+
+#### orgc\_uuid
+
+#### created
+
+#### modified
+
+#### distribution
+
+#### sharing\_group\_id
+
+#### locked
+
+#### relationship\_type
+
+#### related\_object\_uuid
+
+#### related\_object\_type
+
+#### note\_type
+
+#### note\_type\_name
+
 # JSON Schema
 
 The JSON Schema [@?JSON-SCHEMA] below defines the structure of the MISP core format
