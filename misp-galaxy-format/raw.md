@@ -95,7 +95,7 @@ Values are represented as an array containing one or more values and **MUST** be
 
 The values array contains one or more JSON objects which represent all the possible values in the galaxy. The JSON object contains four fields: value, description, uuid and meta.
 The value is represented as a string and **MUST** be present. The description is represented as a string and **SHOULD** be present. The meta or metadata is represented as a JSON list and **SHOULD** be present.
-The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. The uuid **SHOULD** can be present and **MUST** be preserved.
+The uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the value reference. The uuid **MUST** be present and **MUST** be preserved.
 
 ## related
 
@@ -113,7 +113,7 @@ Related contains a list of JSON key value pairs which describe the related value
 
 Meta contains a list of custom defined JSON key value pairs. Users **SHOULD** reuse commonly used keys such as complexity, effectiveness, country, external_id, possible_issues, colour, motive, impact, refs, synonyms, status, date, encryption, extensions, ransomnotes, ransomnotes-filenames, ransomnotes-refs, suspected-victims, suspected-state-sponsor, type-of-incident, target-category, cfr-suspected-victims, cfr-suspected-state-sponsor, cfr-type-of-incident, cfr-target-category, suspected-victims, suspected-state-sponsor, attribution-confidence, payment-method, price, spoken-language, official-refs wherever applicable. Additional meta field **MAY** be added without the need to be referenced or registered in advance.
 
-refs, synonyms, official-refs **SHALL** be used to give further informations. refs is represented as an array containing one or more strings and **SHALL** be present. synonyms is represented as an array containing one or more strings and **SHALL** be present. official-refs is represented as an array containing one or more strings and **SHALL** be present.
+refs, synonyms, official-refs **SHALL** be used to give further informations. refs is represented as an array containing one or more strings and **SHALL** be present. synonyms is represented as an array containing one or more strings and **SHALL** be present. official-refs is represented as an array containing one or more strings and **MAY** be present.
 
 date, status **MAY** be used to give time information about an cluster. date is represented as a string describing a time or period and **SHALL** be present. status is represented as a string describing the current status of the clusters. It **MAY** also describe a time or period and **SHALL** be present.
 
