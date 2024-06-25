@@ -79,7 +79,7 @@ document are to be interpreted as described in RFC 2119 [@!RFC2119].
 
 # Format
 
-A cluster is composed of a value (**MUST**), a description (**OPTIONAL**) and metadata (**OPTIONAL**).
+A cluster is composed of a value (**MUST**), a uuid (**MUST**), a description (**MUST**) and metadata (**OPTIONAL**).
 
 Clusters are represented as a JSON [@!RFC8259] dictionary.
 
