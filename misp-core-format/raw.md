@@ -1028,7 +1028,6 @@ sharing\_group\_id represents the local id to the MISP local instance of the Sha
 
 sharing\_group\_id is represented by a JSON string. sharing\_group\_id **MUST** be present and set to "0" if not used.
 
-
 ### timestamp
 
 timestamp represents a reference time when the EventReport was created or last modified. timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The time zone **MUST** be UTC.
@@ -1245,43 +1244,113 @@ Analyst data can be nested to describe complementary analysis on the analyst dat
 
 #### id
 
+id represents the human-readable identifier associated to the opinion for a specific MISP instance. A human-readable identifier **MUST** be
+represented as an unsigned integer.
+
+id is represented as a JSON string. id **SHALL** be present.
+
 #### uuid
 
-uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the event. The uuid **MUST** be preserved
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the opinion. The uuid **MUST** be preserved
 for any updates or transfer of the same `Opinion` object. UUID version 4 is **RECOMMENDED** when assigning it to a new `Opinion`.
 
 uuid is represented as a JSON string. uuid **MUST** be present.
 
 #### object\_uuid
 
+object\_uuid represents the target UUID element with an opinion. 
+
+object\_uuid **MUST** be present.
+
 #### object\_type
 
+object\_type represents the type of element targeted in object\_uuid.
+
+object\_type is represented as a JSON string.
+ 
 #### authors
-optional
+
+authors represent the authors of the opinion. the authors **SHALL** be represented with an email address or an identifier.
+
+authors is represented as a JSON string. authors **SHALL** be present.
 
 #### org\_uuid
 
+org\_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] identifier referencing an Org object of the organisation which owns the opinion on a MISP instance.
+
+The org\_uuid object **MUST** be updated for any updates or transfer to another MISP instance.
+
+org\_uuid is represented as a JSON string. org\_uuid **MUST** be present.
+
 #### orgc\_uuid
 
+orgc\_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] identifier referencing an Orgc object of the organisation which created the opinion.
+
+The orgc\_uuid object **MUST** be preserved for any updates or transfer of the same opinion.
+
+orgc\_uuid is represented as a JSON string. orgc\_uuid **MUST** be present.
+
 #### created
-optional
+
+created represents a reference time when the element was created. created is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
+
+created is represented as a JSON string. created **MAY** be present.
 
 #### modified
-optional
+
+modified represents a reference time when the element was modified. modified is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
+
+modified is represented as a JSON string. modified **MAY** be present.
 
 #### distribution
-optional
+
+distribution represents the basic distribution rules of the opinion. The system must adhere to the distribution setting for access control and for dissemination of the opinion.
+
+distribution is represented by a JSON string. distribution **SHALL** be present and be one of the following options:
+
+0
+:   Your Organisation Only
+
+1
+:   This Community Only
+
+2
+:   Connected Communities
+
+3
+:   All Communities
+
+4
+:   Sharing Group
+
+5
+:   Inherit Event
 
 #### sharing\_group\_id
-optional
+
+sharing\_group\_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.
+
+sharing\_group\_id is represented by a JSON string. sharing\_group\_id **SHALL** be present and set to "0" if not used.
 
 #### opinion
 
+opinion is a value between 0 to 100 to represent the level of confidence. 50 is an neutral opinion.
+
+opinion is represented as a JSON string. opinion **MUST** be present.
+
 #### comment
 
-#### note\_type
+comment describes the opinion.
+
+comment is represented as a JSON string. comment **MUST** be present.
 
 #### note\_type\_name
+
+note\_type\_name describe the type of the analyst data such as 'Opinion', 'Note' or 'Relationship'.
+
+An opinion is defined as `Opinion`.
+
+note\_type\_name is represented as a JSON string. note\_type\_name **MUST** be present.
 
 ### Note
 
@@ -1325,42 +1394,107 @@ optional
 
 #### id
 
+id represents the human-readable identifier associated to the note for a specific MISP instance. A human-readable identifier **MUST** be
+represented as an unsigned integer.
+
+id is represented as a JSON string. id **SHALL** be present.
+
 #### uuid
 
-uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the event. The uuid **MUST** be preserved
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the note. The uuid **MUST** be preserved
 for any updates or transfer of the same `Note` object. UUID version 4 is **RECOMMENDED** when assigning it to a new `Note`.
 
 uuid is represented as a JSON string. uuid **MUST** be present.
 
 #### object\_uuid
 
+object\_uuid represents the target UUID element with an note.
+
+object\_uuid **MUST** be present.
+
 #### object\_type
 
+object\_type represents the type of element targeted in object\_uuid.
+
+object\_type is represented as a JSON string.
+
 #### authors
-optional
+
+authors represent the authors of the note. the authors **SHALL** be represented with an email address or an identifier.
+
+authors is represented as a JSON string. authors **SHALL** be present.
 
 #### org\_uuid
 
+org\_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] identifier referencing an Org object of the organisation which owns the note on a MISP instance.
+
+The org\_uuid object **MUST** be updated for any updates or transfer to another MISP instance.
+
+org\_uuid is represented as a JSON string. org\_uuid **MUST** be present.
+
 #### orgc\_uuid
 
+orgc\_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] identifier referencing an Orgc object of the organisation which created the note.
+
+The orgc\_uuid object **MUST** be preserved for any updates or transfer of the same note.
+
+orgc\_uuid is represented as a JSON string. orgc\_uuid **MUST** be present.
+
 #### created
-optional
+
+created represents a reference time when the element was created. created is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
+
+created is represented as a JSON string. created **MAY** be present.
 
 #### modified
-optional
+
+modified represents a reference time when the element was modified. modified is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
+
+modified is represented as a JSON string. modified **MAY** be present.
 
 #### distribution
-optional
+
+distribution represents the basic distribution rules of the opinion. The system must adhere to the distribution setting for access control and for dissemination of the opinion.
+
+distribution is represented by a JSON string. distribution **SHALL** be present and be one of the following options:
+
+0
+:   Your Organisation Only
+
+1
+:   This Community Only
+
+2
+:   Connected Communities
+
+3
+:   All Communities
+
+4
+:   Sharing Group
+
+5
+:   Inherit Event
 
 #### sharing\_group\_id
-optional
 
-#### opinion
+sharing\_group\_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.
 
-#### comment
-optional
+sharing\_group\_id is represented by a JSON string. sharing\_group\_id **SHALL** be present and set to "0" if not used.
+
+#### note 
+
+note describes the note in text format.
+
+note is represented as a JSON string.  **MUST** be present.
 
 #### note\_type\_name
+
+note\_type\_name describe the type of the analyst data such as 'Opinion', 'Note' or 'Relationship'.
+
+A note is defined as `Note`.
+
+note\_type\_name is represented as a JSON string. note\_type\_name **MUST** be present.
 
 ### Relationship
 
@@ -1433,42 +1567,121 @@ optional
 
 #### id
 
+id represents the human-readable identifier associated to the relationship for a specific MISP instance. A human-readable identifier **MUST** be
+represented as an unsigned integer.
+
+id is represented as a JSON string. id **SHALL** be present.
+
 #### uuid
 
-uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the event. The uuid **MUST** be preserved
+uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] of the relationship. The uuid **MUST** be preserved
 for any updates or transfer of the same `Relationship` object. UUID version 4 is **RECOMMENDED** when assigning it to a new `Relationship`.
 
 uuid is represented as a JSON string. uuid **MUST** be present.
 
 #### object\_uuid
 
+object\_uuid represents the target UUID element with a relationship.
+
+object\_uuid **MUST** be present.
+
 #### object\_type
+
+object\_type represents the type of element targeted in object\_uuid.
+
+object\_type is represented as a JSON string.
 
 #### authors
 
+authors represent the authors of the relationship. the authors **SHALL** be represented with an email address or an identifier.
+
+authors is represented as a JSON string. authors **SHALL** be present.
+
 #### org\_uuid
+
+org\_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] identifier referencing an Org object of the organisation which owns the relationship on a MISP instance.
+
+The org\_uuid object **MUST** updated for any updates or transfer to another MISP instance.
+
+org\_uuid is represented as a JSON string. org\_uuid **MUST** be present.
 
 #### orgc\_uuid
 
+orgc\_uuid represents the Universally Unique IDentifier (UUID) [@!RFC4122] identifier referencing an Orgc object of the organisation which created the relationship.
+
+The orgc\_uuid object **MUST** be preserved for any updates or transfer of the same relationship.
+
+orgc\_uuid is represented as a JSON string. orgc\_uuid **MUST** be present.
+
 #### created
-optional
+
+created represents a reference time when the element was created. created is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
+
+created is represented as a JSON string. created **MAY** be present.
 
 #### modified
-optional
+
+modified represents a reference time when the element was modified. modified is expressed as an ISO 8601 datetime up to the micro-second with time zone support.
+
+modified is represented as a JSON string. modified **MAY** be present.
 
 #### distribution
-optional
+
+distribution represents the basic distribution rules of the opinion. The system must adhere to the distribution setting for access control and for dissemination of the opinion.
+
+distribution is represented by a JSON string. distribution **SHALL** be present and be one of the following options:
+
+0
+:   Your Organisation Only
+
+1
+:   This Community Only
+
+2
+:   Connected Communities
+
+3
+:   All Communities
+
+4
+:   Sharing Group
+
+5
+:   Inherit Event
 
 #### sharing\_group\_id
-optional
+
+sharing\_group\_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.
+
+sharing\_group\_id is represented by a JSON string. sharing\_group\_id **SHALL** be present and set to "0" if not used.
 
 #### relationship\_type
 
+relationship\_type represents the human readable relation from the Analyst Data towards the related\_object\_uuid.
+
+relationship\_type **SHALL** use a relationship from the MISP object relationship types.
+
+relationship\_type is represented as a JSON string. relationship\_type **MUST** be present.
+
 #### related\_object\_uuid
+
+related\_object\_uuid represents the target relationship UUID reference.
+
+relationship\_object\_uuid is represented as a JSON string. relationship\_object\_uuid **MUST** be present.
 
 #### related\_object\_type
 
+relationship\_object\_type represents the type of the target.
+ 
+relationship\_object\_type is represented as a JSON string.
+
 #### note\_type\_name
+
+note\_type\_name describe the type of the analyst data such as 'Opinion', 'Note' or 'Relationship'.
+
+A relationship is defined as `Relationship`.
+
+note\_type\_name is represented as a JSON string. note\_type\_name **MUST** be present.
 
 # JSON Schema
 
