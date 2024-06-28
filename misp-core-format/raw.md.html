@@ -14,26 +14,24 @@ The JSON format includes the overall structure along with the semantic associate
 respective key. The format is described to support other implementations which reuse the
 format and ensuring an interoperability with existing MISP   software and other Threat Intelligence Platforms. 
     " name="description">
-<meta content="xml2rfc 3.12.1" name="generator">
+<meta content="xml2rfc 3.21.0" name="generator">
 <meta content="draft-17" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.12.1
-    Python 3.8.10
-    appdirs 1.4.4
-    ConfigArgParse 1.5.3
-    google-i18n-address 2.5.0
-    html5lib 1.1
+  xml2rfc 3.21.0
+    Python 3.10.12
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
-    kitchen 1.2.6
     lxml 4.9.2
-    pycairo 1.16.2
+    platformdirs 4.1.0
     pycountry 22.3.5
-    pyflakes 2.4.0
     PyYAML 6.0
     requests 2.31.0
-    setuptools 68.1.2
+    setuptools 67.7.2
     six 1.16.0
+    wcwidth 0.2.13
+    weasyprint 61.2
 -->
 <link href="raw.md.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -45,7 +43,7 @@ format and ensuring an interoperability with existing MISP   software and other 
   this can be consolidated so that style settings occur only in one place, but
   for now the contents of this file consists first of the initial CSS work as
   provided to the RFC Formatter (xml2rfc) work, followed by itemized and
-  commented changes found necssary during the development of the v3
+  commented changes found necessary during the development of the v3
   formatters.
 
 */
@@ -55,9 +53,14 @@ format and ensuring an interoperability with existing MISP   software and other 
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif'); /* Serif (print) */
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono'); /* Monospace */
 
+:root {
+  --font-sans: 'Noto Sans', Arial, Helvetica, sans-serif;
+  --font-serif: 'Noto Serif', 'Times', 'Times New Roman', serif;
+  --font-mono: 'Roboto Mono', Courier, 'Courier New', monospace;
+}
+
 @viewport {
   zoom: 1.0;
-  width: extend-to-zoom;
 }
 @-ms-viewport {
   width: extend-to-zoom;
@@ -72,9 +75,10 @@ body {
   color: #222;
   background-color: #fff;
   font-size: 14px;
-  font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.6;
   scroll-behavior: smooth;
+  overflow-wrap: break-word;
 }
 .ears {
   display: none;
@@ -161,6 +165,15 @@ div {
 svg {
   display: block;
 }
+svg[font-family~="serif" i], svg [font-family~="serif" i] {
+  font-family: var(--font-serif);
+}
+svg[font-family~="sans-serif" i], svg [font-family~="sans-serif" i] {
+  font-family: var(--font-sans);
+}
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
 .alignCenter.art-text {
   background-color: #f9f9f9;
   border: 1px solid #eee;
@@ -175,11 +188,8 @@ svg {
   margin: 1em 0;
 }
 .alignCenter > *:first-child {
-  border: none;
-  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
-     support flexbox yet.
-  */
   display: table;
+  border: none;
   margin: 0 auto;
 }
 
@@ -257,9 +267,9 @@ a.selfRef:hover {
 } */
 
 /* Figures */
-tt, code, pre, code {
+tt, code, pre {
   background-color: #f9f9f9;
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-mono);
 }
 pre {
   border: 1px solid #eee;
@@ -299,10 +309,16 @@ blockquote {
   border-radius: 3px;
   margin: 1em 0;
 }
+blockquote > *:last-child {
+  margin-bottom: 0;
+}
 cite {
   display: block;
   text-align: right;
   font-style: italic;
+}
+.xref {
+  overflow-wrap: normal;
 }
 
 /* tables */
@@ -448,6 +464,10 @@ nav.toc li {
   margin-bottom: 1.25em;
 }
 
+.refSubseries {
+  margin-bottom: 1.25em;
+}
+
 .references .ascii {
   margin-bottom: 0.25em;
 }
@@ -496,7 +516,7 @@ address.vcard .nameRole {
   margin-left: 0;
 }
 address.vcard .label {
-  font-family: "Noto Sans",Arial,Helvetica,sans-serif;
+  font-family: var(--font-sans);
   margin: 0.5em 0;
 }
 address.vcard .type {
@@ -636,7 +656,6 @@ hr.addr {
 /* pagination */
 @media print {
   body {
-
     width: 100%;
   }
   p {
@@ -658,6 +677,9 @@ hr.addr {
   }
   figure {
     overflow: scroll;
+  }
+  .breakable pre {
+    break-inside: auto;
   }
   h1, h2, h3, h4, h5, h6 {
     page-break-after: avoid;
@@ -726,7 +748,7 @@ hr.addr {
   size: A4;
   margin-bottom: 45mm;
   padding-top: 20px;
-  /* The follwing is commented out here, but set appropriately by in code, as
+  /* The following is commented out here, but set appropriately by in code, as
      the content depends on the document */
   /*
   @top-left {
@@ -826,12 +848,12 @@ section {
 }
 
 /* prevent monospace from becoming overly large */
-tt, code, pre, code {
+tt, code, pre {
   font-size: 95%;
 }
 
 /* Fix the height/width aspect for ascii art*/
-pre.sourcecode,
+.sourcecode pre,
 .art-text pre {
   line-height: 1.12;
 }
@@ -867,7 +889,7 @@ table th.text-right {
   text-align: right;
 }
 
-/* Make the alternative author contact informatio look less like just another
+/* Make the alternative author contact information look less like just another
    author, and group it closer with the primary author contact information */
 .alternative-contact {
   margin: 0.5em 0 0.25em 0;
@@ -1049,6 +1071,7 @@ aside > p {
 /* Sourcecode margin in print, when there's no pilcrow */
 @media print {
   .artwork,
+  .artwork > pre,
   .sourcecode {
     margin-bottom: 1em;
   }
@@ -1063,12 +1086,15 @@ ol.type-A { list-style-type: upper-alpha; }
 ol.type-i { list-style-type: lower-roman; }
 ol.type-I { list-style-type: lower-roman; }
 /* Apply the print table and row borders in general, on request from the RPC,
-and increase the contrast between border and odd row background sligthtly */
+and increase the contrast between border and odd row background slightly */
 table {
   border: 1px solid #ddd;
 }
 td {
   border-top: 1px solid #ddd;
+}
+tr {
+  break-inside: avoid;
 }
 tr:nth-child(2n+1) > td {
   background-color: #f8f8f8;
@@ -1120,7 +1146,7 @@ span.break, dd.break {
     break-before: auto;
   }
 }
-/* Text in compact lists should not get extra bottim margin space,
+/* Text in compact lists should not get extra bottom margin space,
    since that would makes the list not compact */
 ul.compact p, .ulCompact p,
 ol.compact p, .olCompact p {
@@ -1145,7 +1171,7 @@ p tt, p code, li tt, li code {
 pre {
    margin-top: 0.5px;
 }
-/* Tweak the comact list text */
+/* Tweak the compact list text */
 ul.compact, .ulCompact,
 ol.compact, .olCompact,
 dl.compact, .dlCompact {
@@ -1163,7 +1189,7 @@ dd > div.artwork:first-child,
 dd > aside:first-child,
 dd > figure:first-child,
 dd > ol:first-child,
-dd > div:first-child > pre.sourcecode,
+dd > div.sourcecode:first-child,
 dd > table:first-child,
 dd > ul:first-child {
   clear: left;
@@ -1177,24 +1203,24 @@ li > p {
   margin-bottom: 0.5em
 }
 /* Don't let p margin spill out from inside list items */
-li > p:last-of-type {
+li > p:last-of-type:only-child {
   margin-bottom: 0;
 }
 </style>
 <link href="rfc-local.css" rel="stylesheet" type="text/css">
 <script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
 </head>
-<body>
+<body class="xml2rfc">
 <script src="metadata.min.js"></script>
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">MISP core format</td>
-<td class="right">December 2023</td>
+<td class="right">June 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Dulaunoy &amp; Iklody</td>
-<td class="center">Expires 26 June 2024</td>
+<td class="center">Expires 30 December 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1207,12 +1233,12 @@ li > p:last-of-type {
 <dd class="internet-draft">draft-17</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-12-24" class="published">24 December 2023</time>
+<time datetime="2024-06-28" class="published">28 June 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-06-26">26 June 2024</time></dd>
+<dd class="expires"><time datetime="2024-12-30">30 December 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1233,7 +1259,7 @@ li > p:last-of-type {
 MISP (Open Source Threat Intelligence Sharing Platform formerly known as Malware Information Sharing Platform) instances.
 The JSON format includes the overall structure along with the semantic associated for each
 respective key. The format is described to support other implementations which reuse the
-format and ensuring an interoperability with existing MISP <span>[<a href="#MISP-P" class="xref">MISP-P</a>]</span> software and other Threat Intelligence Platforms.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+format and ensuring an interoperability with existing MISP <span>[<a href="#MISP-P" class="cite xref">MISP-P</a>]</span> software and other Threat Intelligence Platforms.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1254,7 +1280,7 @@ format and ensuring an interoperability with existing MISP <span>[<a href="#MISP
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 30 December 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1263,7 +1289,7 @@ format and ensuring an interoperability with existing MISP <span>[<a href="#MISP
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2023 IETF Trust and the persons identified as the
+            Copyright (c) 2024 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1281,171 +1307,190 @@ format and ensuring an interoperability with existing MISP <span>[<a href="#MISP
         </h2>
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
-                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-conventions-and-terminology" class="xref">Conventions and Terminology</a></p>
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-conventions-and-terminology" class="internal xref">Conventions and Terminology</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-format" class="xref">Format</a></p>
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-format" class="internal xref">Format</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
-                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-overview" class="xref">Overview</a></p>
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-overview" class="internal xref">Overview</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
-                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-event" class="xref">Event</a></p>
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-event" class="internal xref">Event</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.1">
-                    <p id="section-toc.1-1.2.2.2.2.1.1"><a href="#section-2.2.1" class="xref">2.2.1</a>.  <a href="#name-event-attributes" class="xref">Event Attributes</a></p>
+                    <p id="section-toc.1-1.2.2.2.2.1.1"><a href="#section-2.2.1" class="auto internal xref">2.2.1</a>.  <a href="#name-event-attributes" class="internal xref">Event Attributes</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2.2.2">
-                    <p id="section-toc.1-1.2.2.2.2.2.1"><a href="#section-2.2.2" class="xref">2.2.2</a>.  <a href="#name-event-objects" class="xref">Event Objects</a></p>
+                    <p id="section-toc.1-1.2.2.2.2.2.1"><a href="#section-2.2.2" class="auto internal xref">2.2.2</a>.  <a href="#name-event-objects" class="internal xref">Event Objects</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
-                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-attribute" class="xref">Attribute</a></p>
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-attribute" class="internal xref">Attribute</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3.2.1">
-                    <p id="section-toc.1-1.2.2.3.2.1.1"><a href="#section-2.3.1" class="xref">2.3.1</a>.  <a href="#name-sample-attribute-object" class="xref">Sample Attribute Object</a></p>
+                    <p id="section-toc.1-1.2.2.3.2.1.1"><a href="#section-2.3.1" class="auto internal xref">2.3.1</a>.  <a href="#name-sample-attribute-object" class="internal xref">Sample Attribute Object</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3.2.2">
-                    <p id="section-toc.1-1.2.2.3.2.2.1"><a href="#section-2.3.2" class="xref">2.3.2</a>.  <a href="#name-attribute-attributes" class="xref">Attribute Attributes</a></p>
+                    <p id="section-toc.1-1.2.2.3.2.2.1"><a href="#section-2.3.2" class="auto internal xref">2.3.2</a>.  <a href="#name-attribute-attributes" class="internal xref">Attribute Attributes</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
-                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="xref">2.4</a>.  <a href="#name-shadowattribute-2" class="xref">ShadowAttribute</a></p>
+                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.  <a href="#name-shadowattribute-2" class="internal xref">ShadowAttribute</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4.2.1">
-                    <p id="section-toc.1-1.2.2.4.2.1.1"><a href="#section-2.4.1" class="xref">2.4.1</a>.  <a href="#name-sample-attribute-object-2" class="xref">Sample Attribute Object</a></p>
+                    <p id="section-toc.1-1.2.2.4.2.1.1"><a href="#section-2.4.1" class="auto internal xref">2.4.1</a>.  <a href="#name-sample-attribute-object-2" class="internal xref">Sample Attribute Object</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4.2.2">
-                    <p id="section-toc.1-1.2.2.4.2.2.1"><a href="#section-2.4.2" class="xref">2.4.2</a>.  <a href="#name-shadowattribute-attributes" class="xref">ShadowAttribute Attributes</a></p>
+                    <p id="section-toc.1-1.2.2.4.2.2.1"><a href="#section-2.4.2" class="auto internal xref">2.4.2</a>.  <a href="#name-shadowattribute-attributes" class="internal xref">ShadowAttribute Attributes</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4.2.3">
-                    <p id="section-toc.1-1.2.2.4.2.3.1"><a href="#section-2.4.3" class="xref">2.4.3</a>.  <a href="#name-shadowattribute-objects" class="xref">ShadowAttribute Objects</a></p>
+                    <p id="section-toc.1-1.2.2.4.2.3.1"><a href="#section-2.4.3" class="auto internal xref">2.4.3</a>.  <a href="#name-shadowattribute-objects" class="internal xref">ShadowAttribute Objects</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.5">
-                <p id="section-toc.1-1.2.2.5.1"><a href="#section-2.5" class="xref">2.5</a>.  <a href="#name-object" class="xref">Object</a></p>
+                <p id="section-toc.1-1.2.2.5.1"><a href="#section-2.5" class="auto internal xref">2.5</a>.  <a href="#name-object" class="internal xref">Object</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.5.2.1">
-                    <p id="section-toc.1-1.2.2.5.2.1.1"><a href="#section-2.5.1" class="xref">2.5.1</a>.  <a href="#name-sample-object" class="xref">Sample Object</a></p>
+                    <p id="section-toc.1-1.2.2.5.2.1.1"><a href="#section-2.5.1" class="auto internal xref">2.5.1</a>.  <a href="#name-sample-object" class="internal xref">Sample Object</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.5.2.2">
-                    <p id="section-toc.1-1.2.2.5.2.2.1"><a href="#section-2.5.2" class="xref">2.5.2</a>.  <a href="#name-object-attributes" class="xref">Object Attributes</a></p>
+                    <p id="section-toc.1-1.2.2.5.2.2.1"><a href="#section-2.5.2" class="auto internal xref">2.5.2</a>.  <a href="#name-object-attributes" class="internal xref">Object Attributes</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.6">
-                <p id="section-toc.1-1.2.2.6.1"><a href="#section-2.6" class="xref">2.6</a>.  <a href="#name-object-references" class="xref">Object References</a></p>
+                <p id="section-toc.1-1.2.2.6.1"><a href="#section-2.6" class="auto internal xref">2.6</a>.  <a href="#name-object-references" class="internal xref">Object References</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.6.2.1">
-                    <p id="section-toc.1-1.2.2.6.2.1.1"><a href="#section-2.6.1" class="xref">2.6.1</a>.  <a href="#name-sample-objectreference-obje" class="xref">Sample ObjectReference object</a></p>
+                    <p id="section-toc.1-1.2.2.6.2.1.1"><a href="#section-2.6.1" class="auto internal xref">2.6.1</a>.  <a href="#name-sample-objectreference-obje" class="internal xref">Sample ObjectReference object</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.6.2.2">
-                    <p id="section-toc.1-1.2.2.6.2.2.1"><a href="#section-2.6.2" class="xref">2.6.2</a>.  <a href="#name-objectreference-attributes" class="xref">ObjectReference Attributes</a></p>
+                    <p id="section-toc.1-1.2.2.6.2.2.1"><a href="#section-2.6.2" class="auto internal xref">2.6.2</a>.  <a href="#name-objectreference-attributes" class="internal xref">ObjectReference Attributes</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7">
-                <p id="section-toc.1-1.2.2.7.1"><a href="#section-2.7" class="xref">2.7</a>.  <a href="#name-eventreport" class="xref">EventReport</a></p>
+                <p id="section-toc.1-1.2.2.7.1"><a href="#section-2.7" class="auto internal xref">2.7</a>.  <a href="#name-eventreport" class="internal xref">EventReport</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7.2.1">
-                    <p id="section-toc.1-1.2.2.7.2.1.1"><a href="#section-2.7.1" class="xref">2.7.1</a>.  <a href="#name-id-6" class="xref">id</a></p>
+                    <p id="section-toc.1-1.2.2.7.2.1.1"><a href="#section-2.7.1" class="auto internal xref">2.7.1</a>.  <a href="#name-id-6" class="internal xref">id</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7.2.2">
-                    <p id="section-toc.1-1.2.2.7.2.2.1"><a href="#section-2.7.2" class="xref">2.7.2</a>.  <a href="#name-uuid-6" class="xref">UUID</a></p>
+                    <p id="section-toc.1-1.2.2.7.2.2.1"><a href="#section-2.7.2" class="auto internal xref">2.7.2</a>.  <a href="#name-uuid-6" class="internal xref">UUID</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7.2.3">
-                    <p id="section-toc.1-1.2.2.7.2.3.1"><a href="#section-2.7.3" class="xref">2.7.3</a>.  <a href="#name-event_id-5" class="xref">event_id</a></p>
+                    <p id="section-toc.1-1.2.2.7.2.3.1"><a href="#section-2.7.3" class="auto internal xref">2.7.3</a>.  <a href="#name-event_id-5" class="internal xref">event_id</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7.2.4">
-                    <p id="section-toc.1-1.2.2.7.2.4.1"><a href="#section-2.7.4" class="xref">2.7.4</a>.  <a href="#name-name-2" class="xref">name</a></p>
+                    <p id="section-toc.1-1.2.2.7.2.4.1"><a href="#section-2.7.4" class="auto internal xref">2.7.4</a>.  <a href="#name-name-2" class="internal xref">name</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7.2.5">
-                    <p id="section-toc.1-1.2.2.7.2.5.1"><a href="#section-2.7.5" class="xref">2.7.5</a>.  <a href="#name-content" class="xref">content</a></p>
+                    <p id="section-toc.1-1.2.2.7.2.5.1"><a href="#section-2.7.5" class="auto internal xref">2.7.5</a>.  <a href="#name-content" class="internal xref">content</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7.2.6">
-                    <p id="section-toc.1-1.2.2.7.2.6.1"><a href="#section-2.7.6" class="xref">2.7.6</a>.  <a href="#name-distribution-4" class="xref">distribution</a></p>
+                    <p id="section-toc.1-1.2.2.7.2.6.1"><a href="#section-2.7.6" class="auto internal xref">2.7.6</a>.  <a href="#name-distribution-4" class="internal xref">distribution</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7.2.7">
-                    <p id="section-toc.1-1.2.2.7.2.7.1"><a href="#section-2.7.7" class="xref">2.7.7</a>.  <a href="#name-sharing_group_id-4" class="xref">sharing_group_id</a></p>
+                    <p id="section-toc.1-1.2.2.7.2.7.1"><a href="#section-2.7.7" class="auto internal xref">2.7.7</a>.  <a href="#name-sharing_group_id-4" class="internal xref">sharing_group_id</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7.2.8">
-                    <p id="section-toc.1-1.2.2.7.2.8.1"><a href="#section-2.7.8" class="xref">2.7.8</a>.  <a href="#name-timestamp-6" class="xref">timestamp</a></p>
+                    <p id="section-toc.1-1.2.2.7.2.8.1"><a href="#section-2.7.8" class="auto internal xref">2.7.8</a>.  <a href="#name-timestamp-6" class="internal xref">timestamp</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7.2.9">
-                    <p id="section-toc.1-1.2.2.7.2.9.1"><a href="#section-2.7.9" class="xref">2.7.9</a>.  <a href="#name-deleted-5" class="xref">deleted</a></p>
+                    <p id="section-toc.1-1.2.2.7.2.9.1"><a href="#section-2.7.9" class="auto internal xref">2.7.9</a>.  <a href="#name-deleted-5" class="internal xref">deleted</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.8">
-                <p id="section-toc.1-1.2.2.8.1"><a href="#section-2.8" class="xref">2.8</a>.  <a href="#name-tag" class="xref">Tag</a></p>
+                <p id="section-toc.1-1.2.2.8.1"><a href="#section-2.8" class="auto internal xref">2.8</a>.  <a href="#name-tag" class="internal xref">Tag</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.8.2.1">
-                    <p id="section-toc.1-1.2.2.8.2.1.1"><a href="#section-2.8.1" class="xref">2.8.1</a>.  <a href="#name-sample-tag" class="xref">Sample Tag</a></p>
+                    <p id="section-toc.1-1.2.2.8.2.1.1"><a href="#section-2.8.1" class="auto internal xref">2.8.1</a>.  <a href="#name-sample-tag" class="internal xref">Sample Tag</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.9">
-                <p id="section-toc.1-1.2.2.9.1"><a href="#section-2.9" class="xref">2.9</a>.  <a href="#name-sighting" class="xref">Sighting</a></p>
+                <p id="section-toc.1-1.2.2.9.1"><a href="#section-2.9" class="auto internal xref">2.9</a>.  <a href="#name-sighting" class="internal xref">Sighting</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.9.2.1">
-                    <p id="section-toc.1-1.2.2.9.2.1.1"><a href="#section-2.9.1" class="xref">2.9.1</a>.  <a href="#name-sample-sighting" class="xref">Sample Sighting</a></p>
+                    <p id="section-toc.1-1.2.2.9.2.1.1"><a href="#section-2.9.1" class="auto internal xref">2.9.1</a>.  <a href="#name-sample-sighting" class="internal xref">Sample Sighting</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.10">
-                <p id="section-toc.1-1.2.2.10.1"><a href="#section-2.10" class="xref">2.10</a>. <a href="#name-galaxy" class="xref">Galaxy</a></p>
+                <p id="section-toc.1-1.2.2.10.1"><a href="#section-2.10" class="auto internal xref">2.10</a>. <a href="#name-galaxy" class="internal xref">Galaxy</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.10.2.1">
-                    <p id="section-toc.1-1.2.2.10.2.1.1"><a href="#section-2.10.1" class="xref">2.10.1</a>.  <a href="#name-sample-galaxy" class="xref">Sample Galaxy</a></p>
+                    <p id="section-toc.1-1.2.2.10.2.1.1"><a href="#section-2.10.1" class="auto internal xref">2.10.1</a>.  <a href="#name-sample-galaxy" class="internal xref">Sample Galaxy</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.11">
+                <p id="section-toc.1-1.2.2.11.1"><a href="#section-2.11" class="auto internal xref">2.11</a>. <a href="#name-analyst-data" class="internal xref">Analyst Data</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.11.2.1">
+                    <p id="section-toc.1-1.2.2.11.2.1.1"><a href="#section-2.11.1" class="auto internal xref">2.11.1</a>.  <a href="#name-opinion" class="internal xref">Opinion</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.11.2.2">
+                    <p id="section-toc.1-1.2.2.11.2.2.1"><a href="#section-2.11.2" class="auto internal xref">2.11.2</a>.  <a href="#name-note" class="internal xref">Note</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.11.2.3">
+                    <p id="section-toc.1-1.2.2.11.2.3.1"><a href="#section-2.11.3" class="auto internal xref">2.11.3</a>.  <a href="#name-relationship" class="internal xref">Relationship</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-json-schema" class="xref">JSON Schema</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-json-schema" class="internal xref">JSON Schema</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-manifest" class="xref">Manifest</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-manifest" class="internal xref">Manifest</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-format-2" class="xref">Format</a></p>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-format-2" class="internal xref">Format</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.1">
-                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="xref">4.1.1</a>.  <a href="#name-sample-manifest" class="xref">Sample Manifest</a></p>
+                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-sample-manifest" class="internal xref">Sample Manifest</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-implementation" class="xref">Implementation</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-implementation" class="internal xref">Implementation</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-references" class="xref">References</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-references" class="internal xref">References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references-2" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-informative-references" class="xref">Informative References</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1458,7 +1503,7 @@ format and ensuring an interoperability with existing MISP <span>[<a href="#MISP
       </h2>
 <p id="section-1-1">Sharing threat information became a fundamental requirements in the Internet, security and intelligence community at large. Threat
 information can include indicators of compromise, malicious file indicators, financial fraud indicators
-or even detailed information about a threat actor. MISP <span>[<a href="#MISP-P" class="xref">MISP-P</a>]</span> started as an open source project in late 2011 and
+or even detailed information about a threat actor. MISP <span>[<a href="#MISP-P" class="cite xref">MISP-P</a>]</span> started as an open source project in late 2011 and
 the MISP format started to be widely used as an exchange format within the community in the past years. The aim of this document
 is to describe the specification and the MISP core format.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <div id="conventions-and-terminology">
@@ -1468,7 +1513,7 @@ is to describe the specification and the MISP core format.<a href="#section-1-1"
         </h3>
 <p id="section-1.1-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>",
 "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this
-document are to be interpreted as described in RFC 2119 <span>[<a href="#RFC2119" class="xref">RFC2119</a>]</span>.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+document are to be interpreted as described in RFC 2119 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span>.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1483,7 +1528,7 @@ document are to be interpreted as described in RFC 2119 <span>[<a href="#RFC2119
         <h3 id="name-overview">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-overview" class="section-name selfRef">Overview</a>
         </h3>
-<p id="section-2.1-1">The MISP core format is in the JSON <span>[<a href="#RFC8259" class="xref">RFC8259</a>]</span> format. In MISP, an event is composed of a single JSON object.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">The MISP core format is in the JSON <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> format. In MISP, an event is composed of a single JSON object.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.1-2">A capitalized key (like Event, Org) represent a data model and a non-capitalised key is just an attribute. This nomenclature
 can support an implementation to represent the MISP format in another data structure.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 </section>
@@ -1506,7 +1551,7 @@ analysis. The meaning of an event only depends of the information embedded in th
             <h5 id="name-uuid">
 <a href="#section-2.2.1.1" class="section-number selfRef">2.2.1.1. </a><a href="#name-uuid" class="section-name selfRef">uuid</a>
             </h5>
-<p id="section-2.2.1.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the event. The uuid <span class="bcp14">MUST</span> be preserved
+<p id="section-2.2.1.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the event. The uuid <span class="bcp14">MUST</span> be preserved
 for any updates or transfer of the same event. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new event.<a href="#section-2.2.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.2.1.1-2">uuid is represented as a JSON string. uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.2.1.1-2" class="pilcrow">¶</a></p>
 </section>
@@ -1695,7 +1740,7 @@ represented as an unsigned integer.<a href="#section-2.2.1.10-1" class="pilcrow"
             <h5 id="name-extends_uuid">
 <a href="#section-2.2.1.15" class="section-number selfRef">2.2.1.15. </a><a href="#name-extends_uuid" class="section-name selfRef">extends_uuid</a>
             </h5>
-<p id="section-2.2.1.15-1">extends_uuid represents which event is extended by this event. The extends_uuid is described as a Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> with the UUID of the extended event.<a href="#section-2.2.1.15-1" class="pilcrow">¶</a></p>
+<p id="section-2.2.1.15-1">extends_uuid represents which event is extended by this event. The extends_uuid is described as a Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> with the UUID of the extended event.<a href="#section-2.2.1.15-1" class="pilcrow">¶</a></p>
 <p id="section-2.2.1.15-2">extends_uuid is represented as a JSON string. extends_uuid <span class="bcp14">SHOULD</span> be present.<a href="#section-2.2.1.15-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1712,7 +1757,7 @@ represented as an unsigned integer.<a href="#section-2.2.1.10-1" class="pilcrow"
 <a href="#section-2.2.2.1" class="section-number selfRef">2.2.2.1. </a><a href="#name-org" class="section-name selfRef">Org</a>
             </h5>
 <p id="section-2.2.2.1-1">An Org object is composed of an uuid, name and id.<a href="#section-2.2.2.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.2.2.1-2">The uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the organisation.
+<p id="section-2.2.2.1-2">The uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the organisation.
 The organisation UUID is globally assigned to an organisation and <span class="bcp14">SHALL</span> be kept overtime.<a href="#section-2.2.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-2.2.2.1-3">The name is a readable description of the organisation and <span class="bcp14">SHOULD</span> be present.
 The id is a human-readable identifier generated by the instance and used as reference in the event.
@@ -1729,6 +1774,7 @@ A human-readable identifier <span class="bcp14">MUST</span> be represented as an
         "name": "CIRCL",
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
+
 </pre><a href="#section-2.2.2.1.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1786,6 +1832,7 @@ where the category and type give meaning and context to the value. Through the v
               "first_seen": "2019-06-02T22:14:28.711954+00:00",
               "last_seen": null
              }
+
 </pre><a href="#section-2.3.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1800,7 +1847,7 @@ where the category and type give meaning and context to the value. Through the v
             <h5 id="name-uuid-2">
 <a href="#section-2.3.2.1" class="section-number selfRef">2.3.2.1. </a><a href="#name-uuid-2" class="section-name selfRef">uuid</a>
             </h5>
-<p id="section-2.3.2.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the event. The uuid <span class="bcp14">MUST</span> be preserved
+<p id="section-2.3.2.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the event. The uuid <span class="bcp14">MUST</span> be preserved
 for any updates or transfer of the same event. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new event.<a href="#section-2.3.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.3.2.1-2">uuid is represented as a JSON string. uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.3.2.1-2" class="pilcrow">¶</a></p>
 </section>
@@ -2086,6 +2133,7 @@ which can be accepted or discarded by the event creator. If accepted, the origin
                        "first_seen": "2019-06-02T22:14:28.711954+00:00",
                        "last_seen": null
                    }
+
 </pre><a href="#section-2.4.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2100,7 +2148,7 @@ which can be accepted or discarded by the event creator. If accepted, the origin
             <h5 id="name-uuid-3">
 <a href="#section-2.4.2.1" class="section-number selfRef">2.4.2.1. </a><a href="#name-uuid-3" class="section-name selfRef">uuid</a>
             </h5>
-<p id="section-2.4.2.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the event. The uuid <span class="bcp14">MUST</span> be preserved
+<p id="section-2.4.2.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the event. The uuid <span class="bcp14">MUST</span> be preserved
 for any updates or transfer of the same event. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new event.<a href="#section-2.4.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.4.2.1-2">uuid is represented as a JSON string. uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.4.2.1-2" class="pilcrow">¶</a></p>
 </section>
@@ -2325,7 +2373,7 @@ the sample <span class="bcp14">MUST</span> be encrypted using a password protect
 <a href="#section-2.4.3.1" class="section-number selfRef">2.4.3.1. </a><a href="#name-org-2" class="section-name selfRef">Org</a>
             </h5>
 <p id="section-2.4.3.1-1">An Org object is composed of an uuid, name and id.<a href="#section-2.4.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.4.3.1-2">The uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the organization.
+<p id="section-2.4.3.1-2">The uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the organization.
 The organization UUID is globally assigned to an organization and <span class="bcp14">SHALL</span> be kept overtime.<a href="#section-2.4.3.1-2" class="pilcrow">¶</a></p>
 <p id="section-2.4.3.1-3">The name is a readable description of the organization and <span class="bcp14">SHOULD</span> be present.
 The id is a human-readable identifier generated by the instance and used as reference in the event.
@@ -2342,6 +2390,7 @@ A human-readable identifier <span class="bcp14">MUST</span> be represented as an
         "name": "CIRCL",
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
+
 </pre><a href="#section-2.4.3.1.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2408,6 +2457,7 @@ Each object is created using an Object Template and carries the meta-data of the
      "last_seen": null
    ]
 }
+
 </pre><a href="#section-2.5.1-1" class="pilcrow">¶</a>
 </div>
 </div>
@@ -2423,7 +2473,7 @@ Each object is created using an Object Template and carries the meta-data of the
             <h5 id="name-uuid-4">
 <a href="#section-2.5.2.1" class="section-number selfRef">2.5.2.1. </a><a href="#name-uuid-4" class="section-name selfRef">uuid</a>
             </h5>
-<p id="section-2.5.2.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the object. The uuid <span class="bcp14">MUST</span> be preserved
+<p id="section-2.5.2.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the object. The uuid <span class="bcp14">MUST</span> be preserved
 for any updates or transfer of the same object. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new object.<a href="#section-2.5.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2470,7 +2520,7 @@ tied to a fixed list of options but can be created on the fly.<a href="#section-
             <h5 id="name-template_uuid">
 <a href="#section-2.5.2.6" class="section-number selfRef">2.5.2.6. </a><a href="#name-template_uuid" class="section-name selfRef">template_uuid</a>
             </h5>
-<p id="section-2.5.2.6-1">template_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the template used to create the object. The uuid <span class="bcp14">MUST</span> be preserved
+<p id="section-2.5.2.6-1">template_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the template used to create the object. The uuid <span class="bcp14">MUST</span> be preserved
 to preserve the object's association with the correct template used for creation. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new object.<a href="#section-2.5.2.6-1" class="pilcrow">¶</a></p>
 <p id="section-2.5.2.6-2">template_uuid is represented as a JSON string. template_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.5.2.6-2" class="pilcrow">¶</a></p>
 </section>
@@ -2599,7 +2649,7 @@ represented as an unsigned integer.<a href="#section-2.5.2.8-1" class="pilcrow">
 <a href="#section-2.6" class="section-number selfRef">2.6. </a><a href="#name-object-references" class="section-name selfRef">Object References</a>
         </h3>
 <p id="section-2.6-1">Object References serve as a logical link between an Object and another referenced Object or Attribute. The relationship is categorised by an enumerated value from a fixed vocabulary.<a href="#section-2.6-1" class="pilcrow">¶</a></p>
-<p id="section-2.6-2">The relationship_type is recommended to be taken from the MISP object relationship list [<span>[<a href="#MISP-R" class="xref">MISP-R</a>]</span>] is <span class="bcp14">RECOMMENDED</span> to ensure a coherent naming of the tags<a href="#section-2.6-2" class="pilcrow">¶</a></p>
+<p id="section-2.6-2">The relationship_type is recommended to be taken from the MISP object relationship list [<span>[<a href="#MISP-R" class="cite xref">MISP-R</a>]</span>] is <span class="bcp14">RECOMMENDED</span> to ensure a coherent naming of the tags<a href="#section-2.6-2" class="pilcrow">¶</a></p>
 <p id="section-2.6-3">All Object References <span class="bcp14">MUST</span> contain an object_uuid, a referenced_uuid and a relationship type.<a href="#section-2.6-3" class="pilcrow">¶</a></p>
 <div id="sample-objectreference-object">
 <section id="section-2.6.1">
@@ -2621,6 +2671,7 @@ represented as an unsigned integer.<a href="#section-2.5.2.8-1" class="pilcrow">
                     "object_uuid": "59c1134d-8a40-4c14-ad94-0f7ba07724d1",
                     "referenced_uuid": "59c1133c-9adc-4d06-a34b-0f7ca07724d1",
                    }
+
 </pre><a href="#section-2.6.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2635,7 +2686,7 @@ represented as an unsigned integer.<a href="#section-2.5.2.8-1" class="pilcrow">
             <h5 id="name-uuid-5">
 <a href="#section-2.6.2.1" class="section-number selfRef">2.6.2.1. </a><a href="#name-uuid-5" class="section-name selfRef">uuid</a>
             </h5>
-<p id="section-2.6.2.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the object reference. The uuid <span class="bcp14">MUST</span> be preserved
+<p id="section-2.6.2.1-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the object reference. The uuid <span class="bcp14">MUST</span> be preserved
 for any updates or transfer of the same object reference. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new object reference.<a href="#section-2.6.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2727,7 +2778,7 @@ represented as an unsigned integer.<a href="#section-2.6.2.5-1" class="pilcrow">
             <h5 id="name-object_uuid">
 <a href="#section-2.6.2.11" class="section-number selfRef">2.6.2.11. </a><a href="#name-object_uuid" class="section-name selfRef">object_uuid</a>
             </h5>
-<p id="section-2.6.2.11-1">object_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the object that the given object reference belongs to. The object_uuid <span class="bcp14">MUST</span> be preserved
+<p id="section-2.6.2.11-1">object_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the object that the given object reference belongs to. The object_uuid <span class="bcp14">MUST</span> be preserved
 to preserve the object reference's association with the object.<a href="#section-2.6.2.11-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2736,7 +2787,7 @@ to preserve the object reference's association with the object.<a href="#section
             <h5 id="name-referenced_uuid">
 <a href="#section-2.6.2.12" class="section-number selfRef">2.6.2.12. </a><a href="#name-referenced_uuid" class="section-name selfRef">referenced_uuid</a>
             </h5>
-<p id="section-2.6.2.12-1">referenced_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the object or attribute that is being referenced by the object reference. The referenced_uuid <span class="bcp14">MUST</span> be preserved
+<p id="section-2.6.2.12-1">referenced_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the object or attribute that is being referenced by the object reference. The referenced_uuid <span class="bcp14">MUST</span> be preserved
 to preserve the object reference's association with the object or attribute.<a href="#section-2.6.2.12-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2766,7 +2817,7 @@ represented as an unsigned integer.<a href="#section-2.7.1-1" class="pilcrow">¶
           <h4 id="name-uuid-6">
 <a href="#section-2.7.2" class="section-number selfRef">2.7.2. </a><a href="#name-uuid-6" class="section-name selfRef">UUID</a>
           </h4>
-<p id="section-2.7.2-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="xref">RFC4122</a>]</span> of the EventReport. The uuid <span class="bcp14">MUST</span> be preserved for any updates or transfer of the same EventReport. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new EventReport.<a href="#section-2.7.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.7.2-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the EventReport. The uuid <span class="bcp14">MUST</span> be preserved for any updates or transfer of the same EventReport. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new EventReport.<a href="#section-2.7.2-1" class="pilcrow">¶</a></p>
 <p id="section-2.7.2-2">uuid is represented as a JSON string. uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.7.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2869,7 +2920,7 @@ of the report. name <span class="bcp14">SHOULD</span> NOT be bigger than 256 cha
         <h3 id="name-tag">
 <a href="#section-2.8" class="section-number selfRef">2.8. </a><a href="#name-tag" class="section-name selfRef">Tag</a>
         </h3>
-<p id="section-2.8-1">A tag is a simple method to classify an event with a simple string. The tag name can be freely chosen. The tag name can be also chosen from a fixed machine-tag vocabulary called MISP taxonomies[<span>[<a href="#MISP-T" class="xref">MISP-T</a>]</span>]. When an event is distributed outside an organisation, the use of MISP taxonomies[<span>[<a href="#MISP-T" class="xref">MISP-T</a>]</span>] is <span class="bcp14">RECOMMENDED</span> to ensure a coherent naming of the tags. A tag is represented as a JSON array where each element describes each tag associated. A tag array <span class="bcp14">SHALL</span> be at event level or attribute level. A tag element is described with a name, id, colour and exportable flag.<a href="#section-2.8-1" class="pilcrow">¶</a></p>
+<p id="section-2.8-1">A tag is a simple method to classify an event with a simple string. The tag name can be freely chosen. The tag name can be also chosen from a fixed machine-tag vocabulary called MISP taxonomies[<span>[<a href="#MISP-T" class="cite xref">MISP-T</a>]</span>]. When an event is distributed outside an organisation, the use of MISP taxonomies[<span>[<a href="#MISP-T" class="cite xref">MISP-T</a>]</span>] is <span class="bcp14">RECOMMENDED</span> to ensure a coherent naming of the tags. A tag is represented as a JSON array where each element describes each tag associated. A tag array <span class="bcp14">SHALL</span> be at event level or attribute level. A tag element is described with a name, id, colour and exportable flag.<a href="#section-2.8-1" class="pilcrow">¶</a></p>
 <p id="section-2.8-2">exportable represents a setting if the tag is kept local or exportable to other MISP instances. exportable is represented by a JSON boolean. id is a human-readable identifier that references the tag on the local instance. colour represents an RGB value of the tag.<a href="#section-2.8-2" class="pilcrow">¶</a></p>
 <p id="section-2.8-3">name <span class="bcp14">MUST</span> be present. colour, id and exportable <span class="bcp14">SHALL</span> be present.<a href="#section-2.8-3" class="pilcrow">¶</a></p>
 <div id="sample-tag">
@@ -2883,6 +2934,7 @@ of the report. name <span class="bcp14">SHOULD</span> NOT be bigger than 256 cha
         "colour": "#ffffff",
         "name": "tlp:white",
         "id": "2" }]
+
 </pre><a href="#section-2.8.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2972,6 +3024,7 @@ attribute_id represents the human-readable identifier of the attribute reference
                                 }
                         }
                 ]
+
 </pre><a href="#section-2.9.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3034,7 +3087,672 @@ attribute_id represents the human-readable identifier of the attribute reference
                 ]
             }
         ]
+
 </pre><a href="#section-2.10.1-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="analyst-data">
+<section id="section-2.11">
+        <h3 id="name-analyst-data">
+<a href="#section-2.11" class="section-number selfRef">2.11. </a><a href="#name-analyst-data" class="section-name selfRef">Analyst Data</a>
+        </h3>
+<p id="section-2.11-1">Analyst Data are objects which can be in different level of MISP format including objects, attributes, event or detached from MISP core format. It can expressed
+a <code>Opinion</code>, <code>Note</code> or a <code>Relationship</code> from an analyst. Those three types define the key of the analyst data and can be present at the level where analyst data is applied.
+Analyst data can be nested to describe complementary analysis on the analyst data by itself.<a href="#section-2.11-1" class="pilcrow">¶</a></p>
+<div id="opinion">
+<section id="section-2.11.1">
+          <h4 id="name-opinion">
+<a href="#section-2.11.1" class="section-number selfRef">2.11.1. </a><a href="#name-opinion" class="section-name selfRef">Opinion</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="section-2.11.1-1">
+<pre> "Opinion": [
+                    {
+                        "id": "13",
+                        "uuid": "238b1e74-e378-4bde-a463-cbb8fc496989",
+                        "object_uuid": "ae4396d9-3deb-49c9-b13e-b01f3a0736c3",
+                        "object_type": "Attribute",
+                        "authors": "alexandre.dulaunoy@circl.lu",
+                        "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                        "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                        "created": "2024-06-25 04:40:01",
+                        "modified": "2024-06-25 04:40:01",
+                        "distribution": "3",
+                        "sharing_group_id": null,
+                        "opinion": "0",
+                        "comment": "Incorrect selector",
+                        "note_type_name": "Opinion",
+                        "Orgc": {
+                            "id": "2",
+                            "name": "CIRCL",
+                            "date_created": "2016-06-29 08:47:35",
+                            "date_modified": "2017-11-24 12:51:22",
+                            "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                            "type": "",
+                            "nationality": "Luxembourg",
+                            "sector": "",
+                            "created_by": "218",
+                            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                            "contacts": "",
+                            "local": true,
+                            "landingpage": "",
+                            "restricted_to_domain": null
+                        },
+                        "Org": {
+                            "id": "2",
+                            "name": "CIRCL",
+                            "date_created": "2016-06-29 08:47:35",
+                            "date_modified": "2017-11-24 12:51:22",
+                            "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                            "type": "",
+                            "nationality": "Luxembourg",
+                            "sector": "",
+                            "created_by": "218",
+                            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                            "contacts": "",
+                            "local": true,
+                            "landingpage": "",
+                            "restricted_to_domain": null
+                        }
+                    }
+                ]
+
+</pre><a href="#section-2.11.1-1" class="pilcrow">¶</a>
+</div>
+<div id="id-6">
+<section id="section-2.11.1.1">
+            <h5 id="name-id-7">
+<a href="#section-2.11.1.1" class="section-number selfRef">2.11.1.1. </a><a href="#name-id-7" class="section-name selfRef">id</a>
+            </h5>
+<p id="section-2.11.1.1-1">id represents the human-readable identifier associated to the opinion for a specific MISP instance. A human-readable identifier <span class="bcp14">MUST</span> be
+represented as an unsigned integer.<a href="#section-2.11.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.1-2">id is represented as a JSON string. id <span class="bcp14">SHALL</span> be present.<a href="#section-2.11.1.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="uuid-6">
+<section id="section-2.11.1.2">
+            <h5 id="name-uuid-7">
+<a href="#section-2.11.1.2" class="section-number selfRef">2.11.1.2. </a><a href="#name-uuid-7" class="section-name selfRef">uuid</a>
+            </h5>
+<p id="section-2.11.1.2-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the opinion. The uuid <span class="bcp14">MUST</span> be preserved
+for any updates or transfer of the same <code>Opinion</code> object. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new <code>Opinion</code>.<a href="#section-2.11.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.2-2">uuid is represented as a JSON string. uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.1.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="object-uuid-1">
+<section id="section-2.11.1.3">
+            <h5 id="name-object_uuid-2">
+<a href="#section-2.11.1.3" class="section-number selfRef">2.11.1.3. </a><a href="#name-object_uuid-2" class="section-name selfRef">object_uuid</a>
+            </h5>
+<p id="section-2.11.1.3-1">object_uuid represents the target UUID element with an opinion.<a href="#section-2.11.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.3-2">object_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.1.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="object-type">
+<section id="section-2.11.1.4">
+            <h5 id="name-object_type">
+<a href="#section-2.11.1.4" class="section-number selfRef">2.11.1.4. </a><a href="#name-object_type" class="section-name selfRef">object_type</a>
+            </h5>
+<p id="section-2.11.1.4-1">object_type represents the type of element targeted in object_uuid.<a href="#section-2.11.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.4-2">object_type is represented as a JSON string.<a href="#section-2.11.1.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors">
+<section id="section-2.11.1.5">
+            <h5 id="name-authors">
+<a href="#section-2.11.1.5" class="section-number selfRef">2.11.1.5. </a><a href="#name-authors" class="section-name selfRef">authors</a>
+            </h5>
+<p id="section-2.11.1.5-1">authors represent the authors of the opinion. the authors <span class="bcp14">SHALL</span> be represented with an email address or an identifier.<a href="#section-2.11.1.5-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.5-2">authors is represented as a JSON string. authors <span class="bcp14">SHALL</span> be present.<a href="#section-2.11.1.5-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="org-uuid">
+<section id="section-2.11.1.6">
+            <h5 id="name-org_uuid">
+<a href="#section-2.11.1.6" class="section-number selfRef">2.11.1.6. </a><a href="#name-org_uuid" class="section-name selfRef">org_uuid</a>
+            </h5>
+<p id="section-2.11.1.6-1">org_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> identifier referencing an Org object of the organisation which owns the opinion on a MISP instance.<a href="#section-2.11.1.6-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.6-2">The org_uuid object <span class="bcp14">MUST</span> be updated for any updates or transfer to another MISP instance.<a href="#section-2.11.1.6-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.6-3">org_uuid is represented as a JSON string. org_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.1.6-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="orgc-uuid">
+<section id="section-2.11.1.7">
+            <h5 id="name-orgc_uuid">
+<a href="#section-2.11.1.7" class="section-number selfRef">2.11.1.7. </a><a href="#name-orgc_uuid" class="section-name selfRef">orgc_uuid</a>
+            </h5>
+<p id="section-2.11.1.7-1">orgc_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> identifier referencing an Orgc object of the organisation which created the opinion.<a href="#section-2.11.1.7-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.7-2">The orgc_uuid object <span class="bcp14">MUST</span> be preserved for any updates or transfer of the same opinion.<a href="#section-2.11.1.7-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.7-3">orgc_uuid is represented as a JSON string. orgc_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.1.7-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="created">
+<section id="section-2.11.1.8">
+            <h5 id="name-created">
+<a href="#section-2.11.1.8" class="section-number selfRef">2.11.1.8. </a><a href="#name-created" class="section-name selfRef">created</a>
+            </h5>
+<p id="section-2.11.1.8-1">created represents a reference time when the element was created. created is expressed as an ISO 8601 datetime up to the micro-second with time zone support.<a href="#section-2.11.1.8-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.8-2">created is represented as a JSON string. created <span class="bcp14">MAY</span> be present.<a href="#section-2.11.1.8-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="modified">
+<section id="section-2.11.1.9">
+            <h5 id="name-modified">
+<a href="#section-2.11.1.9" class="section-number selfRef">2.11.1.9. </a><a href="#name-modified" class="section-name selfRef">modified</a>
+            </h5>
+<p id="section-2.11.1.9-1">modified represents a reference time when the element was modified. modified is expressed as an ISO 8601 datetime up to the micro-second with time zone support.<a href="#section-2.11.1.9-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.9-2">modified is represented as a JSON string. modified <span class="bcp14">MAY</span> be present.<a href="#section-2.11.1.9-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="distribution-4">
+<section id="section-2.11.1.10">
+            <h5 id="name-distribution-5">
+<a href="#section-2.11.1.10" class="section-number selfRef">2.11.1.10. </a><a href="#name-distribution-5" class="section-name selfRef">distribution</a>
+            </h5>
+<p id="section-2.11.1.10-1">distribution represents the basic distribution rules of the opinion. The system must adhere to the distribution setting for access control and for dissemination of the opinion.<a href="#section-2.11.1.10-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.10-2">distribution is represented by a JSON string. distribution <span class="bcp14">SHALL</span> be present and be one of the following options:<a href="#section-2.11.1.10-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlCompact dlParallel" id="section-2.11.1.10-3">
+              <dt id="section-2.11.1.10-3.1">0</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.1.10-3.2">Your Organisation Only<a href="#section-2.11.1.10-3.2" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.1.10-3.3">1</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.1.10-3.4">This Community Only<a href="#section-2.11.1.10-3.4" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.1.10-3.5">2</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.1.10-3.6">Connected Communities<a href="#section-2.11.1.10-3.6" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.1.10-3.7">3</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.1.10-3.8">All Communities<a href="#section-2.11.1.10-3.8" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.1.10-3.9">4</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.1.10-3.10">Sharing Group<a href="#section-2.11.1.10-3.10" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.1.10-3.11">5</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.1.10-3.12">Inherit Event<a href="#section-2.11.1.10-3.12" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sharing-group-id-4">
+<section id="section-2.11.1.11">
+            <h5 id="name-sharing_group_id-5">
+<a href="#section-2.11.1.11" class="section-number selfRef">2.11.1.11. </a><a href="#name-sharing_group_id-5" class="section-name selfRef">sharing_group_id</a>
+            </h5>
+<p id="section-2.11.1.11-1">sharing_group_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.<a href="#section-2.11.1.11-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.11-2">sharing_group_id is represented by a JSON string. sharing_group_id <span class="bcp14">SHALL</span> be present and set to "0" if not used.<a href="#section-2.11.1.11-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="opinion-1">
+<section id="section-2.11.1.12">
+            <h5 id="name-opinion-2">
+<a href="#section-2.11.1.12" class="section-number selfRef">2.11.1.12. </a><a href="#name-opinion-2" class="section-name selfRef">opinion</a>
+            </h5>
+<p id="section-2.11.1.12-1">opinion is a value between 0 to 100 to represent the level of confidence. 50 is an neutral opinion.<a href="#section-2.11.1.12-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.12-2">opinion is represented as a JSON string. opinion <span class="bcp14">MUST</span> be present.<a href="#section-2.11.1.12-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="comment-4">
+<section id="section-2.11.1.13">
+            <h5 id="name-comment-5">
+<a href="#section-2.11.1.13" class="section-number selfRef">2.11.1.13. </a><a href="#name-comment-5" class="section-name selfRef">comment</a>
+            </h5>
+<p id="section-2.11.1.13-1">comment describes the opinion.<a href="#section-2.11.1.13-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.13-2">comment is represented as a JSON string. comment <span class="bcp14">MUST</span> be present.<a href="#section-2.11.1.13-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="note-type-name">
+<section id="section-2.11.1.14">
+            <h5 id="name-note_type_name">
+<a href="#section-2.11.1.14" class="section-number selfRef">2.11.1.14. </a><a href="#name-note_type_name" class="section-name selfRef">note_type_name</a>
+            </h5>
+<p id="section-2.11.1.14-1">note_type_name describe the type of the analyst data such as 'Opinion', 'Note' or 'Relationship'.<a href="#section-2.11.1.14-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.14-2">An opinion is defined as <code>Opinion</code>.<a href="#section-2.11.1.14-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.14-3">note_type_name is represented as a JSON string. note_type_name <span class="bcp14">MUST</span> be present.<a href="#section-2.11.1.14-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="note">
+<section id="section-2.11.2">
+          <h4 id="name-note">
+<a href="#section-2.11.2" class="section-number selfRef">2.11.2. </a><a href="#name-note" class="section-name selfRef">Note</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="section-2.11.2-1">
+<pre>        "Note": [
+            {
+                "id": "6",
+                "uuid": "e4b54bda-1006-43f3-a269-2c271c1aaed0",
+                "object_uuid": "ac22932c-27dc-415d-bc7b-6fd1dbf8743d",
+                "object_type": "Event",
+                "authors": "alexandre.dulaunoy@circl.lu",
+                "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "created": "2024-06-25 04:37:03",
+                "modified": "2024-06-25 04:37:03",
+                "distribution": "3",
+                "sharing_group_id": null,
+                "note": "Note to an event",
+                "language": "en",
+                "note_type_name": "Note",
+                "Orgc": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "Org": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                }
+
+</pre><a href="#section-2.11.2-1" class="pilcrow">¶</a>
+</div>
+<div id="id-7">
+<section id="section-2.11.2.1">
+            <h5 id="name-id-8">
+<a href="#section-2.11.2.1" class="section-number selfRef">2.11.2.1. </a><a href="#name-id-8" class="section-name selfRef">id</a>
+            </h5>
+<p id="section-2.11.2.1-1">id represents the human-readable identifier associated to the note for a specific MISP instance. A human-readable identifier <span class="bcp14">MUST</span> be
+represented as an unsigned integer.<a href="#section-2.11.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.1-2">id is represented as a JSON string. id <span class="bcp14">SHALL</span> be present.<a href="#section-2.11.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="uuid-7">
+<section id="section-2.11.2.2">
+            <h5 id="name-uuid-8">
+<a href="#section-2.11.2.2" class="section-number selfRef">2.11.2.2. </a><a href="#name-uuid-8" class="section-name selfRef">uuid</a>
+            </h5>
+<p id="section-2.11.2.2-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the note. The uuid <span class="bcp14">MUST</span> be preserved
+for any updates or transfer of the same <code>Note</code> object. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new <code>Note</code>.<a href="#section-2.11.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.2-2">uuid is represented as a JSON string. uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.2.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="object-uuid-2">
+<section id="section-2.11.2.3">
+            <h5 id="name-object_uuid-3">
+<a href="#section-2.11.2.3" class="section-number selfRef">2.11.2.3. </a><a href="#name-object_uuid-3" class="section-name selfRef">object_uuid</a>
+            </h5>
+<p id="section-2.11.2.3-1">object_uuid represents the target UUID element with an note.<a href="#section-2.11.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.3-2">object_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.2.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="object-type-1">
+<section id="section-2.11.2.4">
+            <h5 id="name-object_type-2">
+<a href="#section-2.11.2.4" class="section-number selfRef">2.11.2.4. </a><a href="#name-object_type-2" class="section-name selfRef">object_type</a>
+            </h5>
+<p id="section-2.11.2.4-1">object_type represents the type of element targeted in object_uuid.<a href="#section-2.11.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.4-2">object_type is represented as a JSON string.<a href="#section-2.11.2.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-1">
+<section id="section-2.11.2.5">
+            <h5 id="name-authors-2">
+<a href="#section-2.11.2.5" class="section-number selfRef">2.11.2.5. </a><a href="#name-authors-2" class="section-name selfRef">authors</a>
+            </h5>
+<p id="section-2.11.2.5-1">authors represent the authors of the note. the authors <span class="bcp14">SHALL</span> be represented with an email address or an identifier.<a href="#section-2.11.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.5-2">authors is represented as a JSON string. authors <span class="bcp14">SHALL</span> be present.<a href="#section-2.11.2.5-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="org-uuid-1">
+<section id="section-2.11.2.6">
+            <h5 id="name-org_uuid-2">
+<a href="#section-2.11.2.6" class="section-number selfRef">2.11.2.6. </a><a href="#name-org_uuid-2" class="section-name selfRef">org_uuid</a>
+            </h5>
+<p id="section-2.11.2.6-1">org_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> identifier referencing an Org object of the organisation which owns the note on a MISP instance.<a href="#section-2.11.2.6-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.6-2">The org_uuid object <span class="bcp14">MUST</span> be updated for any updates or transfer to another MISP instance.<a href="#section-2.11.2.6-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.6-3">org_uuid is represented as a JSON string. org_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.2.6-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="orgc-uuid-1">
+<section id="section-2.11.2.7">
+            <h5 id="name-orgc_uuid-2">
+<a href="#section-2.11.2.7" class="section-number selfRef">2.11.2.7. </a><a href="#name-orgc_uuid-2" class="section-name selfRef">orgc_uuid</a>
+            </h5>
+<p id="section-2.11.2.7-1">orgc_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> identifier referencing an Orgc object of the organisation which created the note.<a href="#section-2.11.2.7-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.7-2">The orgc_uuid object <span class="bcp14">MUST</span> be preserved for any updates or transfer of the same note.<a href="#section-2.11.2.7-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.7-3">orgc_uuid is represented as a JSON string. orgc_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.2.7-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="created-1">
+<section id="section-2.11.2.8">
+            <h5 id="name-created-2">
+<a href="#section-2.11.2.8" class="section-number selfRef">2.11.2.8. </a><a href="#name-created-2" class="section-name selfRef">created</a>
+            </h5>
+<p id="section-2.11.2.8-1">created represents a reference time when the element was created. created is expressed as an ISO 8601 datetime up to the micro-second with time zone support.<a href="#section-2.11.2.8-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.8-2">created is represented as a JSON string. created <span class="bcp14">MAY</span> be present.<a href="#section-2.11.2.8-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="modified-1">
+<section id="section-2.11.2.9">
+            <h5 id="name-modified-2">
+<a href="#section-2.11.2.9" class="section-number selfRef">2.11.2.9. </a><a href="#name-modified-2" class="section-name selfRef">modified</a>
+            </h5>
+<p id="section-2.11.2.9-1">modified represents a reference time when the element was modified. modified is expressed as an ISO 8601 datetime up to the micro-second with time zone support.<a href="#section-2.11.2.9-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.9-2">modified is represented as a JSON string. modified <span class="bcp14">MAY</span> be present.<a href="#section-2.11.2.9-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="distribution-5">
+<section id="section-2.11.2.10">
+            <h5 id="name-distribution-6">
+<a href="#section-2.11.2.10" class="section-number selfRef">2.11.2.10. </a><a href="#name-distribution-6" class="section-name selfRef">distribution</a>
+            </h5>
+<p id="section-2.11.2.10-1">distribution represents the basic distribution rules of the opinion. The system must adhere to the distribution setting for access control and for dissemination of the opinion.<a href="#section-2.11.2.10-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.10-2">distribution is represented by a JSON string. distribution <span class="bcp14">SHALL</span> be present and be one of the following options:<a href="#section-2.11.2.10-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlCompact dlParallel" id="section-2.11.2.10-3">
+              <dt id="section-2.11.2.10-3.1">0</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.2.10-3.2">Your Organisation Only<a href="#section-2.11.2.10-3.2" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.2.10-3.3">1</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.2.10-3.4">This Community Only<a href="#section-2.11.2.10-3.4" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.2.10-3.5">2</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.2.10-3.6">Connected Communities<a href="#section-2.11.2.10-3.6" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.2.10-3.7">3</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.2.10-3.8">All Communities<a href="#section-2.11.2.10-3.8" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.2.10-3.9">4</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.2.10-3.10">Sharing Group<a href="#section-2.11.2.10-3.10" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.2.10-3.11">5</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.2.10-3.12">Inherit Event<a href="#section-2.11.2.10-3.12" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sharing-group-id-5">
+<section id="section-2.11.2.11">
+            <h5 id="name-sharing_group_id-6">
+<a href="#section-2.11.2.11" class="section-number selfRef">2.11.2.11. </a><a href="#name-sharing_group_id-6" class="section-name selfRef">sharing_group_id</a>
+            </h5>
+<p id="section-2.11.2.11-1">sharing_group_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.<a href="#section-2.11.2.11-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.11-2">sharing_group_id is represented by a JSON string. sharing_group_id <span class="bcp14">SHALL</span> be present and set to "0" if not used.<a href="#section-2.11.2.11-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="note-1">
+<section id="section-2.11.2.12">
+            <h5 id="name-note-2">
+<a href="#section-2.11.2.12" class="section-number selfRef">2.11.2.12. </a><a href="#name-note-2" class="section-name selfRef">note</a>
+            </h5>
+<p id="section-2.11.2.12-1">note describes the note in text format.<a href="#section-2.11.2.12-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.12-2">note is represented as a JSON string.  <span class="bcp14">MUST</span> be present.<a href="#section-2.11.2.12-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="note-type-name-1">
+<section id="section-2.11.2.13">
+            <h5 id="name-note_type_name-2">
+<a href="#section-2.11.2.13" class="section-number selfRef">2.11.2.13. </a><a href="#name-note_type_name-2" class="section-name selfRef">note_type_name</a>
+            </h5>
+<p id="section-2.11.2.13-1">note_type_name describe the type of the analyst data such as 'Opinion', 'Note' or 'Relationship'.<a href="#section-2.11.2.13-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.13-2">A note is defined as <code>Note</code>.<a href="#section-2.11.2.13-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.2.13-3">note_type_name is represented as a JSON string. note_type_name <span class="bcp14">MUST</span> be present.<a href="#section-2.11.2.13-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="relationship">
+<section id="section-2.11.3">
+          <h4 id="name-relationship">
+<a href="#section-2.11.3" class="section-number selfRef">2.11.3. </a><a href="#name-relationship" class="section-name selfRef">Relationship</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="section-2.11.3-1">
+<pre>"Relationship": [
+            {
+                "id": "2",
+                "uuid": "8f358641-4bdc-4261-8a9f-5a926fde2b0d",
+                "object_uuid": "ac22932c-27dc-415d-bc7b-6fd1dbf8743d",
+                "object_type": "Event",
+                "authors": "alexandre.dulaunoy@circl.lu",
+                "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "created": "2024-06-25 04:39:30",
+                "modified": "2024-06-25 04:39:30",
+                "distribution": "3",
+                "sharing_group_id": null,
+                "relationship_type": "relates",
+                "related_object_uuid": "f3290493-8f74-4220-aa04-b83408e37a0c",
+                "related_object_type": "Event",
+                "note_type": 2,
+                "note_type_name": "Relationship",
+                "Orgc": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "Org": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "related_object": {
+                    "Event": {
+                        "id": "205025",
+                        "date": "2023-12-19",
+                        "info": "Phishing targeting Luxembourg services (hosted and served on/from AWS)",
+                        "user_id": "21",
+                        "published": true,
+                        "uuid": "f3290493-8f74-4220-aa04-b83408e37a0c",
+                        "attribute_count": "446",
+                        "analysis": "2",
+                        "timestamp": "1719217388",
+                        "distribution": "3",
+                        "proposal_email_lock": false,
+                        "locked": false,
+                        "threat_level_id": "2",
+                        "publish_timestamp": "1719217456",
+                        "sighting_timestamp": "0",
+                        "sharing_group_id": "0",
+                        "org_id": "2",
+                        "orgc_id": "2",
+                        "disable_correlation": false,
+                        "extends_uuid": "",
+                        "protected": null
+                    }
+                }
+            }
+        ]
+
+</pre><a href="#section-2.11.3-1" class="pilcrow">¶</a>
+</div>
+<div id="id-8">
+<section id="section-2.11.3.1">
+            <h5 id="name-id-9">
+<a href="#section-2.11.3.1" class="section-number selfRef">2.11.3.1. </a><a href="#name-id-9" class="section-name selfRef">id</a>
+            </h5>
+<p id="section-2.11.3.1-1">id represents the human-readable identifier associated to the relationship for a specific MISP instance. A human-readable identifier <span class="bcp14">MUST</span> be
+represented as an unsigned integer.<a href="#section-2.11.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.1-2">id is represented as a JSON string. id <span class="bcp14">SHALL</span> be present.<a href="#section-2.11.3.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="uuid-8">
+<section id="section-2.11.3.2">
+            <h5 id="name-uuid-9">
+<a href="#section-2.11.3.2" class="section-number selfRef">2.11.3.2. </a><a href="#name-uuid-9" class="section-name selfRef">uuid</a>
+            </h5>
+<p id="section-2.11.3.2-1">uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> of the relationship. The uuid <span class="bcp14">MUST</span> be preserved
+for any updates or transfer of the same <code>Relationship</code> object. UUID version 4 is <span class="bcp14">RECOMMENDED</span> when assigning it to a new <code>Relationship</code>.<a href="#section-2.11.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.2-2">uuid is represented as a JSON string. uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.3.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="object-uuid-3">
+<section id="section-2.11.3.3">
+            <h5 id="name-object_uuid-4">
+<a href="#section-2.11.3.3" class="section-number selfRef">2.11.3.3. </a><a href="#name-object_uuid-4" class="section-name selfRef">object_uuid</a>
+            </h5>
+<p id="section-2.11.3.3-1">object_uuid represents the target UUID element with a relationship.<a href="#section-2.11.3.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.3-2">object_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.3.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="object-type-2">
+<section id="section-2.11.3.4">
+            <h5 id="name-object_type-3">
+<a href="#section-2.11.3.4" class="section-number selfRef">2.11.3.4. </a><a href="#name-object_type-3" class="section-name selfRef">object_type</a>
+            </h5>
+<p id="section-2.11.3.4-1">object_type represents the type of element targeted in object_uuid.<a href="#section-2.11.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.4-2">object_type is represented as a JSON string.<a href="#section-2.11.3.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-2">
+<section id="section-2.11.3.5">
+            <h5 id="name-authors-3">
+<a href="#section-2.11.3.5" class="section-number selfRef">2.11.3.5. </a><a href="#name-authors-3" class="section-name selfRef">authors</a>
+            </h5>
+<p id="section-2.11.3.5-1">authors represent the authors of the relationship. the authors <span class="bcp14">SHALL</span> be represented with an email address or an identifier.<a href="#section-2.11.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.5-2">authors is represented as a JSON string. authors <span class="bcp14">SHALL</span> be present.<a href="#section-2.11.3.5-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="org-uuid-2">
+<section id="section-2.11.3.6">
+            <h5 id="name-org_uuid-3">
+<a href="#section-2.11.3.6" class="section-number selfRef">2.11.3.6. </a><a href="#name-org_uuid-3" class="section-name selfRef">org_uuid</a>
+            </h5>
+<p id="section-2.11.3.6-1">org_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> identifier referencing an Org object of the organisation which owns the relationship on a MISP instance.<a href="#section-2.11.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.6-2">The org_uuid object <span class="bcp14">MUST</span> updated for any updates or transfer to another MISP instance.<a href="#section-2.11.3.6-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.6-3">org_uuid is represented as a JSON string. org_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.3.6-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="orgc-uuid-2">
+<section id="section-2.11.3.7">
+            <h5 id="name-orgc_uuid-3">
+<a href="#section-2.11.3.7" class="section-number selfRef">2.11.3.7. </a><a href="#name-orgc_uuid-3" class="section-name selfRef">orgc_uuid</a>
+            </h5>
+<p id="section-2.11.3.7-1">orgc_uuid represents the Universally Unique IDentifier (UUID) <span>[<a href="#RFC4122" class="cite xref">RFC4122</a>]</span> identifier referencing an Orgc object of the organisation which created the relationship.<a href="#section-2.11.3.7-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.7-2">The orgc_uuid object <span class="bcp14">MUST</span> be preserved for any updates or transfer of the same relationship.<a href="#section-2.11.3.7-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.7-3">orgc_uuid is represented as a JSON string. orgc_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.3.7-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="created-2">
+<section id="section-2.11.3.8">
+            <h5 id="name-created-3">
+<a href="#section-2.11.3.8" class="section-number selfRef">2.11.3.8. </a><a href="#name-created-3" class="section-name selfRef">created</a>
+            </h5>
+<p id="section-2.11.3.8-1">created represents a reference time when the element was created. created is expressed as an ISO 8601 datetime up to the micro-second with time zone support.<a href="#section-2.11.3.8-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.8-2">created is represented as a JSON string. created <span class="bcp14">MAY</span> be present.<a href="#section-2.11.3.8-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="modified-2">
+<section id="section-2.11.3.9">
+            <h5 id="name-modified-3">
+<a href="#section-2.11.3.9" class="section-number selfRef">2.11.3.9. </a><a href="#name-modified-3" class="section-name selfRef">modified</a>
+            </h5>
+<p id="section-2.11.3.9-1">modified represents a reference time when the element was modified. modified is expressed as an ISO 8601 datetime up to the micro-second with time zone support.<a href="#section-2.11.3.9-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.9-2">modified is represented as a JSON string. modified <span class="bcp14">MAY</span> be present.<a href="#section-2.11.3.9-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="distribution-6">
+<section id="section-2.11.3.10">
+            <h5 id="name-distribution-7">
+<a href="#section-2.11.3.10" class="section-number selfRef">2.11.3.10. </a><a href="#name-distribution-7" class="section-name selfRef">distribution</a>
+            </h5>
+<p id="section-2.11.3.10-1">distribution represents the basic distribution rules of the opinion. The system must adhere to the distribution setting for access control and for dissemination of the opinion.<a href="#section-2.11.3.10-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.10-2">distribution is represented by a JSON string. distribution <span class="bcp14">SHALL</span> be present and be one of the following options:<a href="#section-2.11.3.10-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlCompact dlParallel" id="section-2.11.3.10-3">
+              <dt id="section-2.11.3.10-3.1">0</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.3.10-3.2">Your Organisation Only<a href="#section-2.11.3.10-3.2" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.3.10-3.3">1</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.3.10-3.4">This Community Only<a href="#section-2.11.3.10-3.4" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.3.10-3.5">2</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.3.10-3.6">Connected Communities<a href="#section-2.11.3.10-3.6" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.3.10-3.7">3</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.3.10-3.8">All Communities<a href="#section-2.11.3.10-3.8" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.3.10-3.9">4</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.3.10-3.10">Sharing Group<a href="#section-2.11.3.10-3.10" class="pilcrow">¶</a>
+</dd>
+              <dd class="break"></dd>
+<dt id="section-2.11.3.10-3.11">5</dt>
+              <dd style="margin-left: 1.5em" id="section-2.11.3.10-3.12">Inherit Event<a href="#section-2.11.3.10-3.12" class="pilcrow">¶</a>
+</dd>
+            <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sharing-group-id-6">
+<section id="section-2.11.3.11">
+            <h5 id="name-sharing_group_id-7">
+<a href="#section-2.11.3.11" class="section-number selfRef">2.11.3.11. </a><a href="#name-sharing_group_id-7" class="section-name selfRef">sharing_group_id</a>
+            </h5>
+<p id="section-2.11.3.11-1">sharing_group_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.<a href="#section-2.11.3.11-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.11-2">sharing_group_id is represented by a JSON string. sharing_group_id <span class="bcp14">SHALL</span> be present and set to "0" if not used.<a href="#section-2.11.3.11-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="relationship-type-1">
+<section id="section-2.11.3.12">
+            <h5 id="name-relationship_type-2">
+<a href="#section-2.11.3.12" class="section-number selfRef">2.11.3.12. </a><a href="#name-relationship_type-2" class="section-name selfRef">relationship_type</a>
+            </h5>
+<p id="section-2.11.3.12-1">relationship_type represents the human readable relation from the Analyst Data towards the related_object_uuid.<a href="#section-2.11.3.12-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.12-2">relationship_type <span class="bcp14">SHALL</span> use a relationship from the MISP object relationship types.<a href="#section-2.11.3.12-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.12-3">relationship_type is represented as a JSON string. relationship_type <span class="bcp14">MUST</span> be present.<a href="#section-2.11.3.12-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="related-object-uuid">
+<section id="section-2.11.3.13">
+            <h5 id="name-related_object_uuid">
+<a href="#section-2.11.3.13" class="section-number selfRef">2.11.3.13. </a><a href="#name-related_object_uuid" class="section-name selfRef">related_object_uuid</a>
+            </h5>
+<p id="section-2.11.3.13-1">related_object_uuid represents the target relationship UUID reference.<a href="#section-2.11.3.13-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.13-2">relationship_object_uuid is represented as a JSON string. relationship_object_uuid <span class="bcp14">MUST</span> be present.<a href="#section-2.11.3.13-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="related-object-type">
+<section id="section-2.11.3.14">
+            <h5 id="name-related_object_type">
+<a href="#section-2.11.3.14" class="section-number selfRef">2.11.3.14. </a><a href="#name-related_object_type" class="section-name selfRef">related_object_type</a>
+            </h5>
+<p id="section-2.11.3.14-1">relationship_object_type represents the type of the target.<a href="#section-2.11.3.14-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.14-2">relationship_object_type is represented as a JSON string.<a href="#section-2.11.3.14-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="note-type-name-2">
+<section id="section-2.11.3.15">
+            <h5 id="name-note_type_name-3">
+<a href="#section-2.11.3.15" class="section-number selfRef">2.11.3.15. </a><a href="#name-note_type_name-3" class="section-name selfRef">note_type_name</a>
+            </h5>
+<p id="section-2.11.3.15-1">note_type_name describe the type of the analyst data such as 'Opinion', 'Note' or 'Relationship'.<a href="#section-2.11.3.15-1" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.15-2">A relationship is defined as <code>Relationship</code>.<a href="#section-2.11.3.15-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.3.15-3">note_type_name is represented as a JSON string. note_type_name <span class="bcp14">MUST</span> be present.<a href="#section-2.11.3.15-3" class="pilcrow">¶</a></p>
+</section>
 </div>
 </section>
 </div>
@@ -3047,7 +3765,7 @@ attribute_id represents the human-readable identifier of the attribute reference
       <h2 id="name-json-schema">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-json-schema" class="section-name selfRef">JSON Schema</a>
       </h2>
-<p id="section-3-1">The JSON Schema <span>[<a href="#JSON-SCHEMA" class="xref">JSON-SCHEMA</a>]</span> below defines the structure of the MISP core format
+<p id="section-3-1">The JSON Schema <span>[<a href="#JSON-SCHEMA" class="cite xref">JSON-SCHEMA</a>]</span> below defines the structure of the MISP core format
 as literally described before. The JSON Schema is used to validate MISP events at creation time
 or parsing.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3-2">
@@ -3725,6 +4443,7 @@ or parsing.<a href="#section-3-1" class="pilcrow">¶</a></p>
     "Event"
   ]
 }
+
 </pre><a href="#section-3-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3765,7 +4484,7 @@ by the same uuid:<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-4.1-6.1">integrity:sha256 represents the SHA256 value in hexadecimal representation of the associated MISP event file to ensure integrity of the file. (<span class="bcp14">SHOULD</span>)<a href="#section-4.1-6.1" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-4.1-6.2">integrity:pgp represents a detached PGP signature <span>[<a href="#RFC4880" class="xref">RFC4880</a>]</span> of the associated MISP event file to ensure integrity of the file. (<span class="bcp14">SHOULD</span>)<a href="#section-4.1-6.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.1-6.2">integrity:pgp represents a detached PGP signature <span>[<a href="#RFC4880" class="cite xref">RFC4880</a>]</span> of the associated MISP event file to ensure integrity of the file. (<span class="bcp14">SHOULD</span>)<a href="#section-4.1-6.2" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-4.1-7">If a detached PGP signature is used for each MISP event, a detached PGP signature is a <span class="bcp14">MUST</span> to ensure integrity of the manifest file.
@@ -3825,6 +4544,7 @@ A detached PGP signature for a manifest file is a manifest.json.asc file contain
     "threat_level_id": "3"
   }
 }
+
 </pre><a href="#section-4.1.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3839,7 +4559,7 @@ A detached PGP signature for a manifest file is a manifest.json.asc file contain
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-implementation" class="section-name selfRef">Implementation</a>
       </h2>
 <p id="section-5-1">MISP format is implemented by different software including the MISP threat sharing
-platform and libraries like PyMISP <span>[<a href="#MISP-P" class="xref">MISP-P</a>]</span>. Implementations use the format
+platform and libraries like PyMISP <span>[<a href="#MISP-P" class="cite xref">MISP-P</a>]</span>. Implementations use the format
 as an export/import mechanism, staging transport format or synchronisation format
 as used in the MISP core platform. MISP format doesn't impose any restriction on
 the data representation of the format in data-structure of other implementations.<a href="#section-5-1" class="pilcrow">¶</a></p>
@@ -3876,50 +4596,55 @@ for the review of the JSON Schema.<a href="#section-7-1" class="pilcrow">¶</a><
 </section>
 </div>
 <section id="section-9">
-      <h2 id="name-normative-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references-2">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references-2" class="section-name selfRef">References</a>
       </h2>
+<section id="section-9.1">
+        <h3 id="name-normative-references">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4122">[RFC4122]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Leach, P.</span>, <span class="refAuthor">Mealling, M.</span>, and <span class="refAuthor">R. Salz</span>, <span class="refTitle">"A Universally Unique IDentifier (UUID) URN Namespace"</span>, <span class="seriesInfo">RFC 4122</span>, <span class="seriesInfo">DOI 10.17487/RFC4122</span>, <time datetime="2005-07" class="refDate">July 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4122">https://www.rfc-editor.org/info/rfc4122</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4880">[RFC4880]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Callas, J.</span>, <span class="refAuthor">Donnerhacke, L.</span>, <span class="refAuthor">Finney, H.</span>, <span class="refAuthor">Shaw, D.</span>, and <span class="refAuthor">R. Thayer</span>, <span class="refTitle">"OpenPGP Message Format"</span>, <span class="seriesInfo">RFC 4880</span>, <span class="seriesInfo">DOI 10.17487/RFC4880</span>, <time datetime="2007-11" class="refDate">November 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4880">https://www.rfc-editor.org/info/rfc4880</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8259">[RFC8259]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Bray, T., Ed.</span>, <span class="refTitle">"The JavaScript Object Notation (JSON) Data Interchange Format"</span>, <span class="seriesInfo">STD 90</span>, <span class="seriesInfo">RFC 8259</span>, <span class="seriesInfo">DOI 10.17487/RFC8259</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8259">https://www.rfc-editor.org/info/rfc8259</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
-<section id="section-10">
-      <h2 id="name-informative-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
-      </h2>
+<section id="section-9.2">
+        <h3 id="name-informative-references">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
 <dl class="references">
 <dt id="JSON-SCHEMA">[JSON-SCHEMA]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Wright, A.</span>, <span class="refTitle">"JSON Schema: A Media Type for Describing JSON Documents"</span>, <time datetime="2016" class="refDate">2016</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-wright-json-schema">https://tools.ietf.org/html/draft-wright-json-schema</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="MISP-P">[MISP-P]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Community, M.</span>, <span class="refTitle">"MISP Project - Open Source Threat Intelligence Platform and Open Standards For Threat Information Sharing"</span>, <span>&lt;<a href="https://github.com/MISP">https://github.com/MISP</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="MISP-R">[MISP-R]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Community, M.</span>, <span class="refTitle">"MISP Object Relationship Types - common vocabulary of relationships"</span>, <span>&lt;<a href="https://github.com/MISP/misp-objects/tree/master/relationships">https://github.com/MISP/misp-objects/tree/master/relationships</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="MISP-T">[MISP-T]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Community, M.</span>, <span class="refTitle">"MISP Taxonomies - shared and common vocabularies of tags"</span>, <span>&lt;<a href="https://github.com/MISP/misp-taxonomies">https://github.com/MISP/misp-taxonomies</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
+</section>
 </section>
 <div id="authors-addresses">
 <section id="appendix-A">

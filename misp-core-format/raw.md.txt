@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: 26 June 2024                                   24 December 2023
+Expires: 30 December 2024                                   28 June 2024
 
 
                             MISP core format
@@ -37,11 +37,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 June 2024.
+   This Internet-Draft will expire on 30 December 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 1]
+Dulaunoy & Iklody       Expires 30 December 2024                [Page 1]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 Table of Contents
@@ -65,56 +65,61 @@ Table of Contents
    2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.2.  Event . . . . . . . . . . . . . . . . . . . . . . . . . .   3
-       2.2.1.  Event Attributes  . . . . . . . . . . . . . . . . . .   3
+       2.2.1.  Event Attributes  . . . . . . . . . . . . . . . . . .   4
        2.2.2.  Event Objects . . . . . . . . . . . . . . . . . . . .   7
      2.3.  Attribute . . . . . . . . . . . . . . . . . . . . . . . .   8
        2.3.1.  Sample Attribute Object . . . . . . . . . . . . . . .   8
-       2.3.2.  Attribute Attributes  . . . . . . . . . . . . . . . .   8
-     2.4.  ShadowAttribute . . . . . . . . . . . . . . . . . . . . .  14
-       2.4.1.  Sample Attribute Object . . . . . . . . . . . . . . .  15
-       2.4.2.  ShadowAttribute Attributes  . . . . . . . . . . . . .  15
-       2.4.3.  ShadowAttribute Objects . . . . . . . . . . . . . . .  21
-     2.5.  Object  . . . . . . . . . . . . . . . . . . . . . . . . .  22
-       2.5.1.  Sample Object . . . . . . . . . . . . . . . . . . . .  22
-       2.5.2.  Object Attributes . . . . . . . . . . . . . . . . . .  23
-     2.6.  Object References . . . . . . . . . . . . . . . . . . . .  27
-       2.6.1.  Sample ObjectReference object . . . . . . . . . . . .  27
-       2.6.2.  ObjectReference Attributes  . . . . . . . . . . . . .  27
-     2.7.  EventReport . . . . . . . . . . . . . . . . . . . . . . .  29
-       2.7.1.  id  . . . . . . . . . . . . . . . . . . . . . . . . .  29
-       2.7.2.  UUID  . . . . . . . . . . . . . . . . . . . . . . . .  30
-       2.7.3.  event_id  . . . . . . . . . . . . . . . . . . . . . .  30
-       2.7.4.  name  . . . . . . . . . . . . . . . . . . . . . . . .  30
-       2.7.5.  content . . . . . . . . . . . . . . . . . . . . . . .  30
-       2.7.6.  distribution  . . . . . . . . . . . . . . . . . . . .  30
-       2.7.7.  sharing_group_id  . . . . . . . . . . . . . . . . . .  31
-       2.7.8.  timestamp . . . . . . . . . . . . . . . . . . . . . .  31
-       2.7.9.  deleted . . . . . . . . . . . . . . . . . . . . . . .  31
-     2.8.  Tag . . . . . . . . . . . . . . . . . . . . . . . . . . .  31
-       2.8.1.  Sample Tag  . . . . . . . . . . . . . . . . . . . . .  32
-     2.9.  Sighting  . . . . . . . . . . . . . . . . . . . . . . . .  32
-       2.9.1.  Sample Sighting . . . . . . . . . . . . . . . . . . .  33
-     2.10. Galaxy  . . . . . . . . . . . . . . . . . . . . . . . . .  34
-       2.10.1.  Sample Galaxy  . . . . . . . . . . . . . . . . . . .  34
-   3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  36
-   4.  Manifest  . . . . . . . . . . . . . . . . . . . . . . . . . .  50
-     4.1.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .  50
-       4.1.1.  Sample Manifest . . . . . . . . . . . . . . . . . . .  51
-   5.  Implementation  . . . . . . . . . . . . . . . . . . . . . . .  52
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  52
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  52
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  52
-   9.  Normative References  . . . . . . . . . . . . . . . . . . . .  52
-   10. Informative References  . . . . . . . . . . . . . . . . . . .  53
+       2.3.2.  Attribute Attributes  . . . . . . . . . . . . . . . .   9
+     2.4.  ShadowAttribute . . . . . . . . . . . . . . . . . . . . .  15
+       2.4.1.  Sample Attribute Object . . . . . . . . . . . . . . .  16
+       2.4.2.  ShadowAttribute Attributes  . . . . . . . . . . . . .  16
+       2.4.3.  ShadowAttribute Objects . . . . . . . . . . . . . . .  22
+     2.5.  Object  . . . . . . . . . . . . . . . . . . . . . . . . .  23
+       2.5.1.  Sample Object . . . . . . . . . . . . . . . . . . . .  23
+       2.5.2.  Object Attributes . . . . . . . . . . . . . . . . . .  24
+     2.6.  Object References . . . . . . . . . . . . . . . . . . . .  28
+       2.6.1.  Sample ObjectReference object . . . . . . . . . . . .  28
+       2.6.2.  ObjectReference Attributes  . . . . . . . . . . . . .  28
+     2.7.  EventReport . . . . . . . . . . . . . . . . . . . . . . .  30
+       2.7.1.  id  . . . . . . . . . . . . . . . . . . . . . . . . .  30
+       2.7.2.  UUID  . . . . . . . . . . . . . . . . . . . . . . . .  31
+       2.7.3.  event_id  . . . . . . . . . . . . . . . . . . . . . .  31
+       2.7.4.  name  . . . . . . . . . . . . . . . . . . . . . . . .  31
+       2.7.5.  content . . . . . . . . . . . . . . . . . . . . . . .  31
+       2.7.6.  distribution  . . . . . . . . . . . . . . . . . . . .  31
+       2.7.7.  sharing_group_id  . . . . . . . . . . . . . . . . . .  32
+       2.7.8.  timestamp . . . . . . . . . . . . . . . . . . . . . .  32
+       2.7.9.  deleted . . . . . . . . . . . . . . . . . . . . . . .  32
+     2.8.  Tag . . . . . . . . . . . . . . . . . . . . . . . . . . .  32
+       2.8.1.  Sample Tag  . . . . . . . . . . . . . . . . . . . . .  33
+     2.9.  Sighting  . . . . . . . . . . . . . . . . . . . . . . . .  33
+       2.9.1.  Sample Sighting . . . . . . . . . . . . . . . . . . .  34
+     2.10. Galaxy  . . . . . . . . . . . . . . . . . . . . . . . . .  35
+       2.10.1.  Sample Galaxy  . . . . . . . . . . . . . . . . . . .  35
+     2.11. Analyst Data  . . . . . . . . . . . . . . . . . . . . . .  37
+       2.11.1.  Opinion  . . . . . . . . . . . . . . . . . . . . . .  37
+       2.11.2.  Note . . . . . . . . . . . . . . . . . . . . . . . .  40
+       2.11.3.  Relationship . . . . . . . . . . . . . . . . . . . .  44
+   3.  JSON Schema . . . . . . . . . . . . . . . . . . . . . . . . .  48
+   4.  Manifest  . . . . . . . . . . . . . . . . . . . . . . . . . .  62
+     4.1.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .  62
+       4.1.1.  Sample Manifest . . . . . . . . . . . . . . . . . . .  63
+   5.  Implementation  . . . . . . . . . . . . . . . . . . . . . . .  64
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  64
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 2]
+Dulaunoy & Iklody       Expires 30 December 2024                [Page 2]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  53
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  65
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  65
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  65
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  65
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  65
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  66
 
 1.  Introduction
 
@@ -154,6 +159,17 @@ Internet-Draft              MISP core format               December 2023
    specific threat actor analysis.  The meaning of an event only depends
    of the information embedded in the event.
 
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024                [Page 3]
+
+Internet-Draft              MISP core format                   June 2024
+
+
 2.2.1.  Event Attributes
 
 2.2.1.1.  uuid
@@ -162,13 +178,6 @@ Internet-Draft              MISP core format               December 2023
    the event.  The uuid MUST be preserved for any updates or transfer of
    the same event.  UUID version 4 is RECOMMENDED when assigning it to a
    new event.
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 3]
-
-Internet-Draft              MISP core format               December 2023
-
 
    uuid is represented as a JSON string. uuid MUST be present.
 
@@ -210,6 +219,13 @@ Internet-Draft              MISP core format               December 2023
    If a higher granularity is required, a MISP taxonomy applied as a Tag
    SHOULD be preferred.
 
+
+
+Dulaunoy & Iklody       Expires 30 December 2024                [Page 4]
+
+Internet-Draft              MISP core format                   June 2024
+
+
    threat_level_id is represented as a JSON string. threat_level_id
    SHALL be present.
 
@@ -218,14 +234,6 @@ Internet-Draft              MISP core format               December 2023
    analysis represents the analysis level.
 
    0:  Initial
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 4]
-
-Internet-Draft              MISP core format               December 2023
-
-
    1:  Ongoing
    2:  Complete
 
@@ -265,6 +273,15 @@ Internet-Draft              MISP core format               December 2023
    publish_timestamp is represented as a JSON string. publish_timestamp
    MUST be present.
 
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024                [Page 5]
+
+Internet-Draft              MISP core format                   June 2024
+
+
 2.2.1.10.  org_id
 
    org_id represents a human-readable identifier referencing an Org
@@ -273,14 +290,6 @@ Internet-Draft              MISP core format               December 2023
 
    The org_id MUST be updated when the event is generated by a new
    instance.
-
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 5]
-
-Internet-Draft              MISP core format               December 2023
-
 
    org_id is represented as a JSON string. org_id MUST be present.
 
@@ -317,6 +326,18 @@ Internet-Draft              MISP core format               December 2023
    3  All Communities
    4  Sharing Group
 
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024                [Page 6]
+
+Internet-Draft              MISP core format                   June 2024
+
+
 2.2.1.14.  sharing_group_id
 
    sharing_group_id represents a human-readable identifier referencing a
@@ -327,16 +348,6 @@ Internet-Draft              MISP core format               December 2023
    sharing_group_id is represented by a JSON string and SHOULD be
    present.  If a distribution level other than "4" is chosen the
    sharing_group_id MUST be set to "0".
-
-
-
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 6]
-
-Internet-Draft              MISP core format               December 2023
-
 
 2.2.1.15.  extends_uuid
 
@@ -373,6 +384,16 @@ Internet-Draft              MISP core format               December 2023
            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
           }
 
+
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024                [Page 7]
+
+Internet-Draft              MISP core format                   June 2024
+
+
 2.2.2.2.  Orgc
 
    An Orgc object is composed of an uuid, name and id.
@@ -386,13 +407,6 @@ Internet-Draft              MISP core format               December 2023
    present.  The id is a human-readable identifier generated by the
    instance and used as reference in the event.  A human-readable
    identifier MUST be represented as an unsigned integer.
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 7]
-
-Internet-Draft              MISP core format               December 2023
-
 
    uuid, name and id are represented as a JSON string. uuid, name and id
    MUST be present.
@@ -409,6 +423,32 @@ Internet-Draft              MISP core format               December 2023
    described in section "Attribute Attributes".
 
 2.3.1.  Sample Attribute Object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024                [Page 8]
+
+Internet-Draft              MISP core format                   June 2024
+
 
    "Attribute": {
                  "id": "346056",
@@ -441,15 +481,6 @@ Internet-Draft              MISP core format               December 2023
 
    uuid is represented as a JSON string. uuid MUST be present.
 
-
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 8]
-
-Internet-Draft              MISP core format               December 2023
-
-
 2.3.2.2.  id
 
    id represents the human-readable identifier associated to the event
@@ -467,6 +498,13 @@ Internet-Draft              MISP core format               December 2023
    type is represented as a JSON string. type MUST be present and it
    MUST be a valid selection for the chosen category.  The list of valid
    category-type combinations is as follows:
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024                [Page 9]
+
+Internet-Draft              MISP core format                   June 2024
+
 
    Antivirus detection  link, comment, text, hex, attachment, other,
       anonymised
@@ -498,14 +536,6 @@ Internet-Draft              MISP core format               December 2023
       filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-
       address, mac-eui-64, hostname, domain, domain|ip, url, user-agent,
       regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file,
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                  [Page 9]
-
-Internet-Draft              MISP core format               December 2023
-
-
       pattern-in-traffic, pattern-in-memory, filename-pattern,
       vulnerability, cpe, weakness, attachment, malware-sample, link,
       comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-
@@ -518,6 +548,20 @@ Internet-Draft              MISP core format               December 2023
    Internal reference  text, link, comment, other, hex, anonymised, git-
       commit-id
    Network activity  ip-src, ip-dst, ip-dst|port, ip-src|port, port,
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 10]
+
+Internet-Draft              MISP core format                   June 2024
+
+
       hostname, domain, domain|ip, mac-address, mac-eui-64, email,
       email-dst, email-src, eppn, url, uri, user-agent, http-method, AS,
       snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-
@@ -557,9 +601,21 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 10]
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 11]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
       sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512,
@@ -613,9 +669,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 11]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 12]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
    category is represented as a JSON string. category MUST be present
@@ -669,9 +725,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 12]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 13]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.3.2.9.  comment
@@ -725,9 +781,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 13]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 14]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.3.2.14.  ShadowAttribute
@@ -781,9 +837,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 14]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 15]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.4.1.  Sample Attribute Object
@@ -837,9 +893,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 15]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 16]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
    type is represented as a JSON string. type MUST be present and it
@@ -893,9 +949,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 16]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 17]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
       hostname, domain, domain|ip, mac-address, mac-eui-64, email,
@@ -949,9 +1005,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 17]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 18]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
       sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512,
@@ -1005,9 +1061,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 18]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 19]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
    category is represented as a JSON string. category MUST be present
@@ -1061,9 +1117,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 19]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 20]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.4.2.9.  comment
@@ -1117,9 +1173,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 20]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 21]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.4.2.14.  first_seen
@@ -1173,9 +1229,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 21]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 22]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
    "Org": {
@@ -1229,9 +1285,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 22]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 23]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 "Object": {
@@ -1285,9 +1341,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 23]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 24]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.5.2.1.  uuid
@@ -1341,9 +1397,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 24]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 25]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
    template_uuid is represented as a JSON string. template_uuid MUST be
@@ -1397,9 +1453,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 25]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 26]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.5.2.11.  sharing_group_id
@@ -1453,9 +1509,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 26]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 27]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
    last_seen is represented as a JSON string. last_seen MAY be present.
@@ -1509,9 +1565,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 27]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 28]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.6.2.3.  timestamp
@@ -1565,9 +1621,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 28]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 29]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
    relationship_type is represented as a JSON string. relationship_type
@@ -1621,9 +1677,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 29]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 30]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.7.2.  UUID
@@ -1677,9 +1733,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 30]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 31]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
    2  Connected Communities
@@ -1733,9 +1789,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 31]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 32]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 2.8.1.  Sample Tag
@@ -1789,9 +1845,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 32]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 33]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
    source MAY be present. source is represented as a JSON string and
@@ -1845,9 +1901,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 33]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 34]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 "Sighting": [
@@ -1901,9 +1957,9 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 34]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 35]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
 
 "Galaxy": [ {
@@ -1957,10 +2013,645 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 35]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 36]
 
-Internet-Draft              MISP core format               December 2023
+Internet-Draft              MISP core format                   June 2024
 
+
+2.11.  Analyst Data
+
+   Analyst Data are objects which can be in different level of MISP
+   format including objects, attributes, event or detached from MISP
+   core format.  It can expressed a Opinion, Note or a Relationship from
+   an analyst.  Those three types define the key of the analyst data and
+   can be present at the level where analyst data is applied.  Analyst
+   data can be nested to describe complementary analysis on the analyst
+   data by itself.
+
+2.11.1.  Opinion
+
+ "Opinion": [
+                    {
+                        "id": "13",
+                        "uuid": "238b1e74-e378-4bde-a463-cbb8fc496989",
+                        "object_uuid": "ae4396d9-3deb-49c9-b13e-b01f3a0736c3",
+                        "object_type": "Attribute",
+                        "authors": "alexandre.dulaunoy@circl.lu",
+                        "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                        "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                        "created": "2024-06-25 04:40:01",
+                        "modified": "2024-06-25 04:40:01",
+                        "distribution": "3",
+                        "sharing_group_id": null,
+                        "opinion": "0",
+                        "comment": "Incorrect selector",
+                        "note_type_name": "Opinion",
+                        "Orgc": {
+                            "id": "2",
+                            "name": "CIRCL",
+                            "date_created": "2016-06-29 08:47:35",
+                            "date_modified": "2017-11-24 12:51:22",
+                            "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                            "type": "",
+                            "nationality": "Luxembourg",
+                            "sector": "",
+                            "created_by": "218",
+                            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                            "contacts": "",
+                            "local": true,
+                            "landingpage": "",
+                            "restricted_to_domain": null
+                        },
+                        "Org": {
+                            "id": "2",
+                            "name": "CIRCL",
+                            "date_created": "2016-06-29 08:47:35",
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 37]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+                            "date_modified": "2017-11-24 12:51:22",
+                            "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                            "type": "",
+                            "nationality": "Luxembourg",
+                            "sector": "",
+                            "created_by": "218",
+                            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                            "contacts": "",
+                            "local": true,
+                            "landingpage": "",
+                            "restricted_to_domain": null
+                        }
+                    }
+                ]
+
+2.11.1.1.  id
+
+   id represents the human-readable identifier associated to the opinion
+   for a specific MISP instance.  A human-readable identifier MUST be
+   represented as an unsigned integer.
+
+   id is represented as a JSON string. id SHALL be present.
+
+2.11.1.2.  uuid
+
+   uuid represents the Universally Unique IDentifier (UUID) [RFC4122] of
+   the opinion.  The uuid MUST be preserved for any updates or transfer
+   of the same Opinion object.  UUID version 4 is RECOMMENDED when
+   assigning it to a new Opinion.
+
+   uuid is represented as a JSON string. uuid MUST be present.
+
+2.11.1.3.  object_uuid
+
+   object_uuid represents the target UUID element with an opinion.
+
+   object_uuid MUST be present.
+
+2.11.1.4.  object_type
+
+   object_type represents the type of element targeted in object_uuid.
+
+   object_type is represented as a JSON string.
+
+2.11.1.5.  authors
+
+   authors represent the authors of the opinion. the authors SHALL be
+   represented with an email address or an identifier.
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 38]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+   authors is represented as a JSON string. authors SHALL be present.
+
+2.11.1.6.  org_uuid
+
+   org_uuid represents the Universally Unique IDentifier (UUID)
+   [RFC4122] identifier referencing an Org object of the organisation
+   which owns the opinion on a MISP instance.
+
+   The org_uuid object MUST be updated for any updates or transfer to
+   another MISP instance.
+
+   org_uuid is represented as a JSON string. org_uuid MUST be present.
+
+2.11.1.7.  orgc_uuid
+
+   orgc_uuid represents the Universally Unique IDentifier (UUID)
+   [RFC4122] identifier referencing an Orgc object of the organisation
+   which created the opinion.
+
+   The orgc_uuid object MUST be preserved for any updates or transfer of
+   the same opinion.
+
+   orgc_uuid is represented as a JSON string. orgc_uuid MUST be present.
+
+2.11.1.8.  created
+
+   created represents a reference time when the element was created.
+   created is expressed as an ISO 8601 datetime up to the micro-second
+   with time zone support.
+
+   created is represented as a JSON string. created MAY be present.
+
+2.11.1.9.  modified
+
+   modified represents a reference time when the element was modified.
+   modified is expressed as an ISO 8601 datetime up to the micro-second
+   with time zone support.
+
+   modified is represented as a JSON string. modified MAY be present.
+
+2.11.1.10.  distribution
+
+   distribution represents the basic distribution rules of the opinion.
+   The system must adhere to the distribution setting for access control
+   and for dissemination of the opinion.
+
+   distribution is represented by a JSON string. distribution SHALL be
+   present and be one of the following options:
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 39]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+   0  Your Organisation Only
+   1  This Community Only
+   2  Connected Communities
+   3  All Communities
+   4  Sharing Group
+   5  Inherit Event
+
+2.11.1.11.  sharing_group_id
+
+   sharing_group_id represents the local id to the MISP local instance
+   of the Sharing Group associated for the distribution.
+
+   sharing_group_id is represented by a JSON string. sharing_group_id
+   SHALL be present and set to "0" if not used.
+
+2.11.1.12.  opinion
+
+   opinion is a value between 0 to 100 to represent the level of
+   confidence. 50 is an neutral opinion.
+
+   opinion is represented as a JSON string. opinion MUST be present.
+
+2.11.1.13.  comment
+
+   comment describes the opinion.
+
+   comment is represented as a JSON string. comment MUST be present.
+
+2.11.1.14.  note_type_name
+
+   note_type_name describe the type of the analyst data such as
+   'Opinion', 'Note' or 'Relationship'.
+
+   An opinion is defined as Opinion.
+
+   note_type_name is represented as a JSON string. note_type_name MUST
+   be present.
+
+2.11.2.  Note
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 40]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+        "Note": [
+            {
+                "id": "6",
+                "uuid": "e4b54bda-1006-43f3-a269-2c271c1aaed0",
+                "object_uuid": "ac22932c-27dc-415d-bc7b-6fd1dbf8743d",
+                "object_type": "Event",
+                "authors": "alexandre.dulaunoy@circl.lu",
+                "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "created": "2024-06-25 04:37:03",
+                "modified": "2024-06-25 04:37:03",
+                "distribution": "3",
+                "sharing_group_id": null,
+                "note": "Note to an event",
+                "language": "en",
+                "note_type_name": "Note",
+                "Orgc": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "Org": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                }
+
+2.11.2.1.  id
+
+   id represents the human-readable identifier associated to the note
+   for a specific MISP instance.  A human-readable identifier MUST be
+   represented as an unsigned integer.
+
+   id is represented as a JSON string. id SHALL be present.
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 41]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+2.11.2.2.  uuid
+
+   uuid represents the Universally Unique IDentifier (UUID) [RFC4122] of
+   the note.  The uuid MUST be preserved for any updates or transfer of
+   the same Note object.  UUID version 4 is RECOMMENDED when assigning
+   it to a new Note.
+
+   uuid is represented as a JSON string. uuid MUST be present.
+
+2.11.2.3.  object_uuid
+
+   object_uuid represents the target UUID element with an note.
+
+   object_uuid MUST be present.
+
+2.11.2.4.  object_type
+
+   object_type represents the type of element targeted in object_uuid.
+
+   object_type is represented as a JSON string.
+
+2.11.2.5.  authors
+
+   authors represent the authors of the note. the authors SHALL be
+   represented with an email address or an identifier.
+
+   authors is represented as a JSON string. authors SHALL be present.
+
+2.11.2.6.  org_uuid
+
+   org_uuid represents the Universally Unique IDentifier (UUID)
+   [RFC4122] identifier referencing an Org object of the organisation
+   which owns the note on a MISP instance.
+
+   The org_uuid object MUST be updated for any updates or transfer to
+   another MISP instance.
+
+   org_uuid is represented as a JSON string. org_uuid MUST be present.
+
+2.11.2.7.  orgc_uuid
+
+   orgc_uuid represents the Universally Unique IDentifier (UUID)
+   [RFC4122] identifier referencing an Orgc object of the organisation
+   which created the note.
+
+   The orgc_uuid object MUST be preserved for any updates or transfer of
+   the same note.
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 42]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+   orgc_uuid is represented as a JSON string. orgc_uuid MUST be present.
+
+2.11.2.8.  created
+
+   created represents a reference time when the element was created.
+   created is expressed as an ISO 8601 datetime up to the micro-second
+   with time zone support.
+
+   created is represented as a JSON string. created MAY be present.
+
+2.11.2.9.  modified
+
+   modified represents a reference time when the element was modified.
+   modified is expressed as an ISO 8601 datetime up to the micro-second
+   with time zone support.
+
+   modified is represented as a JSON string. modified MAY be present.
+
+2.11.2.10.  distribution
+
+   distribution represents the basic distribution rules of the opinion.
+   The system must adhere to the distribution setting for access control
+   and for dissemination of the opinion.
+
+   distribution is represented by a JSON string. distribution SHALL be
+   present and be one of the following options:
+
+   0  Your Organisation Only
+   1  This Community Only
+   2  Connected Communities
+   3  All Communities
+   4  Sharing Group
+   5  Inherit Event
+
+2.11.2.11.  sharing_group_id
+
+   sharing_group_id represents the local id to the MISP local instance
+   of the Sharing Group associated for the distribution.
+
+   sharing_group_id is represented by a JSON string. sharing_group_id
+   SHALL be present and set to "0" if not used.
+
+2.11.2.12.  note
+
+   note describes the note in text format.
+
+   note is represented as a JSON string.  MUST be present.
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 43]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+2.11.2.13.  note_type_name
+
+   note_type_name describe the type of the analyst data such as
+   'Opinion', 'Note' or 'Relationship'.
+
+   A note is defined as Note.
+
+   note_type_name is represented as a JSON string. note_type_name MUST
+   be present.
+
+2.11.3.  Relationship
+
+"Relationship": [
+            {
+                "id": "2",
+                "uuid": "8f358641-4bdc-4261-8a9f-5a926fde2b0d",
+                "object_uuid": "ac22932c-27dc-415d-bc7b-6fd1dbf8743d",
+                "object_type": "Event",
+                "authors": "alexandre.dulaunoy@circl.lu",
+                "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "created": "2024-06-25 04:39:30",
+                "modified": "2024-06-25 04:39:30",
+                "distribution": "3",
+                "sharing_group_id": null,
+                "relationship_type": "relates",
+                "related_object_uuid": "f3290493-8f74-4220-aa04-b83408e37a0c",
+                "related_object_type": "Event",
+                "note_type": 2,
+                "note_type_name": "Relationship",
+                "Orgc": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "Org": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 44]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+                },
+                "related_object": {
+                    "Event": {
+                        "id": "205025",
+                        "date": "2023-12-19",
+                        "info": "Phishing targeting Luxembourg services (hosted and served on/from AWS)",
+                        "user_id": "21",
+                        "published": true,
+                        "uuid": "f3290493-8f74-4220-aa04-b83408e37a0c",
+                        "attribute_count": "446",
+                        "analysis": "2",
+                        "timestamp": "1719217388",
+                        "distribution": "3",
+                        "proposal_email_lock": false,
+                        "locked": false,
+                        "threat_level_id": "2",
+                        "publish_timestamp": "1719217456",
+                        "sighting_timestamp": "0",
+                        "sharing_group_id": "0",
+                        "org_id": "2",
+                        "orgc_id": "2",
+                        "disable_correlation": false,
+                        "extends_uuid": "",
+                        "protected": null
+                    }
+                }
+            }
+        ]
+
+2.11.3.1.  id
+
+   id represents the human-readable identifier associated to the
+   relationship for a specific MISP instance.  A human-readable
+   identifier MUST be represented as an unsigned integer.
+
+   id is represented as a JSON string. id SHALL be present.
+
+2.11.3.2.  uuid
+
+   uuid represents the Universally Unique IDentifier (UUID) [RFC4122] of
+   the relationship.  The uuid MUST be preserved for any updates or
+   transfer of the same Relationship object.  UUID version 4 is
+   RECOMMENDED when assigning it to a new Relationship.
+
+   uuid is represented as a JSON string. uuid MUST be present.
+
+
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 45]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+2.11.3.3.  object_uuid
+
+   object_uuid represents the target UUID element with a relationship.
+
+   object_uuid MUST be present.
+
+2.11.3.4.  object_type
+
+   object_type represents the type of element targeted in object_uuid.
+
+   object_type is represented as a JSON string.
+
+2.11.3.5.  authors
+
+   authors represent the authors of the relationship. the authors SHALL
+   be represented with an email address or an identifier.
+
+   authors is represented as a JSON string. authors SHALL be present.
+
+2.11.3.6.  org_uuid
+
+   org_uuid represents the Universally Unique IDentifier (UUID)
+   [RFC4122] identifier referencing an Org object of the organisation
+   which owns the relationship on a MISP instance.
+
+   The org_uuid object MUST updated for any updates or transfer to
+   another MISP instance.
+
+   org_uuid is represented as a JSON string. org_uuid MUST be present.
+
+2.11.3.7.  orgc_uuid
+
+   orgc_uuid represents the Universally Unique IDentifier (UUID)
+   [RFC4122] identifier referencing an Orgc object of the organisation
+   which created the relationship.
+
+   The orgc_uuid object MUST be preserved for any updates or transfer of
+   the same relationship.
+
+   orgc_uuid is represented as a JSON string. orgc_uuid MUST be present.
+
+2.11.3.8.  created
+
+   created represents a reference time when the element was created.
+   created is expressed as an ISO 8601 datetime up to the micro-second
+   with time zone support.
+
+   created is represented as a JSON string. created MAY be present.
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 46]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+2.11.3.9.  modified
+
+   modified represents a reference time when the element was modified.
+   modified is expressed as an ISO 8601 datetime up to the micro-second
+   with time zone support.
+
+   modified is represented as a JSON string. modified MAY be present.
+
+2.11.3.10.  distribution
+
+   distribution represents the basic distribution rules of the opinion.
+   The system must adhere to the distribution setting for access control
+   and for dissemination of the opinion.
+
+   distribution is represented by a JSON string. distribution SHALL be
+   present and be one of the following options:
+
+   0  Your Organisation Only
+   1  This Community Only
+   2  Connected Communities
+   3  All Communities
+   4  Sharing Group
+   5  Inherit Event
+
+2.11.3.11.  sharing_group_id
+
+   sharing_group_id represents the local id to the MISP local instance
+   of the Sharing Group associated for the distribution.
+
+   sharing_group_id is represented by a JSON string. sharing_group_id
+   SHALL be present and set to "0" if not used.
+
+2.11.3.12.  relationship_type
+
+   relationship_type represents the human readable relation from the
+   Analyst Data towards the related_object_uuid.
+
+   relationship_type SHALL use a relationship from the MISP object
+   relationship types.
+
+   relationship_type is represented as a JSON string. relationship_type
+   MUST be present.
+
+2.11.3.13.  related_object_uuid
+
+   related_object_uuid represents the target relationship UUID
+   reference.
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 47]
+
+Internet-Draft              MISP core format                   June 2024
+
+
+   relationship_object_uuid is represented as a JSON string.
+   relationship_object_uuid MUST be present.
+
+2.11.3.14.  related_object_type
+
+   relationship_object_type represents the type of the target.
+
+   relationship_object_type is represented as a JSON string.
+
+2.11.3.15.  note_type_name
+
+   note_type_name describe the type of the analyst data such as
+   'Opinion', 'Note' or 'Relationship'.
+
+   A relationship is defined as Relationship.
+
+   note_type_name is represented as a JSON string. note_type_name MUST
+   be present.
 
 3.  JSON Schema
 
@@ -1991,6 +2682,14 @@ Internet-Draft              MISP core format               December 2023
          "uuid"
        ]
      },
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 48]
+
+Internet-Draft              MISP core format                   June 2024
+
+
      "orgc": {
        "type": "object",
        "additionalProperties": false,
@@ -2010,14 +2709,6 @@ Internet-Draft              MISP core format               December 2023
        ]
      },
      "sharing_group": {
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 36]
-
-Internet-Draft              MISP core format               December 2023
-
-
        "type": "object",
        "additionalProperties": false,
        "properties": {
@@ -2047,6 +2738,14 @@ Internet-Draft              MISP core format               December 2023
          },
          "active": {
            "type": "boolean"
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 49]
+
+Internet-Draft              MISP core format                   June 2024
+
+
          },
          "created": {
            "type": "string"
@@ -2066,14 +2765,6 @@ Internet-Draft              MISP core format               December 2023
          "SharingGroupOrg": {
            "type": "array",
            "uniqueItems": true,
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 37]
-
-Internet-Draft              MISP core format               December 2023
-
-
            "items": {
              "$ref": "#/defs/sharing_group_org"
            }
@@ -2103,6 +2794,14 @@ Internet-Draft              MISP core format               December 2023
          "sharing_group_id": {
            "type": "string"
          },
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 50]
+
+Internet-Draft              MISP core format                   June 2024
+
+
          "org_id": {
            "type": "string"
          },
@@ -2122,14 +2821,6 @@ Internet-Draft              MISP core format               December 2023
            "type": "string"
          },
          "sharing_group_id": {
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 38]
-
-Internet-Draft              MISP core format               December 2023
-
-
            "type": "string"
          },
          "server_id": {
@@ -2159,6 +2850,14 @@ Internet-Draft              MISP core format               December 2023
        }
      },
      "object": {
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 51]
+
+Internet-Draft              MISP core format                   June 2024
+
+
        "type": "object",
        "additionalProperties": false,
        "properties": {
@@ -2178,14 +2877,6 @@ Internet-Draft              MISP core format               December 2023
            "type": "string"
          },
          "template_version": {
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 39]
-
-Internet-Draft              MISP core format               December 2023
-
-
            "type": "string"
          },
          "id": {
@@ -2215,6 +2906,14 @@ Internet-Draft              MISP core format               December 2023
          "comment": {
            "type": "string"
          },
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 52]
+
+Internet-Draft              MISP core format                   June 2024
+
+
          "ObjectReference": {
              "type": "array",
              "uniqueItems": true,
@@ -2234,14 +2933,6 @@ Internet-Draft              MISP core format               December 2023
      "sighthing": {
        "type": "object",
        "additionalProperties": false,
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 40]
-
-Internet-Draft              MISP core format               December 2023
-
-
        "properties": {
          "id": {
            "type": "string"
@@ -2271,6 +2962,14 @@ Internet-Draft              MISP core format               December 2023
              "$ref": "#/defs/organisation"
          }
        }
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 53]
+
+Internet-Draft              MISP core format                   June 2024
+
+
      },
      "organisation": {
        "type": "object",
@@ -2290,14 +2989,6 @@ Internet-Draft              MISP core format               December 2023
      "objectreference": {
        "type": "object",
        "additionalProperties": false,
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 41]
-
-Internet-Draft              MISP core format               December 2023
-
-
        "properties": {
          "deleted": {
            "type": "boolean"
@@ -2327,6 +3018,14 @@ Internet-Draft              MISP core format               December 2023
            "type": "string"
          },
          "referenced_type": {
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 54]
+
+Internet-Draft              MISP core format                   June 2024
+
+
            "type": "string"
          },
          "relationship_type": {
@@ -2346,14 +3045,6 @@ Internet-Draft              MISP core format               December 2023
      "attribute": {
        "type": "object",
        "additionalProperties": false,
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 42]
-
-Internet-Draft              MISP core format               December 2023
-
-
        "properties": {
          "id": {
            "type": "string"
@@ -2383,6 +3074,14 @@ Internet-Draft              MISP core format               December 2023
            "type": "boolean"
          },
          "validationIssue": {
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 55]
+
+Internet-Draft              MISP core format                   June 2024
+
+
            "type": "boolean"
          },
          "Org": {
@@ -2402,14 +3101,6 @@ Internet-Draft              MISP core format               December 2023
          },
          "last_seen": {
            "type": "string"
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 43]
-
-Internet-Draft              MISP core format               December 2023
-
-
          },
          "comment": {
            "type": "string"
@@ -2439,6 +3130,14 @@ Internet-Draft              MISP core format               December 2023
            "$ref": "#/defs/sharing_group"
          },
          "ShadowAttribute": {
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 56]
+
+Internet-Draft              MISP core format                   June 2024
+
+
            "type": "array",
            "uniqueItems": true,
            "items": {
@@ -2458,14 +3157,6 @@ Internet-Draft              MISP core format               December 2023
            "items": {
              "$ref": "#/defs/galaxy"
            }
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 44]
-
-Internet-Draft              MISP core format               December 2023
-
-
          },
          "Tag": {
            "uniqueItems": true,
@@ -2495,6 +3186,14 @@ Internet-Draft              MISP core format               December 2023
          "extends_uuid": {
              "type": "string"
          },
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 57]
+
+Internet-Draft              MISP core format                   June 2024
+
+
          "threat_level_id": {
            "type": "string"
          },
@@ -2514,14 +3213,6 @@ Internet-Draft              MISP core format               December 2023
            "type": "string"
          },
          "timestamp": {
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 45]
-
-Internet-Draft              MISP core format               December 2023
-
-
            "type": "string"
          },
          "distribution": {
@@ -2551,6 +3242,14 @@ Internet-Draft              MISP core format               December 2023
          "Orgc": {
            "$ref": "#/defs/org"
          },
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 58]
+
+Internet-Draft              MISP core format                   June 2024
+
+
          "SharingGroup": {
            "$ref": "#/defs/sharing_group"
          },
@@ -2570,14 +3269,6 @@ Internet-Draft              MISP core format               December 2023
          },
          "RelatedEvent": {
            "type": "array",
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 46]
-
-Internet-Draft              MISP core format               December 2023
-
-
            "uniqueItems": true,
            "items": {
              "type": "object",
@@ -2607,6 +3298,14 @@ Internet-Draft              MISP core format               December 2023
            "type": "array",
            "uniqueItems": true,
            "items": {
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 59]
+
+Internet-Draft              MISP core format                   June 2024
+
+
              "$ref": "#/defs/tag"
            }
          }
@@ -2626,14 +3325,6 @@ Internet-Draft              MISP core format               December 2023
            "type": "string"
          },
          "exportable": {
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 47]
-
-Internet-Draft              MISP core format               December 2023
-
-
            "type": "boolean"
          },
          "hide_tag": {
@@ -2663,6 +3354,14 @@ Internet-Draft              MISP core format               December 2023
          "description": {
            "type": "string"
          },
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 60]
+
+Internet-Draft              MISP core format                   June 2024
+
+
          "version": {
            "type": "string"
          },
@@ -2682,14 +3381,6 @@ Internet-Draft              MISP core format               December 2023
        }
      },
      "galaxy_cluster": {
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 48]
-
-Internet-Draft              MISP core format               December 2023
-
-
        "type": "object",
        "additionalProperties": false,
        "properties": {
@@ -2719,6 +3410,14 @@ Internet-Draft              MISP core format               December 2023
          },
          "source": {
            "type": "string"
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 61]
+
+Internet-Draft              MISP core format                   June 2024
+
+
          },
          "authors": {
            "type": "array",
@@ -2738,14 +3437,6 @@ Internet-Draft              MISP core format               December 2023
    },
    "type": "object",
    "properties": {
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 49]
-
-Internet-Draft              MISP core format               December 2023
-
-
      "Event": {
        "$ref": "#/defs/event"
      }
@@ -2775,6 +3466,14 @@ Internet-Draft              MISP core format               December 2023
    Each uuid is composed of a JSON object with the following fields
    which came from the original event referenced by the same uuid:
 
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 62]
+
+Internet-Draft              MISP core format                   June 2024
+
+
    *  info (MUST)
    *  Orgc object (MUST)
    *  analysis (SHALL)
@@ -2791,16 +3490,6 @@ Internet-Draft              MISP core format               December 2023
    *  integrity:pgp represents a detached PGP signature [RFC4880] of the
       associated MISP event file to ensure integrity of the file.
       (SHOULD)
-
-
-
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 50]
-
-Internet-Draft              MISP core format               December 2023
-
 
    If a detached PGP signature is used for each MISP event, a detached
    PGP signature is a MUST to ensure integrity of the manifest file.  A
@@ -2833,6 +3522,14 @@ Internet-Draft              MISP core format               December 2023
     "threat_level_id": "3"
   },
   "5720accd-dd28-45f8-80e5-4605950d210f": {
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 63]
+
+Internet-Draft              MISP core format                   June 2024
+
+
     "info": "Malspam 2016-04-27 - Locky",
     "Orgc": {
       "id": "2",
@@ -2850,14 +3547,6 @@ Internet-Draft              MISP core format               December 2023
       },
       {
         "colour": "#2c4f00",
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 51]
-
-Internet-Draft              MISP core format               December 2023
-
-
         "name": "malware_classification:malware-category=\"Ransomware\""
       }
     ],
@@ -2888,6 +3577,15 @@ Internet-Draft              MISP core format               December 2023
    inputs beside the standard threat information that might already
    include malicious intended inputs.
 
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 64]
+
+Internet-Draft              MISP core format                   June 2024
+
+
 7.  Acknowledgements
 
    The authors wish to thank all the MISP community who are supporting
@@ -2896,23 +3594,14 @@ Internet-Draft              MISP core format               December 2023
 
 8.  References
 
-9.  Normative References
+9.  References
+
+9.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
-
-
-
-
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 52]
-
-Internet-Draft              MISP core format               December 2023
-
 
    [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
               Unique IDentifier (UUID) URN Namespace", RFC 4122,
@@ -2929,7 +3618,7 @@ Internet-Draft              MISP core format               December 2023
               DOI 10.17487/RFC8259, December 2017,
               <https://www.rfc-editor.org/info/rfc8259>.
 
-10.  Informative References
+9.2.  Informative References
 
    [JSON-SCHEMA]
               Wright, A., "JSON Schema: A Media Type for Describing JSON
@@ -2944,6 +3633,15 @@ Internet-Draft              MISP core format               December 2023
               vocabulary of relationships", <https://github.com/MISP/
               misp-objects/tree/master/relationships>.
 
+
+
+
+
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 65]
+
+Internet-Draft              MISP core format                   June 2024
+
+
    [MISP-T]   Community, M., "MISP Taxonomies - shared and common
               vocabularies of tags",
               <https://github.com/MISP/misp-taxonomies>.
@@ -2955,19 +3653,8 @@ Authors' Addresses
    122, rue Adolphe Fischer
    L-L-1521 Luxembourg
    Luxembourg
-
    Phone: +352 247 88444
    Email: alexandre.dulaunoy@circl.lu
-
-
-
-
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 53]
-
-Internet-Draft              MISP core format               December 2023
 
 
    Andras Iklody
@@ -2975,7 +3662,6 @@ Internet-Draft              MISP core format               December 2023
    122, rue Adolphe Fischer
    L-L-1521 Luxembourg
    Luxembourg
-
    Phone: +352 247 88444
    Email: andras.iklody@circl.lu
 
@@ -3007,18 +3693,4 @@ Internet-Draft              MISP core format               December 2023
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody         Expires 26 June 2024                 [Page 54]
+Dulaunoy & Iklody       Expires 30 December 2024               [Page 66]

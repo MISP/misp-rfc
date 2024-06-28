@@ -192,11 +192,12 @@ A human-readable identifier <bcp14>MUST</bcp14> be represented as an unsigned in
 
 <section anchor="sample-org-object"><name>Sample Org Object</name>
 
-<artwork>&quot;Org&quot;: {
-        &quot;id&quot;: &quot;2&quot;,
-        &quot;name&quot;: &quot;CIRCL&quot;,
-        &quot;uuid&quot;: &quot;55f6ea5e-2c60-40e5-964f-47a8950d210f&quot;
+<artwork><![CDATA["Org": {
+        "id": "2",
+        "name": "CIRCL",
+        "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
+]]>
 </artwork>
 </section>
 </section>
@@ -220,25 +221,26 @@ where the category and type give meaning and context to the value. Through the v
 
 <section anchor="sample-attribute-object"><name>Sample Attribute Object</name>
 
-<artwork>&quot;Attribute&quot;: {
-              &quot;id&quot;: &quot;346056&quot;,
-              &quot;type&quot;: &quot;comment&quot;,
-              &quot;category&quot;: &quot;Other&quot;,
-              &quot;to_ids&quot;: false,
-              &quot;uuid&quot;: &quot;57f4f6d9-cd20-458b-84fd-109ec0a83869&quot;,
-              &quot;event_id&quot;: &quot;3357&quot;,
-              &quot;distribution&quot;: &quot;5&quot;,
-              &quot;timestamp&quot;: &quot;1475679332&quot;,
-              &quot;comment&quot;: &quot;&quot;,
-              &quot;sharing_group_id&quot;: &quot;0&quot;,
-              &quot;deleted&quot;: false,
-              &quot;value&quot;: &quot;Hello world&quot;,
-              &quot;SharingGroup&quot;: [],
-              &quot;ShadowAttribute&quot;: [],
-              &quot;RelatedAttribute&quot;: [],
-              &quot;first_seen&quot;: &quot;2019-06-02T22:14:28.711954+00:00&quot;,
-              &quot;last_seen&quot;: null
+<artwork><![CDATA["Attribute": {
+              "id": "346056",
+              "type": "comment",
+              "category": "Other",
+              "to_ids": false,
+              "uuid": "57f4f6d9-cd20-458b-84fd-109ec0a83869",
+              "event_id": "3357",
+              "distribution": "5",
+              "timestamp": "1475679332",
+              "comment": "",
+              "sharing_group_id": "0",
+              "deleted": false,
+              "value": "Hello world",
+              "SharingGroup": [],
+              "ShadowAttribute": [],
+              "RelatedAttribute": [],
+              "first_seen": "2019-06-02T22:14:28.711954+00:00",
+              "last_seen": null
              }
+]]>
 </artwork>
 </section>
 
@@ -394,28 +396,29 @@ which can be accepted or discarded by the event creator. If accepted, the origin
 
 <section anchor="sample-attribute-object-1"><name>Sample Attribute Object</name>
 
-<artwork>&quot;ShadowAttribute&quot;:  {
-                       &quot;id&quot;: &quot;8&quot;,
-                       &quot;type&quot;: &quot;ip-src&quot;,
-                       &quot;category&quot;: &quot;Network activity&quot;,
-                       &quot;to_ids&quot;: false,
-                       &quot;uuid&quot;: &quot;57d475f1-da78-4569-89de-1458c0a83869&quot;,
-                       &quot;event_uuid&quot;: &quot;57d475e6-41c4-41ca-b450-145ec0a83869&quot;,
-                       &quot;event_id&quot;: &quot;9&quot;,
-                       &quot;old_id&quot;: &quot;319&quot;,
-                       &quot;comment&quot;: &quot;&quot;,
-                       &quot;org_id&quot;: &quot;1&quot;,
-                       &quot;proposal_to_delete&quot;: false,
-                       &quot;value&quot;: &quot;5.5.5.5&quot;,
-                       &quot;deleted&quot;: false,
-                       &quot;Org&quot;: {
-                           &quot;id&quot;: &quot;1&quot;,
-                           &quot;name&quot;: &quot;MISP&quot;,
-                           &quot;uuid&quot;: &quot;568cce5a-0c80-412b-8fdf-1ffac0a83869&quot;
+<artwork><![CDATA["ShadowAttribute":  {
+                       "id": "8",
+                       "type": "ip-src",
+                       "category": "Network activity",
+                       "to_ids": false,
+                       "uuid": "57d475f1-da78-4569-89de-1458c0a83869",
+                       "event_uuid": "57d475e6-41c4-41ca-b450-145ec0a83869",
+                       "event_id": "9",
+                       "old_id": "319",
+                       "comment": "",
+                       "org_id": "1",
+                       "proposal_to_delete": false,
+                       "value": "5.5.5.5",
+                       "deleted": false,
+                       "Org": {
+                           "id": "1",
+                           "name": "MISP",
+                           "uuid": "568cce5a-0c80-412b-8fdf-1ffac0a83869"
                        },
-                       &quot;first_seen&quot;: &quot;2019-06-02T22:14:28.711954+00:00&quot;,
-                       &quot;last_seen&quot;: null
+                       "first_seen": "2019-06-02T22:14:28.711954+00:00",
+                       "last_seen": null
                    }
+]]>
 </artwork>
 </section>
 
@@ -557,11 +560,12 @@ A human-readable identifier <bcp14>MUST</bcp14> be represented as an unsigned in
 
 <section anchor="sample-org-object-1"><name>Sample Org Object</name>
 
-<artwork>&quot;Org&quot;: {
-        &quot;id&quot;: &quot;2&quot;,
-        &quot;name&quot;: &quot;CIRCL&quot;,
-        &quot;uuid&quot;: &quot;55f6ea5e-2c60-40e5-964f-47a8950d210f&quot;
+<artwork><![CDATA["Org": {
+        "id": "2",
+        "name": "CIRCL",
+        "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
+]]>
 </artwork>
 </section>
 </section>
@@ -576,46 +580,47 @@ Each object is created using an Object Template and carries the meta-data of the
 
 <section anchor="sample-object"><name>Sample Object</name>
 
-<artwork anchor="fig-sample-object">&quot;Object&quot;: {
-   &quot;id&quot;: &quot;588&quot;,
-   &quot;name&quot;: &quot;file&quot;,
-   &quot;meta-category&quot;: &quot;file&quot;,
-   &quot;description&quot;: &quot;File object describing a file with meta-information&quot;,
-   &quot;template_uuid&quot;: &quot;688c46fb-5edb-40a3-8273-1af7923e2215&quot;,
-   &quot;template_version&quot;: &quot;3&quot;,
-   &quot;event_id&quot;: &quot;56&quot;,
-   &quot;uuid&quot;: &quot;398b0094-0384-4c48-9bf0-22b3dff9c4d3&quot;,
-   &quot;timestamp&quot;: &quot;1505747965&quot;,
-   &quot;distribution&quot;: &quot;5&quot;,
-   &quot;sharing_group_id&quot;: &quot;0&quot;,
-   &quot;comment&quot;: &quot;&quot;,
-   &quot;deleted&quot;: false,
-   &quot;ObjectReference&quot;: [],
-   &quot;Attribute&quot;: [
+<artwork anchor="fig-sample-object"><![CDATA["Object": {
+   "id": "588",
+   "name": "file",
+   "meta-category": "file",
+   "description": "File object describing a file with meta-information",
+   "template_uuid": "688c46fb-5edb-40a3-8273-1af7923e2215",
+   "template_version": "3",
+   "event_id": "56",
+   "uuid": "398b0094-0384-4c48-9bf0-22b3dff9c4d3",
+   "timestamp": "1505747965",
+   "distribution": "5",
+   "sharing_group_id": "0",
+   "comment": "",
+   "deleted": false,
+   "ObjectReference": [],
+   "Attribute": [
      {
-                 &quot;id&quot;: &quot;7822&quot;,
-                 &quot;type&quot;: &quot;filename&quot;,
-                 &quot;category&quot;: &quot;Payload delivery&quot;,
-                 &quot;to_ids&quot;: true,
-                 &quot;uuid&quot;: &quot;59bfe3fb-bde0-4dfe-b5b1-2b10a07724d1&quot;,
-                 &quot;event_id&quot;: &quot;56&quot;,
-                 &quot;distribution&quot;: &quot;0&quot;,
-                 &quot;timestamp&quot;: &quot;1505747963&quot;,
-                 &quot;comment&quot;: &quot;&quot;,
-                 &quot;sharing_group_id&quot;: &quot;0&quot;,
-                 &quot;deleted&quot;: false,
-                 &quot;disable_correlation&quot;: false,
-                 &quot;object_id&quot;: &quot;588&quot;,
-                 &quot;object_relation&quot;: &quot;filename&quot;,
-                 &quot;value&quot;: &quot;StarCraft.exe&quot;,
-                 &quot;ShadowAttribute&quot;: [],
-                 &quot;first_seen&quot;: null,
-                 &quot;last_seen&quot;: null
+                 "id": "7822",
+                 "type": "filename",
+                 "category": "Payload delivery",
+                 "to_ids": true,
+                 "uuid": "59bfe3fb-bde0-4dfe-b5b1-2b10a07724d1",
+                 "event_id": "56",
+                 "distribution": "0",
+                 "timestamp": "1505747963",
+                 "comment": "",
+                 "sharing_group_id": "0",
+                 "deleted": false,
+                 "disable_correlation": false,
+                 "object_id": "588",
+                 "object_relation": "filename",
+                 "value": "StarCraft.exe",
+                 "ShadowAttribute": [],
+                 "first_seen": null,
+                 "last_seen": null
      },
-     &quot;first_seen&quot;: &quot;2019-06-02T22:14:28.711954+00:00&quot;,
-     &quot;last_seen&quot;: null
+     "first_seen": "2019-06-02T22:14:28.711954+00:00",
+     "last_seen": null
    ]
 }
+]]>
 </artwork>
 </section>
 
@@ -728,20 +733,21 @@ represented as an unsigned integer.</t>
 
 <section anchor="sample-objectreference-object"><name>Sample ObjectReference object</name>
 
-<artwork>&quot;ObjectReference&quot;: {
-                    &quot;id&quot;: &quot;195&quot;,
-                    &quot;uuid&quot;: &quot;59c21a2c-c0ac-4083-93b3-363da07724d1&quot;,
-                    &quot;timestamp&quot;: &quot;1505892908&quot;,
-                    &quot;object_id&quot;: &quot;591&quot;,
-                    &quot;event_id&quot;: &quot;113&quot;,
-                    &quot;referenced_id&quot;: &quot;590&quot;,
-                    &quot;referenced_type&quot;: &quot;1&quot;,
-                    &quot;relationship_type&quot;: &quot;derived-from&quot;,
-                    &quot;comment&quot;: &quot;&quot;,
-                    &quot;deleted&quot;: false,
-                    &quot;object_uuid&quot;: &quot;59c1134d-8a40-4c14-ad94-0f7ba07724d1&quot;,
-                    &quot;referenced_uuid&quot;: &quot;59c1133c-9adc-4d06-a34b-0f7ca07724d1&quot;,
+<artwork><![CDATA["ObjectReference": {
+                    "id": "195",
+                    "uuid": "59c21a2c-c0ac-4083-93b3-363da07724d1",
+                    "timestamp": "1505892908",
+                    "object_id": "591",
+                    "event_id": "113",
+                    "referenced_id": "590",
+                    "referenced_type": "1",
+                    "relationship_type": "derived-from",
+                    "comment": "",
+                    "deleted": false,
+                    "object_uuid": "59c1134d-8a40-4c14-ad94-0f7ba07724d1",
+                    "referenced_uuid": "59c1133c-9adc-4d06-a34b-0f7ca07724d1",
                    }
+]]>
 </artwork>
 </section>
 
@@ -887,11 +893,12 @@ of the report. name <bcp14>SHOULD</bcp14> NOT be bigger than 256 characters and 
 
 <section anchor="sample-tag"><name>Sample Tag</name>
 
-<artwork>&quot;Tag&quot;: [{
-        &quot;exportable&quot;: true,
-        &quot;colour&quot;: &quot;#ffffff&quot;,
-        &quot;name&quot;: &quot;tlp:white&quot;,
-        &quot;id&quot;: &quot;2&quot; }]
+<artwork><![CDATA["Tag": [{
+        "exportable": true,
+        "colour": "#ffffff",
+        "name": "tlp:white",
+        "id": "2" }]
+]]>
 </artwork>
 </section>
 </section>
@@ -942,38 +949,39 @@ attribute_id represents the human-readable identifier of the attribute reference
 
 <section anchor="sample-sighting"><name>Sample Sighting</name>
 
-<artwork>&quot;Sighting&quot;: [
+<artwork><![CDATA["Sighting": [
 		   {
-				&quot;id&quot;: &quot;13599&quot;,
-				&quot;attribute_id&quot;: &quot;1201615&quot;,
-				&quot;event_id&quot;: &quot;10164&quot;,
-				&quot;org_id&quot;: &quot;2&quot;,
-				&quot;date_sighting&quot;: &quot;1517581400&quot;,
-				&quot;uuid&quot;: &quot;5a747459-41b4-4826-9b29-42dd950d210f&quot;,
-				&quot;source&quot;: &quot;M2M-CIRCL&quot;,
-				&quot;type&quot;: &quot;0&quot;,
-				&quot;Organisation&quot;: {
-					&quot;id&quot;: &quot;2&quot;,
-					&quot;uuid&quot;: &quot;55f6ea5e-2c60-40e5-964f-47a8950d210f&quot;,
-					&quot;name&quot;: &quot;CIRCL&quot;
+				"id": "13599",
+				"attribute_id": "1201615",
+				"event_id": "10164",
+				"org_id": "2",
+				"date_sighting": "1517581400",
+				"uuid": "5a747459-41b4-4826-9b29-42dd950d210f",
+				"source": "M2M-CIRCL",
+				"type": "0",
+				"Organisation": {
+					"id": "2",
+					"uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+					"name": "CIRCL"
 				}
 			},
 			{
-				&quot;id&quot;: &quot;13601&quot;,
-				&quot;attribute_id&quot;: &quot;1201615&quot;,
-				&quot;event_id&quot;: &quot;10164&quot;,
-				&quot;org_id&quot;: &quot;2&quot;,
-				&quot;date_sighting&quot;: &quot;1517581401&quot;,
-				&quot;uuid&quot;: &quot;5a74745a-a190-4d04-b719-4916950d210f&quot;,
-				&quot;source&quot;: &quot;M2M-CIRCL&quot;,
-				&quot;type&quot;: &quot;0&quot;,
-				&quot;Organisation&quot;: {
-					&quot;id&quot;: &quot;2&quot;,
-					&quot;uuid&quot;: &quot;55f6ea5e-2c60-40e5-964f-47a8950d210f&quot;,
-					&quot;name&quot;: &quot;CIRCL&quot;
+				"id": "13601",
+				"attribute_id": "1201615",
+				"event_id": "10164",
+				"org_id": "2",
+				"date_sighting": "1517581401",
+				"uuid": "5a74745a-a190-4d04-b719-4916950d210f",
+				"source": "M2M-CIRCL",
+				"type": "0",
+				"Organisation": {
+					"id": "2",
+					"uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+					"name": "CIRCL"
 				}
 			}
 		]
+]]>
 </artwork>
 </section>
 </section>
@@ -983,51 +991,496 @@ attribute_id represents the human-readable identifier of the attribute reference
 
 <section anchor="sample-galaxy"><name>Sample Galaxy</name>
 
-<artwork>&quot;Galaxy&quot;: [ {
-           &quot;id&quot;: &quot;18&quot;,
-           &quot;uuid&quot;: &quot;698774c7-8022-42c4-917f-8d6e4f06ada3&quot;,
-           &quot;name&quot;: &quot;Threat Actor&quot;,
-           &quot;type&quot;: &quot;threat-actor&quot;,
-           &quot;description&quot;: &quot;Threat actors are characteristics of malicious actors
+<artwork><![CDATA["Galaxy": [ {
+           "id": "18",
+           "uuid": "698774c7-8022-42c4-917f-8d6e4f06ada3",
+           "name": "Threat Actor",
+           "type": "threat-actor",
+           "description": "Threat actors are characteristics of malicious actors
                           (or adversaries) representing a cyber attack threat
-                          including presumed intent and historically observed behaviour.&quot;,
-                &quot;version&quot;: &quot;1&quot;,
-        &quot;GalaxyCluster&quot;: [
+                          including presumed intent and historically observed behaviour.",
+                "version": "1",
+        "GalaxyCluster": [
             {
-                &quot;id&quot;: &quot;1699&quot;,
-                &quot;uuid&quot;: &quot;7cdff317-a673-4474-84ec-4f1754947823&quot;,
-                &quot;type&quot;: &quot;threat-actor&quot;,
-                &quot;value&quot;: &quot;Anunak&quot;,
-                &quot;tag_name&quot;: &quot;misp-galaxy:threat-actor=\&quot;Anunak\&quot;&quot;,
-                &quot;description&quot;: &quot;Groups targeting financial organizations
-                    or people with significant financial assets.&quot;,
-                &quot;galaxy_id&quot;: &quot;18&quot;,
-                &quot;source&quot;: &quot;MISP Project&quot;,
-                &quot;authors&quot;: [
-                    &quot;Alexandre Dulaunoy&quot;,
-                    &quot;Florian Roth&quot;,
-                    &quot;Thomas Schreck&quot;,
-                    &quot;Timo Steffens&quot;,
-                    &quot;Various&quot;
+                "id": "1699",
+                "uuid": "7cdff317-a673-4474-84ec-4f1754947823",
+                "type": "threat-actor",
+                "value": "Anunak",
+                "tag_name": "misp-galaxy:threat-actor=\"Anunak\"",
+                "description": "Groups targeting financial organizations
+                    or people with significant financial assets.",
+                "galaxy_id": "18",
+                "source": "MISP Project",
+                "authors": [
+                    "Alexandre Dulaunoy",
+                    "Florian Roth",
+                    "Thomas Schreck",
+                    "Timo Steffens",
+                    "Various"
                 ],
-                &quot;tag_id&quot;: &quot;111&quot;,
-                        &quot;meta&quot;: {
-                            &quot;synonyms&quot;: [
-                                &quot;Carbanak&quot;,
-                                &quot;Carbon Spider&quot;
+                "tag_id": "111",
+                        "meta": {
+                            "synonyms": [
+                                "Carbanak",
+                                "Carbon Spider"
                             ],
-                            &quot;country&quot;: [
-                                &quot;RU&quot;
+                            "country": [
+                                "RU"
                             ],
-                            &quot;motive&quot;: [
-                                &quot;Cybercrime&quot;
+                            "motive": [
+                                "Cybercrime"
                             ]
                         }
                     }
                 ]
             }
         ]
+]]>
 </artwork>
+</section>
+</section>
+
+<section anchor="analyst-data"><name>Analyst Data</name>
+<t>Analyst Data are objects which can be in different level of MISP format including objects, attributes, event or detached from MISP core format. It can expressed
+a <tt>Opinion</tt>, <tt>Note</tt> or a <tt>Relationship</tt> from an analyst. Those three types define the key of the analyst data and can be present at the level where analyst data is applied.
+Analyst data can be nested to describe complementary analysis on the analyst data by itself.</t>
+
+<section anchor="opinion"><name>Opinion</name>
+
+<artwork><![CDATA[ "Opinion": [
+                    {
+                        "id": "13",
+                        "uuid": "238b1e74-e378-4bde-a463-cbb8fc496989",
+                        "object_uuid": "ae4396d9-3deb-49c9-b13e-b01f3a0736c3",
+                        "object_type": "Attribute",
+                        "authors": "alexandre.dulaunoy@circl.lu",
+                        "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                        "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                        "created": "2024-06-25 04:40:01",
+                        "modified": "2024-06-25 04:40:01",
+                        "distribution": "3",
+                        "sharing_group_id": null,
+                        "opinion": "0",
+                        "comment": "Incorrect selector",
+                        "note_type_name": "Opinion",
+                        "Orgc": {
+                            "id": "2",
+                            "name": "CIRCL",
+                            "date_created": "2016-06-29 08:47:35",
+                            "date_modified": "2017-11-24 12:51:22",
+                            "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                            "type": "",
+                            "nationality": "Luxembourg",
+                            "sector": "",
+                            "created_by": "218",
+                            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                            "contacts": "",
+                            "local": true,
+                            "landingpage": "",
+                            "restricted_to_domain": null
+                        },
+                        "Org": {
+                            "id": "2",
+                            "name": "CIRCL",
+                            "date_created": "2016-06-29 08:47:35",
+                            "date_modified": "2017-11-24 12:51:22",
+                            "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                            "type": "",
+                            "nationality": "Luxembourg",
+                            "sector": "",
+                            "created_by": "218",
+                            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                            "contacts": "",
+                            "local": true,
+                            "landingpage": "",
+                            "restricted_to_domain": null
+                        }
+                    }
+                ]
+]]>
+</artwork>
+
+<section anchor="id-6"><name>id</name>
+<t>id represents the human-readable identifier associated to the opinion for a specific MISP instance. A human-readable identifier <bcp14>MUST</bcp14> be
+represented as an unsigned integer.</t>
+<t>id is represented as a JSON string. id <bcp14>SHALL</bcp14> be present.</t>
+</section>
+
+<section anchor="uuid-6"><name>uuid</name>
+<t>uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> of the opinion. The uuid <bcp14>MUST</bcp14> be preserved
+for any updates or transfer of the same <tt>Opinion</tt> object. UUID version 4 is <bcp14>RECOMMENDED</bcp14> when assigning it to a new <tt>Opinion</tt>.</t>
+<t>uuid is represented as a JSON string. uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="object-uuid-1"><name>object_uuid</name>
+<t>object_uuid represents the target UUID element with an opinion.</t>
+<t>object_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="object-type"><name>object_type</name>
+<t>object_type represents the type of element targeted in object_uuid.</t>
+<t>object_type is represented as a JSON string.</t>
+</section>
+
+<section anchor="authors"><name>authors</name>
+<t>authors represent the authors of the opinion. the authors <bcp14>SHALL</bcp14> be represented with an email address or an identifier.</t>
+<t>authors is represented as a JSON string. authors <bcp14>SHALL</bcp14> be present.</t>
+</section>
+
+<section anchor="org-uuid"><name>org_uuid</name>
+<t>org_uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> identifier referencing an Org object of the organisation which owns the opinion on a MISP instance.</t>
+<t>The org_uuid object <bcp14>MUST</bcp14> be updated for any updates or transfer to another MISP instance.</t>
+<t>org_uuid is represented as a JSON string. org_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="orgc-uuid"><name>orgc_uuid</name>
+<t>orgc_uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> identifier referencing an Orgc object of the organisation which created the opinion.</t>
+<t>The orgc_uuid object <bcp14>MUST</bcp14> be preserved for any updates or transfer of the same opinion.</t>
+<t>orgc_uuid is represented as a JSON string. orgc_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="created"><name>created</name>
+<t>created represents a reference time when the element was created. created is expressed as an ISO 8601 datetime up to the micro-second with time zone support.</t>
+<t>created is represented as a JSON string. created <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="modified"><name>modified</name>
+<t>modified represents a reference time when the element was modified. modified is expressed as an ISO 8601 datetime up to the micro-second with time zone support.</t>
+<t>modified is represented as a JSON string. modified <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="distribution-4"><name>distribution</name>
+<t>distribution represents the basic distribution rules of the opinion. The system must adhere to the distribution setting for access control and for dissemination of the opinion.</t>
+<t>distribution is represented by a JSON string. distribution <bcp14>SHALL</bcp14> be present and be one of the following options:</t>
+
+<dl spacing="compact">
+<dt>0</dt>
+<dd>Your Organisation Only</dd>
+<dt>1</dt>
+<dd>This Community Only</dd>
+<dt>2</dt>
+<dd>Connected Communities</dd>
+<dt>3</dt>
+<dd>All Communities</dd>
+<dt>4</dt>
+<dd>Sharing Group</dd>
+<dt>5</dt>
+<dd>Inherit Event</dd>
+</dl>
+</section>
+
+<section anchor="sharing-group-id-4"><name>sharing_group_id</name>
+<t>sharing_group_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.</t>
+<t>sharing_group_id is represented by a JSON string. sharing_group_id <bcp14>SHALL</bcp14> be present and set to &quot;0&quot; if not used.</t>
+</section>
+
+<section anchor="opinion-1"><name>opinion</name>
+<t>opinion is a value between 0 to 100 to represent the level of confidence. 50 is an neutral opinion.</t>
+<t>opinion is represented as a JSON string. opinion <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="comment-4"><name>comment</name>
+<t>comment describes the opinion.</t>
+<t>comment is represented as a JSON string. comment <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="note-type-name"><name>note_type_name</name>
+<t>note_type_name describe the type of the analyst data such as 'Opinion', 'Note' or 'Relationship'.</t>
+<t>An opinion is defined as <tt>Opinion</tt>.</t>
+<t>note_type_name is represented as a JSON string. note_type_name <bcp14>MUST</bcp14> be present.</t>
+</section>
+</section>
+
+<section anchor="note"><name>Note</name>
+
+<artwork><![CDATA[        "Note": [
+            {
+                "id": "6",
+                "uuid": "e4b54bda-1006-43f3-a269-2c271c1aaed0",
+                "object_uuid": "ac22932c-27dc-415d-bc7b-6fd1dbf8743d",
+                "object_type": "Event",
+                "authors": "alexandre.dulaunoy@circl.lu",
+                "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "created": "2024-06-25 04:37:03",
+                "modified": "2024-06-25 04:37:03",
+                "distribution": "3",
+                "sharing_group_id": null,
+                "note": "Note to an event",
+                "language": "en",
+                "note_type_name": "Note",
+                "Orgc": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "Org": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                }
+]]>
+</artwork>
+
+<section anchor="id-7"><name>id</name>
+<t>id represents the human-readable identifier associated to the note for a specific MISP instance. A human-readable identifier <bcp14>MUST</bcp14> be
+represented as an unsigned integer.</t>
+<t>id is represented as a JSON string. id <bcp14>SHALL</bcp14> be present.</t>
+</section>
+
+<section anchor="uuid-7"><name>uuid</name>
+<t>uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> of the note. The uuid <bcp14>MUST</bcp14> be preserved
+for any updates or transfer of the same <tt>Note</tt> object. UUID version 4 is <bcp14>RECOMMENDED</bcp14> when assigning it to a new <tt>Note</tt>.</t>
+<t>uuid is represented as a JSON string. uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="object-uuid-2"><name>object_uuid</name>
+<t>object_uuid represents the target UUID element with an note.</t>
+<t>object_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="object-type-1"><name>object_type</name>
+<t>object_type represents the type of element targeted in object_uuid.</t>
+<t>object_type is represented as a JSON string.</t>
+</section>
+
+<section anchor="authors-1"><name>authors</name>
+<t>authors represent the authors of the note. the authors <bcp14>SHALL</bcp14> be represented with an email address or an identifier.</t>
+<t>authors is represented as a JSON string. authors <bcp14>SHALL</bcp14> be present.</t>
+</section>
+
+<section anchor="org-uuid-1"><name>org_uuid</name>
+<t>org_uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> identifier referencing an Org object of the organisation which owns the note on a MISP instance.</t>
+<t>The org_uuid object <bcp14>MUST</bcp14> be updated for any updates or transfer to another MISP instance.</t>
+<t>org_uuid is represented as a JSON string. org_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="orgc-uuid-1"><name>orgc_uuid</name>
+<t>orgc_uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> identifier referencing an Orgc object of the organisation which created the note.</t>
+<t>The orgc_uuid object <bcp14>MUST</bcp14> be preserved for any updates or transfer of the same note.</t>
+<t>orgc_uuid is represented as a JSON string. orgc_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="created-1"><name>created</name>
+<t>created represents a reference time when the element was created. created is expressed as an ISO 8601 datetime up to the micro-second with time zone support.</t>
+<t>created is represented as a JSON string. created <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="modified-1"><name>modified</name>
+<t>modified represents a reference time when the element was modified. modified is expressed as an ISO 8601 datetime up to the micro-second with time zone support.</t>
+<t>modified is represented as a JSON string. modified <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="distribution-5"><name>distribution</name>
+<t>distribution represents the basic distribution rules of the opinion. The system must adhere to the distribution setting for access control and for dissemination of the opinion.</t>
+<t>distribution is represented by a JSON string. distribution <bcp14>SHALL</bcp14> be present and be one of the following options:</t>
+
+<dl spacing="compact">
+<dt>0</dt>
+<dd>Your Organisation Only</dd>
+<dt>1</dt>
+<dd>This Community Only</dd>
+<dt>2</dt>
+<dd>Connected Communities</dd>
+<dt>3</dt>
+<dd>All Communities</dd>
+<dt>4</dt>
+<dd>Sharing Group</dd>
+<dt>5</dt>
+<dd>Inherit Event</dd>
+</dl>
+</section>
+
+<section anchor="sharing-group-id-5"><name>sharing_group_id</name>
+<t>sharing_group_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.</t>
+<t>sharing_group_id is represented by a JSON string. sharing_group_id <bcp14>SHALL</bcp14> be present and set to &quot;0&quot; if not used.</t>
+</section>
+
+<section anchor="note-1"><name>note</name>
+<t>note describes the note in text format.</t>
+<t>note is represented as a JSON string.  <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="note-type-name-1"><name>note_type_name</name>
+<t>note_type_name describe the type of the analyst data such as 'Opinion', 'Note' or 'Relationship'.</t>
+<t>A note is defined as <tt>Note</tt>.</t>
+<t>note_type_name is represented as a JSON string. note_type_name <bcp14>MUST</bcp14> be present.</t>
+</section>
+</section>
+
+<section anchor="relationship"><name>Relationship</name>
+
+<artwork><![CDATA["Relationship": [
+            {
+                "id": "2",
+                "uuid": "8f358641-4bdc-4261-8a9f-5a926fde2b0d",
+                "object_uuid": "ac22932c-27dc-415d-bc7b-6fd1dbf8743d",
+                "object_type": "Event",
+                "authors": "alexandre.dulaunoy@circl.lu",
+                "org_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "orgc_uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                "created": "2024-06-25 04:39:30",
+                "modified": "2024-06-25 04:39:30",
+                "distribution": "3",
+                "sharing_group_id": null,
+                "relationship_type": "relates",
+                "related_object_uuid": "f3290493-8f74-4220-aa04-b83408e37a0c",
+                "related_object_type": "Event",
+                "note_type": 2,
+                "note_type_name": "Relationship",
+                "Orgc": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "Org": {
+                    "id": "2",
+                    "name": "CIRCL",
+                    "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f",
+                    "type": "",
+                    "description": "CIRCL is the CERT (Computer Emergency Response Team/Computer Security Incident Response Team) for the private sector, communes and non-governmental entities in Luxembourg.",
+                    "sector": "",
+                    "nationality": "Luxembourg",
+                    "local": true
+                },
+                "related_object": {
+                    "Event": {
+                        "id": "205025",
+                        "date": "2023-12-19",
+                        "info": "Phishing targeting Luxembourg services (hosted and served on/from AWS)",
+                        "user_id": "21",
+                        "published": true,
+                        "uuid": "f3290493-8f74-4220-aa04-b83408e37a0c",
+                        "attribute_count": "446",
+                        "analysis": "2",
+                        "timestamp": "1719217388",
+                        "distribution": "3",
+                        "proposal_email_lock": false,
+                        "locked": false,
+                        "threat_level_id": "2",
+                        "publish_timestamp": "1719217456",
+                        "sighting_timestamp": "0",
+                        "sharing_group_id": "0",
+                        "org_id": "2",
+                        "orgc_id": "2",
+                        "disable_correlation": false,
+                        "extends_uuid": "",
+                        "protected": null
+                    }
+                }
+            }
+        ]
+]]>
+</artwork>
+
+<section anchor="id-8"><name>id</name>
+<t>id represents the human-readable identifier associated to the relationship for a specific MISP instance. A human-readable identifier <bcp14>MUST</bcp14> be
+represented as an unsigned integer.</t>
+<t>id is represented as a JSON string. id <bcp14>SHALL</bcp14> be present.</t>
+</section>
+
+<section anchor="uuid-8"><name>uuid</name>
+<t>uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> of the relationship. The uuid <bcp14>MUST</bcp14> be preserved
+for any updates or transfer of the same <tt>Relationship</tt> object. UUID version 4 is <bcp14>RECOMMENDED</bcp14> when assigning it to a new <tt>Relationship</tt>.</t>
+<t>uuid is represented as a JSON string. uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="object-uuid-3"><name>object_uuid</name>
+<t>object_uuid represents the target UUID element with a relationship.</t>
+<t>object_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="object-type-2"><name>object_type</name>
+<t>object_type represents the type of element targeted in object_uuid.</t>
+<t>object_type is represented as a JSON string.</t>
+</section>
+
+<section anchor="authors-2"><name>authors</name>
+<t>authors represent the authors of the relationship. the authors <bcp14>SHALL</bcp14> be represented with an email address or an identifier.</t>
+<t>authors is represented as a JSON string. authors <bcp14>SHALL</bcp14> be present.</t>
+</section>
+
+<section anchor="org-uuid-2"><name>org_uuid</name>
+<t>org_uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> identifier referencing an Org object of the organisation which owns the relationship on a MISP instance.</t>
+<t>The org_uuid object <bcp14>MUST</bcp14> updated for any updates or transfer to another MISP instance.</t>
+<t>org_uuid is represented as a JSON string. org_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="orgc-uuid-2"><name>orgc_uuid</name>
+<t>orgc_uuid represents the Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> identifier referencing an Orgc object of the organisation which created the relationship.</t>
+<t>The orgc_uuid object <bcp14>MUST</bcp14> be preserved for any updates or transfer of the same relationship.</t>
+<t>orgc_uuid is represented as a JSON string. orgc_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="created-2"><name>created</name>
+<t>created represents a reference time when the element was created. created is expressed as an ISO 8601 datetime up to the micro-second with time zone support.</t>
+<t>created is represented as a JSON string. created <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="modified-2"><name>modified</name>
+<t>modified represents a reference time when the element was modified. modified is expressed as an ISO 8601 datetime up to the micro-second with time zone support.</t>
+<t>modified is represented as a JSON string. modified <bcp14>MAY</bcp14> be present.</t>
+</section>
+
+<section anchor="distribution-6"><name>distribution</name>
+<t>distribution represents the basic distribution rules of the opinion. The system must adhere to the distribution setting for access control and for dissemination of the opinion.</t>
+<t>distribution is represented by a JSON string. distribution <bcp14>SHALL</bcp14> be present and be one of the following options:</t>
+
+<dl spacing="compact">
+<dt>0</dt>
+<dd>Your Organisation Only</dd>
+<dt>1</dt>
+<dd>This Community Only</dd>
+<dt>2</dt>
+<dd>Connected Communities</dd>
+<dt>3</dt>
+<dd>All Communities</dd>
+<dt>4</dt>
+<dd>Sharing Group</dd>
+<dt>5</dt>
+<dd>Inherit Event</dd>
+</dl>
+</section>
+
+<section anchor="sharing-group-id-6"><name>sharing_group_id</name>
+<t>sharing_group_id represents the local id to the MISP local instance of the Sharing Group associated for the distribution.</t>
+<t>sharing_group_id is represented by a JSON string. sharing_group_id <bcp14>SHALL</bcp14> be present and set to &quot;0&quot; if not used.</t>
+</section>
+
+<section anchor="relationship-type-1"><name>relationship_type</name>
+<t>relationship_type represents the human readable relation from the Analyst Data towards the related_object_uuid.</t>
+<t>relationship_type <bcp14>SHALL</bcp14> use a relationship from the MISP object relationship types.</t>
+<t>relationship_type is represented as a JSON string. relationship_type <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="related-object-uuid"><name>related_object_uuid</name>
+<t>related_object_uuid represents the target relationship UUID reference.</t>
+<t>relationship_object_uuid is represented as a JSON string. relationship_object_uuid <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="related-object-type"><name>related_object_type</name>
+<t>relationship_object_type represents the type of the target.</t>
+<t>relationship_object_type is represented as a JSON string.</t>
+</section>
+
+<section anchor="note-type-name-2"><name>note_type_name</name>
+<t>note_type_name describe the type of the analyst data such as 'Opinion', 'Note' or 'Relationship'.</t>
+<t>A relationship is defined as <tt>Relationship</tt>.</t>
+<t>note_type_name is represented as a JSON string. note_type_name <bcp14>MUST</bcp14> be present.</t>
+</section>
 </section>
 </section>
 </section>
@@ -1037,680 +1490,681 @@ attribute_id represents the human-readable identifier of the attribute reference
 as literally described before. The JSON Schema is used to validate MISP events at creation time
 or parsing.</t>
 
-<artwork>{
-  &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
-  &quot;title&quot;: &quot;Validator for misp events&quot;,
-  &quot;id&quot;: &quot;https://github.com/MISP/MISP/blob/2.4/format/2.4/schema.json&quot;,
-  &quot;defs&quot;: {
-    &quot;org&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+<artwork><![CDATA[{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Validator for misp events",
+  "id": "https://github.com/MISP/MISP/blob/2.4/format/2.4/schema.json",
+  "defs": {
+    "org": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "name": {
+          "type": "string"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         }
       },
-      &quot;required&quot;: [
-        &quot;uuid&quot;
+      "required": [
+        "uuid"
       ]
     },
-    &quot;orgc&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "orgc": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "name": {
+          "type": "string"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         }
       },
-      &quot;required&quot;: [
-        &quot;uuid&quot;
+      "required": [
+        "uuid"
       ]
     },
-    &quot;sharing_group&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "sharing_group": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "name": {
+          "type": "string"
         },
-        &quot;releasability&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "releasability": {
+          "type": "string"
         },
-        &quot;description&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "description": {
+          "type": "string"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         },
-        &quot;organisation_uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "organisation_uuid": {
+          "type": "string"
         },
-        &quot;org_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "org_id": {
+          "type": "string"
         },
-        &quot;sync_user_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "sync_user_id": {
+          "type": "string"
         },
-        &quot;active&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "active": {
+          "type": "boolean"
         },
-        &quot;created&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "created": {
+          "type": "string"
         },
-        &quot;modified&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "modified": {
+          "type": "string"
         },
-        &quot;local&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "local": {
+          "type": "boolean"
         },
-        &quot;roaming&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "roaming": {
+          "type": "boolean"
         },
-        &quot;Organisation&quot;: {
-          &quot;$ref&quot;: &quot;#/defs/org&quot;
+        "Organisation": {
+          "$ref": "#/defs/org"
         },
-        &quot;SharingGroupOrg&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/sharing_group_org&quot;
+        "SharingGroupOrg": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/sharing_group_org"
           }
         },
-        &quot;SharingGroupServer&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/sharing_group_server&quot;
+        "SharingGroupServer": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/sharing_group_server"
           }
         },
-        &quot;required&quot;: [
-          &quot;uuid&quot;
+        "required": [
+          "uuid"
         ]
       },
-      &quot;required&quot;: [
-        &quot;uuid&quot;
+      "required": [
+        "uuid"
       ]
     },
-    &quot;sharing_group_org&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "sharing_group_org": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;sharing_group_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "sharing_group_id": {
+          "type": "string"
         },
-        &quot;org_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "org_id": {
+          "type": "string"
         },
-        &quot;extend&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "extend": {
+          "type": "boolean"
         },
-        &quot;Organisation&quot;: {
-          &quot;$ref&quot;: &quot;#/defs/org&quot;
+        "Organisation": {
+          "$ref": "#/defs/org"
         }
       }
     },
-    &quot;sharing_group_server&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "sharing_group_server": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;sharing_group_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "sharing_group_id": {
+          "type": "string"
         },
-        &quot;server_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "server_id": {
+          "type": "string"
         },
-        &quot;all_orgs&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "all_orgs": {
+          "type": "boolean"
         },
-        &quot;Server&quot;: {
-          &quot;$ref&quot;: &quot;#/defs/server&quot;
+        "Server": {
+          "$ref": "#/defs/server"
         }
       }
     },
-    &quot;server&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "server": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;url&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "url": {
+          "type": "string"
         },
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "name": {
+          "type": "string"
         }
       }
     },
-    &quot;object&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "object": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "uuid": {
+          "type": "string"
         },
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "name": {
+          "type": "string"
         },
-        &quot;event_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "event_id": {
+          "type": "string"
         },
-        &quot;description&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "description": {
+          "type": "string"
         },
-        &quot;template_uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "template_uuid": {
+          "type": "string"
         },
-        &quot;template_version&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "template_version": {
+          "type": "string"
         },
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "id": {
+          "type": "string"
         },
-        &quot;meta-category&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "meta-category": {
+          "type": "string"
         },
-        &quot;deleted&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "deleted": {
+          "type": "boolean"
         },
-        &quot;timestamp&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "timestamp": {
+          "type": "string"
         },
-        &quot;first_seen&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "first_seen": {
+          "type": "string"
         },
-        &quot;last_seen&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "last_seen": {
+          "type": "string"
         },
-        &quot;distribution&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "distribution": {
+          "type": "string"
         },
-        &quot;sharing_group_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "sharing_group_id": {
+          "type": "string"
         },
-        &quot;comment&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "comment": {
+          "type": "string"
         },
-        &quot;ObjectReference&quot;: {
-            &quot;type&quot;: &quot;array&quot;,
-            &quot;uniqueItems&quot;: true,
-            &quot;items&quot;: {
-              &quot;$ref&quot;: &quot;#/defs/objectreference&quot;
+        "ObjectReference": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/defs/objectreference"
             }
         },
-        &quot;Attribute&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/attribute&quot;
+        "Attribute": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/attribute"
           }
         }
       }
     },
-    &quot;sighthing&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "sighthing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;attribute_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "attribute_id": {
+          "type": "string"
         },
-        &quot;event_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "event_id": {
+          "type": "string"
         },
-        &quot;source&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "source": {
+          "type": "string"
         },
-        &quot;type&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "type": {
+          "type": "string"
         },
-        &quot;org_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "org_id": {
+          "type": "string"
         },
-        &quot;date_sighting&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "date_sighting": {
+          "type": "string"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         },
-        &quot;Organisation&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/organisation&quot;
+        "Organisation": {
+            "$ref": "#/defs/organisation"
         }
       }
     },
-    &quot;organisation&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "organisation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         },
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "name": {
+          "type": "string"
         }
       }
     },
-    &quot;objectreference&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;deleted&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+    "objectreference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deleted": {
+          "type": "boolean"
         },
-        &quot;object_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "object_id": {
+          "type": "string"
         },
-        &quot;event_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "event_id": {
+          "type": "string"
         },
-        &quot;timestamp&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "timestamp": {
+          "type": "string"
         },
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "id": {
+          "type": "string"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         },
-        &quot;type&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "type": {
+          "type": "string"
         },
-        &quot;referenced_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "referenced_id": {
+          "type": "string"
         },
-        &quot;referenced_uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "referenced_uuid": {
+          "type": "string"
         },
-        &quot;referenced_type&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "referenced_type": {
+          "type": "string"
         },
-        &quot;relationship_type&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "relationship_type": {
+          "type": "string"
         },
-        &quot;object_uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "object_uuid": {
+          "type": "string"
         },
-        &quot;comment&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "comment": {
+          "type": "string"
         },
-        &quot;Object&quot;: {
-          &quot;$ref&quot;: &quot;#/defs/object&quot;
+        "Object": {
+          "$ref": "#/defs/object"
         }
       }
     },
-    &quot;attribute&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "attribute": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;old_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "old_id": {
+          "type": "string"
         },
-        &quot;type&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "type": {
+          "type": "string"
         },
-        &quot;category&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "category": {
+          "type": "string"
         },
-        &quot;to_ids&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "to_ids": {
+          "type": "boolean"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         },
-        &quot;event_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "event_id": {
+          "type": "string"
         },
-        &quot;event_uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "event_uuid": {
+          "type": "string"
         },
-        &quot;proposal_to_delete&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "proposal_to_delete": {
+          "type": "boolean"
         },
-        &quot;validationIssue&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "validationIssue": {
+          "type": "boolean"
         },
-        &quot;Org&quot;: {
-          &quot;$ref&quot;: &quot;#/defs/organisation&quot;
+        "Org": {
+          "$ref": "#/defs/organisation"
         },
-        &quot;org_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "org_id": {
+          "type": "string"
         },
-        &quot;distribution&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "distribution": {
+          "type": "string"
         },
-        &quot;timestamp&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "timestamp": {
+          "type": "string"
         },
-        &quot;first_seen&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "first_seen": {
+          "type": "string"
         },
-        &quot;last_seen&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "last_seen": {
+          "type": "string"
         },
-        &quot;comment&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "comment": {
+          "type": "string"
         },
-        &quot;sharing_group_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "sharing_group_id": {
+          "type": "string"
         },
-        &quot;deleted&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "deleted": {
+          "type": "boolean"
         },
-        &quot;disable_correlation&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "disable_correlation": {
+          "type": "boolean"
         },
-        &quot;value&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "value": {
+          "type": "string"
         },
-        &quot;data&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "data": {
+          "type": "string"
         },
-        &quot;object_relation&quot;: {
-          &quot;type&quot;: [&quot;string&quot;, &quot;null&quot;]
+        "object_relation": {
+          "type": ["string", "null"]
         },
-        &quot;object_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "object_id": {
+          "type": "string"
         },
-        &quot;SharingGroup&quot;: {
-          &quot;$ref&quot;: &quot;#/defs/sharing_group&quot;
+        "SharingGroup": {
+          "$ref": "#/defs/sharing_group"
         },
-        &quot;ShadowAttribute&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/attribute&quot;
+        "ShadowAttribute": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/attribute"
           }
         },
-        &quot;Sighting&quot;: {
-            &quot;type&quot;: &quot;array&quot;,
-            &quot;uniqueItems&quot;: true,
-            &quot;items&quot;: {
-              &quot;$ref&quot;: &quot;#/defs/sighthing&quot;
+        "Sighting": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/defs/sighthing"
             }
         },
-        &quot;Galaxy&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/galaxy&quot;
+        "Galaxy": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/galaxy"
           }
         },
-        &quot;Tag&quot;: {
-          &quot;uniqueItems&quot;: true,
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/tag&quot;
+        "Tag": {
+          "uniqueItems": true,
+          "type": "array",
+          "items": {
+            "$ref": "#/defs/tag"
           }
         }
       }
     },
-    &quot;event&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;orgc_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "orgc_id": {
+          "type": "string"
         },
-        &quot;org_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "org_id": {
+          "type": "string"
         },
-        &quot;date&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "date": {
+          "type": "string"
         },
-        &quot;extends_uuid&quot;: {
-            &quot;type&quot;: &quot;string&quot;
+        "extends_uuid": {
+            "type": "string"
         },
-        &quot;threat_level_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "threat_level_id": {
+          "type": "string"
         },
-        &quot;info&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "info": {
+          "type": "string"
         },
-        &quot;published&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "published": {
+          "type": "boolean"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         },
-        &quot;attribute_count&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "attribute_count": {
+          "type": "string"
         },
-        &quot;analysis&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "analysis": {
+          "type": "string"
         },
-        &quot;timestamp&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "timestamp": {
+          "type": "string"
         },
-        &quot;distribution&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "distribution": {
+          "type": "string"
         },
-        &quot;proposal_email_lock&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "proposal_email_lock": {
+          "type": "boolean"
         },
-        &quot;locked&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "locked": {
+          "type": "boolean"
         },
-        &quot;publish_timestamp&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "publish_timestamp": {
+          "type": "string"
         },
-        &quot;sharing_group_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "sharing_group_id": {
+          "type": "string"
         },
-        &quot;disable_correlation&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "disable_correlation": {
+          "type": "boolean"
         },
-        &quot;event_creator_email&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "event_creator_email": {
+          "type": "string"
         },
-        &quot;Org&quot;: {
-          &quot;$ref&quot;: &quot;#/defs/org&quot;
+        "Org": {
+          "$ref": "#/defs/org"
         },
-        &quot;Orgc&quot;: {
-          &quot;$ref&quot;: &quot;#/defs/org&quot;
+        "Orgc": {
+          "$ref": "#/defs/org"
         },
-        &quot;SharingGroup&quot;: {
-          &quot;$ref&quot;: &quot;#/defs/sharing_group&quot;
+        "SharingGroup": {
+          "$ref": "#/defs/sharing_group"
         },
-        &quot;Attribute&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/attribute&quot;
+        "Attribute": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/attribute"
           }
         },
-        &quot;ShadowAttribute&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/attribute&quot;
+        "ShadowAttribute": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/attribute"
           }
         },
-        &quot;RelatedEvent&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;type&quot;: &quot;object&quot;,
-            &quot;additionalProperties&quot;: false,
-            &quot;properties&quot;: {
-                &quot;Event&quot;:{
-                  &quot;$ref&quot;: &quot;#/defs/event&quot;
+        "RelatedEvent": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "Event":{
+                  "$ref": "#/defs/event"
                 }
             }
           }
         },
-        &quot;Galaxy&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/galaxy&quot;
+        "Galaxy": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/galaxy"
           }
         },
-        &quot;Object&quot;: {
-            &quot;type&quot;: &quot;array&quot;,
-            &quot;uniqueItems&quot;: true,
-            &quot;items&quot;: {
-                &quot;$ref&quot;: &quot;#/defs/object&quot;
+        "Object": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "$ref": "#/defs/object"
             }
         },
-        &quot;Tag&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/tag&quot;
+        "Tag": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/tag"
           }
         }
       }
     },
-    &quot;tag&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "tag": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "name": {
+          "type": "string"
         },
-        &quot;colour&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "colour": {
+          "type": "string"
         },
-        &quot;exportable&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "exportable": {
+          "type": "boolean"
         },
-        &quot;hide_tag&quot;: {
-          &quot;type&quot;: &quot;boolean&quot;
+        "hide_tag": {
+          "type": "boolean"
         },
-        &quot;user_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "user_id": {
+          "type": "string"
         }
       }
     },
-    &quot;galaxy&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "galaxy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         },
-        &quot;name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "name": {
+          "type": "string"
         },
-        &quot;type&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "type": {
+          "type": "string"
         },
-        &quot;description&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "description": {
+          "type": "string"
         },
-        &quot;version&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "version": {
+          "type": "string"
         },
-        &quot;icon&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "icon": {
+          "type": "string"
         },
-        &quot;namespace&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "namespace": {
+          "type": "string"
         },
-        &quot;GalaxyCluster&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;$ref&quot;: &quot;#/defs/galaxy_cluster&quot;
+        "GalaxyCluster": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/defs/galaxy_cluster"
           }
         }
       }
     },
-    &quot;galaxy_cluster&quot;: {
-      &quot;type&quot;: &quot;object&quot;,
-      &quot;additionalProperties&quot;: false,
-      &quot;properties&quot;: {
-        &quot;id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+    "galaxy_cluster": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        &quot;uuid&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "uuid": {
+          "type": "string"
         },
-        &quot;type&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "type": {
+          "type": "string"
         },
-        &quot;value&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "value": {
+          "type": "string"
         },
-        &quot;tag_name&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "tag_name": {
+          "type": "string"
         },
-        &quot;description&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "description": {
+          "type": "string"
         },
-        &quot;galaxy_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "galaxy_id": {
+          "type": "string"
         },
-        &quot;version&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "version": {
+          "type": "string"
         },
-        &quot;source&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "source": {
+          "type": "string"
         },
-        &quot;authors&quot;: {
-          &quot;type&quot;: &quot;array&quot;,
-          &quot;uniqueItems&quot;: true,
-          &quot;items&quot;: {
-            &quot;type&quot;: &quot;string&quot;
+        "authors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
           }
         },
-        &quot;tag_id&quot;: {
-          &quot;type&quot;: &quot;string&quot;
+        "tag_id": {
+          "type": "string"
         },
-        &quot;meta&quot;: {
-          &quot;type&quot;: &quot;object&quot;
+        "meta": {
+          "type": "object"
         }
       }
     }
   },
-  &quot;type&quot;: &quot;object&quot;,
-  &quot;properties&quot;: {
-    &quot;Event&quot;: {
-      &quot;$ref&quot;: &quot;#/defs/event&quot;
+  "type": "object",
+  "properties": {
+    "Event": {
+      "$ref": "#/defs/event"
     }
   },
-  &quot;required&quot;: [
-    &quot;Event&quot;
+  "required": [
+    "Event"
   ]
 }
+]]>
 </artwork>
 </section>
 
@@ -1745,55 +2199,56 @@ A detached PGP signature for a manifest file is a manifest.json.asc file contain
 
 <section anchor="sample-manifest"><name>Sample Manifest</name>
 
-<artwork>{
-  &quot;57c6ac4c-c60c-4f79-a38f-b666950d210f&quot;: {
-    &quot;info&quot;: &quot;Malspam 2016-08-31 (.wsf in .zip) - campaign: Photo&quot;,
-    &quot;Orgc&quot;: {
-      &quot;id&quot;: &quot;2&quot;,
-      &quot;name&quot;: &quot;CIRCL&quot;,
-      &quot;uuid&quot;: &quot;55f6ea5e-2c60-40e5-964f-47a8950d210f&quot;
+<artwork><![CDATA[{
+  "57c6ac4c-c60c-4f79-a38f-b666950d210f": {
+    "info": "Malspam 2016-08-31 (.wsf in .zip) - campaign: Photo",
+    "Orgc": {
+      "id": "2",
+      "name": "CIRCL",
+      "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
     },
-    &quot;analysis&quot;: &quot;0&quot;,
-    &quot;Tag&quot;: [
+    "analysis": "0",
+    "Tag": [
       {
-        &quot;colour&quot;: &quot;#3d7a00&quot;,
-        &quot;name&quot;: &quot;circl:incident-classification=\&quot;malware\&quot;&quot;
+        "colour": "#3d7a00",
+        "name": "circl:incident-classification=\"malware\""
       },
       {
-        &quot;colour&quot;: &quot;#ffffff&quot;,
-        &quot;name&quot;: &quot;tlp:white&quot;
+        "colour": "#ffffff",
+        "name": "tlp:white"
       }
     ],
-    &quot;timestamp&quot;: &quot;1472638251&quot;,
-    &quot;date&quot;: &quot;2016-08-31&quot;,
-    &quot;threat_level_id&quot;: &quot;3&quot;
+    "timestamp": "1472638251",
+    "date": "2016-08-31",
+    "threat_level_id": "3"
   },
-  &quot;5720accd-dd28-45f8-80e5-4605950d210f&quot;: {
-    &quot;info&quot;: &quot;Malspam 2016-04-27 - Locky&quot;,
-    &quot;Orgc&quot;: {
-      &quot;id&quot;: &quot;2&quot;,
-      &quot;name&quot;: &quot;CIRCL&quot;
+  "5720accd-dd28-45f8-80e5-4605950d210f": {
+    "info": "Malspam 2016-04-27 - Locky",
+    "Orgc": {
+      "id": "2",
+      "name": "CIRCL"
     },
-    &quot;analysis&quot;: &quot;2&quot;,
-    &quot;Tag&quot;: [
+    "analysis": "2",
+    "Tag": [
       {
-        &quot;colour&quot;: &quot;#ffffff&quot;,
-        &quot;name&quot;: &quot;tlp:white&quot;
+        "colour": "#ffffff",
+        "name": "tlp:white"
       },
       {
-        &quot;colour&quot;: &quot;#3d7a00&quot;,
-        &quot;name&quot;: &quot;circl:incident-classification=\&quot;malware\&quot;&quot;
+        "colour": "#3d7a00",
+        "name": "circl:incident-classification=\"malware\""
       },
       {
-        &quot;colour&quot;: &quot;#2c4f00&quot;,
-        &quot;name&quot;: &quot;malware_classification:malware-category=\&quot;Ransomware\&quot;&quot;
+        "colour": "#2c4f00",
+        "name": "malware_classification:malware-category=\"Ransomware\""
       }
     ],
-    &quot;timestamp&quot;: &quot;1461764231&quot;,
-    &quot;date&quot;: &quot;2016-04-27&quot;,
-    &quot;threat_level_id&quot;: &quot;3&quot;
+    "timestamp": "1461764231",
+    "date": "2016-04-27",
+    "threat_level_id": "3"
   }
 }
+]]>
 </artwork>
 </section>
 </section>
@@ -1828,11 +2283,12 @@ for the review of the JSON Schema.</t>
 </middle>
 
 <back>
+<references><name>References</name>
 <references><name>Normative References</name>
-<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
-<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4122.xml"/>
-<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4880.xml"/>
-<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8259.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.4122.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.4880.xml"/>
+<xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8259.xml"/>
 </references>
 <references><name>Informative References</name>
 <reference anchor="JSON-SCHEMA" target="https://tools.ietf.org/html/draft-wright-json-schema">
@@ -1863,6 +2319,7 @@ for the review of the JSON Schema.</t>
     <date></date>
   </front>
 </reference>
+</references>
 </references>
 
 </back>
