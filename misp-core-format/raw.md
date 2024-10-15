@@ -1183,9 +1183,7 @@ A galaxy is a simple method to express a large object called cluster that can be
 
 ## Analyst Data
 
-Analyst Data are objects which can be in different level of MISP format including objects, attributes, event or detached from MISP core format. It can expressed
-a `Opinion`, `Note` or a `Relationship` from an analyst. Those three types define the key of the analyst data and can be present at the level where analyst data is applied.
-Analyst data can be nested to describe complementary analysis on the analyst data by itself.
+Analyst Data are objects that can take different forms within the MISP format, including objects, attributes, events, or detached formats from the MISP core. They can express an Opinion, Note, or a Relationship from an analyst. These three types define the key components of analyst data and can be applied at various levels within the data structure. Analyst data can also be nested to provide additional complementary analysis on itself.
 
 ### Opinion
 
@@ -1272,6 +1270,8 @@ object\_type is represented as a JSON string.
 
 authors represent the authors of the opinion. the authors **SHALL** be represented with an email address or an identifier.
 
+Multiple authors **SHOULD** be separated by a comma value.
+ 
 authors is represented as a JSON string. authors **SHALL** be present.
 
 #### org\_uuid
