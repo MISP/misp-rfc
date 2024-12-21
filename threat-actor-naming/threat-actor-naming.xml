@@ -76,7 +76,7 @@ document are to be interpreted as described in RFC 2119 <xref target="RFC2119"><
 </section>
 
 <section anchor="directory"><name>Directory</name>
-<t>A reference registry of threat actors is <bcp14>RECOMMENDED</bcp14> to ensure consistency of names accross different parties.</t>
+<t>A reference registry of threat actors is <bcp14>RECOMMENDED</bcp14> to ensure consistency of names accross different parties such as the threat actor MISP galaxy <xref target="MISP-G"></xref>.</t>
 </section>
 </section>
 
@@ -102,7 +102,7 @@ document are to be interpreted as described in RFC 2119 <xref target="RFC2119"><
 </section>
 
 <section anchor="acknowledgements"><name>Acknowledgements</name>
-<t>The authors wish to thank all contributors who provided feedback via Twitter.</t>
+<t>The authors wish to thank all contributors who provided feedback through the now-defunct Twitter and other new social networks.</t>
 </section>
 
 <section anchor="references"><name>References</name>
