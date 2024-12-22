@@ -32,16 +32,11 @@ organization = "Computer Incident Response Center Luxembourg"
 initials="P."
 surname="Bourmeau"
 fullname="Pauline Bourmeau"
-abbrev="CIRCL"
-organization = "Corexalys"
+abbrev="Cubessa"
+organization = "Cubessa"
  [author.address]
- email = "info@corexalys.com"
+ email = "Pauline@cubessa.io"
  phone = ""
- [author.address.postal]
- street = "26 Rue de la Bienfaisance"
- city = "Paris"
- code = "75008"
- country = "France"
 %%%
 
 .# Abstract

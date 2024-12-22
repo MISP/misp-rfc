@@ -3,9 +3,10 @@
 
 
 Network Working Group                                        A. Dulaunoy
-Internet-Draft                                               P. Bourmeau
-Intended status: Informational                                     CIRCL
-Expires: 24 June 2025                                   21 December 2024
+Internet-Draft                                                     CIRCL
+Intended status: Informational                               P. Bourmeau
+Expires: 24 June 2025                                            Cubessa
+                                                        21 December 2024
 
 
                 Recommendations on Naming Threat Actors
@@ -47,7 +48,6 @@ Copyright Notice
    license-info) in effect on the date of publication of this document.
    Please review these documents carefully, as they describe your rights
    and restrictions with respect to this document.
-
 
 
 
@@ -252,11 +252,11 @@ Authors' Addresses
 
 
    Pauline Bourmeau
-   Corexalys
-   26 Rue de la Bienfaisance
-   75008 Paris
-   France
-   Email: info@corexalys.com
+   Cubessa
+   Email: Pauline@cubessa.io
+
+
+
 
 
 

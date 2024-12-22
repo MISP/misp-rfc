@@ -10,11 +10,8 @@
 <country>Luxembourg</country>
 </postal><phone>+352 247 88444</phone>
 <email>alexandre.dulaunoy@circl.lu</email>
-</address></author><author initials="P." surname="Bourmeau" fullname="Pauline Bourmeau"><organization abbrev="CIRCL">Corexalys</organization><address><postal><street>26 Rue de la Bienfaisance</street>
-<city>Paris</city>
-<code>75008</code>
-<country>France</country>
-</postal><email>info@corexalys.com</email>
+</address></author><author initials="P." surname="Bourmeau" fullname="Pauline Bourmeau"><organization abbrev="Cubessa">Cubessa</organization><address><postal><street></street>
+</postal><email>Pauline@cubessa.io</email>
 </address></author><date year="2024" month="December" day="21"></date>
 <area>Security</area>
 <workgroup></workgroup>
