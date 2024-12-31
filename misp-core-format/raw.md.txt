@@ -5,7 +5,7 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: 30 December 2024                                   28 June 2024
+Expires: 4 July 2025                                    31 December 2024
 
 
                             MISP core format
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 December 2024.
+   This Internet-Draft will expire on 4 July 2025.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024                [Page 1]
+Dulaunoy & Iklody          Expires 4 July 2025                  [Page 1]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 Table of Contents
@@ -71,7 +71,7 @@ Table of Contents
        2.3.1.  Sample Attribute Object . . . . . . . . . . . . . . .   8
        2.3.2.  Attribute Attributes  . . . . . . . . . . . . . . . .   9
      2.4.  ShadowAttribute . . . . . . . . . . . . . . . . . . . . .  15
-       2.4.1.  Sample Attribute Object . . . . . . . . . . . . . . .  16
+       2.4.1.  Sample Attribute Object . . . . . . . . . . . . . . .  15
        2.4.2.  ShadowAttribute Attributes  . . . . . . . . . . . . .  16
        2.4.3.  ShadowAttribute Objects . . . . . . . . . . . . . . .  22
      2.5.  Object  . . . . . . . . . . . . . . . . . . . . . . . . .  23
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024                [Page 2]
+Dulaunoy & Iklody          Expires 4 July 2025                  [Page 2]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  65
@@ -165,9 +165,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024                [Page 3]
+Dulaunoy & Iklody          Expires 4 July 2025                  [Page 3]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.2.1.  Event Attributes
@@ -221,9 +221,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024                [Page 4]
+Dulaunoy & Iklody          Expires 4 July 2025                  [Page 4]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    threat_level_id is represented as a JSON string. threat_level_id
@@ -277,9 +277,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024                [Page 5]
+Dulaunoy & Iklody          Expires 4 July 2025                  [Page 5]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.2.1.10.  org_id
@@ -333,9 +333,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024                [Page 6]
+Dulaunoy & Iklody          Expires 4 July 2025                  [Page 6]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.2.1.14.  sharing_group_id
@@ -389,9 +389,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024                [Page 7]
+Dulaunoy & Iklody          Expires 4 July 2025                  [Page 7]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.2.2.2.  Orgc
@@ -445,9 +445,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024                [Page 8]
+Dulaunoy & Iklody          Expires 4 July 2025                  [Page 8]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    "Attribute": {
@@ -501,9 +501,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024                [Page 9]
+Dulaunoy & Iklody          Expires 4 July 2025                  [Page 9]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    Antivirus detection  link, comment, text, hex, attachment, other,
@@ -541,38 +541,33 @@ Internet-Draft              MISP core format                   June 2024
       comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-
       fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-
       md5, hasshserver-md5, github-repository, other, cortex,
-      anonymised, community-id
+      anonymised, community-id, dom-hash, onion-address
    Financial fraud  btc, dash, xmr, iban, bic, bank-account-nr, aba-rtn,
       bin, cc-number, prtn, phone-number, comment, text, other, hex,
       anonymised
    Internal reference  text, link, comment, other, hex, anonymised, git-
       commit-id
    Network activity  ip-src, ip-dst, ip-dst|port, ip-src|port, port,
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 10]
-
-Internet-Draft              MISP core format                   June 2024
-
-
       hostname, domain, domain|ip, mac-address, mac-eui-64, email,
       email-dst, email-src, eppn, url, uri, user-agent, http-method, AS,
       snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-
       in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-
       fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5,
       jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie,
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 10]
+
+Internet-Draft              MISP core format               December 2024
+
+
       hostname|port, bro, zeek, anonymised, community-id, email-subject,
-      favicon-mmh3, dkim, dkim-signature, ssh-fingerprint
-   Other  comment, text, other, size-in-bytes, counter, datetime, cpe,
-      port, float, hex, phone-number, boolean, anonymised, pgp-public-
-      key, pgp-private-key
+      favicon-mmh3, dkim, dkim-signature, ssh-fingerprint, dom-hash,
+      onion-address
+   Other  comment, text, other, size-in-bytes, counter, integer,
+      datetime, cpe, port, float, hex, phone-number, boolean,
+      anonymised, pgp-public-key, pgp-private-key
    Payload delivery  md5, sha1, sha224, sha256, sha384, sha512,
       sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512,
       ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash,
@@ -595,29 +590,8 @@ Internet-Draft              MISP core format                   June 2024
       email-header, email-reply-to, email-x-mailer, email-mime-boundary,
       email-thread-index, email-message-id, azure-application-id,
       mobile-application-id, chrome-extension-id, whois-registrant-
-      email, anonymised
+      email, anonymised, onion-address
    Payload installation  md5, sha1, sha224, sha256, sha384, sha512,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 11]
-
-Internet-Draft              MISP core format                   June 2024
-
-
       sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512,
       ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash,
       tlsh, cdhash, filename, filename|md5, filename|sha1,
@@ -631,11 +605,19 @@ Internet-Draft              MISP core format                   June 2024
       sigma, vulnerability, cpe, weakness, attachment, malware-sample,
       malware-type, comment, text, hex, x509-fingerprint-sha1, x509-
       fingerprint-md5, x509-fingerprint-sha256, azure-application-id,
-      azure-application-id, mobile-application-id, chrome-extension-id,
-      other, mime-type, anonymised
+      mobile-application-id, chrome-extension-id, other, mime-type,
+      anonymised
    Payload type  comment, text, other, anonymised
    Persistence mechanism  filename, regkey, regkey|value, comment, text,
       other, hex, anonymised
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 11]
+
+Internet-Draft              MISP core format               December 2024
+
+
    Person  first-name, middle-name, last-name, full-name, date-of-birth,
       place-of-birth, gender, passport-number, passport-country,
       passport-expiration, redress-number, nationality, visa-number,
@@ -664,16 +646,6 @@ Internet-Draft              MISP core format                   June 2024
    selected by the attribute creator, using a list of pre-defined
    attribute categories.
 
-
-
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 12]
-
-Internet-Draft              MISP core format                   June 2024
-
-
    category is represented as a JSON string. category MUST be present
    and it MUST be a valid selection for the chosen type.  The list of
    valid category-type combinations is mentioned above.
@@ -692,6 +664,15 @@ Internet-Draft              MISP core format                   June 2024
    event_id represents a human-readable identifier referencing the Event
    object that the attribute belongs to.  A human-readable identifier
    MUST be represented as an unsigned integer.
+
+
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 12]
+
+Internet-Draft              MISP core format               December 2024
+
 
    The event_id SHOULD be updated when the event is imported to reflect
    the newly created event's id on the instance.
@@ -722,14 +703,6 @@ Internet-Draft              MISP core format                   June 2024
 
    timestamp is represented as a JSON string. timestamp MUST be present.
 
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 13]
-
-Internet-Draft              MISP core format                   June 2024
-
-
 2.3.2.9.  comment
 
    comment is a contextual comment field.
@@ -746,6 +719,16 @@ Internet-Draft              MISP core format                   June 2024
    sharing_group_id is represented by a JSON string and SHOULD be
    present.  If a distribution level other than "4" is chosen the
    sharing_group_id MUST be set to "0".
+
+
+
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 13]
+
+Internet-Draft              MISP core format               December 2024
+
 
 2.3.2.11.  deleted
 
@@ -776,16 +759,6 @@ Internet-Draft              MISP core format                   June 2024
 
    RelatedAttribute MAY be present.
 
-
-
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 14]
-
-Internet-Draft              MISP core format                   June 2024
-
-
 2.3.2.14.  ShadowAttribute
 
    ShadowAttribute is an array of shadow attributes that serve as
@@ -805,6 +778,13 @@ Internet-Draft              MISP core format                   June 2024
    value is dependent on the type of the attribute.
 
    value is represented by a JSON string. value MUST be present.
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 14]
+
+Internet-Draft              MISP core format               December 2024
+
 
 2.3.2.16.  first_seen
 
@@ -835,14 +815,32 @@ Internet-Draft              MISP core format                   June 2024
    reference to the creator of the ShadowAttribute as well as a
    revocation flag.
 
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 15]
-
-Internet-Draft              MISP core format                   June 2024
-
-
 2.4.1.  Sample Attribute Object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 15]
+
+Internet-Draft              MISP core format               December 2024
+
 
 "ShadowAttribute":  {
                        "id": "8",
@@ -893,9 +891,11 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 16]
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 16]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    type is represented as a JSON string. type MUST be present and it
@@ -937,7 +937,7 @@ Internet-Draft              MISP core format                   June 2024
       comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-
       fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-
       md5, hasshserver-md5, github-repository, other, cortex,
-      anonymised, community-id
+      anonymised, community-id, dom-hash, onion-address
    Financial fraud  btc, dash, xmr, iban, bic, bank-account-nr, aba-rtn,
       bin, cc-number, prtn, phone-number, comment, text, other, hex,
       anonymised
@@ -949,9 +949,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 17]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 17]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
       hostname, domain, domain|ip, mac-address, mac-eui-64, email,
@@ -961,10 +961,11 @@ Internet-Draft              MISP core format                   June 2024
       fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5,
       jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie,
       hostname|port, bro, zeek, anonymised, community-id, email-subject,
-      favicon-mmh3, dkim, dkim-signature, ssh-fingerprint
-   Other  comment, text, other, size-in-bytes, counter, datetime, cpe,
-      port, float, hex, phone-number, boolean, anonymised, pgp-public-
-      key, pgp-private-key
+      favicon-mmh3, dkim, dkim-signature, ssh-fingerprint, dom-hash,
+      onion-address
+   Other  comment, text, other, size-in-bytes, counter, integer,
+      datetime, cpe, port, float, hex, phone-number, boolean,
+      anonymised, pgp-public-key, pgp-private-key
    Payload delivery  md5, sha1, sha224, sha256, sha384, sha512,
       sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512,
       ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash,
@@ -987,29 +988,8 @@ Internet-Draft              MISP core format                   June 2024
       email-header, email-reply-to, email-x-mailer, email-mime-boundary,
       email-thread-index, email-message-id, azure-application-id,
       mobile-application-id, chrome-extension-id, whois-registrant-
-      email, anonymised
+      email, anonymised, onion-address
    Payload installation  md5, sha1, sha224, sha256, sha384, sha512,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 18]
-
-Internet-Draft              MISP core format                   June 2024
-
-
       sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512,
       ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash,
       tlsh, cdhash, filename, filename|md5, filename|sha1,
@@ -1022,9 +1002,17 @@ Internet-Draft              MISP core format                   June 2024
       traffic, pattern-in-memory, filename-pattern, stix2-pattern, yara,
       sigma, vulnerability, cpe, weakness, attachment, malware-sample,
       malware-type, comment, text, hex, x509-fingerprint-sha1, x509-
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 18]
+
+Internet-Draft              MISP core format               December 2024
+
+
       fingerprint-md5, x509-fingerprint-sha256, azure-application-id,
-      azure-application-id, mobile-application-id, chrome-extension-id,
-      other, mime-type, anonymised
+      mobile-application-id, chrome-extension-id, other, mime-type,
+      anonymised
    Payload type  comment, text, other, anonymised
    Persistence mechanism  filename, regkey, regkey|value, comment, text,
       other, hex, anonymised
@@ -1056,16 +1044,6 @@ Internet-Draft              MISP core format                   June 2024
    selected by the attribute creator, using a list of pre-defined
    attribute categories.
 
-
-
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 19]
-
-Internet-Draft              MISP core format                   June 2024
-
-
    category is represented as a JSON string. category MUST be present
    and it MUST be a valid selection for the chosen type.  The list of
    valid category-type combinations is mentioned above.
@@ -1079,6 +1057,14 @@ Internet-Draft              MISP core format                   June 2024
    log analysis tools or even filtering mechanisms.
 
    to_ids is represented as a JSON boolean. to_ids MUST be present.
+
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 19]
+
+Internet-Draft              MISP core format               December 2024
+
 
 2.4.2.6.  event_id
 
@@ -1114,14 +1100,6 @@ Internet-Draft              MISP core format                   June 2024
 
    timestamp is represented as a JSON string. timestamp MUST be present.
 
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 20]
-
-Internet-Draft              MISP core format                   June 2024
-
-
 2.4.2.9.  comment
 
    comment is a contextual comment field.
@@ -1133,6 +1111,16 @@ Internet-Draft              MISP core format                   June 2024
    org_id represents a human-readable identifier referencing the
    proposal creator's Organisation object.  A human-readable identifier
    MUST be represented as an unsigned integer.
+
+
+
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 20]
+
+Internet-Draft              MISP core format               December 2024
+
 
    Whilst attributes can only be created by the event creator
    organisation, shadow attributes can be created by third parties.
@@ -1170,14 +1158,6 @@ Internet-Draft              MISP core format                   June 2024
    data is represented by a JSON string in base64 encoding. data MUST be
    set for shadow attributes of type malware-sample and attachment.
 
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 21]
-
-Internet-Draft              MISP core format                   June 2024
-
-
 2.4.2.14.  first_seen
 
    first_seen represents a reference time when the attribute was first
@@ -1186,6 +1166,17 @@ Internet-Draft              MISP core format                   June 2024
 
    first_seen is represented as a JSON string. first_seen MAY be
    present.
+
+
+
+
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 21]
+
+Internet-Draft              MISP core format               December 2024
+
 
 2.4.2.15.  last_seen
 
@@ -1222,23 +1213,26 @@ Internet-Draft              MISP core format                   June 2024
 
 2.4.3.1.1.  Sample Org Object
 
-
-
-
-
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 22]
-
-Internet-Draft              MISP core format                   June 2024
-
-
    "Org": {
            "id": "2",
            "name": "CIRCL",
            "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
           }
+
+
+
+
+
+
+
+
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 22]
+
+Internet-Draft              MISP core format               December 2024
+
 
 2.5.  Object
 
@@ -1285,9 +1279,15 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 23]
+
+
+
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 23]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 "Object": {
@@ -1341,9 +1341,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 24]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 24]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.5.2.1.  uuid
@@ -1397,9 +1397,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 25]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 25]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    template_uuid is represented as a JSON string. template_uuid MUST be
@@ -1453,9 +1453,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 26]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 26]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.5.2.11.  sharing_group_id
@@ -1509,9 +1509,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 27]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 27]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    last_seen is represented as a JSON string. last_seen MAY be present.
@@ -1565,9 +1565,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 28]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 28]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.6.2.3.  timestamp
@@ -1621,9 +1621,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 29]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 29]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    relationship_type is represented as a JSON string. relationship_type
@@ -1677,9 +1677,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 30]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 30]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.7.2.  UUID
@@ -1733,9 +1733,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 31]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 31]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    2  Connected Communities
@@ -1789,9 +1789,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 32]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 32]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.8.1.  Sample Tag
@@ -1845,9 +1845,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 33]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 33]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    source MAY be present. source is represented as a JSON string and
@@ -1901,9 +1901,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 34]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 34]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 "Sighting": [
@@ -1957,9 +1957,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 35]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 35]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 "Galaxy": [ {
@@ -2013,20 +2013,20 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 36]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 36]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.11.  Analyst Data
 
-   Analyst Data are objects which can be in different level of MISP
-   format including objects, attributes, event or detached from MISP
-   core format.  It can expressed a Opinion, Note or a Relationship from
-   an analyst.  Those three types define the key of the analyst data and
-   can be present at the level where analyst data is applied.  Analyst
-   data can be nested to describe complementary analysis on the analyst
-   data by itself.
+   Analyst Data are objects that can take different forms within the
+   MISP format, including objects, attributes, events, or detached
+   formats from the MISP core.  They can express an Opinion, Note, or a
+   Relationship from an analyst.  These three types define the key
+   components of analyst data and can be applied at various levels
+   within the data structure.  Analyst data can also be linked to
+   provide additional complementary analysis on itself.
 
 2.11.1.  Opinion
 
@@ -2069,9 +2069,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 37]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 37]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
                             "date_modified": "2017-11-24 12:51:22",
@@ -2125,10 +2125,12 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 38]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 38]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
+
+   Multiple authors SHOULD be separated by a comma value.
 
    authors is represented as a JSON string. authors SHALL be present.
 
@@ -2176,15 +2178,16 @@ Internet-Draft              MISP core format                   June 2024
    The system must adhere to the distribution setting for access control
    and for dissemination of the opinion.
 
+
+
+
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 39]
+
+Internet-Draft              MISP core format               December 2024
+
+
    distribution is represented by a JSON string. distribution SHALL be
    present and be one of the following options:
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 39]
-
-Internet-Draft              MISP core format                   June 2024
-
 
    0  Your Organisation Only
    1  This Community Only
@@ -2234,12 +2237,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-
-
-
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 40]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 40]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
         "Note": [
@@ -2293,9 +2293,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 41]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 41]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.11.2.2.  uuid
@@ -2349,9 +2349,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 42]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 42]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    orgc_uuid is represented as a JSON string. orgc_uuid MUST be present.
@@ -2405,9 +2405,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 43]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 43]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.11.2.13.  note_type_name
@@ -2461,9 +2461,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 44]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 44]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
                 },
@@ -2517,9 +2517,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 45]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 45]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.11.3.3.  object_uuid
@@ -2573,9 +2573,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 46]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 46]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 2.11.3.9.  modified
@@ -2629,9 +2629,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 47]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 47]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    relationship_object_uuid is represented as a JSON string.
@@ -2685,9 +2685,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 48]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 48]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
      "orgc": {
@@ -2741,9 +2741,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 49]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 49]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
          },
@@ -2797,9 +2797,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 50]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 50]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
          "org_id": {
@@ -2853,9 +2853,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 51]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 51]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
        "type": "object",
@@ -2909,9 +2909,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 52]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 52]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
          "ObjectReference": {
@@ -2965,9 +2965,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 53]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 53]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
      },
@@ -3021,9 +3021,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 54]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 54]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
            "type": "string"
@@ -3077,9 +3077,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 55]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 55]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
            "type": "boolean"
@@ -3133,9 +3133,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 56]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 56]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
            "type": "array",
@@ -3189,9 +3189,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 57]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 57]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
          "threat_level_id": {
@@ -3245,9 +3245,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 58]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 58]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
          "SharingGroup": {
@@ -3301,9 +3301,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 59]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 59]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
              "$ref": "#/defs/tag"
@@ -3357,9 +3357,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 60]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 60]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
          "version": {
@@ -3413,9 +3413,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 61]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 61]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
          },
@@ -3469,9 +3469,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 62]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 62]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    *  info (MUST)
@@ -3525,9 +3525,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 63]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 63]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
     "info": "Malspam 2016-04-27 - Locky",
@@ -3581,9 +3581,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 64]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 64]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
 7.  Acknowledgements
@@ -3637,9 +3637,9 @@ Internet-Draft              MISP core format                   June 2024
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 65]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 65]
 
-Internet-Draft              MISP core format                   June 2024
+Internet-Draft              MISP core format               December 2024
 
 
    [MISP-T]   Community, M., "MISP Taxonomies - shared and common
@@ -3693,4 +3693,4 @@ Authors' Addresses
 
 
 
-Dulaunoy & Iklody       Expires 30 December 2024               [Page 66]
+Dulaunoy & Iklody          Expires 4 July 2025                 [Page 66]

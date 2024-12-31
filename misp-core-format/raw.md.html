@@ -27,7 +27,7 @@ format and ensuring an interoperability with existing MISP   software and other 
     platformdirs 4.1.0
     pycountry 22.3.5
     PyYAML 6.0
-    requests 2.31.0
+    requests 2.32.3
     setuptools 67.7.2
     six 1.16.0
     wcwidth 0.2.13
@@ -1216,11 +1216,11 @@ li > p:last-of-type:only-child {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">MISP core format</td>
-<td class="right">June 2024</td>
+<td class="right">December 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Dulaunoy &amp; Iklody</td>
-<td class="center">Expires 30 December 2024</td>
+<td class="center">Expires 4 July 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1233,12 +1233,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-17</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-06-28" class="published">28 June 2024</time>
+<time datetime="2024-12-31" class="published">31 December 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-12-30">30 December 2024</time></dd>
+<dd class="expires"><time datetime="2025-07-04">4 July 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1280,7 +1280,7 @@ format and ensuring an interoperability with existing MISP <span>[<a href="#MISP
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 30 December 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 4 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1883,7 +1883,7 @@ represented as an unsigned integer.<a href="#section-2.3.2.2-1" class="pilcrow">
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.3.2.3-3.7">External analysis</dt>
-              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.8">md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512, filename, filename|md5, filename|sha1, filename|sha256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, vulnerability, cpe, weakness, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, github-repository, other, cortex, anonymised, community-id<a href="#section-2.3.2.3-3.8" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.8">md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512, filename, filename|md5, filename|sha1, filename|sha256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, vulnerability, cpe, weakness, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, github-repository, other, cortex, anonymised, community-id, dom-hash, onion-address<a href="#section-2.3.2.3-3.8" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.3.2.3-3.9">Financial fraud</dt>
@@ -1895,19 +1895,19 @@ represented as an unsigned integer.<a href="#section-2.3.2.2-1" class="pilcrow">
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.3.2.3-3.13">Network activity</dt>
-              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.14">ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint<a href="#section-2.3.2.3-3.14" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.14">ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint, dom-hash, onion-address<a href="#section-2.3.2.3-3.14" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.3.2.3-3.15">Other</dt>
-              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.16">comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key<a href="#section-2.3.2.3-3.16" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.16">comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key<a href="#section-2.3.2.3-3.16" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.3.2.3-3.17">Payload delivery</dt>
-              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.18">md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, filename-pattern, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, azure-application-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised<a href="#section-2.3.2.3-3.18" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.18">md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, filename-pattern, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, azure-application-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised, onion-address<a href="#section-2.3.2.3-3.18" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.3.2.3-3.19">Payload installation</dt>
-              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.20">md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, stix2-pattern, yara, sigma, vulnerability, cpe, weakness, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, azure-application-id, azure-application-id, mobile-application-id, chrome-extension-id, other, mime-type, anonymised<a href="#section-2.3.2.3-3.20" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.20">md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, stix2-pattern, yara, sigma, vulnerability, cpe, weakness, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, azure-application-id, mobile-application-id, chrome-extension-id, other, mime-type, anonymised<a href="#section-2.3.2.3-3.20" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.3.2.3-3.21">Payload type</dt>
@@ -2183,7 +2183,7 @@ id is represented as a JSON string. id <span class="bcp14">SHALL</span> be prese
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.4.2.3-3.7">External analysis</dt>
-              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.8">md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512, filename, filename|md5, filename|sha1, filename|sha256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, vulnerability, cpe, weakness, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, github-repository, other, cortex, anonymised, community-id<a href="#section-2.4.2.3-3.8" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.8">md5, sha1, sha256, sha3-224, sha3-256, sha3-384, sha3-512, filename, filename|md5, filename|sha1, filename|sha256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, ip-src, ip-dst, ip-dst|port, ip-src|port, mac-address, mac-eui-64, hostname, domain, domain|ip, url, user-agent, regkey, regkey|value, AS, snort, bro, zeek, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, vulnerability, cpe, weakness, attachment, malware-sample, link, comment, text, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, github-repository, other, cortex, anonymised, community-id, dom-hash, onion-address<a href="#section-2.4.2.3-3.8" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.4.2.3-3.9">Financial fraud</dt>
@@ -2195,19 +2195,19 @@ id is represented as a JSON string. id <span class="bcp14">SHALL</span> be prese
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.4.2.3-3.13">Network activity</dt>
-              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.14">ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint<a href="#section-2.4.2.3-3.14" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.14">ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint, dom-hash, onion-address<a href="#section-2.4.2.3-3.14" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.4.2.3-3.15">Other</dt>
-              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.16">comment, text, other, size-in-bytes, counter, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key<a href="#section-2.4.2.3-3.16" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.16">comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key<a href="#section-2.4.2.3-3.16" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.4.2.3-3.17">Payload delivery</dt>
-              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.18">md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, filename-pattern, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, azure-application-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised<a href="#section-2.4.2.3-3.18" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.18">md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, filename-pattern, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, azure-application-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised, onion-address<a href="#section-2.4.2.3-3.18" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.4.2.3-3.19">Payload installation</dt>
-              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.20">md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, stix2-pattern, yara, sigma, vulnerability, cpe, weakness, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, azure-application-id, azure-application-id, mobile-application-id, chrome-extension-id, other, mime-type, anonymised<a href="#section-2.4.2.3-3.20" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.20">md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, pattern-in-file, pattern-in-traffic, pattern-in-memory, filename-pattern, stix2-pattern, yara, sigma, vulnerability, cpe, weakness, attachment, malware-sample, malware-type, comment, text, hex, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, azure-application-id, mobile-application-id, chrome-extension-id, other, mime-type, anonymised<a href="#section-2.4.2.3-3.20" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.4.2.3-3.21">Payload type</dt>
@@ -3099,9 +3099,7 @@ attribute_id represents the human-readable identifier of the attribute reference
         <h3 id="name-analyst-data">
 <a href="#section-2.11" class="section-number selfRef">2.11. </a><a href="#name-analyst-data" class="section-name selfRef">Analyst Data</a>
         </h3>
-<p id="section-2.11-1">Analyst Data are objects which can be in different level of MISP format including objects, attributes, event or detached from MISP core format. It can expressed
-a <code>Opinion</code>, <code>Note</code> or a <code>Relationship</code> from an analyst. Those three types define the key of the analyst data and can be present at the level where analyst data is applied.
-Analyst data can be nested to describe complementary analysis on the analyst data by itself.<a href="#section-2.11-1" class="pilcrow">¶</a></p>
+<p id="section-2.11-1">Analyst Data are objects that can take different forms within the MISP format, including objects, attributes, events, or detached formats from the MISP core. They can express an Opinion, Note, or a Relationship from an analyst. These three types define the key components of analyst data and can be applied at various levels within the data structure. Analyst data can also be linked to provide additional complementary analysis on itself.<a href="#section-2.11-1" class="pilcrow">¶</a></p>
 <div id="opinion">
 <section id="section-2.11.1">
           <h4 id="name-opinion">
@@ -3205,7 +3203,8 @@ for any updates or transfer of the same <code>Opinion</code> object. UUID versio
 <a href="#section-2.11.1.5" class="section-number selfRef">2.11.1.5. </a><a href="#name-authors" class="section-name selfRef">authors</a>
             </h5>
 <p id="section-2.11.1.5-1">authors represent the authors of the opinion. the authors <span class="bcp14">SHALL</span> be represented with an email address or an identifier.<a href="#section-2.11.1.5-1" class="pilcrow">¶</a></p>
-<p id="section-2.11.1.5-2">authors is represented as a JSON string. authors <span class="bcp14">SHALL</span> be present.<a href="#section-2.11.1.5-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.5-2">Multiple authors <span class="bcp14">SHOULD</span> be separated by a comma value.<a href="#section-2.11.1.5-2" class="pilcrow">¶</a></p>
+<p id="section-2.11.1.5-3">authors is represented as a JSON string. authors <span class="bcp14">SHALL</span> be present.<a href="#section-2.11.1.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="org-uuid">
