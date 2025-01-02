@@ -363,7 +363,7 @@ the sample <bcp14>MUST</bcp14> be encrypted using a password protected zip archi
 </section>
 
 <section anchor="relatedattribute"><name>RelatedAttribute</name>
-<t>RelatedAttribute is an array of attributes correlating with the current attribute. Each element in the array represents an JSON object which contains an Attribute dictionnary with the external attributes who correlate. Each Attribute <bcp14>MUST</bcp14> include the id, org_id, info and a value. Only the correlations found on the local instance are shown in RelatedAttribute.</t>
+<t>RelatedAttribute is an array of attributes correlating with the current attribute. Each element in the array represents an JSON object which contains an Attribute dictionary with the external attributes who correlate. Each Attribute <bcp14>MUST</bcp14> include the id, org_id, info and a value. Only the correlations found on the local instance are shown in RelatedAttribute.</t>
 <t>RelatedAttribute <bcp14>MAY</bcp14> be present.</t>
 </section>
 

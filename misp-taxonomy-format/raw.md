@@ -478,7 +478,7 @@ The public directory of MISP taxonomies [@?MISP-T] contains more than 150 taxono
 
 **crowdsec** : Crowdsec IP address classifications and behaviors taxonomy.
 
-**cryptocurrency-threat** : Threats targetting cryptocurrency, based on CipherTrace report.
+**cryptocurrency-threat** : Threats targeting cryptocurrency, based on CipherTrace report.
 
 **csirt-americas** : Taxonomía CSIRT Américas.
 
@@ -678,7 +678,7 @@ The public directory of MISP taxonomies [@?MISP-T] contains more than 150 taxono
 
 **ransomware-roles** : The seven roles seen in most ransomware incidents.
 
-**retention** : Add a retenion time to events to automatically remove the IDS-flag on ip-dst or ip-src attributes. We calculate the time elapsed based on the date of the event. Supported time units are: d(ays), w(eeks), m(onths), y(ears). The numerical_value is just for sorting in the web-interface and is not used for calculations.
+**retention** : Add a retention time to events to automatically remove the IDS-flag on ip-dst or ip-src attributes. We calculate the time elapsed based on the date of the event. Supported time units are: d(ays), w(eeks), m(onths), y(ears). The numerical_value is just for sorting in the web-interface and is not used for calculations.
 
 **rsit** : Reference Security Incident Classification Taxonomy
 
