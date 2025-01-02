@@ -442,7 +442,7 @@ data is represented by a JSON string in base64 encoding. data **MUST** be set fo
 
 #### RelatedAttribute
 
-RelatedAttribute is an array of attributes correlating with the current attribute. Each element in the array represents an JSON object which contains an Attribute dictionnary with the external attributes who correlate. Each Attribute **MUST** include the id, org_id, info and a value. Only the correlations found on the local instance are shown in RelatedAttribute.
+RelatedAttribute is an array of attributes correlating with the current attribute. Each element in the array represents an JSON object which contains an Attribute dictionary with the external attributes who correlate. Each Attribute **MUST** include the id, org_id, info and a value. Only the correlations found on the local instance are shown in RelatedAttribute.
 
 RelatedAttribute **MAY** be present.
 
