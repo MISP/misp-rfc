@@ -842,7 +842,6 @@ Dulaunoy & Iklody        Expires 4 January 2026                [Page 15]
 Internet-Draft            MISP taxonomy format                 July 2025
 
 
-<<<<<<< HEAD
       taxonomy.
    cryptocurrency-threat:  Threats targeting cryptocurrency, based on
       CipherTrace report.
@@ -891,53 +890,6 @@ Internet-Draft            MISP taxonomy format                 July 2025
       especially the types they belong too.
    de-vs:  German (DE) Government classification markings (VS).
    death-possibilities:  Taxonomy of Death Possibilities
-=======
-   *artificial-satellites* : This taxonomy was designed to describe
-   artificial satellites
-
-   *aviation* : A taxonomy describing security threats or incidents
-   against the aviation sector.
-
-   *binary-class* : Custom taxonomy for types of binary file.
-
-   *cccs* : Internal taxonomy for CCCS.
-
-   *circl* : CIRCL Taxonomy - Schemes of Classification in Incident
-   Response and Detection.
-
-   *cnsd* : La presente taxonomia es la primera versión disponible para
-   el Centro Nacional de Seguridad Digital del Perú.
-
-   *coa* : Course of action taken within organization to discover,
-   detect, deny, disrupt, degrade, deceive and/or destroy an attack.
-
-   *collaborative-intelligence* : Collaborative intelligence support
-   language is a common language to support analysts to perform their
-   analysis to get crowdsourced support when using threat intelligence
-   sharing platform like MISP.  The objective of this language is to
-   advance collaborative analysis and to share earlier than later.
-
-   *common-taxonomy* : Common Taxonomy for Law enforcement and CSIRTs
-
-   *copine-scale* : The COPINE Scale is a rating system created in
-   Ireland and used in the United Kingdom to categorise the severity of
-   images of child sex abuse.  The scale was developed by staff at the
-   COPINE (Combating Paedophile Information Networks in Europe) project.
-   The COPINE Project was founded in 1997, and is based in the
-   Department of Applied Psychology, University College Cork, Ireland.
-
-   *course-of-action* : A Course Of Action analysis considers six
-   potential courses of action for the development of a cyber security
-   capability.
-
-   *crowdsec* : Crowdsec IP address classifications and behaviors
-   taxonomy.
-
-   *cryptocurrency-threat* : Threats targeting cryptocurrency, based on
-   CipherTrace report.
-
-   *csirt-americas* : Taxonomía CSIRT Américas.
->>>>>>> 34d9dc8416fbf5e32c6238043f3a534b11c75937
 
 
 
@@ -1391,7 +1343,6 @@ Internet-Draft            MISP taxonomy format                 July 2025
 
 Dulaunoy & Iklody        Expires 4 January 2026                [Page 24]
 
-<<<<<<< HEAD
 Internet-Draft            MISP taxonomy format                 July 2025
 
 
@@ -1415,234 +1366,6 @@ Internet-Draft            MISP taxonomy format                 July 2025
    workflow:  Workflow support language is a common language to support
       intelligence analysts to perform their analysis on data and
       information.
-=======
-Internet-Draft            MISP taxonomy format             December 2024
-
-
-   *open_threat* : Open Threat Taxonomy v1.1 base on James Tarala of
-   SANS http://www.auditscripts.com/resources/
-   open_threat_taxonomy_v1.1a.pdf
-   (http://www.auditscripts.com/resources/
-   open_threat_taxonomy_v1.1a.pdf), https://files.sans.org/summit/
-   Threat_Hunting_Incident_Response_Summit_2016/PDFs/Using-Open-Tools-
-   to-Convert-Threat-Intelligence-into-Practical-Defenses-James-Tarala-
-   SANS-Institute.pdf (https://files.sans.org/summit/
-   Threat_Hunting_Incident_Response_Summit_2016/PDFs/Using-Open-Tools-
-   to-Convert-Threat-Intelligence-into-Practical-Defenses-James-Tarala-
-   SANS-Institute.pdf), https://www.youtube.com/watch?v=5rdGOOFC_yE
-   (https://www.youtube.com/watch?v=5rdGOOFC_yE), and
-   https://www.rsaconference.com/writable/presentations/file_upload/str-
-   r04_using-an-open-source-threat-model-for-prioritized-defense-
-   final.pdf
-   (https://www.rsaconference.com/writable/presentations/file_upload/
-   str-r04_using-an-open-source-threat-model-for-prioritized-defense-
-   final.pdf)
-
-   *organizational-cyber-harm* : A taxonomy to classify organizational
-   cyber harms based on categories like physical, economic,
-   psychological, reputational, and social/societal impacts.
-
-   *osint* : Open Source Intelligence - Classification (MISP taxonomies)
-
-   *pandemic* : Pandemic
-
-   *passivetotal* : Tags from RiskIQ's PassiveTotal service
-
-   *pentest* : Penetration test (pentest) classification.
-
-   *pfc* : Le Protocole des feux de circulation (PFC) est basé sur le
-   standard « Traffic Light Protocol (TLP) » conçu par le FIRST.  Il a
-   pour objectif d’informer sur les limites autorisées pour la diffusion
-   des informations.  Il est classé selon des codes de couleurs.
-
-   *phishing* : Taxonomy to classify phishing attacks including
-   techniques, collection mechanisms and analysis status.
-
-   *poison-taxonomy* : Non-exhaustive taxonomy of natural poison
-
-   *political-spectrum* : A political spectrum is a system to
-   characterize and classify different political positions in relation
-   to one another.
-
-   *priority-level* : After an incident is scored, it is assigned a
-   priority level.  The six levels listed below are aligned with NCCIC,
-   DHS, and the CISS to help provide a common lexicon when discussing
-
-
-
-Dulaunoy & Iklody          Expires 3 July 2025                 [Page 22]
-
-Internet-Draft            MISP taxonomy format             December 2024
-
-
-   incidents.  This priority assignment drives NCCIC urgency, pre-
-   approved incident response offerings, reporting requirements, and
-   recommendations for leadership escalation.  Generally, incident
-   priority distribution should follow a similar pattern to the graph
-   below.  Based on https://www.cisa.gov/news-events/news/cisa-national-
-   cyber-incident-scoring-system-nciss (https://www.cisa.gov/news-
-   events/news/cisa-national-cyber-incident-scoring-system-nciss).
-
-   *pyoti* : PyOTI automated enrichment schemes for point in time
-   classification of indicators.
-
-   *ransomware* : Ransomware is used to define ransomware types and the
-   elements that compose them.
-
-   *ransomware-roles* : The seven roles seen in most ransomware
-   incidents.
-
-   *retention* : Add a retention time to events to automatically remove
-   the IDS-flag on ip-dst or ip-src attributes.  We calculate the time
-   elapsed based on the date of the event.  Supported time units are:
-   d(ays), w(eeks), m(onths), y(ears).  The numerical_value is just for
-   sorting in the web-interface and is not used for calculations.
-
-   *rsit* : Reference Security Incident Classification Taxonomy
-
-   *rt_event_status* : Status of events used in Request Tracker.
-
-   *runtime-packer* : Runtime or software packer used to combine
-   compressed or encrypted data with the decompression or decryption
-   code.  This code can add additional obfuscations mechanisms including
-   polymorphic-packer or other obfuscation techniques.  This taxonomy
-   lists all the known or official packer used for legitimate use or for
-   packing malicious binaries.
-
-   *scrippsco2-fgc* : Flags describing the sample
-
-   *scrippsco2-fgi* : Flags describing the sample for isotopic data
-   (C14, O18)
-
-   *scrippsco2-sampling-stations* : Sampling stations of the Scripps CO2
-   Program
-
-   *sentinel-threattype* : Sentinel indicator threat types.
-
-   *smart-airports-threats* : Threat taxonomy in the scope of securing
-   smart airports by ENISA. https://www.enisa.europa.eu/publications/
-   securing-smart-airports (https://www.enisa.europa.eu/publications/
-   securing-smart-airports)
-
-
-
-Dulaunoy & Iklody          Expires 3 July 2025                 [Page 23]
-
-Internet-Draft            MISP taxonomy format             December 2024
-
-
-   *social-engineering-attack-vectors* : Attack vectors used in social
-   engineering as described in 'A Taxonomy of Social Engineering Defense
-   Mechanisms' by Dalal Alharthi and others.
-
-   *srbcert* : SRB-CERT Taxonomy - Schemes of Classification in Incident
-   Response and Detection
-
-   *state-responsibility* : A spectrum of state responsibility to more
-   directly tie the goals of attribution to the needs of policymakers.
-
-   *stealth_malware* : Classification based on malware stealth
-   techniques.  Described in https://vxheaven.org/lib/pdf/
-   Introducing%20Stealth%20Malware%20Taxonomy.pdf
-   (https://vxheaven.org/lib/pdf/
-   Introducing%20Stealth%20Malware%20Taxonomy.pdf)
-
-   *stix-ttp* : TTPs are representations of the behavior or modus
-   operandi of cyber adversaries.
-
-   *targeted-threat-index* : The Targeted Threat Index is a metric for
-   assigning an overall threat ranking score to email messages that
-   deliver malware to a victim’s computer.  The TTI metric was first
-   introduced at SecTor 2013 by Seth Hardy as part of the talk
-   “RATastrophe: Monitoring a Malware Menagerie” along with Katie
-   Kleemola and Greg Wiseman.
-
-   *thales_group* : Thales Group Taxonomy - was designed with the aim of
-   enabling desired sharing and preventing unwanted sharing between
-   Thales Group security communities.
-
-   *threatmatch* : The ThreatMatch Sectors, Incident types, Malware
-   types and Alert types are applicable for any ThreatMatch instances
-   and should be used for all CIISI and TIBER Projects.
-
-   *threats-to-dns* : An overview of some of the known attacks related
-   to DNS as described by Torabi, S., Boukhtouta, A., Assi, C., &
-   Debbabi, M. (2018) in Detecting Internet Abuse by Analyzing Passive
-   DNS Traffic: A Survey of Implemented Systems.  IEEE Communications
-   Surveys & Tutorials, 1–1. doi:10.1109/comst.2018.2849614
-
-
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody          Expires 3 July 2025                 [Page 24]
-
-Internet-Draft            MISP taxonomy format             December 2024
-
-
-   *tlp* : The Traffic Light Protocol (TLP) (v2.0) was created to
-   facilitate greater sharing of potentially sensitive information and
-   more effective collaboration.  Information sharing happens from an
-   information source, towards one or more recipients.  TLP is a set of
-   four standard labels (a fifth label is included in amber to limit the
-   diffusion) used to indicate the sharing boundaries to be applied by
-   the recipients.  Only labels listed in this standard are considered
-   valid by FIRST.  This taxonomy includes additional labels for
-   backward compatibility which are no more validated by FIRST SIG.
-
-   *tor* : Taxonomy to describe Tor network infrastructure
-
-   *trust* : The Indicator of Trust provides insight about data on what
-   can be trusted and known as a good actor.  Similar to a whitelist but
-   on steroids, reusing features one would use with Indicators of
-   Compromise, but to filter out what is known to be good.
-
-   *type* : Taxonomy to describe different types of intelligence
-   gathering discipline which can be described the origin of
-   intelligence.
-
-   *unified-kill-chain* : The Unified Kill Chain is a refinement to the
-   Kill Chain.
-
-   *unified-ransomware-kill-chain* : The Unified Ransomware Kill Chain,
-   a intelligence driven model developed by Oleg Skulkin, aims to track
-   every single phase of a ransomware attack.
-
-   *use-case-applicability* : The Use Case Applicability categories
-   reflect standard resolution categories, to clearly display alerting
-   rule configuration problems.
-
-   *veris* : Vocabulary for Event Recording and Incident Sharing (VERIS)
-
-   *vmray* : VMRay taxonomies to map VMRay Thread Identifier scores and
-   artifacts.
-
-   *vocabulaire-des-probabilites-estimatives* : Ce vocabulaire attribue
-   des valeurs en pourcentage à certains énoncés de probabilité
-
-   *vulnerability* : A taxonomy for describing vulnerabilities
-   (software, hardware, or social) on different scales or with
-   additional available information.
-
-   *workflow* : Workflow support language is a common language to
-   support intelligence analysts to perform their analysis on data and
-   information.
-
-
-
-
-Dulaunoy & Iklody          Expires 3 July 2025                 [Page 25]
-
-Internet-Draft            MISP taxonomy format             December 2024
-
->>>>>>> 34d9dc8416fbf5e32c6238043f3a534b11c75937
 
 5.  JSON Schema
 
