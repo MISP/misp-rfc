@@ -1819,7 +1819,7 @@ Internet-Draft         MISP object template format         December 2023
    *  objects/target-system (https://github.com/MISP/misp-
       objects/blob/main/objects/target-system/definition.json) -
       Description about an targeted system, this could potentially be a
-      compromissed internal system.
+      compromised internal system.
    *  objects/task (https://github.com/MISP/misp-
       objects/blob/main/objects/task/definition.json) - Task object as
       described in STIX 2.1 Incident object extension.

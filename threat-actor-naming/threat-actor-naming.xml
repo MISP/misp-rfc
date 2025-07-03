@@ -73,7 +73,7 @@ document are to be interpreted as described in RFC 2119 <xref target="RFC2119"><
 </section>
 
 <section anchor="directory"><name>Directory</name>
-<t>A reference registry of threat actors is <bcp14>RECOMMENDED</bcp14> to ensure consistency of names accross different parties such as the threat actor MISP galaxy <xref target="MISP-G"></xref>.</t>
+<t>A reference registry of threat actors is <bcp14>RECOMMENDED</bcp14> to ensure consistency of names across different parties such as the threat actor MISP galaxy <xref target="MISP-G"></xref>.</t>
 </section>
 </section>
 

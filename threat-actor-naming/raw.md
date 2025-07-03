@@ -96,7 +96,7 @@ The name of the threat actor **MUST NOT** be based on the tools, techniques, or 
 
 ## Directory
 
-A reference registry of threat actors is **RECOMMENDED** to ensure consistency of names accross different parties such as the threat actor MISP galaxy [@!MISP-G]. 
+A reference registry of threat actors is **RECOMMENDED** to ensure consistency of names across different parties such as the threat actor MISP galaxy [@!MISP-G].
 
 # Examples
 
