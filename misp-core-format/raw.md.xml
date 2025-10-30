@@ -177,6 +177,10 @@ represented as an unsigned integer.</t>
 <t>extends_uuid represents which event is extended by this event. The extends_uuid is described as a Universally Unique IDentifier (UUID) <xref target="RFC4122"></xref> with the UUID of the extended event.</t>
 <t>extends_uuid is represented as a JSON string. extends_uuid <bcp14>SHOULD</bcp14> be present.</t>
 </section>
+
+<section anchor="locked"><name>locked</name>
+<t>locked represents the current state of the event when it comes to allowing remote edits by synchronisation. It is best thought of as &quot;synced_event&quot; in its meaning, with &quot;0&quot; being local events, protected from remote changes and &quot;1&quot; being a synchronised from another instance. locked <bcp14>SHOULD</bcp14> be present.</t>
+</section>
 </section>
 
 <section anchor="event-objects"><name>Event Objects</name>
@@ -197,8 +201,7 @@ A human-readable identifier <bcp14>MUST</bcp14> be represented as an unsigned in
         "name": "CIRCL",
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
-]]>
-</artwork>
+]]></artwork>
 </section>
 </section>
 
@@ -240,8 +243,7 @@ where the category and type give meaning and context to the value. Through the v
               "first_seen": "2019-06-02T22:14:28.711954+00:00",
               "last_seen": null
              }
-]]>
-</artwork>
+]]></artwork>
 </section>
 
 <section anchor="attribute-attributes"><name>Attribute Attributes</name>
@@ -418,8 +420,7 @@ which can be accepted or discarded by the event creator. If accepted, the origin
                        "first_seen": "2019-06-02T22:14:28.711954+00:00",
                        "last_seen": null
                    }
-]]>
-</artwork>
+]]></artwork>
 </section>
 
 <section anchor="shadowattribute-attributes"><name>ShadowAttribute Attributes</name>
@@ -565,8 +566,7 @@ A human-readable identifier <bcp14>MUST</bcp14> be represented as an unsigned in
         "name": "CIRCL",
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
-]]>
-</artwork>
+]]></artwork>
 </section>
 </section>
 </section>
@@ -620,8 +620,7 @@ Each object is created using an Object Template and carries the meta-data of the
      "last_seen": null
    ]
 }
-]]>
-</artwork>
+]]></artwork>
 </section>
 
 <section anchor="object-attributes"><name>Object Attributes</name>
@@ -747,8 +746,7 @@ represented as an unsigned integer.</t>
                     "object_uuid": "59c1134d-8a40-4c14-ad94-0f7ba07724d1",
                     "referenced_uuid": "59c1133c-9adc-4d06-a34b-0f7ca07724d1",
                    }
-]]>
-</artwork>
+]]></artwork>
 </section>
 
 <section anchor="objectreference-attributes"><name>ObjectReference Attributes</name>
@@ -898,8 +896,7 @@ of the report. name <bcp14>SHOULD</bcp14> NOT be bigger than 256 characters and 
         "colour": "#ffffff",
         "name": "tlp:white",
         "id": "2" }]
-]]>
-</artwork>
+]]></artwork>
 </section>
 </section>
 
@@ -981,8 +978,7 @@ attribute_id represents the human-readable identifier of the attribute reference
 				}
 			}
 		]
-]]>
-</artwork>
+]]></artwork>
 </section>
 </section>
 
@@ -1035,8 +1031,7 @@ attribute_id represents the human-readable identifier of the attribute reference
                 ]
             }
         ]
-]]>
-</artwork>
+]]></artwork>
 </section>
 </section>
 
@@ -1095,8 +1090,7 @@ attribute_id represents the human-readable identifier of the attribute reference
                         }
                     }
                 ]
-]]>
-</artwork>
+]]></artwork>
 
 <section anchor="id-6"><name>id</name>
 <t>id represents the human-readable identifier associated to the opinion for a specific MISP instance. A human-readable identifier <bcp14>MUST</bcp14> be
@@ -1227,8 +1221,7 @@ for any updates or transfer of the same <tt>Opinion</tt> object. UUID version 4 
                     "nationality": "Luxembourg",
                     "local": true
                 }
-]]>
-</artwork>
+]]></artwork>
 
 <section anchor="id-7"><name>id</name>
 <t>id represents the human-readable identifier associated to the note for a specific MISP instance. A human-readable identifier <bcp14>MUST</bcp14> be
@@ -1382,8 +1375,7 @@ for any updates or transfer of the same <tt>Note</tt> object. UUID version 4 is 
                 }
             }
         ]
-]]>
-</artwork>
+]]></artwork>
 
 <section anchor="id-8"><name>id</name>
 <t>id represents the human-readable identifier associated to the relationship for a specific MISP instance. A human-readable identifier <bcp14>MUST</bcp14> be
@@ -2163,8 +2155,7 @@ or parsing.</t>
     "Event"
   ]
 }
-]]>
-</artwork>
+]]></artwork>
 </section>
 
 <section anchor="manifest"><name>Manifest</name>
@@ -2247,8 +2238,7 @@ A detached PGP signature for a manifest file is a manifest.json.asc file contain
     "threat_level_id": "3"
   }
 }
-]]>
-</artwork>
+]]></artwork>
 </section>
 </section>
 </section>
