@@ -32,7 +32,7 @@ If you want to see how a threat intelligence can be easily expressed in MISP sta
 
 ## Building the RFCs
 
-These RFCs use [mmark](https://mmark.nl/) to generate - get a release [from the Github Repo](https://github.com/mmarkdown/mmark) and make sure it's in your PATH.
+These RFCs use [mmark](https://mmark.miek.nl/) to generate - get a release [from the Github Repo](https://github.com/mmarkdown/mmark) and make sure it's in your PATH.
 
 You'll also need `xml2rfc` - install using `sudo pip3 isntall xml2rfc`
 
