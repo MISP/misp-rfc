@@ -201,7 +201,8 @@ A human-readable identifier <bcp14>MUST</bcp14> be represented as an unsigned in
         "name": "CIRCL",
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
-]]></artwork>
+]]>
+</artwork>
 </section>
 </section>
 
@@ -243,7 +244,8 @@ where the category and type give meaning and context to the value. Through the v
               "first_seen": "2019-06-02T22:14:28.711954+00:00",
               "last_seen": null
              }
-]]></artwork>
+]]>
+</artwork>
 </section>
 
 <section anchor="attribute-attributes"><name>Attribute Attributes</name>
@@ -280,7 +282,7 @@ represented as an unsigned integer.</t>
 <dt>Network activity</dt>
 <dd>ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint, dom-hash, onion-address</dd>
 <dt>Other</dt>
-<dd>comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key</dd>
+<dd>comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key, uuid</dd>
 <dt>Payload delivery</dt>
 <dd>md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, filename-pattern, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, azure-application-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised, onion-address</dd>
 <dt>Payload installation</dt>
@@ -420,7 +422,8 @@ which can be accepted or discarded by the event creator. If accepted, the origin
                        "first_seen": "2019-06-02T22:14:28.711954+00:00",
                        "last_seen": null
                    }
-]]></artwork>
+]]>
+</artwork>
 </section>
 
 <section anchor="shadowattribute-attributes"><name>ShadowAttribute Attributes</name>
@@ -456,7 +459,7 @@ id is represented as a JSON string. id <bcp14>SHALL</bcp14> be present.</t>
 <dt>Network activity</dt>
 <dd>ip-src, ip-dst, ip-dst|port, ip-src|port, port, hostname, domain, domain|ip, mac-address, mac-eui-64, email, email-dst, email-src, eppn, url, uri, user-agent, http-method, AS, snort, pattern-in-file, filename-pattern, stix2-pattern, pattern-in-traffic, attachment, comment, text, x509-fingerprint-md5, x509-fingerprint-sha1, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hex, cookie, hostname|port, bro, zeek, anonymised, community-id, email-subject, favicon-mmh3, dkim, dkim-signature, ssh-fingerprint, dom-hash, onion-address</dd>
 <dt>Other</dt>
-<dd>comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key</dd>
+<dd>comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key, uuid</dd>
 <dt>Payload delivery</dt>
 <dd>md5, sha1, sha224, sha256, sha384, sha512, sha512/224, sha512/256, sha3-224, sha3-256, sha3-384, sha3-512, ssdeep, imphash, telfhash, impfuzzy, authentihash, vhash, pehash, tlsh, cdhash, filename, filename|md5, filename|sha1, filename|sha224, filename|sha256, filename|sha384, filename|sha512, filename|sha512/224, filename|sha512/256, filename|sha3-224, filename|sha3-256, filename|sha3-384, filename|sha3-512, filename|authentihash, filename|vhash, filename|ssdeep, filename|tlsh, filename|imphash, filename|impfuzzy, filename|pehash, mac-address, mac-eui-64, ip-src, ip-dst, ip-dst|port, ip-src|port, hostname, domain, email, email-src, email-dst, email-subject, email-attachment, email-body, url, user-agent, AS, pattern-in-file, pattern-in-traffic, filename-pattern, stix2-pattern, yara, sigma, mime-type, attachment, malware-sample, link, malware-type, comment, text, hex, vulnerability, cpe, weakness, x509-fingerprint-sha1, x509-fingerprint-md5, x509-fingerprint-sha256, ja3-fingerprint-md5, jarm-fingerprint, hassh-md5, hasshserver-md5, other, hostname|port, email-dst-display-name, email-src-display-name, email-header, email-reply-to, email-x-mailer, email-mime-boundary, email-thread-index, email-message-id, azure-application-id, mobile-application-id, chrome-extension-id, whois-registrant-email, anonymised, onion-address</dd>
 <dt>Payload installation</dt>
@@ -566,7 +569,8 @@ A human-readable identifier <bcp14>MUST</bcp14> be represented as an unsigned in
         "name": "CIRCL",
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
-]]></artwork>
+]]>
+</artwork>
 </section>
 </section>
 </section>
@@ -620,7 +624,8 @@ Each object is created using an Object Template and carries the meta-data of the
      "last_seen": null
    ]
 }
-]]></artwork>
+]]>
+</artwork>
 </section>
 
 <section anchor="object-attributes"><name>Object Attributes</name>
@@ -746,7 +751,8 @@ represented as an unsigned integer.</t>
                     "object_uuid": "59c1134d-8a40-4c14-ad94-0f7ba07724d1",
                     "referenced_uuid": "59c1133c-9adc-4d06-a34b-0f7ca07724d1",
                    }
-]]></artwork>
+]]>
+</artwork>
 </section>
 
 <section anchor="objectreference-attributes"><name>ObjectReference Attributes</name>
@@ -896,7 +902,8 @@ of the report. name <bcp14>SHOULD</bcp14> NOT be bigger than 256 characters and 
         "colour": "#ffffff",
         "name": "tlp:white",
         "id": "2" }]
-]]></artwork>
+]]>
+</artwork>
 </section>
 </section>
 
@@ -978,7 +985,8 @@ attribute_id represents the human-readable identifier of the attribute reference
 				}
 			}
 		]
-]]></artwork>
+]]>
+</artwork>
 </section>
 </section>
 
@@ -1031,7 +1039,8 @@ attribute_id represents the human-readable identifier of the attribute reference
                 ]
             }
         ]
-]]></artwork>
+]]>
+</artwork>
 </section>
 </section>
 
@@ -1090,7 +1099,8 @@ attribute_id represents the human-readable identifier of the attribute reference
                         }
                     }
                 ]
-]]></artwork>
+]]>
+</artwork>
 
 <section anchor="id-6"><name>id</name>
 <t>id represents the human-readable identifier associated to the opinion for a specific MISP instance. A human-readable identifier <bcp14>MUST</bcp14> be
@@ -1221,7 +1231,8 @@ for any updates or transfer of the same <tt>Opinion</tt> object. UUID version 4 
                     "nationality": "Luxembourg",
                     "local": true
                 }
-]]></artwork>
+]]>
+</artwork>
 
 <section anchor="id-7"><name>id</name>
 <t>id represents the human-readable identifier associated to the note for a specific MISP instance. A human-readable identifier <bcp14>MUST</bcp14> be
@@ -1375,7 +1386,8 @@ for any updates or transfer of the same <tt>Note</tt> object. UUID version 4 is 
                 }
             }
         ]
-]]></artwork>
+]]>
+</artwork>
 
 <section anchor="id-8"><name>id</name>
 <t>id represents the human-readable identifier associated to the relationship for a specific MISP instance. A human-readable identifier <bcp14>MUST</bcp14> be
@@ -2155,7 +2167,8 @@ or parsing.</t>
     "Event"
   ]
 }
-]]></artwork>
+]]>
+</artwork>
 </section>
 
 <section anchor="manifest"><name>Manifest</name>
@@ -2238,7 +2251,8 @@ A detached PGP signature for a manifest file is a manifest.json.asc file contain
     "threat_level_id": "3"
   }
 }
-]]></artwork>
+]]>
+</artwork>
 </section>
 </section>
 </section>

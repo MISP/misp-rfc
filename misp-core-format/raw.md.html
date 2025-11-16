@@ -14,21 +14,24 @@ The JSON format includes the overall structure along with the semantic associate
 respective key. The format is described to support other implementations which reuse the
 format and ensuring an interoperability with existing MISP   software and other Threat Intelligence Platforms. 
     " name="description">
-<meta content="xml2rfc 3.31.0" name="generator">
+<meta content="xml2rfc 3.21.0" name="generator">
 <meta content="draft-17" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.31.0
+  xml2rfc 3.21.0
     Python 3.10.12
-    ConfigArgParse 1.7.1
-    google-i18n-address 3.1.1
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
-    lxml 5.4.0
-    platformdirs 4.5.0
+    lxml 4.9.2
+    platformdirs 4.1.0
     pycountry 24.6.1
-    PyYAML 6.0.1
-    requests 2.32.3
-    wcwidth 0.2.5
+    PyYAML 6.0
+    requests 2.32.5
+    setuptools 67.7.2
+    six 1.16.0
+    wcwidth 0.2.13
+    weasyprint 65.1
 -->
 <link href="raw.md.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -46,9 +49,9 @@ format and ensuring an interoperability with existing MISP   software and other 
 */
 
 /* fonts */
-@import url('https://static.ietf.org/fonts/noto-sans/import.css'); /* Sans-serif */
-@import url('https://static.ietf.org/fonts/noto-serif/import.css'); /* Serif (print) */
-@import url('https://static.ietf.org/fonts/roboto-mono/import.css'); /* Monospace */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans'); /* Sans-serif */
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif'); /* Serif (print) */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono'); /* Monospace */
 
 :root {
   --font-sans: 'Noto Sans', Arial, Helvetica, sans-serif;
@@ -161,12 +164,6 @@ div {
 }
 svg {
   display: block;
-}
-@media print {
-  svg {
-    max-height: 850px;
-    max-width: 660px;
-  }
 }
 svg[font-family~="serif" i], svg [font-family~="serif" i] {
   font-family: var(--font-serif);
@@ -411,7 +408,7 @@ hr {
 /* Fix PDF info block run off issue */
 @media print {
   #identifiers dd {
-    max-width: 100%;
+    float: none;
   }
 }
 #identifiers .authors .author {
@@ -1087,7 +1084,7 @@ table {
 ol.type-a { list-style-type: lower-alpha; }
 ol.type-A { list-style-type: upper-alpha; }
 ol.type-i { list-style-type: lower-roman; }
-ol.type-I { list-style-type: upper-roman; }
+ol.type-I { list-style-type: lower-roman; }
 /* Apply the print table and row borders in general, on request from the RPC,
 and increase the contrast between border and odd row background slightly */
 table {
@@ -1167,7 +1164,7 @@ section .olCompact {
 tt, code {
   background-color: transparent;
 }
-p tt, p code, li tt, li code, dt tt, dt code {
+p tt, p code, li tt, li code {
   background-color: #f8f8f8;
 }
 /* Tweak the pre margin -- 0px doesn't come out well */
@@ -1190,7 +1187,6 @@ dl > dd > dl {
 /* This should match the element list in writer.text.TextWriter.render_dl() */
 dd > div.artwork:first-child,
 dd > aside:first-child,
-dd > blockquote:first-child,
 dd > figure:first-child,
 dd > ol:first-child,
 dd > div.sourcecode:first-child,
@@ -1215,15 +1211,16 @@ li > p:last-of-type:only-child {
 <script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
 </head>
 <body class="xml2rfc">
+<script src="metadata.min.js"></script>
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">MISP core format</td>
-<td class="right">October 2025</td>
+<td class="right">November 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Dulaunoy &amp; Iklody</td>
-<td class="center">Expires 3 May 2026</td>
+<td class="center">Expires 20 May 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1236,12 +1233,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-17</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-30" class="published">30 October 2025</time>
+<time datetime="2025-11-16" class="published">16 November 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-05-03">3 May 2026</time></dd>
+<dd class="expires"><time datetime="2026-05-20">20 May 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1283,7 +1280,7 @@ format and ensuring an interoperability with existing MISP <span>[<a href="#MISP
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 3 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 20 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1785,6 +1782,7 @@ A human-readable identifier <span class="bcp14">MUST</span> be represented as an
         "name": "CIRCL",
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
+
 </pre><a href="#section-2.2.2.1.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1842,6 +1840,7 @@ where the category and type give meaning and context to the value. Through the v
               "first_seen": "2019-06-02T22:14:28.711954+00:00",
               "last_seen": null
              }
+
 </pre><a href="#section-2.3.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1908,7 +1907,7 @@ represented as an unsigned integer.<a href="#section-2.3.2.2-1" class="pilcrow">
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.3.2.3-3.15">Other</dt>
-              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.16">comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key<a href="#section-2.3.2.3-3.16" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.3.2.3-3.16">comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key, uuid<a href="#section-2.3.2.3-3.16" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.3.2.3-3.17">Payload delivery</dt>
@@ -2142,6 +2141,7 @@ which can be accepted or discarded by the event creator. If accepted, the origin
                        "first_seen": "2019-06-02T22:14:28.711954+00:00",
                        "last_seen": null
                    }
+
 </pre><a href="#section-2.4.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2207,7 +2207,7 @@ id is represented as a JSON string. id <span class="bcp14">SHALL</span> be prese
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.4.2.3-3.15">Other</dt>
-              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.16">comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key<a href="#section-2.4.2.3-3.16" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-2.4.2.3-3.16">comment, text, other, size-in-bytes, counter, integer, datetime, cpe, port, float, hex, phone-number, boolean, anonymised, pgp-public-key, pgp-private-key, uuid<a href="#section-2.4.2.3-3.16" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-2.4.2.3-3.17">Payload delivery</dt>
@@ -2398,6 +2398,7 @@ A human-readable identifier <span class="bcp14">MUST</span> be represented as an
         "name": "CIRCL",
         "uuid": "55f6ea5e-2c60-40e5-964f-47a8950d210f"
        }
+
 </pre><a href="#section-2.4.3.1.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2464,6 +2465,7 @@ Each object is created using an Object Template and carries the meta-data of the
      "last_seen": null
    ]
 }
+
 </pre><a href="#section-2.5.1-1" class="pilcrow">¶</a>
 </div>
 </div>
@@ -2677,6 +2679,7 @@ represented as an unsigned integer.<a href="#section-2.5.2.8-1" class="pilcrow">
                     "object_uuid": "59c1134d-8a40-4c14-ad94-0f7ba07724d1",
                     "referenced_uuid": "59c1133c-9adc-4d06-a34b-0f7ca07724d1",
                    }
+
 </pre><a href="#section-2.6.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2939,6 +2942,7 @@ of the report. name <span class="bcp14">SHOULD</span> NOT be bigger than 256 cha
         "colour": "#ffffff",
         "name": "tlp:white",
         "id": "2" }]
+
 </pre><a href="#section-2.8.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3028,6 +3032,7 @@ attribute_id represents the human-readable identifier of the attribute reference
                                 }
                         }
                 ]
+
 </pre><a href="#section-2.9.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3090,6 +3095,7 @@ attribute_id represents the human-readable identifier of the attribute reference
                 ]
             }
         ]
+
 </pre><a href="#section-2.10.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3158,6 +3164,7 @@ attribute_id represents the human-readable identifier of the attribute reference
                         }
                     }
                 ]
+
 </pre><a href="#section-2.11.1-1" class="pilcrow">¶</a>
 </div>
 <div id="id-6">
@@ -3361,6 +3368,7 @@ for any updates or transfer of the same <code>Opinion</code> object. UUID versio
                     "nationality": "Luxembourg",
                     "local": true
                 }
+
 </pre><a href="#section-2.11.2-1" class="pilcrow">¶</a>
 </div>
 <div id="id-7">
@@ -3583,6 +3591,7 @@ for any updates or transfer of the same <code>Note</code> object. UUID version 4
                 }
             }
         ]
+
 </pre><a href="#section-2.11.3-1" class="pilcrow">¶</a>
 </div>
 <div id="id-8">
@@ -4441,6 +4450,7 @@ or parsing.<a href="#section-3-1" class="pilcrow">¶</a></p>
     "Event"
   ]
 }
+
 </pre><a href="#section-3-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -4541,6 +4551,7 @@ A detached PGP signature for a manifest file is a manifest.json.asc file contain
     "threat_level_id": "3"
   }
 }
+
 </pre><a href="#section-4.1.1-1" class="pilcrow">¶</a>
 </div>
 </section>
