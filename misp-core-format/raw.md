@@ -223,6 +223,10 @@ extends\_uuid represents which event is extended by this event. The extends\_uui
 
 extends\_uuid is represented as a JSON string. extends\_uuid **SHOULD** be present.
 
+#### locked
+
+locked represents the current state of the event when it comes to allowing remote edits by synchronisation. It is best thought of as "synced_event" in its meaning, with "0" being local events, protected from remote changes and "1" being a synchronised from another instance. locked **SHOULD** be present.
+
 ### Event Objects
 
 #### Org
