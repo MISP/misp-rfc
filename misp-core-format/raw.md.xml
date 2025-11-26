@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- name="GENERATOR" content="github.com/mmarkdown/mmark Mmark Markdown Processor - mmark.miek.nl" -->
-<rfc version="3" ipr="trust200902" docName="draft-17" submissionType="independent" category="info" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true">
+<rfc version="3" ipr="trust200902" docName="draft-18" submissionType="independent" category="info" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true">
 
 <front>
-<title abbrev="MISP core format">MISP core format</title><seriesInfo value="draft-17" stream="independent" status="informational" name="Internet-Draft"></seriesInfo>
+<title abbrev="MISP core format">MISP core format</title><seriesInfo value="draft-18" stream="independent" status="informational" name="Internet-Draft"></seriesInfo>
 <author initials="A." surname="Dulaunoy" fullname="Alexandre Dulaunoy"><organization abbrev="CIRCL">Computer Incident Response Center Luxembourg</organization><address><postal><street>122, rue Adolphe Fischer</street>
 <city>Luxembourg</city>
 <code>L-1521</code>
@@ -130,6 +130,11 @@ of the event. info <bcp14>SHOULD</bcp14> NOT be bigger than 256 characters and <
 <section anchor="publish-timestamp"><name>publish_timestamp</name>
 <t>publish_timestamp represents a reference time when the event was published on the instance. published_timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). At each publication of an event, publish_timestamp <bcp14>MUST</bcp14> be updated. The time zone <bcp14>MUST</bcp14> be UTC. If the published_timestamp is present and the published flag is set to false, the publish_timestamp represents the previous publication timestamp. If the event was never published, the published_timestamp <bcp14>MUST</bcp14> be set to 0.</t>
 <t>publish_timestamp is represented as a JSON string. publish_timestamp <bcp14>MUST</bcp14> be present.</t>
+</section>
+
+<section anchor="first-publication"><name>first_publication</name>
+<t>first_publication represents a reference time when the event was published by the original creator. first_publication is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The first_publication timestamp <bcp14>MUST NOT</bcp14> be updated after the initial publish. The time zone <bcp14>MUST</bcp14> be UTC. If the first_publication timestamp was never set, the first_publication <bcp14>MUST</bcp14> be set to 0.</t>
+<t>publish_timestamp is represented as a JSON string. publish_timestamp <bcp14>SHALL</bcp14> be present.</t>
 </section>
 
 <section anchor="org-id"><name>org_id</name>
@@ -1969,6 +1974,10 @@ or parsing.</t>
         "timestamp": {
           "type": "string"
         },
+        "first_publication": {
+          "type": "string"
+        }
+        ,
         "distribution": {
           "type": "string"
         },

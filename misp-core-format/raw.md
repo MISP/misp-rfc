@@ -9,7 +9,7 @@ submissiontype = "independent"
 
 [seriesInfo]
 name = "Internet-Draft"
-value = "draft-17"
+value = "draft-18"
 stream = "independent"
 status = "informational"
 
@@ -166,6 +166,12 @@ timestamp is represented as a JSON string. timestamp **MUST** be present.
 publish_timestamp represents a reference time when the event was published on the instance. published_timestamp is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). At each publication of an event, publish_timestamp **MUST** be updated. The time zone **MUST** be UTC. If the published_timestamp is present and the published flag is set to false, the publish_timestamp represents the previous publication timestamp. If the event was never published, the published_timestamp **MUST** be set to 0.
 
 publish_timestamp is represented as a JSON string. publish_timestamp **MUST** be present.
+
+#### first\_publication
+
+first_publication represents a reference time when the event was published by the original creator. first_publication is expressed in seconds (decimal) since 1st of January 1970 (Unix timestamp). The first_publication timestamp **MUST NOT** be updated after the initial publish. The time zone **MUST** be UTC. If the first_publication timestamp was never set, the first_publication **MUST** be set to 0.
+
+publish_timestamp is represented as a JSON string. publish_timestamp **SHALL** be present.
 
 #### org\_id
 
@@ -2170,6 +2176,10 @@ or parsing.
         "timestamp": {
           "type": "string"
         },
+        "first_publication": {
+          "type": "string"
+        }
+        ,
         "distribution": {
           "type": "string"
         },

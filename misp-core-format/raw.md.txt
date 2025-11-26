@@ -5,11 +5,11 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                 A. Iklody
 Intended status: Informational                                     CIRCL
-Expires: 20 May 2026                                    16 November 2025
+Expires: 30 May 2026                                    26 November 2025
 
 
                             MISP core format
-                                draft-17
+                                draft-18
 
 Abstract
 
@@ -37,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 May 2026.
+   This Internet-Draft will expire on 30 May 2026.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                  [Page 1]
+Dulaunoy & Iklody          Expires 30 May 2026                  [Page 1]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                  [Page 2]
+Dulaunoy & Iklody          Expires 30 May 2026                  [Page 2]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -165,7 +165,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                  [Page 3]
+Dulaunoy & Iklody          Expires 30 May 2026                  [Page 3]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -221,7 +221,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                  [Page 4]
+Dulaunoy & Iklody          Expires 30 May 2026                  [Page 4]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -277,12 +277,24 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                  [Page 5]
+Dulaunoy & Iklody          Expires 30 May 2026                  [Page 5]
 
 Internet-Draft              MISP core format               November 2025
 
 
-2.2.1.10.  org_id
+2.2.1.10.  first_publication
+
+   first_publication represents a reference time when the event was
+   published by the original creator. first_publication is expressed in
+   seconds (decimal) since 1st of January 1970 (Unix timestamp).  The
+   first_publication timestamp MUST NOT be updated after the initial
+   publish.  The time zone MUST be UTC.  If the first_publication
+   timestamp was never set, the first_publication MUST be set to 0.
+
+   publish_timestamp is represented as a JSON string. publish_timestamp
+   SHALL be present.
+
+2.2.1.11.  org_id
 
    org_id represents a human-readable identifier referencing an Org
    object of the organisation which generated the event.  A human-
@@ -293,7 +305,7 @@ Internet-Draft              MISP core format               November 2025
 
    org_id is represented as a JSON string. org_id MUST be present.
 
-2.2.1.11.  orgc_id
+2.2.1.12.  orgc_id
 
    orgc_id represents a human-readable identifier referencing an Orgc
    object of the organisation which created the event.
@@ -303,7 +315,7 @@ Internet-Draft              MISP core format               November 2025
 
    orgc_id is represented as a JSON string. orgc_id MUST be present.
 
-2.2.1.12.  attribute_count
+2.2.1.13.  attribute_count
 
    attribute_count represents the number of attributes in the event.
    attribute_count is expressed in decimal.
@@ -311,11 +323,20 @@ Internet-Draft              MISP core format               November 2025
    attribute_count is represented as a JSON string. attribute_count
    SHALL be present.
 
-2.2.1.13.  distribution
+2.2.1.14.  distribution
 
    distribution represents the basic distribution rules of the event.
    The system must adhere to the distribution setting for access control
    and for dissemination of the event.
+
+
+
+
+
+Dulaunoy & Iklody          Expires 30 May 2026                  [Page 6]
+
+Internet-Draft              MISP core format               November 2025
+
 
    distribution is represented by a JSON string. distribution MUST be
    present and be one of the following options:
@@ -326,19 +347,7 @@ Internet-Draft              MISP core format               November 2025
    3  All Communities
    4  Sharing Group
 
-
-
-
-
-
-
-
-Dulaunoy & Iklody          Expires 20 May 2026                  [Page 6]
-
-Internet-Draft              MISP core format               November 2025
-
-
-2.2.1.14.  sharing_group_id
+2.2.1.15.  sharing_group_id
 
    sharing_group_id represents a human-readable identifier referencing a
    Sharing Group object that defines the distribution of the event, if
@@ -349,7 +358,7 @@ Internet-Draft              MISP core format               November 2025
    present.  If a distribution level other than "4" is chosen the
    sharing_group_id MUST be set to "0".
 
-2.2.1.15.  extends_uuid
+2.2.1.16.  extends_uuid
 
    extends_uuid represents which event is extended by this event.  The
    extends_uuid is described as a Universally Unique IDentifier (UUID)
@@ -358,7 +367,7 @@ Internet-Draft              MISP core format               November 2025
    extends_uuid is represented as a JSON string. extends_uuid SHOULD be
    present.
 
-2.2.1.16.  locked
+2.2.1.17.  locked
 
    locked represents the current state of the event when it comes to
    allowing remote edits by synchronisation.  It is best thought of as
@@ -376,6 +385,15 @@ Internet-Draft              MISP core format               November 2025
    [RFC4122] of the organisation.  The organisation UUID is globally
    assigned to an organisation and SHALL be kept overtime.
 
+
+
+
+
+Dulaunoy & Iklody          Expires 30 May 2026                  [Page 7]
+
+Internet-Draft              MISP core format               November 2025
+
+
    The name is a readable description of the organisation and SHOULD be
    present.  The id is a human-readable identifier generated by the
    instance and used as reference in the event.  A human-readable
@@ -385,14 +403,6 @@ Internet-Draft              MISP core format               November 2025
    MUST be present.
 
 2.2.2.1.1.  Sample Org Object
-
-
-
-
-Dulaunoy & Iklody          Expires 20 May 2026                  [Page 7]
-
-Internet-Draft              MISP core format               November 2025
-
 
    "Org": {
            "id": "2",
@@ -435,17 +445,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-
-
-
-
-
-
-
-
-
-
-Dulaunoy & Iklody          Expires 20 May 2026                  [Page 8]
+Dulaunoy & Iklody          Expires 30 May 2026                  [Page 8]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -501,7 +501,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                  [Page 9]
+Dulaunoy & Iklody          Expires 30 May 2026                  [Page 9]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -557,7 +557,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 10]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 10]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -613,7 +613,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 11]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 11]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -669,7 +669,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 12]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 12]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -725,7 +725,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 13]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 13]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -781,7 +781,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 14]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 14]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -837,7 +837,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 15]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 15]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -893,7 +893,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 16]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 16]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -949,7 +949,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 17]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 17]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1005,7 +1005,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 18]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 18]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1061,7 +1061,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 19]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 19]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1117,7 +1117,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 20]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 20]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1173,7 +1173,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 21]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 21]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1229,7 +1229,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 22]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 22]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1285,7 +1285,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 23]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 23]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1341,7 +1341,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 24]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 24]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1397,7 +1397,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 25]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 25]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1453,7 +1453,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 26]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 26]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1509,7 +1509,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 27]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 27]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1565,7 +1565,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 28]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 28]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1621,7 +1621,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 29]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 29]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1677,7 +1677,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 30]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 30]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1733,7 +1733,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 31]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 31]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1789,7 +1789,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 32]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 32]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1845,7 +1845,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 33]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 33]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1901,7 +1901,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 34]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 34]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -1957,7 +1957,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 35]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 35]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2013,7 +2013,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 36]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 36]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2069,7 +2069,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 37]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 37]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2125,7 +2125,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 38]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 38]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2181,7 +2181,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 39]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 39]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2237,7 +2237,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 40]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 40]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2293,7 +2293,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 41]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 41]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2349,7 +2349,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 42]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 42]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2405,7 +2405,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 43]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 43]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2461,7 +2461,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 44]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 44]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2517,7 +2517,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 45]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 45]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2573,7 +2573,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 46]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 46]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2629,7 +2629,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 47]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 47]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2685,7 +2685,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 48]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 48]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2741,7 +2741,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 49]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 49]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2797,7 +2797,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 50]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 50]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2853,7 +2853,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 51]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 51]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2909,7 +2909,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 52]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 52]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -2965,7 +2965,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 53]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 53]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -3021,7 +3021,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 54]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 54]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -3077,7 +3077,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 55]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 55]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -3133,7 +3133,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 56]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 56]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -3189,7 +3189,7 @@ Internet-Draft              MISP core format               November 2025
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 57]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 57]
 
 Internet-Draft              MISP core format               November 2025
 
@@ -3215,6 +3215,10 @@ Internet-Draft              MISP core format               November 2025
          "timestamp": {
            "type": "string"
          },
+         "first_publication": {
+           "type": "string"
+         }
+         ,
          "distribution": {
            "type": "string"
          },
@@ -3238,18 +3242,18 @@ Internet-Draft              MISP core format               November 2025
          },
          "Org": {
            "$ref": "#/defs/org"
-         },
-         "Orgc": {
-           "$ref": "#/defs/org"
-         },
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 58]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 58]
 
 Internet-Draft              MISP core format               November 2025
 
 
+         },
+         "Orgc": {
+           "$ref": "#/defs/org"
+         },
          "SharingGroup": {
            "$ref": "#/defs/sharing_group"
          },
@@ -3294,18 +3298,18 @@ Internet-Draft              MISP core format               November 2025
                  "$ref": "#/defs/object"
              }
          },
-         "Tag": {
-           "type": "array",
-           "uniqueItems": true,
-           "items": {
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 59]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 59]
 
 Internet-Draft              MISP core format               November 2025
 
 
+         "Tag": {
+           "type": "array",
+           "uniqueItems": true,
+           "items": {
              "$ref": "#/defs/tag"
            }
          }
@@ -3350,18 +3354,18 @@ Internet-Draft              MISP core format               November 2025
          },
          "type": {
            "type": "string"
-         },
-         "description": {
-           "type": "string"
-         },
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 60]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 60]
 
 Internet-Draft              MISP core format               November 2025
 
 
+         },
+         "description": {
+           "type": "string"
+         },
          "version": {
            "type": "string"
          },
@@ -3406,18 +3410,18 @@ Internet-Draft              MISP core format               November 2025
            "type": "string"
          },
          "version": {
-           "type": "string"
-         },
-         "source": {
-           "type": "string"
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 61]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 61]
 
 Internet-Draft              MISP core format               November 2025
 
 
+           "type": "string"
+         },
+         "source": {
+           "type": "string"
          },
          "authors": {
            "type": "array",
@@ -3463,16 +3467,15 @@ Internet-Draft              MISP core format               November 2025
    The manifest format is a JSON object composed of a dictionary where
    the field is the uuid of the event.
 
-   Each uuid is composed of a JSON object with the following fields
-   which came from the original event referenced by the same uuid:
 
 
-
-
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 62]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 62]
 
 Internet-Draft              MISP core format               November 2025
 
+
+   Each uuid is composed of a JSON object with the following fields
+   which came from the original event referenced by the same uuid:
 
    *  info (MUST)
    *  Orgc object (MUST)
@@ -3519,17 +3522,17 @@ Internet-Draft              MISP core format               November 2025
     ],
     "timestamp": "1472638251",
     "date": "2016-08-31",
-    "threat_level_id": "3"
-  },
-  "5720accd-dd28-45f8-80e5-4605950d210f": {
 
 
 
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 63]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 63]
 
 Internet-Draft              MISP core format               November 2025
 
 
+    "threat_level_id": "3"
+  },
+  "5720accd-dd28-45f8-80e5-4605950d210f": {
     "info": "Malspam 2016-04-27 - Locky",
     "Orgc": {
       "id": "2",
@@ -3572,19 +3575,21 @@ Internet-Draft              MISP core format               November 2025
    Adequate access control and encryption measures shall be implemented
    to ensure the confidentiality of the MISP events.
 
+
+
+
+
+
+
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 64]
+
+Internet-Draft              MISP core format               November 2025
+
+
    Adversaries might include malicious content in MISP events and
    attributes.  Implementation MUST consider the input of malicious
    inputs beside the standard threat information that might already
    include malicious intended inputs.
-
-
-
-
-
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 64]
-
-Internet-Draft              MISP core format               November 2025
-
 
 7.  Acknowledgements
 
@@ -3629,18 +3634,17 @@ Internet-Draft              MISP core format               November 2025
               Intelligence Platform and Open Standards For Threat
               Information Sharing", <https://github.com/MISP>.
 
-   [MISP-R]   Community, M., "MISP Object Relationship Types - common
-              vocabulary of relationships", <https://github.com/MISP/
-              misp-objects/tree/master/relationships>.
 
 
 
-
-
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 65]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 65]
 
 Internet-Draft              MISP core format               November 2025
 
+
+   [MISP-R]   Community, M., "MISP Object Relationship Types - common
+              vocabulary of relationships", <https://github.com/MISP/
+              misp-objects/tree/master/relationships>.
 
    [MISP-T]   Community, M., "MISP Taxonomies - shared and common
               vocabularies of tags",
@@ -3689,8 +3693,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-Dulaunoy & Iklody          Expires 20 May 2026                 [Page 66]
+Dulaunoy & Iklody          Expires 30 May 2026                 [Page 66]
