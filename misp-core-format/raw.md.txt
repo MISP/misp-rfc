@@ -9,7 +9,7 @@ Expires: 30 May 2026                                    26 November 2025
 
 
                             MISP core format
-                                draft-18
+                                draft-20
 
 Abstract
 

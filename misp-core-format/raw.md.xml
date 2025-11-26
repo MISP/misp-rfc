@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- name="GENERATOR" content="github.com/mmarkdown/mmark Mmark Markdown Processor - mmark.miek.nl" -->
-<rfc version="3" ipr="trust200902" docName="draft-18" submissionType="independent" category="info" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true">
+<rfc version="3" ipr="trust200902" docName="draft-20" submissionType="independent" category="info" xml:lang="en" xmlns:xi="http://www.w3.org/2001/XInclude" indexInclude="true">
 
 <front>
-<title abbrev="MISP core format">MISP core format</title><seriesInfo value="draft-18" stream="independent" status="informational" name="Internet-Draft"></seriesInfo>
+<title abbrev="MISP core format">MISP core format</title><seriesInfo value="draft-20" stream="independent" status="informational" name="Internet-Draft"></seriesInfo>
 <author initials="A." surname="Dulaunoy" fullname="Alexandre Dulaunoy"><organization abbrev="CIRCL">Computer Incident Response Center Luxembourg</organization><address><postal><street>122, rue Adolphe Fischer</street>
 <city>Luxembourg</city>
 <code>L-1521</code>
