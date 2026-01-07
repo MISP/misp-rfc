@@ -76,15 +76,19 @@ The recommendations listed below provide a minimal set of guidelines when assign
 
 ## Reusing Threat Actor Names
 
-Before creating a new threat actor name, you **MUST** consider a review of existing threat actor names from databases such as the threat actor MISP galaxy [@!MISP-G]. Proliferation of threat actor names is a significant challenge for day-to-day analyst work. If your defined threat actor matches an existing threat actor, you **MUST** reuse an existing threat actor name. If there is no matching threat actor name, you **SHALL** create a new threat actor name, following the best practices defined in this document.
+Before creating a new threat actor name, you **SHOULD** consider a review of existing threat actor names from databases such as the threat actor MISP galaxy [@!MISP-G]. Proliferation of threat actor names is a significant challenge for day-to-day analyst work. If your defined threat actor matches an existing threat actor, you **SHOULD** reuse an existing threat actor name. If there is no matching threat actor name, you **SHALL** create a new threat actor name, following the best practices defined in this document.
 
 ## Uniqueness
 
-When choosing a threat actor name, uniqueness is a critical property. The threat actor name **MUST** be unique and not already in use in different contexts. The name **MUST NOT** be a word from a dictionary, which could be used in other contexts.
+When choosing a threat actor name, uniqueness is a critical property. The threat actor name **MUST** be unique and not already in use in different contexts. The name **SHOULD** be chosen with rarity in mind, common words are best to be avoided to allow for easier searching for information. If the use of common words is still required, the threat actor name **SHOULD** be a combination multiple words to increase uniqueness.
+
+## Additional unique identifier
+
+Threat actor definitions **SHOULD** also contain a unique identifier expressed as a UUID. When creating threat actor information, a prior check for the definition of a matching threat actor **SHOULD** be done and the UUID of the matching threat actor reused when a match is infered. The addition of a UUID does not take away from the liberty to retain vendor threat actor naming conventions and **SHOULD** be treated as a separately expressed aspect of the threat actor.
 
 ## Format
 
-The name of the threat actor **SHALL** be composed of a single word. If there are multiple parts, such as a decimal value or a counter, the values **MUST** be separated with a dash. Single words are preferred to ease keyword searches by analysts in public sources.
+The name of the threat actor **SHOULD** ideally be composed of a single word. If the threat actor name is a combination of words or a word with additional identifiers such as a decimal value or a counter, the values **MUST** be separated with a dash. Single words are preferred to ease keyword searches by analysts in public sources.
 
 ## Encoding
 
