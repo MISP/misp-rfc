@@ -45,6 +45,7 @@ abbrev="CIRCL"
 organization = "Computer Incident Response Center Luxembourg"
  [author.address]
  email = "andras.iklody@circl.lu"
+ phone = "+352 247 88444"
 %%%
 
 .# Abstract
