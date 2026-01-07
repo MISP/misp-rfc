@@ -37,6 +37,14 @@ organization = "Cubessa"
  [author.address]
  email = "Pauline@cubessa.io"
  phone = ""
+[[author]]
+initials="A. Iklody"
+surname="Iklody"
+fullname="Andras Iklody"
+abbrev="CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "andras.iklody@circl.lu"
 %%%
 
 .# Abstract
