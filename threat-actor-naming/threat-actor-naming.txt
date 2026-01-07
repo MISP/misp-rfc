@@ -5,8 +5,10 @@
 Network Working Group                                        A. Dulaunoy
 Internet-Draft                                                     CIRCL
 Intended status: Informational                               P. Bourmeau
-Expires: 24 June 2025                                            Cubessa
-                                                        21 December 2024
+Expires: 11 July 2026                                            Cubessa
+                                                       A. Iklody. Iklody
+                                                                   CIRCL
+                                                          7 January 2026
 
 
                 Recommendations on Naming Threat Actors
@@ -36,11 +38,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 June 2025.
+   This Internet-Draft will expire on 11 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -51,11 +53,9 @@ Copyright Notice
 
 
 
-
-
-Dulaunoy & Bourmeau       Expires 24 June 2025                  [Page 1]
+Dulaunoy, et al.          Expires 11 July 2026                  [Page 1]
 
-Internet-Draft   Recommendations on Naming Threat Actors   December 2024
+Internet-Draft   Recommendations on Naming Threat Actors    January 2026
 
 
 Table of Contents
@@ -64,55 +64,61 @@ Table of Contents
      1.1.  Conventions and Terminology . . . . . . . . . . . . . . .   3
    2.  Recommendations . . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Reusing Threat Actor Names  . . . . . . . . . . . . . . .   3
-     2.2.  Uniqueness  . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.3.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.4.  Encoding  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.5.  Avoid Confusing Actor Names with Malware Names  . . . . .   4
-     2.6.  Directory . . . . . . . . . . . . . . . . . . . . . . . .   4
-   3.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
-   5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
-   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .   5
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
+     2.2.  Threat Actor Types  . . . . . . . . . . . . . . . . . . .   3
+     2.3.  Uniqueness  . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.4.  Additional unique identifier  . . . . . . . . . . . . . .   4
+     2.5.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.6.  Encoding  . . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.7.  Avoid Confusing Actor Names with Malware Names  . . . . .   4
+     2.8.  Directory . . . . . . . . . . . . . . . . . . . . . . . .   5
+   3.  Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
+   5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   5
+   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   5
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .   6
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   6
 
 1.  Introduction
 
-   In threat intelligence, a name can be assigned to a threat actor
-   without specific guidelines.  This leads to issues such as:
+   In threat intelligence, threat actor names are often assigned without
+   specific or consistent guidelines.  This leads to several issues,
+   such as:
 
-   *  A proliferation of threat actor names generating overlaps or
-      different names for similar threat actors (e.g., some threat
-      actors have more than 10 synonyms).
-   *  Ambiguity in the words used to name the threat actor in different
-      contexts (e.g., using common words).
-   *  Lack of a clearly defined text format to describe the same threat
-      actor (e.g., Is the threat actor name case-sensitive?  Is there a
-      dash or a space between the words?).
-   *  Confusion between techniques/tools used by a threat actor versus
-      its name (e.g., naming a threat actor after a specific malware
-      used).
-   *  Lack of source and reasoning from vendors when they describe their
-      threat actor names (e.g., did they name the threat actor after a
-      specific set of campaigns or a specific set of targets?).
-   *  Lack of time-based information about the threat actor name, such
-      as date of naming or a UUID.
-   *  Lack of an open, mirrored "registry" of reference, accessible to
-      all, where a new threat actor name can be registered, or where all
-      already named threat actors can be accessed.  The "registry" can
-      contain the time-based information mentioned above; it is a tool.
-
-   This document proposes a set of guidelines for naming threat actors.
-   The goal is to reduce the issues mentioned above.
+   *  A proliferation of threat actor names, generating overlaps or
+      multiple names for the same or very similar threat actors (e.g.,
+      some threat actors have more than 10 known synonyms).
+   *  Ambiguity in the words used to name threat actors across different
+      contexts (e.g., the use of common or generic words).
+   *  A lack of clearly defined naming conventions to describe the same
+      threat actor (e.g., is the threat actor name case-sensitive?
+      Should words be separated by a dash or a space?).
+   *  Confusion between the techniques or tools used by a threat actor
+      and the threat actor’s name itself (e.g., naming a threat actor
+      after a specific malware family).
+   *  A lack of transparency regarding the source and rationale used by
+      vendors when assigning threat actor names (e.g., was the name
+      derived from a specific campaign, a codename for a country, or a
+      particular set of targets?).
+   *  The absence of an open, mirrored reference “registry” accessible
+      to all, where new threat actor names can be registered and
+      existing ones can be consulted.  Such a registry could also
+      include time-based information and serve as a practical reference
+      tool.
 
 
 
-Dulaunoy & Bourmeau       Expires 24 June 2025                  [Page 2]
+Dulaunoy, et al.          Expires 11 July 2026                  [Page 2]
 
-Internet-Draft   Recommendations on Naming Threat Actors   December 2024
+Internet-Draft   Recommendations on Naming Threat Actors    January 2026
 
+
+   This document proposes a set of recommendations and guidelines for
+   naming threat actors.  The objective is not to provide a silver
+   bullet that solves all of the issues mentioned above, but rather to
+   suggest approaches that reduce the burden on analysts when searching
+   for and cross-correlating threat intelligence.
 
 1.1.  Conventions and Terminology
 
@@ -122,39 +128,34 @@ Internet-Draft   Recommendations on Naming Threat Actors   December 2024
 
 2.  Recommendations
 
-   The recommendations listed below provide a minimal set of guidelines
-   when assigning a new name to a threat actor.
+   The recommendations below specify a minimal set of guidelines to be
+   applied when assigning a new name to a threat actor.
 
 2.1.  Reusing Threat Actor Names
 
-   Before creating a new threat actor name, you MUST consider a review
-   of existing threat actor names from databases such as the threat
-   actor MISP galaxy [MISP-G].  Proliferation of threat actor names is a
-   significant challenge for day-to-day analyst work.  If your defined
-   threat actor matches an existing threat actor, you MUST reuse an
-   existing threat actor name.  If there is no matching threat actor
-   name, you SHALL create a new threat actor name, following the best
-   practices defined in this document.
+   Before creating a new threat actor name, you SHOULD review existing
+   threat actor names in reference databases, such as the Threat Actor
+   MISP Galaxy [MISP-G].  The proliferation of threat actor names is a
+   significant challenge in day-to-day analyst work.  If the threat
+   actor you have identified matches an existing entry, you SHOULD reuse
+   the existing threat actor name.  If no matching threat actor name
+   exists, you SHALL create a new one, following the best practices
+   defined in this document.
 
-2.2.  Uniqueness
+   Due to the volatile nature of threat correlation, threat actor
+   profiles may be merged or split over time based on new information or
+   further analysis.  Analysts defining threat actors SHOULD use their
+   best judgment to consolidate threat actor profiles whenever possible
+   and retain previously defined names as aliases within the merged
+   object, along with any previously established relationships.
 
-   When choosing a threat actor name, uniqueness is a critical property.
-   The threat actor name MUST be unique and not already in use in
-   different contexts.  The name MUST NOT be a word from a dictionary,
-   which could be used in other contexts.
+2.2.  Threat Actor Types
 
-2.3.  Format
-
-   The name of the threat actor SHALL be composed of a single word.  If
-   there are multiple parts, such as a decimal value or a counter, the
-   values MUST be separated with a dash.  Single words are preferred to
-   ease keyword searches by analysts in public sources.
-
-2.4.  Encoding
-
-   The name of the threat actor MUST be expressed in 7-bit ASCII.
-   Assigning a localized name to a threat actor MAY create ambiguity due
-   to different localized versions of the same threat actor.
+   The boundaries between threat actors, campaigns, and intrusion sets
+   are frequently blurred, which can lead to the reclassification of the
+   underlying concept.  Such reclassification SHOULD NOT affect the
+   existing naming convention.  The previously assigned name SHOULD be
+   retained in order to avoid losing correlations with historical data.
 
 
 
@@ -164,25 +165,72 @@ Internet-Draft   Recommendations on Naming Threat Actors   December 2024
 
 
 
-
-Dulaunoy & Bourmeau       Expires 24 June 2025                  [Page 3]
+Dulaunoy, et al.          Expires 11 July 2026                  [Page 3]
 
-Internet-Draft   Recommendations on Naming Threat Actors   December 2024
+Internet-Draft   Recommendations on Naming Threat Actors    January 2026
 
 
-2.5.  Avoid Confusing Actor Names with Malware Names
+2.3.  Uniqueness
 
-   The name of the threat actor MUST NOT be based on the tools,
-   techniques, or patterns used by the threat actor.  A notorious
-   example in the threat intelligence community is Turla, which can
-   refer to a threat actor but also to a malware used by this group or
-   other groups.
+   When choosing a threat actor name, uniqueness is a critical
+   requirement.  The threat actor name MUST be unique and not already in
+   use in other contexts.  The name SHOULD be selected with rarity in
+   mind; common words are best avoided to facilitate searching and
+   automated processing of information.  If the use of common words is
+   unavoidable, the threat actor name SHOULD consist of a combination of
+   multiple words to increase uniqueness.
 
-2.6.  Directory
+2.4.  Additional unique identifier
+
+   Threat actor definitions SHOULD include a unique identifier expressed
+   as a UUID.  When creating threat actor information, a prior check for
+   an existing matching threat actor definition SHOULD be performed, and
+   the UUID of the matching threat actor SHOULD be reused when a match
+   is inferred.  The inclusion of a UUID does not restrict the ability
+   to retain vendor-specific threat actor naming conventions and SHOULD
+   be treated as a separately expressed attribute of the threat actor.
+
+2.5.  Format
+
+   The threat actor name SHOULD ideally consist of a single word.  If
+   the name is composed of multiple words or includes additional
+   identifiers such as decimal values or counters, these elements SHOULD
+   be combined into a single word without whitespace to facilitate
+   searching.  Single-word names are preferred to improve the efficiency
+   of keyword searches by analysts in public sources.
+
+2.6.  Encoding
+
+   The threat actor name MUST be expressed using 7-bit ASCII characters.
+   Assigning localized or non-ASCII names to threat actors MAY introduce
+   ambiguity due to the existence of multiple localized versions of the
+   same name.
+
+2.7.  Avoid Confusing Actor Names with Malware Names
+
+   The threat actor name MUST NOT be derived from the tools, techniques,
+   or patterns used by the threat actor.  A well-known example in the
+   threat intelligence community is _Turla_, which can refer both to a
+   threat actor and to malware used by that group or by other groups,
+   leading to ambiguity.
+
+
+
+
+
+
+
+
+Dulaunoy, et al.          Expires 11 July 2026                  [Page 4]
+
+Internet-Draft   Recommendations on Naming Threat Actors    January 2026
+
+
+2.8.  Directory
 
    A reference registry of threat actors is RECOMMENDED to ensure
-   consistency of names across different parties such as the threat
-   actor MISP galaxy [MISP-G].
+   consistency of naming across different parties, such as the Threat
+   Actor MISP Galaxy [MISP-G].
 
 3.  Examples
 
@@ -210,21 +258,14 @@ Internet-Draft   Recommendations on Naming Threat Actors   December 2024
 5.  Acknowledgements
 
    The authors wish to thank all contributors who provided feedback
-   through the now-defunct Twitter and other new social networks.
+   through the now-defunct Twitter, other social networks such as
+   LinkedIn and GitHub Issues.
 
 6.  References
 
 7.  References
 
 7.1.  Normative References
-
-
-
-
-Dulaunoy & Bourmeau       Expires 24 June 2025                  [Page 4]
-
-Internet-Draft   Recommendations on Naming Threat Actors   December 2024
-
 
    [MISP-G]   Community, M., "MISP Galaxy - Public repository",
               <https://github.com/MISP/misp-galaxy>.
@@ -233,6 +274,13 @@ Internet-Draft   Recommendations on Naming Threat Actors   December 2024
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
+
+
+
+Dulaunoy, et al.          Expires 11 July 2026                  [Page 5]
+
+Internet-Draft   Recommendations on Naming Threat Actors    January 2026
+
 
 7.2.  Informative References
 
@@ -256,6 +304,9 @@ Authors' Addresses
    Email: Pauline@cubessa.io
 
 
+   Andras Iklody
+   Computer Incident Response Center Luxembourg
+   Email: andras.iklody@circl.lu
 
 
 
@@ -277,4 +328,9 @@ Authors' Addresses
 
 
 
-Dulaunoy & Bourmeau       Expires 24 June 2025                  [Page 5]
+
+
+
+
+
+Dulaunoy, et al.          Expires 11 July 2026                  [Page 6]

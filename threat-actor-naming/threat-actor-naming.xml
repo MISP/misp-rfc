@@ -12,7 +12,9 @@
 <email>alexandre.dulaunoy@circl.lu</email>
 </address></author><author initials="P." surname="Bourmeau" fullname="Pauline Bourmeau"><organization abbrev="Cubessa">Cubessa</organization><address><postal><street></street>
 </postal><email>Pauline@cubessa.io</email>
-</address></author><date year="2024" month="December" day="21"></date>
+</address></author><author initials="A. Iklody" surname="Iklody" fullname="Andras Iklody"><organization abbrev="CIRCL">Computer Incident Response Center Luxembourg</organization><address><postal><street></street>
+</postal><email>andras.iklody@circl.lu</email>
+</address></author><date year="2026" month="January" day="7"></date>
 <area>Security</area>
 <workgroup></workgroup>
 
@@ -28,19 +30,17 @@ and threat intelligence platforms such as MISP <xref target="MISP-P"></xref>.</t
 <middle>
 
 <section anchor="introduction"><name>Introduction</name>
-<t>In threat intelligence, a name can be assigned to a threat actor without specific guidelines. This leads to issues such
-as:</t>
+<t>In threat intelligence, threat actor names are often assigned without specific or consistent guidelines. This leads to several issues, such as:</t>
 
 <ul spacing="compact">
-<li>A proliferation of threat actor names generating overlaps or different names for similar threat actors (e.g., some threat actors have more than 10 synonyms).</li>
-<li>Ambiguity in the words used to name the threat actor in different contexts (e.g., using common words).</li>
-<li>Lack of a clearly defined text format to describe the same threat actor (e.g., Is the threat actor name case-sensitive? Is there a dash or a space between the words?).</li>
-<li>Confusion between techniques/tools used by a threat actor versus its name (e.g., naming a threat actor after a specific malware used).</li>
-<li>Lack of source and reasoning from vendors when they describe their threat actor names (e.g., did they name the threat actor after a specific set of campaigns or a specific set of targets?).</li>
-<li>Lack of time-based information about the threat actor name, such as date of naming or a UUID.</li>
-<li>Lack of an open, mirrored &quot;registry&quot; of reference, accessible to all, where a new threat actor name can be registered, or where all already named threat actors can be accessed. The &quot;registry&quot; can contain the time-based information mentioned above; it is a tool.</li>
+<li>A proliferation of threat actor names, generating overlaps or multiple names for the same or very similar threat actors (e.g., some threat actors have more than 10 known synonyms).</li>
+<li>Ambiguity in the words used to name threat actors across different contexts (e.g., the use of common or generic words).</li>
+<li>A lack of clearly defined naming conventions to describe the same threat actor (e.g., is the threat actor name case-sensitive? Should words be separated by a dash or a space?).</li>
+<li>Confusion between the techniques or tools used by a threat actor and the threat actor’s name itself (e.g., naming a threat actor after a specific malware family).</li>
+<li>A lack of transparency regarding the source and rationale used by vendors when assigning threat actor names (e.g., was the name derived from a specific campaign, a codename for a country, or a particular set of targets?).</li>
+<li>The absence of an open, mirrored reference “registry” accessible to all, where new threat actor names can be registered and existing ones can be consulted. Such a registry could also include time-based information and serve as a practical reference tool.</li>
 </ul>
-<t>This document proposes a set of guidelines for naming threat actors. The goal is to reduce the issues mentioned above.</t>
+<t>This document proposes a set of recommendations and guidelines for naming threat actors. The objective is not to provide a silver bullet that solves all of the issues mentioned above, but rather to suggest approaches that reduce the burden on analysts when searching for and cross-correlating threat intelligence.</t>
 
 <section anchor="conventions-and-terminology"><name>Conventions and Terminology</name>
 <t>The key words &quot;<bcp14>MUST</bcp14>&quot;, &quot;<bcp14>MUST NOT</bcp14>&quot;, &quot;<bcp14>REQUIRED</bcp14>&quot;, &quot;<bcp14>SHALL</bcp14>&quot;, &quot;<bcp14>SHALL NOT</bcp14>&quot;,
@@ -50,30 +50,39 @@ document are to be interpreted as described in RFC 2119 <xref target="RFC2119"><
 </section>
 
 <section anchor="recommendations"><name>Recommendations</name>
-<t>The recommendations listed below provide a minimal set of guidelines when assigning a new name to a threat actor.</t>
+<t>The recommendations below specify a minimal set of guidelines to be applied when assigning a new name to a threat actor.</t>
 
 <section anchor="reusing-threat-actor-names"><name>Reusing Threat Actor Names</name>
-<t>Before creating a new threat actor name, you <bcp14>MUST</bcp14> consider a review of existing threat actor names from databases such as the threat actor MISP galaxy <xref target="MISP-G"></xref>. Proliferation of threat actor names is a significant challenge for day-to-day analyst work. If your defined threat actor matches an existing threat actor, you <bcp14>MUST</bcp14> reuse an existing threat actor name. If there is no matching threat actor name, you <bcp14>SHALL</bcp14> create a new threat actor name, following the best practices defined in this document.</t>
+<t>Before creating a new threat actor name, you <bcp14>SHOULD</bcp14> review existing threat actor names in reference databases, such as the Threat Actor MISP Galaxy <xref target="MISP-G"></xref>. The proliferation of threat actor names is a significant challenge in day-to-day analyst work. If the threat actor you have identified matches an existing entry, you <bcp14>SHOULD</bcp14> reuse the existing threat actor name. If no matching threat actor name exists, you <bcp14>SHALL</bcp14> create a new one, following the best practices defined in this document.</t>
+<t>Due to the volatile nature of threat correlation, threat actor profiles may be merged or split over time based on new information or further analysis. Analysts defining threat actors <bcp14>SHOULD</bcp14> use their best judgment to consolidate threat actor profiles whenever possible and retain previously defined names as aliases within the merged object, along with any previously established relationships.</t>
+</section>
+
+<section anchor="threat-actor-types"><name>Threat Actor Types</name>
+<t>The boundaries between threat actors, campaigns, and intrusion sets are frequently blurred, which can lead to the reclassification of the underlying concept. Such reclassification <bcp14>SHOULD NOT</bcp14> affect the existing naming convention. The previously assigned name <bcp14>SHOULD</bcp14> be retained in order to avoid losing correlations with historical data.</t>
 </section>
 
 <section anchor="uniqueness"><name>Uniqueness</name>
-<t>When choosing a threat actor name, uniqueness is a critical property. The threat actor name <bcp14>MUST</bcp14> be unique and not already in use in different contexts. The name <bcp14>MUST NOT</bcp14> be a word from a dictionary, which could be used in other contexts.</t>
+<t>When choosing a threat actor name, uniqueness is a critical requirement. The threat actor name <bcp14>MUST</bcp14> be unique and not already in use in other contexts. The name <bcp14>SHOULD</bcp14> be selected with rarity in mind; common words are best avoided to facilitate searching and automated processing of information. If the use of common words is unavoidable, the threat actor name <bcp14>SHOULD</bcp14> consist of a combination of multiple words to increase uniqueness.</t>
+</section>
+
+<section anchor="additional-unique-identifier"><name>Additional unique identifier</name>
+<t>Threat actor definitions <bcp14>SHOULD</bcp14> include a unique identifier expressed as a UUID. When creating threat actor information, a prior check for an existing matching threat actor definition <bcp14>SHOULD</bcp14> be performed, and the UUID of the matching threat actor <bcp14>SHOULD</bcp14> be reused when a match is inferred. The inclusion of a UUID does not restrict the ability to retain vendor-specific threat actor naming conventions and <bcp14>SHOULD</bcp14> be treated as a separately expressed attribute of the threat actor.</t>
 </section>
 
 <section anchor="format"><name>Format</name>
-<t>The name of the threat actor <bcp14>SHALL</bcp14> be composed of a single word. If there are multiple parts, such as a decimal value or a counter, the values <bcp14>MUST</bcp14> be separated with a dash. Single words are preferred to ease keyword searches by analysts in public sources.</t>
+<t>The threat actor name <bcp14>SHOULD</bcp14> ideally consist of a single word. If the name is composed of multiple words or includes additional identifiers such as decimal values or counters, these elements <bcp14>SHOULD</bcp14> be combined into a single word without whitespace to facilitate searching. Single-word names are preferred to improve the efficiency of keyword searches by analysts in public sources.</t>
 </section>
 
 <section anchor="encoding"><name>Encoding</name>
-<t>The name of the threat actor <bcp14>MUST</bcp14> be expressed in 7-bit ASCII. Assigning a localized name to a threat actor <bcp14>MAY</bcp14> create ambiguity due to different localized versions of the same threat actor.</t>
+<t>The threat actor name <bcp14>MUST</bcp14> be expressed using 7-bit ASCII characters. Assigning localized or non-ASCII names to threat actors <bcp14>MAY</bcp14> introduce ambiguity due to the existence of multiple localized versions of the same name.</t>
 </section>
 
 <section anchor="avoid-confusing-actor-names-with-malware-names"><name>Avoid Confusing Actor Names with Malware Names</name>
-<t>The name of the threat actor <bcp14>MUST NOT</bcp14> be based on the tools, techniques, or patterns used by the threat actor. A notorious example in the threat intelligence community is Turla, which can refer to a threat actor but also to a malware used by this group or other groups.</t>
+<t>The threat actor name <bcp14>MUST NOT</bcp14> be derived from the tools, techniques, or patterns used by the threat actor. A well-known example in the threat intelligence community is <em>Turla</em>, which can refer both to a threat actor and to malware used by that group or by other groups, leading to ambiguity.</t>
 </section>
 
 <section anchor="directory"><name>Directory</name>
-<t>A reference registry of threat actors is <bcp14>RECOMMENDED</bcp14> to ensure consistency of names across different parties such as the threat actor MISP galaxy <xref target="MISP-G"></xref>.</t>
+<t>A reference registry of threat actors is <bcp14>RECOMMENDED</bcp14> to ensure consistency of naming across different parties, such as the Threat Actor MISP Galaxy <xref target="MISP-G"></xref>.</t>
 </section>
 </section>
 
@@ -99,7 +108,7 @@ document are to be interpreted as described in RFC 2119 <xref target="RFC2119"><
 </section>
 
 <section anchor="acknowledgements"><name>Acknowledgements</name>
-<t>The authors wish to thank all contributors who provided feedback through the now-defunct Twitter and other new social networks.</t>
+<t>The authors wish to thank all contributors who provided feedback through the now-defunct Twitter, other social networks such as LinkedIn and GitHub Issues.</t>
 </section>
 
 <section anchor="references"><name>References</name>

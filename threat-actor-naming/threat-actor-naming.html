@@ -7,6 +7,7 @@
 <title>Recommendations on Naming Threat Actors</title>
 <meta content="Alexandre Dulaunoy" name="author">
 <meta content="Pauline Bourmeau" name="author">
+<meta content="Andras Iklody" name="author">
 <meta content="
        This document provides advice on the naming of threat actors (also known as malicious actors).
 The objective is to provide practical advice for organizations such as security vendors or organizations attributing
@@ -24,13 +25,13 @@ and threat intelligence platforms such as MISP  .
     Jinja2 3.1.2
     lxml 4.9.2
     platformdirs 4.1.0
-    pycountry 22.3.5
+    pycountry 24.6.1
     PyYAML 6.0
-    requests 2.32.3
+    requests 2.32.5
     setuptools 67.7.2
     six 1.16.0
     wcwidth 0.2.13
-    weasyprint 61.2
+    weasyprint 65.1
 -->
 <link href="threat-actor-naming.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1215,11 +1216,11 @@ li > p:last-of-type:only-child {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Recommendations on Naming Threat Actors</td>
-<td class="right">December 2024</td>
+<td class="right">January 2026</td>
 </tr></thead>
 <tfoot><tr>
-<td class="left">Dulaunoy &amp; Bourmeau</td>
-<td class="center">Expires 24 June 2025</td>
+<td class="left">Dulaunoy, et al.</td>
+<td class="center">Expires 11 July 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1232,12 +1233,12 @@ li > p:last-of-type:only-child {
 <dd class="internet-draft">draft-00</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-12-21" class="published">21 December 2024</time>
+<time datetime="2026-01-07" class="published">7 January 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-06-24">24 June 2025</time></dd>
+<dd class="expires"><time datetime="2026-07-11">11 July 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1247,6 +1248,10 @@ li > p:last-of-type:only-child {
 <div class="author">
       <div class="author-name">P. Bourmeau</div>
 <div class="org">Cubessa</div>
+</div>
+<div class="author">
+      <div class="author-name">A. Iklody. Iklody</div>
+<div class="org">CIRCL</div>
 </div>
 </dd>
 </dl>
@@ -1278,7 +1283,7 @@ and threat intelligence platforms such as MISP <span>[<a href="#MISP-P" class="c
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 11 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1287,7 +1292,7 @@ and threat intelligence platforms such as MISP <span>[<a href="#MISP-P" class="c
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2024 IETF Trust and the persons identified as the
+            Copyright (c) 2026 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1319,19 +1324,25 @@ and threat intelligence platforms such as MISP <span>[<a href="#MISP-P" class="c
                 <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-reusing-threat-actor-names" class="internal xref">Reusing Threat Actor Names</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
-                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-uniqueness" class="internal xref">Uniqueness</a></p>
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-threat-actor-types" class="internal xref">Threat Actor Types</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
-                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-format" class="internal xref">Format</a></p>
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-uniqueness" class="internal xref">Uniqueness</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
-                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.  <a href="#name-encoding" class="internal xref">Encoding</a></p>
+                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.  <a href="#name-additional-unique-identifie" class="internal xref">Additional unique identifier</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.5">
-                <p id="section-toc.1-1.2.2.5.1"><a href="#section-2.5" class="auto internal xref">2.5</a>.  <a href="#name-avoid-confusing-actor-names" class="internal xref">Avoid Confusing Actor Names with Malware Names</a></p>
+                <p id="section-toc.1-1.2.2.5.1"><a href="#section-2.5" class="auto internal xref">2.5</a>.  <a href="#name-format" class="internal xref">Format</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.6">
-                <p id="section-toc.1-1.2.2.6.1"><a href="#section-2.6" class="auto internal xref">2.6</a>.  <a href="#name-directory" class="internal xref">Directory</a></p>
+                <p id="section-toc.1-1.2.2.6.1"><a href="#section-2.6" class="auto internal xref">2.6</a>.  <a href="#name-encoding" class="internal xref">Encoding</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.7">
+                <p id="section-toc.1-1.2.2.7.1"><a href="#section-2.7" class="auto internal xref">2.7</a>.  <a href="#name-avoid-confusing-actor-names" class="internal xref">Avoid Confusing Actor Names with Malware Names</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.8">
+                <p id="section-toc.1-1.2.2.8.1"><a href="#section-2.8" class="auto internal xref">2.8</a>.  <a href="#name-directory" class="internal xref">Directory</a></p>
 </li>
             </ul>
 </li>
@@ -1370,25 +1381,22 @@ and threat intelligence platforms such as MISP <span>[<a href="#MISP-P" class="c
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">In threat intelligence, a name can be assigned to a threat actor without specific guidelines. This leads to issues such
-as:<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">In threat intelligence, threat actor names are often assigned without specific or consistent guidelines. This leads to several issues, such as:<a href="#section-1-1" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-1-2.1">A proliferation of threat actor names generating overlaps or different names for similar threat actors (e.g., some threat actors have more than 10 synonyms).<a href="#section-1-2.1" class="pilcrow">¶</a>
+<li class="compact" id="section-1-2.1">A proliferation of threat actor names, generating overlaps or multiple names for the same or very similar threat actors (e.g., some threat actors have more than 10 known synonyms).<a href="#section-1-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-1-2.2">Ambiguity in the words used to name the threat actor in different contexts (e.g., using common words).<a href="#section-1-2.2" class="pilcrow">¶</a>
+        <li class="compact" id="section-1-2.2">Ambiguity in the words used to name threat actors across different contexts (e.g., the use of common or generic words).<a href="#section-1-2.2" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-1-2.3">Lack of a clearly defined text format to describe the same threat actor (e.g., Is the threat actor name case-sensitive? Is there a dash or a space between the words?).<a href="#section-1-2.3" class="pilcrow">¶</a>
+        <li class="compact" id="section-1-2.3">A lack of clearly defined naming conventions to describe the same threat actor (e.g., is the threat actor name case-sensitive? Should words be separated by a dash or a space?).<a href="#section-1-2.3" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-1-2.4">Confusion between techniques/tools used by a threat actor versus its name (e.g., naming a threat actor after a specific malware used).<a href="#section-1-2.4" class="pilcrow">¶</a>
+        <li class="compact" id="section-1-2.4">Confusion between the techniques or tools used by a threat actor and the threat actor’s name itself (e.g., naming a threat actor after a specific malware family).<a href="#section-1-2.4" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-1-2.5">Lack of source and reasoning from vendors when they describe their threat actor names (e.g., did they name the threat actor after a specific set of campaigns or a specific set of targets?).<a href="#section-1-2.5" class="pilcrow">¶</a>
+        <li class="compact" id="section-1-2.5">A lack of transparency regarding the source and rationale used by vendors when assigning threat actor names (e.g., was the name derived from a specific campaign, a codename for a country, or a particular set of targets?).<a href="#section-1-2.5" class="pilcrow">¶</a>
 </li>
-        <li class="compact" id="section-1-2.6">Lack of time-based information about the threat actor name, such as date of naming or a UUID.<a href="#section-1-2.6" class="pilcrow">¶</a>
-</li>
-        <li class="compact" id="section-1-2.7">Lack of an open, mirrored "registry" of reference, accessible to all, where a new threat actor name can be registered, or where all already named threat actors can be accessed. The "registry" can contain the time-based information mentioned above; it is a tool.<a href="#section-1-2.7" class="pilcrow">¶</a>
+        <li class="compact" id="section-1-2.6">The absence of an open, mirrored reference “registry” accessible to all, where new threat actor names can be registered and existing ones can be consulted. Such a registry could also include time-based information and serve as a practical reference tool.<a href="#section-1-2.6" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-1-3">This document proposes a set of guidelines for naming threat actors. The goal is to reduce the issues mentioned above.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3">This document proposes a set of recommendations and guidelines for naming threat actors. The objective is not to provide a silver bullet that solves all of the issues mentioned above, but rather to suggest approaches that reduce the burden on analysts when searching for and cross-correlating threat intelligence.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <div id="conventions-and-terminology">
 <section id="section-1.1">
         <h3 id="name-conventions-and-terminology">
@@ -1406,53 +1414,70 @@ document are to be interpreted as described in RFC 2119 <span>[<a href="#RFC2119
       <h2 id="name-recommendations">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-recommendations" class="section-name selfRef">Recommendations</a>
       </h2>
-<p id="section-2-1">The recommendations listed below provide a minimal set of guidelines when assigning a new name to a threat actor.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-1">The recommendations below specify a minimal set of guidelines to be applied when assigning a new name to a threat actor.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <div id="reusing-threat-actor-names">
 <section id="section-2.1">
         <h3 id="name-reusing-threat-actor-names">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-reusing-threat-actor-names" class="section-name selfRef">Reusing Threat Actor Names</a>
         </h3>
-<p id="section-2.1-1">Before creating a new threat actor name, you <span class="bcp14">MUST</span> consider a review of existing threat actor names from databases such as the threat actor MISP galaxy <span>[<a href="#MISP-G" class="cite xref">MISP-G</a>]</span>. Proliferation of threat actor names is a significant challenge for day-to-day analyst work. If your defined threat actor matches an existing threat actor, you <span class="bcp14">MUST</span> reuse an existing threat actor name. If there is no matching threat actor name, you <span class="bcp14">SHALL</span> create a new threat actor name, following the best practices defined in this document.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">Before creating a new threat actor name, you <span class="bcp14">SHOULD</span> review existing threat actor names in reference databases, such as the Threat Actor MISP Galaxy <span>[<a href="#MISP-G" class="cite xref">MISP-G</a>]</span>. The proliferation of threat actor names is a significant challenge in day-to-day analyst work. If the threat actor you have identified matches an existing entry, you <span class="bcp14">SHOULD</span> reuse the existing threat actor name. If no matching threat actor name exists, you <span class="bcp14">SHALL</span> create a new one, following the best practices defined in this document.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Due to the volatile nature of threat correlation, threat actor profiles may be merged or split over time based on new information or further analysis. Analysts defining threat actors <span class="bcp14">SHOULD</span> use their best judgment to consolidate threat actor profiles whenever possible and retain previously defined names as aliases within the merged object, along with any previously established relationships.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="threat-actor-types">
+<section id="section-2.2">
+        <h3 id="name-threat-actor-types">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-threat-actor-types" class="section-name selfRef">Threat Actor Types</a>
+        </h3>
+<p id="section-2.2-1">The boundaries between threat actors, campaigns, and intrusion sets are frequently blurred, which can lead to the reclassification of the underlying concept. Such reclassification <span class="bcp14">SHOULD NOT</span> affect the existing naming convention. The previously assigned name <span class="bcp14">SHOULD</span> be retained in order to avoid losing correlations with historical data.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="uniqueness">
-<section id="section-2.2">
+<section id="section-2.3">
         <h3 id="name-uniqueness">
-<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-uniqueness" class="section-name selfRef">Uniqueness</a>
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-uniqueness" class="section-name selfRef">Uniqueness</a>
         </h3>
-<p id="section-2.2-1">When choosing a threat actor name, uniqueness is a critical property. The threat actor name <span class="bcp14">MUST</span> be unique and not already in use in different contexts. The name <span class="bcp14">MUST NOT</span> be a word from a dictionary, which could be used in other contexts.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.3-1">When choosing a threat actor name, uniqueness is a critical requirement. The threat actor name <span class="bcp14">MUST</span> be unique and not already in use in other contexts. The name <span class="bcp14">SHOULD</span> be selected with rarity in mind; common words are best avoided to facilitate searching and automated processing of information. If the use of common words is unavoidable, the threat actor name <span class="bcp14">SHOULD</span> consist of a combination of multiple words to increase uniqueness.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="additional-unique-identifier">
+<section id="section-2.4">
+        <h3 id="name-additional-unique-identifie">
+<a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-additional-unique-identifie" class="section-name selfRef">Additional unique identifier</a>
+        </h3>
+<p id="section-2.4-1">Threat actor definitions <span class="bcp14">SHOULD</span> include a unique identifier expressed as a UUID. When creating threat actor information, a prior check for an existing matching threat actor definition <span class="bcp14">SHOULD</span> be performed, and the UUID of the matching threat actor <span class="bcp14">SHOULD</span> be reused when a match is inferred. The inclusion of a UUID does not restrict the ability to retain vendor-specific threat actor naming conventions and <span class="bcp14">SHOULD</span> be treated as a separately expressed attribute of the threat actor.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="format">
-<section id="section-2.3">
+<section id="section-2.5">
         <h3 id="name-format">
-<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-format" class="section-name selfRef">Format</a>
+<a href="#section-2.5" class="section-number selfRef">2.5. </a><a href="#name-format" class="section-name selfRef">Format</a>
         </h3>
-<p id="section-2.3-1">The name of the threat actor <span class="bcp14">SHALL</span> be composed of a single word. If there are multiple parts, such as a decimal value or a counter, the values <span class="bcp14">MUST</span> be separated with a dash. Single words are preferred to ease keyword searches by analysts in public sources.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.5-1">The threat actor name <span class="bcp14">SHOULD</span> ideally consist of a single word. If the name is composed of multiple words or includes additional identifiers such as decimal values or counters, these elements <span class="bcp14">SHOULD</span> be combined into a single word without whitespace to facilitate searching. Single-word names are preferred to improve the efficiency of keyword searches by analysts in public sources.<a href="#section-2.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="encoding">
-<section id="section-2.4">
+<section id="section-2.6">
         <h3 id="name-encoding">
-<a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-encoding" class="section-name selfRef">Encoding</a>
+<a href="#section-2.6" class="section-number selfRef">2.6. </a><a href="#name-encoding" class="section-name selfRef">Encoding</a>
         </h3>
-<p id="section-2.4-1">The name of the threat actor <span class="bcp14">MUST</span> be expressed in 7-bit ASCII. Assigning a localized name to a threat actor <span class="bcp14">MAY</span> create ambiguity due to different localized versions of the same threat actor.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
+<p id="section-2.6-1">The threat actor name <span class="bcp14">MUST</span> be expressed using 7-bit ASCII characters. Assigning localized or non-ASCII names to threat actors <span class="bcp14">MAY</span> introduce ambiguity due to the existence of multiple localized versions of the same name.<a href="#section-2.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="avoid-confusing-actor-names-with-malware-names">
-<section id="section-2.5">
+<section id="section-2.7">
         <h3 id="name-avoid-confusing-actor-names">
-<a href="#section-2.5" class="section-number selfRef">2.5. </a><a href="#name-avoid-confusing-actor-names" class="section-name selfRef">Avoid Confusing Actor Names with Malware Names</a>
+<a href="#section-2.7" class="section-number selfRef">2.7. </a><a href="#name-avoid-confusing-actor-names" class="section-name selfRef">Avoid Confusing Actor Names with Malware Names</a>
         </h3>
-<p id="section-2.5-1">The name of the threat actor <span class="bcp14">MUST NOT</span> be based on the tools, techniques, or patterns used by the threat actor. A notorious example in the threat intelligence community is Turla, which can refer to a threat actor but also to a malware used by this group or other groups.<a href="#section-2.5-1" class="pilcrow">¶</a></p>
+<p id="section-2.7-1">The threat actor name <span class="bcp14">MUST NOT</span> be derived from the tools, techniques, or patterns used by the threat actor. A well-known example in the threat intelligence community is <em>Turla</em>, which can refer both to a threat actor and to malware used by that group or by other groups, leading to ambiguity.<a href="#section-2.7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="directory">
-<section id="section-2.6">
+<section id="section-2.8">
         <h3 id="name-directory">
-<a href="#section-2.6" class="section-number selfRef">2.6. </a><a href="#name-directory" class="section-name selfRef">Directory</a>
+<a href="#section-2.8" class="section-number selfRef">2.8. </a><a href="#name-directory" class="section-name selfRef">Directory</a>
         </h3>
-<p id="section-2.6-1">A reference registry of threat actors is <span class="bcp14">RECOMMENDED</span> to ensure consistency of names across different parties such as the threat actor MISP galaxy <span>[<a href="#MISP-G" class="cite xref">MISP-G</a>]</span>.<a href="#section-2.6-1" class="pilcrow">¶</a></p>
+<p id="section-2.8-1">A reference registry of threat actors is <span class="bcp14">RECOMMENDED</span> to ensure consistency of naming across different parties, such as the Threat Actor MISP Galaxy <span>[<a href="#MISP-G" class="cite xref">MISP-G</a>]</span>.<a href="#section-2.8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1495,7 +1520,7 @@ document are to be interpreted as described in RFC 2119 <span>[<a href="#RFC2119
       <h2 id="name-acknowledgements">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
-<p id="section-5-1">The authors wish to thank all contributors who provided feedback through the now-defunct Twitter and other new social networks.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">The authors wish to thank all contributors who provided feedback through the now-defunct Twitter, other social networks such as LinkedIn and GitHub Issues.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="references">
@@ -1563,6 +1588,14 @@ document are to be interpreted as described in RFC 2119 <span>[<a href="#RFC2119
 <div class="email">
 <span>Email:</span>
 <a href="mailto:Pauline@cubessa.io" class="email">Pauline@cubessa.io</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Andras Iklody</span></div>
+<div dir="auto" class="left"><span class="org">Computer Incident Response Center Luxembourg</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:andras.iklody@circl.lu" class="email">andras.iklody@circl.lu</a>
 </div>
 </address>
 </section>
