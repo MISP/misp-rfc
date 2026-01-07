@@ -134,7 +134,7 @@ Naming a threat actor could include sensitive references to a case or an inciden
 
 # Acknowledgements
 
-The authors wish to thank all contributors who provided feedback through the now-defunct Twitter, other social networks such as LinkedIn and GitHub Issues.
+The authors wish to thank all contributors who provided feedback through the now-defunct Twitter, other social networks such as Mastodon, Linkedin or via GitHub Issues.
 
 # References
 
