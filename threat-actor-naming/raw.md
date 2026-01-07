@@ -65,11 +65,10 @@ as:
 - Ambiguity in the words used to name the threat actor in different contexts (e.g., using common words).
 - Lack of a clearly defined text format to describe the same threat actor (e.g., Is the threat actor name case-sensitive? Is there a dash or a space between the words?).
 - Confusion between techniques/tools used by a threat actor versus its name (e.g., naming a threat actor after a specific malware used).
-- Lack of source and reasoning from vendors when they describe their threat actor names (e.g., did they name the threat actor after a specific set of campaigns or a specific set of targets?).
-- Lack of time-based information about the threat actor name, such as date of naming or a UUID.
+- Lack of source and reasoning from vendors when they describe their threat actor names (e.g., did they name the threat actor after a specific set of campaigns, a codenamed country or a specific set of targets?).
 - Lack of an open, mirrored "registry" of reference, accessible to all, where a new threat actor name can be registered, or where all already named threat actors can be accessed. The "registry" can contain the time-based information mentioned above; it is a tool.
 
-This document proposes a set of guidelines for naming threat actors. The goal is to reduce the issues mentioned above.
+This document proposes a set of recommendations and guidelines for naming threat actors. The objective is not to have a silver bullet solution solving all the mentioned issues, but to suggest ways to reduce the burden on analysts when searching for and cross-correlating threats.
 
 
 ##  Conventions and Terminology
@@ -86,9 +85,15 @@ The recommendations listed below provide a minimal set of guidelines when assign
 
 Before creating a new threat actor name, you **SHOULD** consider a review of existing threat actor names from databases such as the threat actor MISP galaxy [@!MISP-G]. Proliferation of threat actor names is a significant challenge for day-to-day analyst work. If your defined threat actor matches an existing threat actor, you **SHOULD** reuse an existing threat actor name. If there is no matching threat actor name, you **SHALL** create a new threat actor name, following the best practices defined in this document.
 
+Due to the volatile nature of threat correlation, threat actor profiles might merge or get split over time based on new information or further analysis. Analysts defining threat actors **SHOULD** use their best judgement to consolidate threat-actor profiles when possible and keep the prior defined name as an alias as part of the merged object as well as prior established relationships.
+
+## Threat Actor Types
+
+Frequently the lines between threat actors, campaigns and intrusion sets get blurred. This leads to a recategorisation of the expressed concept. This **SHOULD** not affect the naming convention, prior name of the threat in order to avoid losing correlations of historic data.
+
 ## Uniqueness
 
-When choosing a threat actor name, uniqueness is a critical property. The threat actor name **MUST** be unique and not already in use in different contexts. The name **SHOULD** be chosen with rarity in mind, common words are best to be avoided to allow for easier searching for information. If the use of common words is still required, the threat actor name **SHOULD** be a combination multiple words to increase uniqueness.
+When choosing a threat actor name, uniqueness is a critical property. The threat actor name **MUST** be unique and not already in use in different contexts. The name **SHOULD** be chosen with rarity in mind, common words are best to be avoided to facilitate easier searching for and automation of information. If the use of common words is still required, the threat actor name **SHOULD** be a combination multiple words to increase uniqueness.
 
 ## Additional unique identifier
 
@@ -96,7 +101,7 @@ Threat actor definitions **SHOULD** also contain a unique identifier expressed a
 
 ## Format
 
-The name of the threat actor **SHOULD** ideally be composed of a single word. If the threat actor name is a combination of words or a word with additional identifiers such as a decimal value or a counter, the values **MUST** be separated with a dash. Single words are preferred to ease keyword searches by analysts in public sources.
+The name of the threat actor **SHOULD** ideally be composed of a single word. If the threat actor name is a combination of words or a word with additional identifiers such as a decimal value or a counter, the values **SHOULD** be combined into a single word, avoiding white spaces, to ease searches.  Single words are preferred to ease keyword searches by analysts in public sources.
 
 ## Encoding
 
