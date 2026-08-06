@@ -114,6 +114,73 @@ The threat actor name **MUST NOT** be derived from the tools, techniques, or pat
 
 A reference registry of threat actors is **RECOMMENDED** to ensure consistency of naming across different parties, such as the Threat Actor MISP Galaxy [@!MISP-G].
 
+# MISP Galaxy Threat Actor Naming
+
+The MISP Galaxy threat-actor cluster acts as an open directory rather than as a
+new naming authority. It consolidates threat actor definitions and the names
+published by security vendors while preserving the origin of each name. Before
+adding a cluster, contributors **SHOULD** search the threat-actor galaxy and its
+referenced producer clusters for an existing definition. A matching definition
+**SHOULD** reuse the existing UUID. If the available information supports a
+merge or split, contributors **SHOULD** preserve the earlier UUIDs, names,
+aliases, references, and relationships so that existing correlations remain
+usable.
+
+The canonical `value` of a threat-actor cluster **SHOULD** follow the naming
+recommendations in this document: it ought to be unique, searchable, composed
+of 7-bit ASCII characters, and distinct from malware, tools, techniques, and
+campaigns. Other names for the actor **SHOULD** be retained as synonyms rather
+than being silently replaced. References supporting the definition and its
+names **SHOULD** be included, and uncertain equivalences **SHOULD NOT** be
+represented as established aliases merely because two actors share tooling,
+infrastructure, targets, or techniques.
+
+## Recording Vendor Name Attribution
+
+A name assigned by a security vendor carries meaning only in the context of
+that producer's tracking methodology. The threat-actor galaxy therefore links
+each vendor name to its producer instead of storing an unqualified synonym.
+The cluster's `meta` object uses the `name-attribution` array for this purpose.
+Each entry has the form `name:producer-cluster-uuid`, where `name` is the exact
+threat actor name allocated by the vendor and `producer-cluster-uuid` is the
+UUID of that vendor's MISP Galaxy cluster producer entry.
+
+For example:
+
+~~~~
+"meta": {
+  "name-attribution": [
+    "TA511:cae79680-67a6-4411-903c-f824dbcc813f"
+  ]
+}
+~~~~
+
+In this example, `TA511` is the vendor-allocated threat actor name and
+`cae79680-67a6-4411-903c-f824dbcc813f` identifies the producer in MISP Galaxy.
+Consumers can consequently resolve who allocated the name without relying on
+the name's spelling or on an implicit vendor convention. The producer UUID
+**SHOULD** be used instead of a free-form producer name because the UUID is the
+stable reference when an organization changes its name or display value.
+
+Contributors adding a vendor-allocated name **SHOULD**:
+
+1. preserve the spelling and capitalization used by the producer;
+2. add or reuse the producer's MISP Galaxy cluster and reference its UUID in
+   `name-attribution`;
+3. include a public vendor reference supporting the allocation when one is
+   available;
+4. avoid assigning one vendor's name to a different producer, even when another
+   vendor treats the actors as equivalent; and
+5. keep distinct entries when the equivalence is uncertain, expressing the
+   assessed relationship and confidence separately.
+
+This representation separates the stable identity of the consolidated MISP
+Galaxy threat actor, expressed by the threat-actor cluster UUID, from the
+vendor-specific name and the producer responsible for allocating it. It also
+supports the best practices above by retaining provenance, limiting ambiguous
+aliases, and allowing names and actor definitions to evolve without discarding
+historical correlations.
+
 # Examples
 
 Some known examples are included below and serve as references for good and bad practices in naming threat actors. The following threat actor names are considered good examples:
