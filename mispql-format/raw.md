@@ -22,6 +22,11 @@ abbrev = "CIRCL"
 organization = "Computer Incident Response Center Luxembourg"
  [author.address]
  email = "alexandre.dulaunoy@circl.lu"
+ [author.address.postal]
+ street = "122, rue Adolphe Fischer"
+ city = "Luxembourg"
+ code = "L-1521"
+ country = "Luxembourg"
 
 [[author]]
 initials = "A."
@@ -31,6 +36,11 @@ abbrev = "CIRCL"
 organization = "Computer Incident Response Center Luxembourg"
  [author.address]
  email = "andras.iklody@circl.lu"
+ [author.address.postal]
+ street = "122, rue Adolphe Fischer"
+ city = "Luxembourg"
+ code = "L-1521"
+ country = "Luxembourg"
 %%%
 
 .# Abstract
