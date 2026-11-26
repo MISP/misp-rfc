@@ -16,6 +16,7 @@ All the formats can be freely reused by everyone.
 
 ## MISP Format in design phase and implemented in at least one software prototype
 
+* [mispql-format](mispql-format/raw.md) specifies the MispQL query language and JSON filter representation for CTI platforms.
 * misp-modules-protocol which describes the [misp-modules](https://github.com/MISP/misp-modules) protocol used between MISP and misp-modules.
 
 ## MISP Format in design phase
