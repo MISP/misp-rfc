@@ -22,6 +22,15 @@ abbrev = "CIRCL"
 organization = "Computer Incident Response Center Luxembourg"
  [author.address]
  email = "alexandre.dulaunoy@circl.lu"
+
+[[author]]
+initials = "A."
+surname = "Iklody"
+fullname = "Andras Iklody"
+abbrev = "CIRCL"
+organization = "Computer Incident Response Center Luxembourg"
+ [author.address]
+ email = "andras.iklody@circl.lu"
 %%%
 
 .# Abstract
